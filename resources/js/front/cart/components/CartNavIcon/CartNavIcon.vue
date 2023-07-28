@@ -1,8 +1,8 @@
 <template>
-    <div class="navbar-tool dropdown ms-1"><a class="navbar-tool-icon-box  dropdown-toggle" :href="carturl"><span class="navbar-tool-label">{{ $store.state.cart ? $store.state.cart.count : 0 }}</span><i class="navbar-tool-icon ci-bag"></i></a>
+    <div class="navbar-tool dropdown ms-3"><a class="navbar-tool-icon-box bg-secondary dropdown-toggle" :href="carturl"><span class="navbar-tool-label">{{ $store.state.cart ? $store.state.cart.count : 0 }}</span><i class="navbar-tool-icon ci-cart"></i></a>
         <!-- Cart dropdown-->
         <div class="dropdown-menu dropdown-menu-end">
-            <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 24rem;" v-if="$store.state.cart.count">
+            <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;" v-if="$store.state.cart.count">
                 <div data-simplebar-auto-hide="false" v-for="item in $store.state.cart.items">
                     <div class="widget-cart-item pb-2 border-bottom">
                         <button class="btn-close text-danger" type="button" @click.prevent="removeFromCart(item)" aria-label="Remove"><span aria-hidden="true">&times;</span></button>

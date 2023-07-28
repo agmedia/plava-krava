@@ -110,7 +110,7 @@ class Category extends Model
      */
     public function scopeSortByName(Builder $query): Builder
     {
-        return $query->orderBy('title');
+        return $query->orderBy('sort_order', 'asc');
     }
 
 

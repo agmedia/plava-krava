@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
 @if (request()->routeIs(['index']))
-    @section ( 'title', 'ZUZI Shop | Prodaja knjiga | Otkup knjiga | Webshop' )
-@section ( 'description', 'Zuzi shop - Nudimo Vam praktičnu mogućnost pretraživanja i naručivanja željenih naslova putem web stranice zuzi.hr iz udobnosti naslonjača.' )
+    @section ( 'title', 'Plava Krava | Webshop | Knjige | Porculan | Posuđe' )
+@section ( 'description', 'Iza simpatičnog imena Plava krava, krije se odlična ekipa koja kupca itekako stavlja na prvo mjesto. Jednostavna kupovina i brza dostava.' )
 
 
 @push('meta_tags')
@@ -9,25 +9,25 @@
     <link rel="canonical" href="{{ env('APP_URL')}}" />
     <meta property="og:locale" content="hr_HR" />
     <meta property="og:type" content="product" />
-    <meta property="og:title" content="ZUZI Shop | Prodaja knjiga | Otkup knjiga | Webshop" />
-    <meta property="og:description" content="Zuzi shop - Nudimo Vam praktičnu mogućnost pretraživanja i naručivanja željenih naslova putem web stranice zuzi.hr iz udobnosti naslonjača." />
+    <meta property="og:title" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
+    <meta property="og:description" content="Iza simpatičnog imena Plava krava, krije se odlična ekipa koja kupca itekako stavlja na prvo mjesto. Jednostavna kupovina i brza dostava." />
     <meta property="og:url" content="{{ env('APP_URL')}}"  />
-    <meta property="og:site_name" content="ZUZI Shop | Prodaja knjiga | Otkup knjiga | Webshop" />
+    <meta property="og:site_name" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
     <meta property="og:image" content="{{ asset('media/cover-zuzi.jpg') }}" />
     <meta property="og:image:secure_url" content="{{ asset('media/cover-zuzi.jpg') }}" />
     <meta property="og:image:width" content="1920" />
     <meta property="og:image:height" content="720" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="ZUZI Shop | Prodaja knjiga | Otkup knjiga | Webshop" />
+    <meta property="og:image:alt" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ZUZI Shop | Prodaja knjiga | Otkup knjiga | Webshop" />
-    <meta name="twitter:description" content="Zuzi shop - Nudimo Vam praktičnu mogućnost pretraživanja i naručivanja željenih naslova putem web stranice zuzi.hr iz udobnosti naslonjača." />
+    <meta name="twitter:title" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
+    <meta name="twitter:description" content="Iza simpatičnog imena Plava krava, krije se odlična ekipa koja kupca itekako stavlja na prvo mjesto. Jednostavna kupovina i brza dostava." />
     <meta name="twitter:image" content="{{ asset('media/cover-zuzi.jpg') }}" />
 
 @endpush
 
 @else
-    @section ( 'title', $page->title. ' - ZUZI Shop' )
+    @section ( 'title', $page->title. ' - Plava Krava' )
 @section ( 'description', $page->meta_description )
 @endif
 

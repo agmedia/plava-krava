@@ -133,13 +133,7 @@
     <section class="spikesg" ></section>
     <div class="container pb-4 mb-2 mb-md-4 mt-4" id="filter-app" v-cloak>
         <div class="row">
-            <filter-view ids="{{ isset($ids) ? $ids : null }}"
-                         group="{{ isset($group) ? $group : null }}"
-                         cat="{{ isset($cat) ? $cat : null }}"
-                         subcat="{{ isset($subcat) ? $subcat : null }}"
-                         author="{{ isset($author) ? $author['slug'] : null }}"
-                         publisher="{{ isset($publisher) ? $publisher['slug'] : null }}">
-            </filter-view>
+
             <products-view ids="{{ isset($ids) ? $ids : null }}"
                            group="{{ isset($group) ? $group : null }}"
                            cat="{{ isset($cat) ? $cat['id'] : null }}"

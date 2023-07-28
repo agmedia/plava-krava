@@ -5,26 +5,21 @@
     <title> @yield('title') </title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="@yield('description')">
-
-    <meta name="author" content="Zuzi Shop">
+    <meta name="author" content="Plava Krava">
     @stack('meta_tags')
     <!-- Viewport-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ config('settings.images_domain') . 'media/img/favicon-32x32.png' }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ config('settings.images_domain') . 'media/img/favicon-32x32.png' }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ config('settings.images_domain') . 'media/img/favicon-16x16.png' }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ config('settings.images_domain') . 'media/img/apple-touch-icon.png' }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ config('settings.images_domain') . 'media/img/favicon-32x32.png' }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ config('settings.images_domain') . 'media/img/favicon-16x16.png' }}">
-    <link rel="mask-icon" href="{{ config('settings.images_domain') . 'safari-pinned-tab.svg' }}" color="#e50077">
-    <meta name="msapplication-TileColor" content="#e50077">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ config('settings.images_domain') . 'favicon-32x32.png' }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ config('settings.images_domain') . 'favicon-32x32.png' }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ config('settings.images_domain') . 'favicon-16x16.png' }}">
+
+    <link rel="mask-icon" href="{{ config('settings.images_domain') . 'safari-pinned-tab.svg' }}" color="#18326d">
+    <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="{{ asset('vendor/simplebar/dist/simplebar.min.css') }}"/>
     <link rel="stylesheet" media="screen" href="{{ asset(config('settings.images_domain') . 'css/theme.css?v=1.7') }}">
 
     @if (config('app.env') == 'production')
@@ -69,13 +64,83 @@
             /></noscript> -->
     @endif
 
+
     <style>
         [v-cloak] { display:none !important; }
     </style>
-
 </head>
 <!-- Body-->
 <body class="bg-secondary">
+<!-- Sign in / sign up modal-->
+<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                    <li class="nav-item"><a class="nav-link fw-medium active" href="#signin-tab" data-bs-toggle="tab" role="tab" aria-selected="true"><i class="ci-unlocked me-2 mt-n1"></i>Prijava</a></li>
+                    <li class="nav-item"><a class="nav-link fw-medium" href="#signup-tab" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="ci-user me-2 mt-n1"></i>Registracija</a></li>
+                </ul>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body tab-content py-4">
+                <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
+                    <div class="mb-3">
+                        <label class="form-label" for="si-email">Email adresa</label>
+                        <input class="form-control" type="email" id="si-email" placeholder="" required>
+                        <div class="invalid-feedback">Please provide a valid email address.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="si-password">Zaporka</label>
+                        <div class="password-toggle">
+                            <input class="form-control" type="password" id="si-password" required>
+                            <label class="password-toggle-btn" aria-label="Show/hide password">
+                                <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3 d-flex flex-wrap justify-content-between">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="si-remember">
+                            <label class="form-check-label" for="si-remember">Zapamti me</label>
+                        </div><a class="fs-sm" href="#">Zaboravljena lozinka</a>
+                    </div>
+                    <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Prijavi se</button>
+                </form>
+                <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
+                    <div class="mb-3">
+                        <label class="form-label" for="su-name">Korisničko ime</label>
+                        <input class="form-control" type="text" id="su-name" placeholder="" required>
+                        <div class="invalid-feedback">Please fill in your name.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="si-email">Email adresa</label>
+                        <input class="form-control" type="email" id="su-email" placeholder="" required>
+                        <div class="invalid-feedback">Please provide a valid email address.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="su-password">Zaporka</label>
+                        <div class="password-toggle">
+                            <input class="form-control" type="password" id="su-password" required>
+                            <label class="password-toggle-btn" aria-label="Show/hide password">
+                                <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="su-password-confirm">Potvrdite zaporku</label>
+                        <div class="password-toggle">
+                            <input class="form-control" type="password" id="su-password-confirm" required>
+                            <label class="password-toggle-btn" aria-label="Show/hide password">
+                                <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Registriraj se</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 @if (config('app.env') == 'production')
     <!-- Google Tag Manager (noscript) -->
@@ -85,54 +150,42 @@
 @endif
 
 
-<!-- Light topbar -->
-<div class="topbar topbar-light  bg-dark">
-    <div class="container">
 
-        <div class="topbar-text text-nowrap  d-inline-block">
-            <i class="ci-support"></i>
-            <span class=" me-1">Podrška</span>
-            <a class="topbar-link" href="tel:00385916047126">091 604 7126</a>
-        </div>
-        <div class="topbar-text  d-none  d-md-inline-block">Besplatna dostava za sve narudžbe iznad 70 €</div>
-        <div class="ms-3 text-nowrap ">
-            <a class="topbar-link me-2 d-inline-block" href="https://www.facebook.com/zuziobrt/">
-                <i class="ci-facebook"></i>
-            </a>
-
-            <a class="topbar-link me-2 d-inline-block" href="https://www.instagram.com/zuziobrt/">
-                <i class="ci-instagram"></i>
-            </a>
-
-            <a class="topbar-link me-0 d-inline-block" href="mailto:info@zuzi.hr">
-                <i class="ci-mail"></i>
-            </a>
-
-        </div>
-    </div>
-</div>
-
-<section class="spikes"></section>
 
 <div id="agapp">
+
     @include('front.layouts.partials.header')
+    <main class="offcanvas-enabled" >
 
-    @yield('content')
-    <section class="spikesw"></section>
-    @include('front.layouts.partials.footer')
+        <section class="ps-lg-4 pe-lg-3 pt-4">
+            <div class="px-3 pt-2">
 
-    @include('front.layouts.partials.handheld')
+               @yield('content')
+
+            </div>
+
+
+        </section>
+
+            @include('front.layouts.partials.footer')
+        @include('front.layouts.partials.handheld')
+
+    </main>
 </div>
 
-<!-- Back To Top Button-->
-<a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up"></i></a>
+
+<!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll data-fixed-element><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>
 <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
 <link rel="stylesheet" media="screen" href="{{ asset(config('settings.images_domain') . 'css/tiny-slider.css?v=1.2') }}"/>
 <!-- Vendor scrits: js libraries and plugins-->
-<script src="{{ asset('js/jquery/jquery-2.1.1.min.js?v=1.2') }}"></script>
-<script src="{{ asset('js/bootstrap.bundle.min.js?v=1.2') }}"></script>
-<script src="{{ asset('js/tiny-slider.js?v=1.2') }}"></script>
-<script src="{{ asset('js/smooth-scroll.polyfills.min.js?v=1.2') }}"></script>
+<script src="{{ asset('js/jquery/jquery-2.1.1.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('vendor/simplebar/dist/simplebar.min.js') }}"></script>
+<script src="{{ asset('vendor/tiny-slider/dist/min/tiny-slider.js') }}"></script>
+<script src="{{ asset('vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
+
+
+
 
 
 
@@ -140,7 +193,7 @@
 <script src="{{ asset('js/shufflejs/dist/shuffle.min.js') }}"></script>
 <!-- Main theme script-->
 
-<script src="{{ asset('js/cart.js?v=2.0.8') }}"></script>
+<script src="{{ asset('js/cart.js') }}"></script>
 
 <script src="{{ asset('js/theme.min.js') }}"></script>
 
@@ -155,10 +208,10 @@
     });
 </script>
 
-<!-- Messenger Chat Plugin Code -->
+<!-- Messenger Chat Plugin Code
 <div id="fb-root"></div>
-
-<!-- Your Chat Plugin code -->
+-->
+<!-- Your Chat Plugin code
 <div id="fb-customer-chat" class="fb-customerchat">
 </div>
 
@@ -168,7 +221,7 @@
     chatbox.setAttribute("attribution", "biz_inbox");
 </script>
 
-<!-- Your SDK code -->
+
 <script>
     window.fbAsyncInit = function() {
         FB.init({
@@ -185,7 +238,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-
+-->
 @stack('js_after')
 
 </body>

@@ -103,6 +103,7 @@ class FilterController extends Controller
             $response[] = [
                 'id' => $category['id'],
                 'title' => $category['title'],
+                'icon' => $category['icon'],
                 'count' => $category['products_count'],
                 'url' => $url,
                 'subs' => $subs
