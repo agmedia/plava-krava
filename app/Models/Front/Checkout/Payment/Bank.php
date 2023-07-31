@@ -80,15 +80,15 @@ class Bank
                         ),
                     'receiver'    =>
                         array(
-                            'name'      => 'Fortuna d.o.o.',
-                            'street'    => 'Antuna Šoljana 33',
+                            'name'      => 'Plava Krava d.o.o.',
+                            'street'    => 'Martićeva ulica 37',
                             'place'     => '10000 Zagreb',
-                            'iban'      => 'HR1624020061140345999',
+                            'iban'      => 'HR6423400091111149888',
                             'model'     => '00',
                             'reference' => $pozivnabroj,
                         ),
                     'purpose'     => 'CMDT',
-                    'description' => 'Web narudžba Zuzi Shop',
+                    'description' => 'Web narudžba Plava Krava',
                 ),
         );
 

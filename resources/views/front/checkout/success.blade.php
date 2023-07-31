@@ -12,7 +12,7 @@
         @endsection
     @endif
 
-    <div class="container pb-5 mb-sm-4">
+    <div class="pb-5 mb-sm-4">
         <div class="pt-5">
             <div class="card py-3 mt-sm-3">
                 <div class="card-body text-center">
@@ -23,7 +23,7 @@
                         <p> Rok za uplatu je maksimalno 48h tijekom koga robu koju ste naručili držimo rezerviranu za vas.</p>
                         <p> Ukoliko u tom roku ne zaprimimo uplatu, nažalost moramo poništiti ovu narudžbu.</p>
                         <p>MOLIMO IZVRŠITE UPLATU U IZNOSU OD  {{number_format($data['order']['total'], 2)}} kn<br>
-                           IBAN RAČUN: HR1624020061140345999<br>
+                           IBAN RAČUN: HR6423400091111149888<br>
                            MODEL: 00 POZIV NA BROJ: {{ $data['order']['id'] }}-{{date('ym')}}</p>
                         <p>ILI JEDNOSTAVNO POSKENIRAJTE 2D BARKOD</p>
                         <p><img src="{{ asset('media/img/qr/'.$data['order']['id']) }}.jpg"></p>

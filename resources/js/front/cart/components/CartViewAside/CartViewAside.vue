@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class=" rounded-3  p-4" v-if="route == 'kosarica'" style="border: 2px dashed #e3e9ef;background-color: #f6f9fc !important;">
+        <div class=" rounded-3  p-4" v-if="route == 'kosarica'" style="border: 2px solid #d8e4ff;background-color: #fff !important;">
             <div class="py-2 px-xl-2" v-cloak>
                 <div class="text-center mb-2 pb-2">
                     <h2 class="h6 mb-3 pb-1">Ukupno</h2>
@@ -8,12 +8,12 @@
                     <h4 class="fs-sm" v-if="$store.state.cart.secondary_price">{{ $store.state.service.formatSecondaryPrice($store.state.cart.total) }}</h4>
                 </div>
                 <a class="btn btn-primary btn-shadow d-block w-100 mt-4" :href="checkouturl">NASTAVI NA NAPLATU <i class="ci-arrow-right fs-sm"></i></a>
-               <!-- <p class="small fw-light text-center mt-2">* Cijena dostave će biti izračunata na koraku 3: Dostava</p>-->
+                <!-- <p class="small fw-light text-center mt-2">* Cijena dostave će biti izračunata na koraku 3: Dostava</p>-->
             </div>
         </div>
 
 
-        <div class=" rounded-3  p-4 ms-lg-auto" v-if="route == 'naplata'" style="border: 2px dashed #e3e9ef;background-color: #f6f9fc !important;">
+        <div class=" rounded-3  p-4 ms-lg-auto" v-if="route == 'naplata'" style="border: 2px solid #d8e4ff;background-color: #fff !important;">
             <div class="py-2 px-xl-2">
                 <div class="widget mb-3">
                     <h2 class="widget-title text-center mb-2">Sažetak narudžbe</h2>
@@ -39,20 +39,20 @@
                 </ul>
                 <h3 class="fw-bold text-primary text-center my-2">{{ $store.state.service.formatMainPrice($store.state.cart.total) }}</h3>
                 <h4 v-if="$store.state.cart.secondary_price" class="fs-sm text-center my-2">{{ $store.state.service.formatSecondaryPrice($store.state.cart.total) }}</h4>
-             <!--  <p class="small fw-light text-center mt-4 mb-0">
-                    <span class="fw-normal">{{ $store.state.service.formatMainPrice($store.state.service.calculateItemsTax($store.state.cart.items)) }}</span> PDV knjige i
-                    <span class="fw-normal">{{ $store.state.service.formatMainPrice($store.state.service.calculateItemsTax($store.state.cart.total - $store.state.cart.subtotal)) }}</span> PDV dostava
-                </p>
-                <p class="small fw-light text-center mt-2 mb-0" v-if="$store.state.cart.secondary_price">
-                    <span class="fw-normal">{{ $store.state.service.formatSecondaryPrice($store.state.service.calculateItemsTax($store.state.cart.items)) }}</span> PDV knjige i
-                    <span class="fw-normal">{{ $store.state.service.formatSecondaryPrice($store.state.service.calculateItemsTax($store.state.cart.total - $store.state.cart.subtotal)) }}</span> PDV dostava
-                </p> -->
+                <!--  <p class="small fw-light text-center mt-4 mb-0">
+                       <span class="fw-normal">{{ $store.state.service.formatMainPrice($store.state.service.calculateItemsTax($store.state.cart.items)) }}</span> PDV knjige i
+                       <span class="fw-normal">{{ $store.state.service.formatMainPrice($store.state.service.calculateItemsTax($store.state.cart.total - $store.state.cart.subtotal)) }}</span> PDV dostava
+                   </p>
+                   <p class="small fw-light text-center mt-2 mb-0" v-if="$store.state.cart.secondary_price">
+                       <span class="fw-normal">{{ $store.state.service.formatSecondaryPrice($store.state.service.calculateItemsTax($store.state.cart.items)) }}</span> PDV knjige i
+                       <span class="fw-normal">{{ $store.state.service.formatSecondaryPrice($store.state.service.calculateItemsTax($store.state.cart.total - $store.state.cart.subtotal)) }}</span> PDV dostava
+                   </p> -->
                 <p class="small text-center mt-0 mb-0">PDV uračunat u cijeni</p>
             </div>
         </div>
 
 
-        <div class=" rounded-3 p-4 ms-lg-auto" v-if="route == 'pregled'" style="border: 2px dashed #e3e9ef;background-color: #f6f9fc !important;">
+        <div class=" rounded-3 p-4 ms-lg-auto" v-if="route == 'pregled'" style="border: 2px solid #d8e4ff;background-color: #fff !important;">
             <div class="py-2 px-xl-2">
                 <div class="widget mb-3">
                     <h2 class="widget-title text-center">Sažetak narudžbe</h2>
@@ -69,14 +69,14 @@
                 </ul>
                 <h3 class="fw-bold text-primary text-center my-2">{{ $store.state.service.formatMainPrice($store.state.cart.total) }}</h3>
                 <h4 v-if="$store.state.cart.secondary_price" class="fs-sm text-center my-2">{{ $store.state.service.formatSecondaryPrice($store.state.cart.total) }}</h4>
-              <!--  <p class="small fw-light text-center mt-4 mb-0">
-                    <span class="fw-normal">{{ $store.state.service.formatMainPrice($store.state.service.calculateItemsTax($store.state.cart.items)) }}</span> PDV knjige i
-                    <span class="fw-normal">{{ $store.state.service.formatMainPrice($store.state.service.calculateItemsTax($store.state.cart.total - $store.state.cart.subtotal)) }}</span> PDV dostava
-                </p>
-                <p class="small fw-light text-center mt-2 mb-0" v-if="$store.state.cart.secondary_price">
-                    <span class="fw-normal">{{ $store.state.service.formatSecondaryPrice($store.state.service.calculateItemsTax($store.state.cart.items)) }}</span> PDV knjige i
-                    <span class="fw-normal">{{ $store.state.service.formatSecondaryPrice($store.state.service.calculateItemsTax($store.state.cart.total - $store.state.cart.subtotal)) }}</span> PDV dostava
-                </p> -->
+                <!--  <p class="small fw-light text-center mt-4 mb-0">
+                      <span class="fw-normal">{{ $store.state.service.formatMainPrice($store.state.service.calculateItemsTax($store.state.cart.items)) }}</span> PDV knjige i
+                      <span class="fw-normal">{{ $store.state.service.formatMainPrice($store.state.service.calculateItemsTax($store.state.cart.total - $store.state.cart.subtotal)) }}</span> PDV dostava
+                  </p>
+                  <p class="small fw-light text-center mt-2 mb-0" v-if="$store.state.cart.secondary_price">
+                      <span class="fw-normal">{{ $store.state.service.formatSecondaryPrice($store.state.service.calculateItemsTax($store.state.cart.items)) }}</span> PDV knjige i
+                      <span class="fw-normal">{{ $store.state.service.formatSecondaryPrice($store.state.service.calculateItemsTax($store.state.cart.total - $store.state.cart.subtotal)) }}</span> PDV dostava
+                  </p> -->
                 <p class="small text-center mt-0 mb-0">PDV uračunat u cijeni</p>
             </div>
         </div>
@@ -85,92 +85,92 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            continueurl: String,
-            checkouturl: String,
-            buttons: {type: Boolean, default: true},
-            route: String
-        },
-        data() {
-            return {
-                base_path: window.location.origin + '/',
-                mobile: false,
-                show_delete_btn: true,
-                coupon: '',
-                tax: 0,
-            }
-        },
-        mounted() {
-            if (window.innerWidth < 800) {
-                this.mobile = true;
-            }
-
-            this.checkIfEmpty();
-            this.setCoupon();
-
-
-        },
-
-        methods: {
-            /**
-             *
-             * @param item
-             */
-            updateCart(item) {
-                this.$store.dispatch('updateCart', item);
-            },
-
-            /**
-             *
-             * @param item
-             */
-            removeFromCart(item) {
-                this.$store.dispatch('removeFromCart', item);
-            },
-
-            /**
-             *
-             * @param qty
-             * @returns {number|*}
-             * @constructor
-             */
-            CheckQuantity(qty) {
-                if (qty < 1) {
-                    return 1;
-                }
-
-                return qty;
-            },
-
-            /**
-             *
-             */
-            checkIfEmpty() {
-                let cart = this.$store.state.storage.getCart();
-
-                if (cart && ! cart.count && window.location.pathname != '/kosarica') {
-                    window.location.href = '/kosarica';
-                }
-            },
-
-            /**
-             *
-             */
-            setCoupon() {
-                let cart = this.$store.state.storage.getCart();
-
-                this.coupon = cart.coupon;
-            },
-
-            /**
-             *
-             */
-            checkCoupon() {
-                this.$store.dispatch('checkCoupon', this.coupon);
-            }
+export default {
+    props: {
+        continueurl: String,
+        checkouturl: String,
+        buttons: {type: Boolean, default: true},
+        route: String
+    },
+    data() {
+        return {
+            base_path: window.location.origin + '/',
+            mobile: false,
+            show_delete_btn: true,
+            coupon: '',
+            tax: 0,
         }
-    };
+    },
+    mounted() {
+        if (window.innerWidth < 800) {
+            this.mobile = true;
+        }
+
+        this.checkIfEmpty();
+        this.setCoupon();
+
+
+    },
+
+    methods: {
+        /**
+         *
+         * @param item
+         */
+        updateCart(item) {
+            this.$store.dispatch('updateCart', item);
+        },
+
+        /**
+         *
+         * @param item
+         */
+        removeFromCart(item) {
+            this.$store.dispatch('removeFromCart', item);
+        },
+
+        /**
+         *
+         * @param qty
+         * @returns {number|*}
+         * @constructor
+         */
+        CheckQuantity(qty) {
+            if (qty < 1) {
+                return 1;
+            }
+
+            return qty;
+        },
+
+        /**
+         *
+         */
+        checkIfEmpty() {
+            let cart = this.$store.state.storage.getCart();
+
+            if (cart && ! cart.count && window.location.pathname != '/kosarica') {
+                window.location.href = '/kosarica';
+            }
+        },
+
+        /**
+         *
+         */
+        setCoupon() {
+            let cart = this.$store.state.storage.getCart();
+
+            this.coupon = cart.coupon;
+        },
+
+        /**
+         *
+         */
+        checkCoupon() {
+            this.$store.dispatch('checkCoupon', this.coupon);
+        }
+    }
+};
 </script>
 
 

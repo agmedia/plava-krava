@@ -1,28 +1,36 @@
 
 @extends('front.layouts.app')
 
+@push('css_after')
+    @livewireStyles
+@endpush
+
 @section('content')
 
-    <div class="page-title bg-dark pt-4" style="background-image: url({{ config('settings.images_domain') . 'media/img/zuzi-bck.svg' }});background-repeat: repeat-x;background-position-y: bottom;">
-        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
-            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
-                        <li class="breadcrumb-item"><a class="text-nowrap" href="{{ route('index') }}"><i class="ci-home"></i>Naslovnica</a></li>
 
-                        <li class="breadcrumb-item text-nowrap active" aria-current="page">Potvrdite narudžbu</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-                <h1 class="h3 text-light mb-0">Način plaćanja</h1>
-            </div>
-        </div>
-        <div class="container">
+
+    <!-- Page title + breadcrumb-->
+    <nav class="mb-4" aria-label="breadcrumb">
+        <ol class="breadcrumb flex-lg-nowrap">
+            <li class="breadcrumb-item"><a class="text-nowrap" href="{{ route('index') }}"><i class="ci-home"></i>Naslovnica</a></li>
+            <li class="breadcrumb-item text-nowrap active" aria-current="page">Potvrdite narudžbu</li>
+        </ol>
+    </nav>
+    <!-- Content-->
+    <!-- Sorting-->
+    <section class="d-md-flex justify-content-between align-items-center mb-4 pb-2">
+        <h1 class="h2 mb-3 mb-md-0 me-3">Potvrdite narudžbu</h1>
+
+    </section>
+
+
+
+
+
             <div class="row">
 
                 <section class="col-lg-12">
-                    <div class="steps steps-light pt-2 pb-3 mb-2">
+                    <div class="steps steps-dark pt-2 pb-3 mb-2">
                         <a class="step-item active" href="{{ route('kosarica') }}">
                             <div class="step-progress"><span class="step-count">1</span></div>
                             <div class="step-label"><i class="ci-cart"></i>Košarica</div>
@@ -47,14 +55,14 @@
                 </section>
 
             </div>
-        </div>
-    </div>
-    <section class="spikesg" ></section>
-    <div class="container pb-5 mb-2 mt-5 mb-md-4">
+
+
+
+    <div class="pb-5 mb-2 mt-5 mb-md-4">
         <div class="row">
 
             <section class="col-lg-8">
-                <h2 class="h6 pt-1 pb-3 mb-3">Pregled košarice</h2>
+                <h2 class="h5 pt-1 pb-3 mb-3">Pregled košarice</h2>
                 <cart-view continueurl="{{ route('index') }}" checkouturl="{{ route('naplata') }}" buttons="false"></cart-view>
 
                 <div class="bg-secondary rounded-3 px-4 pt-4 pb-2">

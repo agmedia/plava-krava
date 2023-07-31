@@ -7,12 +7,12 @@
             <p class="text-dark mb-0">Vaša košarica je prazna!</p>
         </div>
 
-      <!--  <div class="d-flex border p-2" style="background-color: rgba(245,245,245,0.96);" v-if="$store.state.cart.total < freeship && $store.state.cart.count">
-            <p class="small mb-0">Još € {{ $store.state.service.formatMainPrice(freeship - $store.state.cart.total) }} <span v-if="$store.state.cart.secondary_price">({{ $store.state.service.formatSecondaryPrice(freeship - $store.state.cart.total) }})</span> do besplatne dostave!</p>
-        </div>
-        <div class="d-flex border p-2" style="background-color: rgba(245,245,245,0.96);" v-if="$store.state.cart.total > freeship && $store.state.cart.count">
-            <p class="small mb-0">Ostvarili ste pravo na besplatnu dostavu!</p>
-        </div>-->
+        <!--  <div class="d-flex border p-2" style="background-color: rgba(245,245,245,0.96);" v-if="$store.state.cart.total < freeship && $store.state.cart.count">
+              <p class="small mb-0">Još € {{ $store.state.service.formatMainPrice(freeship - $store.state.cart.total) }} <span v-if="$store.state.cart.secondary_price">({{ $store.state.service.formatSecondaryPrice(freeship - $store.state.cart.total) }})</span> do besplatne dostave!</p>
+          </div>
+          <div class="d-flex border p-2" style="background-color: rgba(245,245,245,0.96);" v-if="$store.state.cart.total > freeship && $store.state.cart.count">
+              <p class="small mb-0">Ostvarili ste pravo na besplatnu dostavu!</p>
+          </div>-->
 
         <!-- Item-->
         <div class="d-sm-flex justify-content-between align-items-center my-2 pb-3 border-bottom" v-for="item in $store.state.cart.items">
@@ -29,7 +29,7 @@
             </div>
             <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-start" style="max-width: 9rem;">
                 <label class="form-label">Količina: {{item.quantity}}</label>
-                <input class="form-control d-none" type="number" v-model="item.quantity" min="1" max="item.associatedModel.quantity" value="1" readonly>
+                <input class="form-control" type="number" v-model="item.quantity" min="1" :max="item.associatedModel.quantity" @click.prevent="updateCart(item)">
                 <button class="btn btn-link px-0 text-danger" type="button" @click.prevent="removeFromCart(item)"><i class="ci-close-circle me-2"></i><span class="fs-sm">Ukloni</span></button>
             </div>
         </div>
@@ -41,99 +41,97 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            continueurl: String,
-            checkouturl: String,
-            freeship: String,
-            buttons: {type: String, default: 'true'},
-        },
-        data() {
-            return {
-                base_path: window.location.origin + '/',
-                mobile: false,
-                show_delete_btn: true,
-                coupon: '',
-                show_buttons: true,
-            }
-        },
-        mounted() {
-            if (window.innerWidth < 800) {
-                this.mobile = true;
-            }
-
-            if (this.buttons == 'false') {
-                this.show_buttons = false;
-            } else {
-                this.show_buttons = true;
-            }
-
-            this.checkIfEmpty();
-            this.setCoupon();
-
-
-        },
-
-        methods: {
-
-            /**
-             *
-             * @param item
-             */
-            updateCart(item) {
-                this.$store.dispatch('updateCart', item);
-            },
-
-            /**
-             *
-             * @param item
-             */
-            removeFromCart(item) {
-                this.$store.dispatch('removeFromCart', item);
-            },
-
-            /**
-             *
-             * @param qty
-             * @returns {number|*}
-             * @constructor
-             */
-            CheckQuantity(qty) {
-                if (qty < 1) {
-                    return 1;
-                }
-
-                return qty;
-            },
-
-            /**
-             *
-             */
-            checkIfEmpty() {
-                let cart = this.$store.state.storage.getCart();
-
-                if (cart && ! cart.count && window.location.pathname != '/kosarica') {
-                    window.location.href = '/kosarica';
-                }
-            },
-
-            /**
-             *
-             */
-            setCoupon() {
-                let cart = this.$store.state.storage.getCart();
-
-                this.coupon = cart.coupon;
-            },
-
-            /**
-             *
-             */
-            checkCoupon() {
-                this.$store.dispatch('checkCoupon', this.coupon);
-            }
+export default {
+    props: {
+        continueurl: String,
+        checkouturl: String,
+        freeship: String,
+        buttons: {type: String, default: 'true'},
+    },
+    data() {
+        return {
+            base_path: window.location.origin + '/',
+            mobile: false,
+            show_delete_btn: true,
+            coupon: '',
+            show_buttons: true,
         }
-    };
+    },
+    mounted() {
+        if (window.innerWidth < 800) {
+            this.mobile = true;
+        }
+
+        if (this.buttons == 'false') {
+            this.show_buttons = false;
+        } else {
+            this.show_buttons = true;
+        }
+
+        this.checkIfEmpty();
+        this.setCoupon();
+    },
+
+    methods: {
+
+        /**
+         *
+         * @param item
+         */
+        updateCart(item) {
+            this.$store.dispatch('updateCart', item);
+        },
+
+        /**
+         *
+         * @param item
+         */
+        removeFromCart(item) {
+            this.$store.dispatch('removeFromCart', item);
+        },
+
+        /**
+         *
+         * @param qty
+         * @returns {number|*}
+         * @constructor
+         */
+        CheckQuantity(qty) {
+            if (qty < 1) {
+                return 1;
+            }
+
+            return qty;
+        },
+
+        /**
+         *
+         */
+        checkIfEmpty() {
+            let cart = this.$store.state.storage.getCart();
+
+            if (cart && ! cart.count && window.location.pathname != '/kosarica') {
+                window.location.href = '/kosarica';
+            }
+        },
+
+        /**
+         *
+         */
+        setCoupon() {
+            let cart = this.$store.state.storage.getCart();
+
+            this.coupon = cart.coupon;
+        },
+
+        /**
+         *
+         */
+        checkCoupon() {
+            this.$store.dispatch('checkCoupon', this.coupon);
+        }
+    }
+};
 </script>
 
 

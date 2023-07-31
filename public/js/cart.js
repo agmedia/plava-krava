@@ -6144,16 +6144,18 @@ var render = function() {
                       expression: "item.quantity"
                     }
                   ],
-                  staticClass: "form-control d-none",
+                  staticClass: "form-control",
                   attrs: {
                     type: "number",
                     min: "1",
-                    max: "item.associatedModel.quantity",
-                    value: "1",
-                    readonly: ""
+                    max: item.associatedModel.quantity
                   },
                   domProps: { value: item.quantity },
                   on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.updateCart(item)
+                    },
                     input: function($event) {
                       if ($event.target.composing) {
                         return
@@ -6253,8 +6255,8 @@ var render = function() {
           {
             staticClass: " rounded-3  p-4",
             staticStyle: {
-              border: "2px dashed #e3e9ef",
-              "background-color": "#f6f9fc !important"
+              border: "2px solid #d8e4ff",
+              "background-color": "#fff !important"
             }
           },
           [
@@ -6307,8 +6309,8 @@ var render = function() {
           {
             staticClass: " rounded-3  p-4 ms-lg-auto",
             staticStyle: {
-              border: "2px dashed #e3e9ef",
-              "background-color": "#f6f9fc !important"
+              border: "2px solid #d8e4ff",
+              "background-color": "#fff !important"
             }
           },
           [
@@ -6539,8 +6541,8 @@ var render = function() {
           {
             staticClass: " rounded-3 p-4 ms-lg-auto",
             staticStyle: {
-              border: "2px dashed #e3e9ef",
-              "background-color": "#f6f9fc !important"
+              border: "2px solid #d8e4ff",
+              "background-color": "#fff !important"
             }
           },
           [

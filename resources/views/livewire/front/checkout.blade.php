@@ -1,5 +1,5 @@
 <div>
-    <div class="steps steps-light pt-2 pb-3 mb-5">
+    <div class="steps steps-dark pt-2 pb-3 mb-4">
         <a class="step-item active" href="{{ route('kosarica') }}">
             <div class="step-progress"><span class="step-count">1</span></div>
             <div class="step-label"><i class="ci-cart"></i>Košarica</div>
@@ -67,7 +67,7 @@
     @endif
 
     @if ($step == 'podaci')
-        <h2 class="h6 pt-1 pb-3 mb-3 border-bottom">Adresa dostave</h2>
+        <h2 class="h5 pt-1 pb-3 mb-3 m">Adresa dostave</h2>
 
         @if (session()->has('login_success'))
             <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
@@ -199,7 +199,7 @@
             </div>
         </div>
 
-        <h2 class="h6 pt-1 pb-3 mb-3 border-bottom">Trebate R1 račun?</h2>
+        <h2 class="h6 pt-3 pb-3 mb-2">Trebate R1 račun?</h2>
         <div class="row mt-3">
             <div class="col-sm-6">
                 <div class="mb-3">
@@ -226,7 +226,7 @@
 
 
     @if ($step == 'dostava')
-        <h2 class="h6 pt-1 pb-3 mb-3 ">Odaberite način dostave</h2>
+        <h2 class="h5 pt-1 pb-3 mb-3 ">Odaberite način dostave</h2>
         <div class="table-responsive">
             <table class="table table-hover fs-sm border-top">
                 <thead>
@@ -275,7 +275,7 @@
 
 
     @if ($step == 'placanje')
-        <h2 class="h6 pt-1 pb-3 mb-3 ">Odaberite način plaćanja</h2>
+        <h2 class="h5 pt-1 pb-3 mb-3 ">Odaberite način plaćanja</h2>
         <div class="table-responsive">
             <table class="table table-hover fs-sm border-top">
                 <tbody>
