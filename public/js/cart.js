@@ -7414,7 +7414,7 @@ var render = function() {
                                 )
                               ]),
                               _vm._v(" "),
-                              product.secondary_price
+                              product.secondary_price_text
                                 ? _c("small", [
                                     _vm._v(
                                       _vm._s(product.secondary_price_text) + " "
@@ -7429,7 +7429,7 @@ var render = function() {
                         product.special
                           ? _c("span", { staticClass: "text-dark" }, [
                               _vm._v(_vm._s(product.main_special_text) + " "),
-                              product.secondary_price
+                              product.secondary_special_text
                                 ? _c("small", [
                                     _vm._v(
                                       _vm._s(product.secondary_special_text) +
@@ -7445,7 +7445,7 @@ var render = function() {
                         !product.special
                           ? _c("span", { staticClass: "text-dark" }, [
                               _vm._v(_vm._s(product.main_price_text) + " "),
-                              product.secondary_price
+                              product.secondary_price_text
                                 ? _c("small", [
                                     _vm._v(
                                       _vm._s(product.secondary_price_text) + " "

@@ -33,13 +33,13 @@
                         <h3 class="product-title fs-sm text-truncate"><a :href="origin + product.url">{{ product.name }}</a></h3>
 
                         <div class="product-price">
-                            <span class="fs-sm text-muted"  v-if="product.special"><small>NC 30 dana: {{ product.main_price_text }} </small> <small v-if="product.secondary_price">{{ product.secondary_price_text }} </small></span>
+                            <span class="fs-sm text-muted"  v-if="product.special"><small>NC 30 dana: {{ product.main_price_text }} </small> <small v-if="product.secondary_price_text">{{ product.secondary_price_text }} </small></span>
                         </div>
                         <div class="product-price">
-                            <span class="text-dark" v-if="product.special">{{ product.main_special_text }} <small v-if="product.secondary_price">{{ product.secondary_special_text }} </small></span>
+                            <span class="text-dark" v-if="product.special">{{ product.main_special_text }} <small v-if="product.secondary_special_text">{{ product.secondary_special_text }} </small></span>
                          </div>
                         <div class="product-price">
-                            <span class="text-dark" v-if="!product.special">{{ product.main_price_text }} <small v-if="product.secondary_price">{{ product.secondary_price_text }} </small></span>
+                            <span class="text-dark" v-if="!product.special">{{ product.main_price_text }} <small v-if="product.secondary_price_text ">{{ product.secondary_price_text }} </small></span>
 
                         </div>
 
