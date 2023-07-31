@@ -3440,6 +3440,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ProductsList',
@@ -7380,8 +7382,8 @@ var render = function() {
                           attrs: {
                             load: "lazy",
                             src: product.image.replace(".webp", "-thumb.webp"),
-                            width: "250",
-                            height: "300",
+                            width: "400",
+                            height: "400",
                             alt: product.name
                           }
                         })
@@ -7410,7 +7412,15 @@ var render = function() {
                                     _vm._s(product.main_price_text) +
                                     " "
                                 )
-                              ])
+                              ]),
+                              _vm._v(" "),
+                              product.secondary_price
+                                ? _c("small", [
+                                    _vm._v(
+                                      _vm._s(product.secondary_price_text) + " "
+                                    )
+                                  ])
+                                : _vm._e()
                             ])
                           : _vm._e()
                       ]),
@@ -7418,7 +7428,15 @@ var render = function() {
                       _c("div", { staticClass: "product-price" }, [
                         product.special
                           ? _c("span", { staticClass: "text-dark" }, [
-                              _vm._v(_vm._s(product.main_special_text))
+                              _vm._v(_vm._s(product.main_special_text) + " "),
+                              product.secondary_price
+                                ? _c("small", [
+                                    _vm._v(
+                                      _vm._s(product.secondary_special_text) +
+                                        " "
+                                    )
+                                  ])
+                                : _vm._e()
                             ])
                           : _vm._e()
                       ]),
@@ -7426,7 +7444,14 @@ var render = function() {
                       _c("div", { staticClass: "product-price" }, [
                         !product.special
                           ? _c("span", { staticClass: "text-dark" }, [
-                              _vm._v(_vm._s(product.main_price_text))
+                              _vm._v(_vm._s(product.main_price_text) + " "),
+                              product.secondary_price
+                                ? _c("small", [
+                                    _vm._v(
+                                      _vm._s(product.secondary_price_text) + " "
+                                    )
+                                  ])
+                                : _vm._e()
                             ])
                           : _vm._e()
                       ])

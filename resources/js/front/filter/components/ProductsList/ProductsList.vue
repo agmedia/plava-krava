@@ -27,20 +27,22 @@
                 <div class="card product-card card-static pb-3">
                     <span class="badge rounded-pill bg-primary mt-1 ms-1 badge-shadow" v-if="product.special">-{{ ($store.state.service.getDiscountAmount(product.price, product.special)) }}%</span>
                        <a class="card-img-top d-block overflow-hidden" :href="origin + product.url">
-                           <img load="lazy" :src="product.image.replace('.webp', '-thumb.webp')" width="250" height="300" :alt="product.name">
+                           <img load="lazy" :src="product.image.replace('.webp', '-thumb.webp')" width="400" height="400" :alt="product.name">
                     </a>
                     <div class="card-body py-2">
                         <h3 class="product-title fs-sm text-truncate"><a :href="origin + product.url">{{ product.name }}</a></h3>
+
                         <div class="product-price">
-                            <span class="fs-sm text-muted"  v-if="product.special"><small>NC 30 dana: {{ product.main_price_text }} </small></span>
+                            <span class="fs-sm text-muted"  v-if="product.special"><small>NC 30 dana: {{ product.main_price_text }} </small> <small v-if="product.secondary_price">{{ product.secondary_price_text }} </small></span>
                         </div>
                         <div class="product-price">
-                            <span class="text-dark" v-if="product.special">{{ product.main_special_text }}</span>
+                            <span class="text-dark" v-if="product.special">{{ product.main_special_text }} <small v-if="product.secondary_price">{{ product.secondary_special_text }} </small></span>
                          </div>
                         <div class="product-price">
-                            <span class="text-dark" v-if="!product.special">{{ product.main_price_text }}</span>
+                            <span class="text-dark" v-if="!product.special">{{ product.main_price_text }} <small v-if="product.secondary_price">{{ product.secondary_price_text }} </small></span>
 
                         </div>
+
                     </div>
                     <div class="product-floating-btn">
                         <button class="btn btn-outline-primary btn-shadow btn-sm" v-on:click="add(product.id)" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
