@@ -269,9 +269,9 @@ class ProductImage extends Model
         // Thumb creation
         $path_thumb = $this->resource->id . '/' . Str::slug($this->resource->name) . '-' . $time . '-thumb.';
 
-        $img = $img->resize(null, 300, function ($constraint) {
+        $img = $img->resize(null, 400, function ($constraint) {
             $constraint->aspectRatio();
-        })->resizeCanvas(250, null);
+        })->resizeCanvas(400, null);
 
         $path_webp_thumb = $path_thumb . 'webp';
         Storage::disk('products')->put($path_webp_thumb, $img->encode('webp'));
