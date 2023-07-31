@@ -117,8 +117,8 @@ class HomeController extends Controller
         }
 
         $cacheimage = Image::cache(function($image) use ($request) {
-            $width = 250;
-            $height = 300;
+            $width = 400;
+            $height = 400;
 
             if ($request->has('size')) {
                 if (strpos($request->input('size'), 'x') !== false) {
