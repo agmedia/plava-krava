@@ -2071,24 +2071,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    id: String
+    id: String,
+    available: String
   },
   data: function data() {
     return {
-      quantity: 1
+      quantity: 1,
+      has_in_cart: false
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    var cart = this.$store.state.storage.getCart();
+    for (var key in cart.items) {
+      if (this.id == cart.items[key].id) {
+        this.has_in_cart = true;
+        this.quantity = cart.items[key].quantity;
+      }
+    }
+  },
   methods: {
+    add: function add() {
+      if (this.has_in_cart) {
+        this.updateCart();
+      } else {
+        this.add();
+      }
+    },
+    /**
+     *
+     */
     addToCart: function addToCart() {
       var item = {
         id: this.id,
         quantity: this.quantity
       };
       this.$store.dispatch('addToCart', item);
+    },
+    /**
+     *
+     */
+    updateCart: function updateCart() {
+      if (this.available != 'undefined' && this.quantity > this.available) {
+        this.quantity = this.available;
+      }
+      var item = {
+        id: this.id,
+        quantity: this.quantity
+      };
+      this.$store.dispatch('updateCart', item);
     }
   }
 });
@@ -3317,6 +3355,10 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+//
+//
+//
+//
 //
 //
 //
@@ -5610,20 +5652,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "cart mb-4 text-center text-lg-start" }, [
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-primary btn-shadow ",
+  return _c(
+    "div",
+    { staticClass: "cart d-flex flex-wrap align-items-center pt-2 pb-2 mb-3" },
+    [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.quantity,
+            expression: "quantity"
+          }
+        ],
+        staticClass: "form-control me-3 mb-1",
+        staticStyle: { width: "5rem" },
+        attrs: { type: "number", min: "1", max: _vm.available },
+        domProps: { value: _vm.quantity },
         on: {
-          click: function($event) {
-            return _vm.addToCart()
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.quantity = $event.target.value
           }
         }
-      },
-      [_c("i", { staticClass: " ci-bag" }), _vm._v(" Dodaj u Košaricu")]
-    )
-  ])
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary btn-shadow me-3 mb-1 ",
+          on: {
+            click: function($event) {
+              return _vm.addToCart()
+            }
+          }
+        },
+        [_c("i", { staticClass: "ci-cart" }), _vm._v(" Dodaj u Košaricu")]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -7169,7 +7238,7 @@ var render = function() {
         "div",
         {
           staticClass:
-            "d-flex justify-content-center justify-content-sm-between align-items-center pt-2 pb-4 pb-sm-2"
+            "d-flex justify-content-between align-items-center pt-2 pb-4 pb-sm-2"
         },
         [
           _c("div", { staticClass: "d-flex flex-wrap" }, [
@@ -7266,16 +7335,16 @@ var render = function() {
       _vm.products.total
         ? _c(
             "div",
-            { staticClass: "row mx-n2 mb-3" },
+            {
+              staticClass:
+                "row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-1 g-0 mx-n2"
+            },
             _vm._l(_vm.products.data, function(product) {
-              return _c(
-                "div",
-                {
-                  staticClass:
-                    "col-md-3 col-6 px-2 mb-4 d-flex align-items-stretch"
-                },
-                [
-                  _c("div", { staticClass: "card product-card shadow pb-2" }, [
+              return _c("div", { staticClass: "col  px-2 mb-3" }, [
+                _c(
+                  "div",
+                  { staticClass: "card product-card card-static pb-3" },
+                  [
                     product.special
                       ? _c(
                           "span",
@@ -7320,7 +7389,7 @@ var render = function() {
                     _c("div", { staticClass: "card-body py-2" }, [
                       _c(
                         "h3",
-                        { staticClass: "product-title fs-sm mt-2 mb-1" },
+                        { staticClass: "product-title fs-sm text-truncate" },
                         [
                           _c(
                             "a",
@@ -7332,7 +7401,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "product-price" }, [
                         product.special
-                          ? _c("span", { staticClass: "text-muted" }, [
+                          ? _c("span", { staticClass: "fs-sm text-muted" }, [
                               _c("small", [
                                 _vm._v(
                                   "NC 30 dana: " +
@@ -7346,7 +7415,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "product-price" }, [
                         product.special
-                          ? _c("span", { staticClass: "text-primary" }, [
+                          ? _c("span", { staticClass: "text-dark" }, [
                               _vm._v(_vm._s(product.main_special_text))
                             ])
                           : _vm._e()
@@ -7354,7 +7423,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "product-price" }, [
                         !product.special
-                          ? _c("span", { staticClass: "text-primary" }, [
+                          ? _c("span", { staticClass: "text-dark" }, [
                               _vm._v(_vm._s(product.main_price_text))
                             ])
                           : _vm._e()
@@ -7365,7 +7434,8 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-primary btn-shadow btn-sm",
+                          staticClass:
+                            "btn btn-outline-primary btn-shadow btn-sm",
                           attrs: { type: "button" },
                           on: {
                             click: function($event) {
@@ -7379,9 +7449,9 @@ var render = function() {
                         ]
                       )
                     ])
-                  ])
-                ]
-              )
+                  ]
+                )
+              ])
             }),
             0
           )

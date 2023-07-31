@@ -149,6 +149,7 @@ class AgCart extends Model
         return $this->addToCart($request);
     }
 
+
     /**
      * @param $id
      *
@@ -214,9 +215,9 @@ class AgCart extends Model
 
 
     /*******************************************************************************
-    *                                Copyright : AGmedia                           *
-    *                              email: filip@agmedia.hr                         *
-    *******************************************************************************/
+     *                                Copyright : AGmedia                           *
+     *                              email: filip@agmedia.hr                         *
+     *******************************************************************************/
 
     public function setCartConditions()
     {
@@ -270,16 +271,16 @@ class AgCart extends Model
 
     /**
      * @param $id
-     * @param $request
+     * @param $quantity
      *
      * @return array
      */
-    private function updateCartItem($id, $request): array
+    private function updateCartItem($id, $quantity): array
     {
         $this->cart->update($id, [
             'quantity' => [
                 'relative' => false,
-                'value'    => $request['item']['quantity']
+                'value'    => $quantity
             ],
         ]);
 
