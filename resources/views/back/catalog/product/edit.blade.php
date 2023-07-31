@@ -246,8 +246,8 @@
 
                             <div class="form-group row items-push mb-3">
                                 <div class="col-md-3">
-                                    <label for="origin-input">Mjesto izdavanja</label>
-                                    <input type="text" class="form-control" id="origin-input" name="origin" placeholder="Upišite mjesto izdavanja" value="{{ isset($product) ? $product->origin : old('origin') }}">
+                                    <label for="origin-input">Jezik</label>
+                                    <input type="text" class="form-control" id="origin-input" name="origin" placeholder="Upišite jezik" value="{{ isset($product) ? $product->origin : old('origin') }}">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="origin-input">Godina izdavanja</label>
