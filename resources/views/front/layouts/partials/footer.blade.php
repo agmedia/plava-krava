@@ -42,13 +42,9 @@
                         <div class="widget widget-links widget-dark mt-4 px-lg-3 px-sm-n2">
                             <h3 class="widget-title text-dark">Uvjeti kupnje</h3>
                             <ul class="widget-list">
-                                <li class="widget-list-item"><a class="widget-list-link" href="#">Zaštita osobnih podataka</a></li>
-
-                                <li class="widget-list-item"><a class="widget-list-link" href="#">Opći uvjeti korištenja i privatnosti</a></li>
-                                <li class="widget-list-item"><a class="widget-list-link" href="#">Načini plaćanja</a></li>
-                                <li class="widget-list-item"><a class="widget-list-link" href="#">Izjava o sigurnosti online plaćanja</a></li>
-                                <li class="widget-list-item"><a class="widget-list-link" href="#">Izjava o konverziji</a></li>
-                                <li class="widget-list-item"><a class="widget-list-link" href="#">Rješavanje pritužba i sporova</a></li>
+                                @foreach ($uvjeti_kupnje->sortBy('title') as $page)
+                                    <li class="widget-list-item"><a class="widget-list-link" href="{{ route('catalog.route.page', ['page' => $page]) }}">{{ $page->title }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="widget widget-links widget-dark mt-4 px-lg-3 px-sm-n2">
