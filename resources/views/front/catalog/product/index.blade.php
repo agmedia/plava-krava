@@ -167,8 +167,9 @@
                                     @if ($prod->publisher)
                                         <li><strong>Nakladnik:</strong> <a href="{{ route('catalog.route.publisher', ['publisher' => $prod->publisher]) }}">{{ $prod->publisher->title }}</a> </li>
                                     @endif
-                                    <li><strong>ISBN:</strong> {{ $prod->sku }} </li>
-
+                                    @if ($prod->isbn)
+                                    <li><strong>ISBN:</strong> {{ $prod->isbn }} </li>
+                                    @endif
                                         @if ($prod->quantity)
                                             @if ($prod->decrease)
                                                 <li><strong>Dostupnost:</strong> {{ $prod->quantity }} </li>

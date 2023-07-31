@@ -57,12 +57,17 @@
                     <div class="row justify-content-center push">
                         <div class="col-md-10">
                             <div class="form-group row items-push mb-3">
-                                <div class="col-md-12">
+                                <div class="col-md-9">
                                     <label for="dm-post-edit-title">Naziv <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="name-input" name="name" placeholder="Upišite naziv artikla" value="{{ isset($product) ? $product->name : old('name') }}" onkeyup="SetSEOPreview()">
                                     @error('name')
                                     <span class="text-danger font-italic">Naziv je potreban...</span>
                                     @enderror
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="polica-input">ISBN </label>
+                                    <input type="text" class="form-control" id="polica-input" name="isbna" placeholder="Upišite ISBN" value="{{ isset($product) ? $product->isbn : old('isbn') }}" >
                                 </div>
                             </div>
                             <div class="form-group row items-push mb-3">
