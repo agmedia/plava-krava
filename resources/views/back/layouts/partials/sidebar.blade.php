@@ -19,8 +19,8 @@
                             <span class="smini-visible">
                                 B<span class="opacity-75">x</span>
                             </span>
-                <span class="smini-hidden">
-                                ZUZI<span class="opacity-75">SHOP</span>
+                <span class="smini-hidden ml-2">
+                                Plava <span class="opacity-75">Krava</span>
                             </span>
             </a>
             <!-- END Logo -->
