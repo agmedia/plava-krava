@@ -281,7 +281,9 @@
                                     <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Godina izdanja:</span><span>{{ $prod->year ?: '...' }}</span></li>
                                     <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Broj stranica:</span><span>{{ $prod->pages ?: '...' }}</span></li>
                                     <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Dimenzije:</span><span>{{ $prod->dimensions.' cm' ?: '...' }}</span></li>
-                                    <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">ISBN:</span><span>9789538420214</span></li>
+                                    @if ($prod->isbn)
+                                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">ISBN:</span><span>{{ $prod->isbn }}</span></li>
+                                    @endif
                                 </ul>
 
                             </div>

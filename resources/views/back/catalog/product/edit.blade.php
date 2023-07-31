@@ -67,7 +67,7 @@
 
                                 <div class="col-md-3">
                                     <label for="polica-input">ISBN </label>
-                                    <input type="text" class="form-control" id="polica-input" name="isbna" placeholder="Upišite ISBN" value="{{ isset($product) ? $product->isbn : old('isbn') }}" >
+                                    <input type="text" class="form-control" id="polica-input" name="isbn" placeholder="Upišite ISBN" value="{{ isset($product) ? $product->isbn : old('isbn') }}" >
                                 </div>
                             </div>
                             <div class="form-group row items-push mb-3">
