@@ -2,50 +2,59 @@
 
 @section('content')
 
-    <!-- Page Title (Light)-->
-    <div class=" bg-dark pt-4 pb-3" style="background-image: url({{ config('settings.images_domain') . 'media/img/zuzi-bck.svg' }});background-repeat: repeat-x;background-position-y: bottom;">
-        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
-            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
-                        <li class="breadcrumb-item"><a class="text-nowrap" href="/"><i class="ci-home"></i>Naslovnica</a></li>
-                        <li class="breadcrumb-item text-nowrap active" aria-current="page">Kontakt</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-                <h1 class="h3 text-light mb-0">Kontaktirajte nas</h1>
-            </div>
-        </div>
-    </div>
 
-    <section class="spikesg" ></section>
+
+
+    <nav class="mb-4" aria-label="breadcrumb">
+        <ol class="breadcrumb flex-lg-nowrap">
+            <li class="breadcrumb-item"><a class="text-nowrap" href="{{ route('index') }}"><i class="ci-home"></i>Naslovnica</a></li>
+            <li class="breadcrumb-item text-nowrap active" aria-current="page">Kontakt</li>
+        </ol>
+    </nav>
+
+
+    <section class="d-md-flex justify-content-between align-items-center mb-4 pb-2">
+        <h1 class="h2 mb-3 mb-md-0 me-3">Kontakt</h1>
+
+    </section>
+
+
+
     <!-- Contact detail cards-->
-    <section class="container pt-grid-gutter">
+    <section class=" pt-grid-gutter">
         <div class="row">
 
             @include('front.layouts.partials.success-session')
 
             <div class="col-12 col-sm-6 mb-5">
 
-                        <h3 class=" mb-2">Impressum</h3>
+                        <h3 class=" mb-4">Impressum</h3>
                         <p>
 
-                           <strong> ZUZI, obrt za uslužne djelatnosti, VL. MIRJANA VULIĆ ŠALDIĆ</strong></p>
+                           <strong> ULTRA WEBSHOP d.o.o. </strong></p>
 
-                <p> Sjedište: Antuna Šoljana 33, 10000 Zagreb<br><br>
+                <p> Sjedište: Martićeva 37, 10000 Zagreb<br><br>
 
-                            OIB: 69101336685<br>
-                            MBO: 97981036<br>
-                            Broj obrtnice: 21011606742<br>
+
+                    Registarski sud: Trgovački sud u Zagrebu <br>
+
+                    Temeljni kapital: 20.000,00 kn uplaćen u cjelosti. <br>
+
+                    MBS: 081387689 <br>
+                    OIB: 81274036107 <br>
+
+                    Članovi društva: Plava krava d.o.o. <br>
+
+                    Direktor: Ines Draganić <br> <br>
+
+                    Žiro račun otvoren u: Privredna banka Zagreb d.d. <br>
+                    IBAN: HR64 2340 0091 1111 4988 8 <br>
+                    SWIFT: PBZGHR2X
+
+
+
                     <br>
-                            IBAN: HR1624020061140345999<br>
-                            Banka: ERSTE & STEIERMÄRKISCHE BANK d.d. Rijeka<br>
-                            Swift: ESBCHR22<br><br>
 
-                            IBAN: HR0623900011101297120<br>
-                            Banka: HRVATSKA POSTANSKA BANKA d.d. Zagreb<br>
-                            Swift: HPBZHR2X
                 </p>
 
             </div>
@@ -88,17 +97,7 @@
 
 
 
-    <!-- Split section: Map + Contact form-->
-    <div class="container-fluid px-0" id="map">
-        <div class="row g-0">
-            <div class="col-lg-12 iframe-full-height-wrap">
 
-
-                <iframe class="iframe-full-height" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.460285624646!2d15.88745341256823!3d45.802039410712396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d12d0d165b0f%3A0xa370e29cb63b7a2e!2sZuzi%20Shop!5e0!3m2!1shr!2shr!4v1684309041472!5m2!1shr!2shr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-
-        </div>
-    </div>
 
 @endsection
 
