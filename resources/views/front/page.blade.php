@@ -41,7 +41,7 @@
 
         {!! $page->description !!}
 
-        @include('front.layouts.partials.otkupwidget')
+
 
 
 
@@ -63,7 +63,7 @@
 
 
 
-            <div class="mt-5 mb-5 fs-md">
+            <div class="mt-5 mb-5 fs-md" style="max-width:1240px">
                 {!! $page->description !!}
             </div>
 
