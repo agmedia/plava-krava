@@ -3441,7 +3441,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ProductsList',
@@ -7246,8 +7245,6 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "d-flex flex-wrap" }, [
-            _vm._m(0),
-            _vm._v(" "),
             _c(
               "div",
               {
@@ -7318,7 +7315,7 @@ var render = function() {
               "span",
               {
                 staticClass:
-                  "fs-sm text-dark btn btn-white btn-sm text-nowrap ms-2 d-none d-sm-block"
+                  "fs-sm text-dark btn btn-white btn-sm text-nowrap ms-2 d-block"
               },
               [
                 _vm._v(
@@ -7495,7 +7492,7 @@ var render = function() {
       }),
       _vm._v(" "),
       !_vm.products_loaded
-        ? _c("div", { staticClass: "row" }, [_vm._m(1)])
+        ? _c("div", { staticClass: "row" }, [_vm._m(0)])
         : _vm._e(),
       _vm._v(" "),
       _vm.products.total
@@ -7552,7 +7549,7 @@ var render = function() {
             _vm._v(" "),
             _c("h4", { staticClass: "h5" }, [_vm._v("Savjeti i smjernica")]),
             _vm._v(" "),
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(" "),
             _c("hr", { staticClass: "d-sm-none" })
           ])
@@ -7576,25 +7573,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "dropdown me-2 d-sm-none" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary dropdown-toggle collapsed",
-          attrs: {
-            href: "#shop-sidebar",
-            "data-bs-toggle": "collapse",
-            "aria-expanded": "false"
-          }
-        },
-        [_vm._v("Kategorije")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

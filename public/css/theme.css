@@ -3128,6 +3128,19 @@ textarea.form-control-lg {
     transition: none;
   }
 }
+
+.scrolling-wrapper .btn:hover {
+    color: #fff!important;
+    background-color: #18326d;
+    border-color: #18326d;
+}
+
+.scrolling-wrapper .btn:hover h3 {
+    color: #fff!important;
+
+}
+
+
 .btn:hover {
   color: var(--cz-btn-hover-color);
   background-color: var(--cz-btn-hover-bg);
@@ -14818,7 +14831,7 @@ input[type=search]::-webkit-search-results-decoration {
 }
 
 .btn-outline-primary {
-  --cz-btn-border-color: rgba(24, 50, 109, 0.35);
+  --cz-btn-border-color: #18326d;
 }
 
 .btn-outline-accent {

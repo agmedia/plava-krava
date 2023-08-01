@@ -4,7 +4,6 @@
         <!-- Toolbar-->
         <div class="d-flex justify-content-between align-items-center pt-2 pb-4 pb-sm-2">
             <div class="d-flex flex-wrap">
-                <div class="dropdown me-2 d-sm-none"><a class="btn btn-primary dropdown-toggle collapsed" href="#shop-sidebar" data-bs-toggle="collapse" aria-expanded="false">Kategorije</a></div>
                 <div class="d-flex align-items-center flex-nowrap me-3 me-sm-4 pb-3">
 
                     <select class="form-select pe-2" v-model="sorting">
@@ -17,7 +16,7 @@
                     </select>
                 </div>
             </div>
-            <div class="d-flex pb-3"><span class="fs-sm text-dark btn btn-white btn-sm text-nowrap ms-2 d-none d-sm-block">Ukupno {{ products.total ? Number(products.total).toLocaleString('hr-HR') : 0 }} artikala</span></div>
+            <div class="d-flex pb-3"><span class="fs-sm text-dark btn btn-white btn-sm text-nowrap ms-2 d-block">Ukupno {{ products.total ? Number(products.total).toLocaleString('hr-HR') : 0 }} artikala</span></div>
         </div>
         <!-- Products grid-->
 

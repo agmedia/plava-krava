@@ -35,15 +35,15 @@
 @section('content')
 
     @if (Route::currentRouteName() == 'pretrazi')
-        <section class="d-md-flex justify-content-between align-items-center mb-4 pb-2">
-            <h1 class="h2 mb-3 mb-md-0 me-3"><span class="small fw-light me-2">Rezultati za:</span> {{ request()->input('pojam') }}</h1>
+        <section class="d-md-flex justify-content-between align-items-center mb-2 pb-2">
+            <h1 class="h2 mb-2 mb-md-0 me-3"><span class="small fw-light me-2">Rezultati za:</span> {{ request()->input('pojam') }}</h1>
         </section>
     @endif
 
     @if (isset($author) && $author)
-        <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center ">
+
+        <nav class="mb-4" aria-label="breadcrumb">
+            <ol class="breadcrumb flex-lg-nowrap">
                     <li class="breadcrumb-item"><a class="text-nowrap" href="{{ route('index') }}"><i class="ci-home"></i>Naslovnica</a></li>
                     <li class="breadcrumb-item text-nowrap active" aria-current="page"><a class="text-nowrap" href="{{ route('catalog.route.author') }}">Autori</a></li>
                     @if ( ! $cat && ! $subcat)
@@ -59,16 +59,16 @@
                     @endif
                 </ol>
             </nav>
-        </div>
-        <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-            <h1 class="h3 text-light mb-0">{{ $author->title }}</h1>
-        </div>
+
+        <section class="d-md-flex justify-content-between align-items-center mb-2 pb-2">
+            <h1 class="h2 mb-2 mb-md-0 me-3">{{ $author->title }}</h1>
+        </section>
     @endif
 
     @if (isset($publisher) && $publisher)
-        <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+
+        <nav class="mb-4" aria-label="breadcrumb">
+            <ol class="breadcrumb flex-lg-nowrap">
                     <li class="breadcrumb-item"><a class="text-nowrap" href="{{ route('index') }}"><i class="ci-home"></i>Naslovnica</a></li>
                     <li class="breadcrumb-item text-nowrap active" aria-current="page"><a class="text-nowrap" href="{{ route('catalog.route.publisher') }}">Nakladnici</a></li>
                     @if ( ! $cat && ! $subcat)
@@ -84,10 +84,10 @@
                     @endif
                 </ol>
             </nav>
-        </div>
-        <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-            <h1 class="h3 text-light mb-0">{{ $publisher->title }}</h1>
-        </div>
+
+        <section class="d-md-flex justify-content-between align-items-center mb-2 pb-2">
+            <h1 class="h2 mb-2 mb-md-0 me-3">{{ $publisher->title }}</h1>
+        </section>
     @endif
 
             @if (isset($group) && $group)
@@ -110,15 +110,15 @@
                 </nav>
 
 
-                <section class="d-md-flex justify-content-between align-items-center mb-4 pb-2">
+                <section class="d-md-flex justify-content-between align-items-center mb-2 pb-2">
 
                     @if ($group && ! $cat && ! $subcat)
-                        <h1 class="h2 mb-3 mb-md-0 me-3">{{ \Illuminate\Support\Str::ucfirst($group) }}</h1>
+                        <h1 class="h2 mb-2 mb-md-0 me-3">{{ \Illuminate\Support\Str::ucfirst($group) }}</h1>
                     @endif
                     @if ($cat && ! $subcat)
-                            <h1 class="h2 mb-3 mb-md-0 me-3">{{ $cat->title }}</h1>
+                            <h1 class="h2 mb-2 mb-md-0 me-3">{{ $cat->title }}</h1>
                     @elseif ($cat && $subcat)
-                            <h1 class="h2 mb-3 mb-md-0 me-3">{{ $subcat->title }}</h1>
+                            <h1 class="h2 mb-2 mb-md-0 me-3">{{ $subcat->title }}</h1>
                     @endif
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Back\Widget;
 
+use App\Models\Back\Catalog\Publisher;
 use App\Models\Back\Settings\Settings;
 use App\Models\Back\Widget\Widget;
 use App\Models\Back\Widget\WidgetGroup;
@@ -186,6 +187,9 @@ class WidgetController extends Controller
             }
             if ($request->input('type') == 'page') {
                 return response()->json(Blog::published()->pluck('title', 'id'));
+            }
+            if ($request->input('type') == 'publisher') {
+                return response()->json(Publisher::getList());
             }
         }
 

@@ -233,21 +233,31 @@ class Helper
 
             if (static::isDescriptionTarget($data, 'product')) {
                 $items = static::products($data)->get();
+                $tablename = 'product';
             }
 
             if (static::isDescriptionTarget($data, 'blog')) {
                 $items = static::blogs($data)->get();
+                $tablename = 'blog';
             }
 
             if (static::isDescriptionTarget($data, 'category')) {
                 $items = static::category($data)->get();
+                $tablename = 'category';
             }
+
+            if (static::isDescriptionTarget($data, 'publisher')) {
+                $items = static::publisher($data)->get();
+                $tablename = 'publisher';
+            }
+
 
 
             $widgets = [
                 'title' => $widget->title,
                 'subtitle' => $widget->subtitle,
                 'url' => $widget->url,
+                'tablename' => $tablename,
                 'css' => $data['css'],
                 'container' => (isset($data['container']) && $data['container'] == 'on') ? 1 : null,
                 'background' => (isset($data['background']) && $data['background'] == 'on') ? 1 : null,
@@ -387,6 +397,33 @@ class Helper
         }
 
         return $category;
+    }
+
+
+    /**
+     * @param array $data
+     *
+     * @return Builder
+     */
+    private static function publisher(array $data): Builder
+    {
+        $publisher = (new Publisher())->newQuery();
+
+        $publisher->active();
+
+        if (isset($data['new']) && $data['new'] == 'on') {
+            $publisher->latest();
+        }
+
+        if (isset($data['popular']) && $data['popular'] == 'on') {
+            $publisher->popular();
+        }
+
+        if (isset($data['list']) && $data['list']) {
+            $publisher->whereIn('id', $data['list']);
+        }
+
+        return $publisher;
     }
 
 
