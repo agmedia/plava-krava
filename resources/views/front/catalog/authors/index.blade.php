@@ -11,12 +11,12 @@
 @section('content')
 
     <section class="d-md-flex justify-content-between align-items-center mb-2 pb-2">
-        <h1 class="h2 mb-3 mb-md-0 me-3">Lista autorA</h1>
+        <h1 class="h2 mb-3 mb-md-0 me-3">Lista autora</h1>
 
-    </section>>
+    </section>
 
     <!-- Topics grid-->
-    <section class="container py-3 mb-5">
+    <section class=" py-3 mb-5">
         <div class="row align-items-center py-md-3">
             <div class="col-lg-12   py-2 text-center">
                 <div class="scrolling-wrapper">
