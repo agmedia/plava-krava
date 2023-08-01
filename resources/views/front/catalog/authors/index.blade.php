@@ -10,34 +10,20 @@
 
 @section('content')
 
-    <!-- Hero section with search-->
-    <section class="position-relative bg-dark bg-size-cover bg-position-center-x position-relative py-3 mb-0" style="background-image: url({{ config('settings.images_domain') . 'media/img/zuzi-bck.svg' }});background-repeat: repeat-x;background-position-y: bottom;">
-        <div class="container position-relative zindex-5 py-4 my-3">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h1 class="text-light text-center mb-0">Lista autora</h1>
+    <section class="d-md-flex justify-content-between align-items-center mb-2 pb-2">
+        <h1 class="h2 mb-3 mb-md-0 me-3">Lista autorA</h1>
 
+    </section>>
 
-                <!--    <form action="{{ route('pretrazi', ['tip' => 'author']) }}" method="get" style="max-width:500px; margin: 0 auto;margin-top:30px">
-                        <div class="input-group input-group-lg flex-nowrap">
-                            <input type="text" class="form-control rounded-start" name="{{ config('settings.search_keyword') }}" placeholder="Pretražite po autoru">
-                            <button class="btn btn-primary btn-lg fs-base" type="submit"><i class="ci-search"></i></button>
-                        </div>
-                    </form>-->
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="spikesg" ></section>
     <!-- Topics grid-->
     <section class="container py-3 mb-5">
         <div class="row align-items-center py-md-3">
             <div class="col-lg-12   py-2 text-center">
                 <div class="scrolling-wrapper">
                 @foreach ($letters as $item)
-                    <a href="{{ route('catalog.route.author', ['author' => null, 'letter' => $item['value']]) }}"
-                       class="btn btn-outline-primary btn-sm  mb-2 @if( ! $item['active']) disabled @endif @if($item['value'] == $letter) bg-primary  @endif">
-                        <h3 class="h6  @if($item['value'] == $letter) text-white @else  @endif  py-0 mb-0 px-1">{{ $item['value'] }}</h3></a>
+                        <a href="{{ route('catalog.route.author', ['author' => null, 'letter' => $item['value']]) }}"
+                           class="btn btn-outline-primary btn-sm  mb-2 @if( ! $item['active']) disabled @endif @if($item['value'] == $letter) bg-primary  @endif">
+                            <h3 class="h6  @if($item['value'] == $letter) text-white @else  @endif  py-0 mt-1 mb-0 px-1">{{ $item['value'] }}</h3></a>
                 @endforeach
                 </div>
             </div>
@@ -45,7 +31,7 @@
 
         <div class="row py-md-3">
             <div class="col-lg-12 text-center mb-5">
-                <h1>{{ $letter }}</h1>
+                <h2>{{ $letter }}</h2>
 
             </div>
             @foreach ($authors as $author)
