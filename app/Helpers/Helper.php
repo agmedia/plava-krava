@@ -389,7 +389,7 @@ class Helper
         }
 
         if (isset($data['popular']) && $data['popular'] == 'on') {
-            $category->popular();
+            $category->latest();
         }
 
         if (isset($data['list']) && $data['list']) {
@@ -416,7 +416,7 @@ class Helper
         }
 
         if (isset($data['popular']) && $data['popular'] == 'on') {
-            $publisher->popular();
+            $publisher->latest();
         }
 
         if (isset($data['list']) && $data['list']) {
