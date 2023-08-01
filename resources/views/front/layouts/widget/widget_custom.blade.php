@@ -1,8 +1,6 @@
 <!-- {"title": "Simple Widget", "description": "Some description of a Simple Widget."} -->
 <div class="container clearfix">
 
-
-    dd{{$data}}
     @if($data->count() == 1)
         <div class="heading-block center bottommargin">
             <h2>{{ $data->first()->title }}</h2>
