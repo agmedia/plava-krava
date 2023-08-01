@@ -7395,7 +7395,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-1 g-0 mx-n2"
+                "row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 g-0 mx-n2"
             },
             _vm._l(_vm.products.data, function(product) {
               return _c("div", { staticClass: "col  px-2 mb-3" }, [
