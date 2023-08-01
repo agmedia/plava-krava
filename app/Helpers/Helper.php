@@ -3,6 +3,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Back\Catalog\Category;
 use App\Models\Back\Settings\Settings;
 use App\Models\Back\Widget\WidgetGroup;
 use App\Models\Front\Blog;
@@ -238,6 +239,11 @@ class Helper
                 $items = static::blogs($data)->get();
             }
 
+            if (static::isDescriptionTarget($data, 'category')) {
+                $items = static::category($data)->get();
+            }
+
+
             $widgets = [
                 'title' => $widget->title,
                 'subtitle' => $widget->subtitle,
@@ -354,6 +360,33 @@ class Helper
         }
 
         return $blogs;
+    }
+
+
+    /**
+     * @param array $data
+     *
+     * @return Builder
+     */
+    private static function category(array $data): Builder
+    {
+        $category = (new Category())->newQuery();
+
+        $category->active();
+
+        if (isset($data['new']) && $data['new'] == 'on') {
+            $category->latest();
+        }
+
+        if (isset($data['popular']) && $data['popular'] == 'on') {
+            $category->popular();
+        }
+
+        if (isset($data['list']) && $data['list']) {
+            $category->whereIn('id', $data['list']);
+        }
+
+        return $category;
     }
 
 
