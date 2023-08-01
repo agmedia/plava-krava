@@ -7511,25 +7511,29 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "product-floating-btn" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "btn btn-outline-primary btn-shadow btn-sm",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.add(product.id)
+                    _c(
+                      "div",
+                      { staticClass: "product-floating-btn  sm-block d-none" },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-outline-primary btn-shadow btn-sm",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.add(product.id)
+                              }
                             }
-                          }
-                        },
-                        [
-                          _vm._v("+"),
-                          _c("i", { staticClass: "ci-cart fs-base ms-1" })
-                        ]
-                      )
-                    ])
+                          },
+                          [
+                            _vm._v("+"),
+                            _c("i", { staticClass: "ci-cart fs-base ms-1" })
+                          ]
+                        )
+                      ]
+                    )
                   ]
                 )
               ])
