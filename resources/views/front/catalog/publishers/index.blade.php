@@ -25,9 +25,7 @@
                 <div class="scrolling-wrapper">
 
                 @foreach ($letters as $item)
-
-
-                        <a href="{{ route('catalog.route.author', ['author' => null, 'letter' => $item['value']]) }}"
+                        <a href="{{ route('catalog.route.publisher', ['publisher' => null, 'letter' => $item['value']]) }}"
                            class="btn btn-outline-primary btn-sm  mb-2 @if( ! $item['active']) disabled @endif @if($item['value'] == $letter) bg-primary  @endif">
                             <h3 class="h6  @if($item['value'] == $letter) text-white @else  @endif  py-0 mt-1 mb-0 px-1">{{ $item['value'] }}</h3></a>
                 @endforeach
