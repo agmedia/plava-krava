@@ -35,7 +35,7 @@
 
         <div class="row py-md-3">
             <div class="col-lg-12 text-center mb-5">
-                <h2>{{ $letter }}</h2>
+                <h2>{{ $letter ?: 'Svi nakladnici' }}</h2>
                 <hr>
             </div>
 

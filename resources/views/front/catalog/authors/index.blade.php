@@ -20,25 +20,25 @@
         <div class="row align-items-center py-md-3">
             <div class="col-lg-12   py-2 text-center">
                 <div class="scrolling-wrapper">
-                @foreach ($letters as $item)
+                    @foreach ($letters as $item)
                         <a href="{{ route('catalog.route.author', ['author' => null, 'letter' => $item['value']]) }}"
                            class="btn btn-outline-primary btn-sm  mb-2 @if( ! $item['active']) disabled @endif @if($item['value'] == $letter) bg-primary  @endif">
                             <h3 class="h6  @if($item['value'] == $letter) text-white @else  @endif  py-0 mt-1 mb-0 px-1">{{ $item['value'] }}</h3></a>
-                @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
 
         <div class="row py-md-3">
             <div class="col-lg-12 text-center mb-5">
-                <h2>{{ $letter }}</h2>
+                <h2>{{ $letter ?: 'Svi autori' }}</h2>
 
             </div>
             @foreach ($authors as $author)
                 <div class=" col-sm-4 col-md-3 mb-3">
                     <div class="card border-bottom-primary">
                         <div class="card-body">
-                            <h6 class="card-title mb-0"> <a href="{{ url($author['url']) }}" class="text-dark">{{ $author['title'] }} <span class="badge rounded-pill bg-secondary float-end">{{ $author['products_count'] }}</span></a></h6>
+                            <h6 class="card-title mb-0"><a href="{{ url($author['url']) }}" class="text-dark">{{ $author['title'] }} <span class="badge rounded-pill bg-secondary float-end">{{ $author['products_count'] }}</span></a></h6>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
 
         <div class="row  py-md-3">
 
-                {{ $authors->onEachSide(1)->links() }}
+            {{ $authors->onEachSide(1)->links() }}
 
         </div>
     </section>
@@ -55,14 +55,14 @@
 @endsection
 
 @push('js_after')
-<style>
-    @media only screen and (max-width: 1040px) {
-        .scrolling-wrapper {
-            overflow-x: scroll;
-            overflow-y: hidden;
-            white-space: nowrap;
-            padding-bottom: 15px;
+    <style>
+        @media only screen and (max-width: 1040px) {
+            .scrolling-wrapper {
+                overflow-x: scroll;
+                overflow-y: hidden;
+                white-space: nowrap;
+                padding-bottom: 15px;
+            }
         }
-    }
-</style>
+    </style>
 @endpush

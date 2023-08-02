@@ -138,22 +138,25 @@ class CatalogRouteController extends Controller
             $letters = Helper::resolveCache('authors')->remember('aut_' . 'letters', config('cache.life'), function () {
                 return Author::letters();
             });
-            $letter = $this->checkLetter($letters);
+            $letter = 0; //$this->checkLetter($letters);
 
             if ($request->has('letter')) {
                 $letter = $request->input('letter');
             }
 
             $currentPage = request()->get('page', 1);
-
+            
             $authors = Helper::resolveCache('authors')->remember('aut_' . $letter . '.' . $currentPage, config('cache.life'), function () use ($letter) {
-                return Author::query()->select('id', 'title', 'url')
-                                      ->where('status',  1)
-                                      ->where('letter', $letter)
-                                      ->orderBy('title')
-                                      ->withCount('products')
-                                      ->paginate(36)
-                                      ->appends(request()->query());
+                $auts = Author::query()->select('id', 'title', 'url')->where('status',  1);
+                
+                if ($letter) {
+                    $auts->where('letter', $letter);
+                }
+                
+                return $auts->orderBy('title')
+                    ->withCount('products')
+                    ->paginate(36)
+                    ->appends(request()->query());
             });
 
             $meta_tags = Seo::getMetaTags($request, 'ap_filter');
@@ -187,7 +190,7 @@ class CatalogRouteController extends Controller
             $letters = Helper::resolveCache('publishers')->remember('pub_' . 'letters', config('cache.life'), function () {
                 return Publisher::letters();
             });
-            $letter = $this->checkLetter($letters);
+            $letter = 0; //$this->checkLetter($letters);
 
             if ($request->has('letter')) {
                 $letter = $request->input('letter');
@@ -196,10 +199,13 @@ class CatalogRouteController extends Controller
             $currentPage = request()->get('page', 1);
             
             $publishers = Helper::resolveCache('publishers')->remember('pub_' . $letter . '.' . $currentPage, config('cache.life'), function () use ($letter) {
-                return Publisher::query()->select('id', 'title', 'url')
-                    ->where('status',  1)
-                    ->where('letter', $letter)
-                    ->orderBy('title')
+                $pubs = Publisher::query()->select('id', 'title', 'url')->where('status',  1);
+                
+                if ($letter) {
+                    $pubs->where('letter', $letter);
+                }
+                
+                return $pubs->orderBy('title')
                     ->withCount('products')
                     ->paginate(36)
                     ->appends(request()->query());
