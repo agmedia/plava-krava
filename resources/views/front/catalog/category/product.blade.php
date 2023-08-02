@@ -8,7 +8,7 @@
                        <img load="lazy" src="{{ $product->thumb }}"  alt="{{ $product->name }}">
           <!--  <img load="lazy" src="{{ asset('img/slijepa-ulica.jpg') }}" alt="{{ $product->name }}">-->
        </a>
-                <div class="card-body pt-2">
+                <div class="card-body pt-2" style="min-height: 120px;">
                   {!! $product->category_string !!}
                    <h3 class="product-title fs-sm text-truncate"><a href="{{ url($product->url) }}">{{ $product->name }}</a></h3>
                     @if ($product->main_price > $product->main_special)
