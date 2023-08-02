@@ -5727,7 +5727,8 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "btn btn-outline-primary btn-shadow btn-sm sm-block d-none",
+      staticClass:
+        "btn btn-outline-primary btn-shadow btn-sm d-sm-block d-none",
       attrs: { type: "button" },
       on: {
         click: function($event) {
@@ -7513,7 +7514,9 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: "product-floating-btn  sm-block d-none" },
+                      {
+                        staticClass: "product-floating-btn  d-sm-block d-none"
+                      },
                       [
                         _c(
                           "button",
