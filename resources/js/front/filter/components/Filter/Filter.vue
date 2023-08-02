@@ -71,19 +71,7 @@
 
                         </div>
                     </div>
-                    <div class="accordion-item border-bottom">
-                        <h3 class="accordion-header px-grid-gutter"  >
-                            <!--type="button"  -->
-                            <a :href="origin + 'autor'" class="nav-link-style d-block  fs-md fw-normal py-3" role="link">
-                                <span class="d-flex align-items-center"><i class="ci-add-user fs-lg mt-n1 me-2"></i> Autori </span>
-                            </a>
-                        </h3>
-                    </div>
 
-                    <div class="accordion-item border-bottom">
-                        <h3 class="accordion-header px-grid-gutter">
-                            <a class="nav-link-style d-block fs-md fw-normal py-3" :href="origin + 'nakladnik'"><span class="d-flex align-items-center"><i class="ci-edit  fs-lg mt-n1 me-2"></i>Izdavači</span></a></h3>
-                    </div>
 
 
                 </div>
@@ -366,7 +354,7 @@
              *
              */
             closeWindow() {
-                $('#shop-sidebar').removeClass('collapse show');
+                //$('#shop-sidebar').removeClass('collapse show');
             }
         }
     };

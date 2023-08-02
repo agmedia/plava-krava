@@ -83,11 +83,11 @@
                 <div class="product-gallery">
                     <div class="product-gallery-preview order-sm-2">
                             @if ( ! empty($prod->image))
-                                <div class="product-gallery-preview-item active" id="first"><img  src="{{ asset($prod->image) }}"  alt="{{ $prod->name }}"></div>
+                                <div class="product-gallery-preview-item active" id="first"><img  src="{{ asset($prod->image) }}"  alt="{{ $prod->name }}" height="800"></div>
                             @endif
                             @if ($prod->images->count())
                                 @foreach ($prod->images as $key => $image)
-                                    <div class="product-gallery-preview-item" id="key{{ $key + 1 }}"><img  src="{{ asset($image->image) }}" alt="{{ $image->alt }}"></div>
+                                    <div class="product-gallery-preview-item" id="key{{ $key + 1 }}"><img  src="{{ asset($image->image) }}" alt="{{ $image->alt }}"  height="800"></div>
                                 @endforeach
                             @endif
                     </div>
