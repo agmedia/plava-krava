@@ -121,11 +121,21 @@
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <a href="#reviews" data-scroll>
                         <div class="star-rating">
-                            <i class="star-rating-icon ci-star-filled active"></i>
-                            <i class="star-rating-icon ci-star-filled active"></i>
-                            <i class="star-rating-icon ci-star-filled active"></i>
-                            <i class="star-rating-icon ci-star-filled active"></i>
-                            <i class="star-rating-icon ci-star"></i>
+
+                            @for ($i = 0; $i < 5; $i++)
+                                @if (floor($prod->avgreviews()) - $i >= 1)
+                                    {{--Full Start--}}
+                                    <i class="star-rating-icon ci-star-filled active"></i>
+                                @elseif ($prod->avgreviews() - $i > 0)
+                                    {{--Half Start--}}
+                                    <i class="star-rating-icon ci-star"></i>
+                                @else
+                                    {{--Empty Start--}}
+                                    <i class="star-rating-icon ci-star"></i>
+                                @endif
+                            @endfor
+
+
                         </div>
                         <span class="d-inline-block fs-sm text-body align-middle mt-1 ms-1">{{ $prod->totalreviews() }} {{ $recenzija }}</span>
                     </a>
@@ -306,7 +316,27 @@
                         <div class="row pt-2 pb-3">
                             <div class="col-lg-4 col-md-5">
                                 <h2 class="h3 mb-4"> {{ $prod->totalreviews() }} {{ $recenzija }}  </h2>
-                                <div class="star-rating me-2"><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star fs-sm text-muted me-1"></i></div><span class="d-inline-block align-middle">{{ $prod->avgreviews() }} Ukupno</span>
+                                <div class="star-rating me-2">
+
+
+
+                                    @for ($i = 0; $i < 5; $i++)
+                                        @if (floor($prod->avgreviews()) - $i >= 1)
+                                            {{--Full Start--}}
+                                            <i class="ci-star-filled fs-sm text-accent me-1"></i>
+                                        @elseif ($prod->avgreviews() - $i > 0)
+                                            {{--Half Start--}}
+                                            <i class="ci-star fs-sm text-muted me-1"></i>
+                                        @else
+                                            {{--Empty Start--}}
+                                            <i class="ci-star fs-sm text-muted me-1"></i>
+                                        @endif
+                                    @endfor
+
+
+
+
+                                </div><span class="d-inline-block align-middle">{{ $prod->avgreviews() }} Ukupno</span>
 
                             </div>
                             <div class="col-lg-8 col-md-7">
