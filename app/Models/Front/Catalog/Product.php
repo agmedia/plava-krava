@@ -184,8 +184,8 @@ class Product extends Model
     {
         return str_replace('.webp', '-thumb.webp', $this->image);
     }
-    
-    
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -193,14 +193,33 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class, 'product_id')->where('published', 1)->orderBy('sort_order');
     }
-    
-    
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function reviews()
     {
         return $this->hasMany(Review::class, 'product_id')->where('status', 1)->orderBy('sort_order');
+    }
+
+
+    public function totalreviews()
+    {
+
+        return $this->hasMany(Review::class, 'product_id')->where('status', 1)->count();
+
+    }
+
+
+    public function avgreviews()
+    {
+        return $this->hasMany(Review::class, 'product_id')->where('status', 1)->avg('stars');
+
+    }
+
+    public function percentreviews($ocjena){
+        return round(($ocjena / $this->totalreviews()) * 100, 2);
     }
 
 

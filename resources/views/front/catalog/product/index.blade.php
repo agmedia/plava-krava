@@ -44,6 +44,17 @@
 
 @section('content')
 
+    @if($prod->totalreviews() > 1)
+        @php
+            $recenzija = 'Recenzije';
+        @endphp
+    @else
+        @php
+            $recenzija = 'Recenzija';
+        @endphp
+    @endif
+
+
     <!-- Page title + breadcrumb-->
     <nav class="mb-4" aria-label="breadcrumb">
         <ol class="breadcrumb flex-lg-nowrap">
@@ -116,7 +127,7 @@
                             <i class="star-rating-icon ci-star-filled active"></i>
                             <i class="star-rating-icon ci-star"></i>
                         </div>
-                        <span class="d-inline-block fs-sm text-body align-middle mt-1 ms-1">3 Recenzije</span>
+                        <span class="d-inline-block fs-sm text-body align-middle mt-1 ms-1">{{ $prod->totalreviews() }} {{ $recenzija }}</span>
                     </a>
                 </div>
 
@@ -250,7 +261,7 @@
             <!-- Tabs-->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item"><a class="nav-link py-4 px-sm-4 active" href="#specs" data-bs-toggle="tab" role="tab"><span>Opis</span> </a></li>
-                <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="#reviews" data-bs-toggle="tab" role="tab">Recenzije <span class="fs-sm opacity-60">(3)</span></a></li>
+                <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="#reviews" data-bs-toggle="tab" role="tab">Recenzije <span class="fs-sm opacity-60">({{ $prod->totalreviews() }})</span></a></li>
             </ul>
             <div class="px-4 pt-lg-3 pb-3 mb-5">
                 <div class="tab-content px-lg-3">
@@ -291,12 +302,11 @@
                     </div>
                     <!-- Reviews tab-->
                     <div class="tab-pane fade" id="reviews" role="tabpanel">
-
                         <!-- Reviews-->
                         <div class="row pt-2 pb-3">
                             <div class="col-lg-4 col-md-5">
-                                <h2 class="h3 mb-4">3 Recenzije</h2>
-                                <div class="star-rating me-2"><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star fs-sm text-muted me-1"></i></div><span class="d-inline-block align-middle">5.0 Ukupno</span>
+                                <h2 class="h3 mb-4"> {{ $prod->totalreviews() }} {{ $recenzija }}  </h2>
+                                <div class="star-rating me-2"><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star-filled fs-sm text-accent me-1"></i><i class="ci-star fs-sm text-muted me-1"></i></div><span class="d-inline-block align-middle">{{ $prod->avgreviews() }} Ukupno</span>
 
                             </div>
                             <div class="col-lg-8 col-md-7">
@@ -304,41 +314,41 @@
                                     <div class="text-nowrap me-3"><span class="d-inline-block align-middle text-muted">5</span><i class="ci-star-filled fs-xs ms-1"></i></div>
                                     <div class="w-100">
                                         <div class="progress" style="height: 4px;">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $prod->percentreviews( $prod->reviews()->where('stars', 5)->count())}}%;" aria-valuenow="{{ $prod->percentreviews( $prod->reviews()->where('stars', 5)->count())}}" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
-                                    </div><span class="text-muted ms-3">3</span>
+                                    </div><span class="text-muted ms-3">{{ $prod->reviews()->where('stars', 5)->count() }}   </span>
                                 </div>
                                 <div class="d-flex align-items-center mb-2">
                                     <div class="text-nowrap me-3"><span class="d-inline-block align-middle text-muted">4</span><i class="ci-star-filled fs-xs ms-1"></i></div>
                                     <div class="w-100">
                                         <div class="progress" style="height: 4px;">
-                                            <div class="progress-bar" role="progressbar"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar"  style="width: {{ $prod->percentreviews( $prod->reviews()->where('stars', 4)->count())}}%;" aria-valuenow="{{ $prod->percentreviews( $prod->reviews()->where('stars', 4)->count())}}" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
-                                    </div><span class="text-muted ms-3">0</span>
+                                    </div><span class="text-muted ms-3">{{ $prod->reviews()->where('stars', 4)->count() }}</span>
                                 </div>
                                 <div class="d-flex align-items-center mb-2">
                                     <div class="text-nowrap me-3"><span class="d-inline-block align-middle text-muted">3</span><i class="ci-star-filled fs-xs ms-1"></i></div>
                                     <div class="w-100">
                                         <div class="progress" style="height: 4px;">
-                                            <div class="progress-bar" role="progressbar"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar"  style="width: {{ $prod->percentreviews( $prod->reviews()->where('stars', 3)->count())}}%;" aria-valuenow="{{ $prod->percentreviews( $prod->reviews()->where('stars', 3)->count())}}" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
-                                    </div><span class="text-muted ms-3">0</span>
+                                    </div><span class="text-muted ms-3">{{ $prod->reviews()->where('stars', 3)->count() }}</span>
                                 </div>
                                 <div class="d-flex align-items-center mb-2">
                                     <div class="text-nowrap me-3"><span class="d-inline-block align-middle text-muted">2</span><i class="ci-star-filled fs-xs ms-1"></i></div>
                                     <div class="w-100">
                                         <div class="progress" style="height: 4px;">
-                                            <div class="progress-bar" role="progressbar"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar"  style="width: {{ $prod->percentreviews( $prod->reviews()->where('stars', 2)->count())}}%;" aria-valuenow="{{ $prod->percentreviews( $prod->reviews()->where('stars', 2)->count())}}" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
-                                    </div><span class="text-muted ms-3">0</span>
+                                    </div><span class="text-muted ms-3">{{ $prod->reviews()->where('stars', 2)->count() }}</span>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="text-nowrap me-3"><span class="d-inline-block align-middle text-muted">1</span><i class="ci-star-filled fs-xs ms-1"></i></div>
                                     <div class="w-100">
                                         <div class="progress" style="height: 4px;">
-                                            <div class="progress-bar bg-danger" role="progressbar"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $prod->percentreviews( $prod->reviews()->where('stars', 1)->count())}}%;" aria-valuenow="{{ $prod->percentreviews( $prod->reviews()->where('stars', 1)->count())}}" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
-                                    </div><span class="text-muted ms-3">0</span>
+                                    </div><span class="text-muted ms-3">{{ $prod->reviews()->where('stars', 1)->count() }}</span>
                                 </div>
                             </div>
                         </div>
@@ -347,64 +357,41 @@
                             <!-- Reviews list-->
                             <div class="col-md-7">
 
+                                @foreach($prod->reviews()->get() as $review)
                                 <!-- Review-->
                                 <div class="product-review pb-4 mb-4 border-bottom">
                                     <div class="d-flex mb-3">
                                         <div class="d-flex align-items-center me-4 pe-2">
                                             <div>
-                                                <h6 class="fs-sm mb-0">Mirko Mirkovic</h6><span class="fs-ms text-muted">Lipanj 28, 2023</span>
+                                                <h6 class="fs-sm mb-0">{{ $review->fname }} {{ $review->lname }}</h6><span class="fs-ms text-muted">{{ \Carbon\Carbon::make($review->created_at)->locale('hr')->format('d.m.Y.') }}</span>
                                             </div>
                                         </div>
                                         <div>
-                                            <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+                                            <div class="star-rating">
+
+
+                                            @for ($i = 0; $i < 5; $i++)
+                                                @if (floor($review->stars) - $i >= 1)
+                                                    {{--Full Start--}}
+                                                <i class="star-rating-icon ci-star-filled active"></i>
+                                                @elseif ($review->stars - $i > 0)
+                                                    {{--Half Start--}}
+                                                        <i class="star-rating-icon ci-star"></i>
+                                                @else
+                                                    {{--Empty Start--}}
+                                                        <i class="star-rating-icon ci-star"></i>
+                                                @endif
+                                            @endfor
                                             </div>
 
                                         </div>
                                     </div>
-                                    <p class="fs-md mb-2">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est...</p>
-
-
-                                </div>
-                                <!-- Review-->
-                                <div class="product-review pb-4 mb-4 border-bottom">
-                                    <div class="d-flex mb-3">
-                                        <div class="d-flex align-items-center me-4 pe-2">
-                                            <div>
-                                                <h6 class="fs-sm mb-0">Mirko Mirkovic</h6><span class="fs-ms text-muted">Lipanj 28, 2023</span>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <p class="fs-md mb-2">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est...</p>
-
-
-                                </div>
-                                <!-- Review-->
-                                <div class="product-review pb-4 mb-4 border-bottom fs-md">
-                                    <div class="d-flex mb-3">
-                                        <div class="d-flex align-items-center me-4 pe-2">
-                                            <div>
-                                                <h6 class="fs-sm mb-0">Mirko Mirkovic</h6><span class="fs-ms text-muted">Lipanj 28, 2023</span>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <p>Slučajno sam naišao na ovu knjigu čitajući preporučeni oglas na Facebook-u! Oglas kao da je mene čekao i pogodio ravno u sridu! </p>
-                                    <p>Obožavatelj sam Harry Pottera i cijelog Wizarding World universea, ovo je jako lijepa avantura za svakog Potterheada i svakog tko i dalje mašta o čarobnom štapiću ili o susretu sa mitološkim zvijerima! </p>
-                                    <p>Prvu knjigu sam sa užitkom čitao, zanimljiva radnja, nakon prvih 10 stranica već počinje akcija tako da uvod uopće nije ni dug ni dosadan! Kada uđete u svijet, nećete se moći od njega odvojiti! Jako dobar poklon za sve one koji su sa užitkom čitali HP knjige, ali i za one druge!</p>
-                                    <p>Jedva čekam slijedeću knjigu koju uzimam prvom prilikom!</p>
+                                    <p class="fs-md mb-2">{{ strip_tags($review->message) }}</p>
 
 
                                 </div>
 
+                               @endforeach
 
                                 <div class="text-center">
 
