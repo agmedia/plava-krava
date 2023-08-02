@@ -6895,7 +6895,10 @@ var render = function() {
                                         [
                                           _c(
                                             "li",
-                                            { staticClass: "widget-list-item" },
+                                            {
+                                              staticClass:
+                                                "widget-list-item pb-1"
+                                            },
                                             [
                                               _c(
                                                 "a",
@@ -6967,7 +6970,10 @@ var render = function() {
                                         [
                                           _c(
                                             "li",
-                                            { staticClass: "widget-list-item" },
+                                            {
+                                              staticClass:
+                                                "widget-list-item pb-1"
+                                            },
                                             [
                                               _c(
                                                 "a",
@@ -7392,7 +7398,7 @@ var render = function() {
                 "row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 g-0 mx-n2"
             },
             _vm._l(_vm.products.data, function(product) {
-              return _c("div", { staticClass: "col  px-2 mb-3" }, [
+              return _c("div", { staticClass: "col  px-1 mb-3" }, [
                 _c(
                   "div",
                   { staticClass: "card product-card card-static pb-3" },
@@ -7475,7 +7481,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "product-price" }, [
                         product.special
-                          ? _c("span", { staticClass: "text-dark" }, [
+                          ? _c("span", { staticClass: "text-dark fs-md" }, [
                               _vm._v(_vm._s(product.main_special_text) + " "),
                               product.secondary_special_text
                                 ? _c("small", [
@@ -7491,7 +7497,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "product-price" }, [
                         !product.special
-                          ? _c("span", { staticClass: "text-dark" }, [
+                          ? _c("span", { staticClass: "text-dark fs-md" }, [
                               _vm._v(_vm._s(product.main_price_text) + " "),
                               product.secondary_price_text
                                 ? _c("small", [

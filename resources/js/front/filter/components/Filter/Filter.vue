@@ -36,7 +36,7 @@
                                      <div class="widget widget-links">
 
                                         <ul class="widget-list" v-for="subcategory in cat.subs" >
-                                            <li class="widget-list-item"><a class="widget-list-link" :href="subcategory.url">{{ subcategory.title }} </a></li>
+                                            <li class="widget-list-item pb-1"><a class="widget-list-link" :href="subcategory.url">{{ subcategory.title }} </a></li>
                                         </ul>
                                         <ul class="widget-list" >
                                             <li class="widget-list-item"><a class="widget-list-link" :href="cat.url">Pogledajte sve</a></li>
@@ -51,7 +51,7 @@
                                     <div class="widget widget-links">
 
                                         <ul class="widget-list" v-for="subcategory in cat.subs" >
-                                            <li class="widget-list-item"><a class="widget-list-link" :href="subcategory.url">{{ subcategory.title }} </a></li>
+                                            <li class="widget-list-item pb-1"><a class="widget-list-link" :href="subcategory.url">{{ subcategory.title }} </a></li>
                                         </ul>
                                         <ul class="widget-list" >
                                             <li class="widget-list-item"><a class="widget-list-link" :href="cat.url">Pogledajte sve</a></li>

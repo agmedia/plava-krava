@@ -22,7 +22,7 @@
 
         <div class="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 g-0 mx-n2"  v-if="products.total">
 
-            <div class="col  px-2 mb-3" v-for="product in products.data">
+            <div class="col  px-1 mb-3" v-for="product in products.data">
                 <div class="card product-card card-static pb-3">
                     <span class="badge rounded-pill bg-primary mt-1 ms-1 badge-shadow" v-if="product.special">-{{ ($store.state.service.getDiscountAmount(product.price, product.special)) }}%</span>
                        <a class="card-img-top d-block overflow-hidden" :href="origin + product.url">
@@ -35,10 +35,10 @@
                             <span class="fs-sm text-muted"  v-if="product.special"><small>NC 30 dana: {{ product.main_price_text }} </small> <small v-if="product.secondary_price_text">{{ product.secondary_price_text }} </small></span>
                         </div>
                         <div class="product-price">
-                            <span class="text-dark" v-if="product.special">{{ product.main_special_text }} <small v-if="product.secondary_special_text">{{ product.secondary_special_text }} </small></span>
+                            <span class="text-dark fs-md" v-if="product.special">{{ product.main_special_text }} <small v-if="product.secondary_special_text">{{ product.secondary_special_text }} </small></span>
                          </div>
                         <div class="product-price">
-                            <span class="text-dark" v-if="!product.special">{{ product.main_price_text }} <small v-if="product.secondary_price_text ">{{ product.secondary_price_text }} </small></span>
+                            <span class="text-dark fs-md" v-if="!product.special">{{ product.main_price_text }} <small v-if="product.secondary_price_text ">{{ product.secondary_price_text }} </small></span>
 
                         </div>
 
