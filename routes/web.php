@@ -8,6 +8,7 @@ use App\Http\Controllers\Back\Catalog\CategoryController;
 use App\Http\Controllers\Back\Catalog\ProductController;
 use App\Http\Controllers\Back\Catalog\PublisherController;
 use App\Http\Controllers\Back\DashboardController;
+use App\Http\Controllers\Back\Marketing\ReviewController;
 use App\Http\Controllers\Back\OrderController;
 use App\Http\Controllers\Back\Marketing\ActionController;
 use App\Http\Controllers\Back\Marketing\BlogController;
@@ -124,6 +125,14 @@ Route::middleware(['auth:sanctum', 'verified', 'no.customers'])->prefix('admin')
         Route::get('blog/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
         Route::patch('blog/{blog}', [BlogController::class, 'update'])->name('blogs.update');
         Route::delete('blog/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+        // REWIEVS
+        Route::get('reviews', [ReviewController::class, 'index'])->name('reviews');
+        Route::get('review/create', [ReviewController::class, 'create'])->name('reviews.create');
+        Route::post('review', [ReviewController::class, 'store'])->name('reviews.store');
+        Route::get('review/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
+        Route::patch('review/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+        Route::delete('review/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
     });
 
     // KORISNICI
@@ -228,6 +237,7 @@ Route::prefix('api/v2')->group(function () {
     Route::post('products/update-item/single', [\App\Http\Controllers\Api\v2\ProductController::class, 'updateItem'])->name('products.update.item');
 
     Route::post('/actions/destroy/api', [ActionController::class, 'destroyApi'])->name('actions.destroy.api');
+    Route::post('/reviews/destroy/api', [ReviewController::class, 'destroyApi'])->name('reviews.destroy.api');
     Route::post('/authors/destroy/api', [AuthorController::class, 'destroyApi'])->name('authors.destroy.api');
     Route::post('/publishers/destroy/api', [PublisherController::class, 'destroyApi'])->name('publishers.destroy.api');
     Route::post('/products/destroy/api', [ProductController::class, 'destroyApi'])->name('products.destroy.api');
