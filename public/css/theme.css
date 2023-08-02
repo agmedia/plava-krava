@@ -17445,7 +17445,7 @@ a.nav-link:hover .media-tab-media {
   opacity: 1;
 }
 .tns-carousel.tns-controls-outside {
-  padding: 0 1.375rem;
+  padding: 0 .5rem;
 }
 .tns-carousel.tns-controls-outside [data-controls=prev] {
   left: 0;
