@@ -43,7 +43,7 @@
                         </div>
 
                     </div>
-                    <div class="product-floating-btn  sm-block d-none">
+                    <div class="product-floating-btn  d-sm-block d-none">
                         <button class="btn btn-outline-primary btn-shadow btn-sm" v-on:click="add(product.id)" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
                     </div>
                 </div>

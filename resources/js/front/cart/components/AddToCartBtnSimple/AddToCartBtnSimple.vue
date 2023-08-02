@@ -1,5 +1,5 @@
 <template>
-    <button class="btn btn-outline-primary btn-shadow btn-sm sm-block d-none" @click="addToCart()" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
+    <button class="btn btn-outline-primary btn-shadow btn-sm d-sm-block d-none" @click="addToCart()" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
 
 </template>
 
