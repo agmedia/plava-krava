@@ -219,7 +219,10 @@ class Product extends Model
     }
 
     public function percentreviews($ocjena){
-        return round(($ocjena / $this->totalreviews()) * 100, 2);
+        if($this->totalreviews()){
+            return round(($ocjena / $this->totalreviews()) * 100, 2);
+        }
+
     }
 
 

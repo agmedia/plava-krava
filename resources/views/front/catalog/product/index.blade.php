@@ -357,45 +357,49 @@
                             <!-- Reviews list-->
                             <div class="col-md-7">
 
-                                @foreach($prod->reviews()->get() as $review)
-                                <!-- Review-->
-                                <div class="product-review pb-4 mb-4 border-bottom">
-                                    <div class="d-flex mb-3">
-                                        <div class="d-flex align-items-center me-4 pe-2">
+
+
+                                @if($prod->totalreviews())
+
+                                  @foreach($prod->reviews()->get() as $review)
+                                    <!-- Review-->
+                                    <div class="product-review pb-4 mb-4 border-bottom">
+                                        <div class="d-flex mb-3">
+                                            <div class="d-flex align-items-center me-4 pe-2">
+                                                <div>
+                                                    <h6 class="fs-sm mb-0">{{ $review->fname }} {{ $review->lname }}</h6><span class="fs-ms text-muted">{{ \Carbon\Carbon::make($review->created_at)->locale('hr')->format('d.m.Y.') }}</span>
+                                                </div>
+                                            </div>
                                             <div>
-                                                <h6 class="fs-sm mb-0">{{ $review->fname }} {{ $review->lname }}</h6><span class="fs-ms text-muted">{{ \Carbon\Carbon::make($review->created_at)->locale('hr')->format('d.m.Y.') }}</span>
+                                                <div class="star-rating">
+
+
+                                                @for ($i = 0; $i < 5; $i++)
+                                                    @if (floor($review->stars) - $i >= 1)
+                                                        {{--Full Start--}}
+                                                    <i class="star-rating-icon ci-star-filled active"></i>
+                                                    @elseif ($review->stars - $i > 0)
+                                                        {{--Half Start--}}
+                                                            <i class="star-rating-icon ci-star"></i>
+                                                    @else
+                                                        {{--Empty Start--}}
+                                                            <i class="star-rating-icon ci-star"></i>
+                                                    @endif
+                                                @endfor
+                                                </div>
+
                                             </div>
                                         </div>
-                                        <div>
-                                            <div class="star-rating">
+                                        <p class="fs-md mb-2">{{ strip_tags($review->message) }}</p>
 
 
-                                            @for ($i = 0; $i < 5; $i++)
-                                                @if (floor($review->stars) - $i >= 1)
-                                                    {{--Full Start--}}
-                                                <i class="star-rating-icon ci-star-filled active"></i>
-                                                @elseif ($review->stars - $i > 0)
-                                                    {{--Half Start--}}
-                                                        <i class="star-rating-icon ci-star"></i>
-                                                @else
-                                                    {{--Empty Start--}}
-                                                        <i class="star-rating-icon ci-star"></i>
-                                                @endif
-                                            @endfor
-                                            </div>
-
-                                        </div>
                                     </div>
-                                    <p class="fs-md mb-2">{{ strip_tags($review->message) }}</p>
 
+                                   @endforeach
+                                @else
+                                  <p>Trenutno nema ocjena i komentara za ovaj artikl!</p>
+                                @endif
 
-                                </div>
-
-                               @endforeach
-
-                                <div class="text-center">
-
-                                </div>
                             </div>
                             <!-- Leave review form-->
                             <div class="col-md-5 mt-2 pt-4 mt-md-0 pt-md-0">
