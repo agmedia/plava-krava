@@ -22,7 +22,7 @@
 
         <div class="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 g-0 mx-n2"  v-if="products.total">
 
-            <div class="col  px-1 mb-3" v-for="product in products.data">
+            <div class="col-md-3 col-6 px-2 mb-4 d-flex align-items-stretch" v-for="product in products.data">
                 <div class="card product-card card-static pb-3">
                     <span class="badge rounded-pill bg-primary mt-1 ms-1 badge-shadow" v-if="product.special">-{{ ($store.state.service.getDiscountAmount(product.price, product.special)) }}%</span>
                        <a class="card-img-top d-block overflow-hidden" :href="origin + product.url">
