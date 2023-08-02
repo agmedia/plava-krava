@@ -1,5 +1,5 @@
 <div>
-    <div class="card product-card card-static pb-3">
+    <div class="card product-card d-flex align-items-stretch card-static pb-3">
     @if ($product->main_price > $product->main_special)
             <span class="badge bg-primary badge-shadow">-{{ number_format(floatval(\App\Helpers\Helper::calculateDiscount($product->price, $product->special())), 0) }}%</span>
     @endif
