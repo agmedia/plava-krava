@@ -5727,7 +5727,7 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "btn btn-outline-primary btn-shadow btn-sm",
+      staticClass: "btn btn-outline-primary btn-shadow btn-sm sm-block d-none",
       attrs: { type: "button" },
       on: {
         click: function($event) {
