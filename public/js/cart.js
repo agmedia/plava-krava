@@ -2785,6 +2785,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -3051,7 +3057,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
      *
      */
     closeWindow: function closeWindow() {
-      //$('#shop-sidebar').removeClass('collapse show');
+      $('#shop-sidebar').removeClass('collapse show');
     }
   }
 });
@@ -7012,13 +7018,58 @@ var render = function() {
                 )
               }),
               0
-            )
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "accordion-item border-bottom" }, [
+              _c("h3", { staticClass: "accordion-header px-grid-gutter" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link-style d-block  fs-md fw-normal py-3",
+                    attrs: { href: _vm.origin + "autor", role: "link" }
+                  },
+                  [_vm._m(0)]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "accordion-item border-bottom" }, [
+              _c("h3", { staticClass: "accordion-header px-grid-gutter" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link-style d-block fs-md fw-normal py-3",
+                    attrs: { href: _vm.origin + "nakladnik" }
+                  },
+                  [_vm._m(1)]
+                )
+              ])
+            ])
           ])
         : _vm._e()
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "d-flex align-items-center" }, [
+      _c("i", { staticClass: "ci-add-user fs-lg mt-n1 me-2" }),
+      _vm._v(" Autori ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "d-flex align-items-center" }, [
+      _c("i", { staticClass: "ci-edit  fs-lg mt-n1 me-2" }),
+      _vm._v("Izdavači")
+    ])
+  }
+]
 render._withStripped = true
 
 
