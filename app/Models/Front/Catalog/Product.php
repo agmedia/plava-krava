@@ -214,7 +214,7 @@ class Product extends Model
 
     public function avgreviews()
     {
-        return round($this->hasMany(Review::class, 'product_id')->where('status', 1)->avg('stars'), 2);
+        return number_format($this->hasMany(Review::class, 'product_id')->where('status', 1)->avg('stars'), 2);
 
     }
 
