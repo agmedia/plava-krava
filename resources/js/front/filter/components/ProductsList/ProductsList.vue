@@ -6,7 +6,7 @@
             <div class="d-flex flex-wrap">
                 <div class="d-flex align-items-center flex-nowrap me-3 me-sm-4 pb-3">
 
-                    <select class="form-select pe-2" v-model="sorting">
+                    <select class="form-select pe-2" style="min-width: 170px;" v-model="sorting">
                         <option value="">Sortiraj</option>
                         <option value="novi">Najnovije</option>
                         <option value="price_up">Najmanja cijena</option>
