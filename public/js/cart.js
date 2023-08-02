@@ -7322,6 +7322,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-select pe-2",
+                    staticStyle: { "min-width": "170px" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter
