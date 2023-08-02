@@ -4,6 +4,7 @@ namespace App\Models\Front\Catalog;
 
 use App\Helpers\Currency;
 use App\Models\Back\Catalog\Product\ProductAction;
+use App\Models\Back\Marketing\Review;
 use App\Models\Back\Settings\Settings;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -183,14 +184,23 @@ class Product extends Model
     {
         return str_replace('.webp', '-thumb.webp', $this->image);
     }
-
-
+    
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function images()
     {
         return $this->hasMany(ProductImage::class, 'product_id')->where('published', 1)->orderBy('sort_order');
+    }
+    
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'product_id')->where('status', 1)->orderBy('sort_order');
     }
 
 
