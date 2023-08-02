@@ -6,7 +6,7 @@
 
     @if ($data['tablename'] == 'category')
             <div class="tns-carousel">
-                <div class="tns-carousel-inner" data-carousel-options='{"items": 1, "controls": true, "autoHeight": false, "responsive": {"0":{"items":1, "gutter": 20},"480":{"items":2, "gutter": 20},"800":{"items":3, "gutter": 20}, "1100":{"items":4, "gutter": 30}, "1500":{"items":5, "gutter": 30}}}'>
+                <div class="tns-carousel-inner" data-carousel-options='{"items": 1, "controls": true, "autoHeight": false, "responsive": {"0":{"items":1, "gutter": 20},"480":{"items":2, "gutter": 20},"800":{"items":3, "gutter": 20}, "1300":{"items":4, "gutter": 30}, "1800":{"items":5, "gutter": 30}}}'>
                 @foreach ($data['items'] as $item)
                     <!-- Product-->
                         <div class="article mb-grid-gutter">
