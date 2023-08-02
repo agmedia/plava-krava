@@ -135,7 +135,7 @@ class CatalogRouteController extends Controller
     public function author(Request $request, Author $author = null, Category $cat = null, Category $subcat = null)
     {
         if ( ! $author) {
-            $letters = Helper::resolveCache('authors')->remember('letters', config('cache.life'), function () {
+            $letters = Helper::resolveCache('authors')->remember('aut_' . 'letters', config('cache.life'), function () {
                 return Author::letters();
             });
             $letter = $this->checkLetter($letters);
@@ -146,7 +146,7 @@ class CatalogRouteController extends Controller
 
             $currentPage = request()->get('page', 1);
 
-            $authors = Helper::resolveCache('authors')->remember($letter . '.' . $currentPage, config('cache.life'), function () use ($letter) {
+            $authors = Helper::resolveCache('authors')->remember('aut_' . $letter . '.' . $currentPage, config('cache.life'), function () use ($letter) {
                 return Author::query()->select('id', 'title', 'url')
                                       ->where('status',  1)
                                       ->where('letter', $letter)
@@ -184,7 +184,7 @@ class CatalogRouteController extends Controller
     public function publisher(Request $request, Publisher $publisher = null, Category $cat = null, Category $subcat = null)
     {
         if ( ! $publisher) {
-            $letters = Helper::resolveCache('publishers')->remember('letters', config('cache.life'), function () {
+            $letters = Helper::resolveCache('publishers')->remember('pub_' . 'letters', config('cache.life'), function () {
                 return Publisher::letters();
             });
             $letter = $this->checkLetter($letters);
@@ -194,15 +194,15 @@ class CatalogRouteController extends Controller
             }
 
             $currentPage = request()->get('page', 1);
-
-            $publishers = Helper::resolveCache('publishers')->remember($letter . '.' . $currentPage, config('cache.life'), function () use ($letter) {
+            
+            $publishers = Helper::resolveCache('publishers')->remember('pub_' . $letter . '.' . $currentPage, config('cache.life'), function () use ($letter) {
                 return Publisher::query()->select('id', 'title', 'url')
-                                         ->where('status',  1)
-                                         ->where('letter', $letter)
-                                         ->orderBy('title')
-                                         ->withCount('products')
-                                         ->paginate(36)
-                                         ->appends(request()->query());
+                    ->where('status',  1)
+                    ->where('letter', $letter)
+                    ->orderBy('title')
+                    ->withCount('products')
+                    ->paginate(36)
+                    ->appends(request()->query());
             });
 
             $meta_tags = Seo::getMetaTags($request, 'ap_filter');
