@@ -32,7 +32,7 @@
     @elseif ($data['tablename'] == 'reviews')
 
         <div class="tns-carousel">
-            <div class="tns-carousel-inner" data-carousel-options='{"items": 1, "controls": false, "autoplay": true, "autoHeight": true, "responsive": {"0":{"items":1, "gutter": 20},"480":{"items":2, "gutter": 20},"800":{"items":3, "gutter": 20}, "1300":{"items":4, "gutter": 30}, "1800":{"items":5, "gutter": 30}}}'>
+            <div class="tns-carousel-inner" data-carousel-options='{"items": 1, "controls": false, "autoplay": true, "autoHeight": true, "responsive": {"0":{"items":1, "gutter": 20},"480":{"items":2, "gutter": 20},"800":{"items":3, "gutter": 20}, "1300":{"items":4, "gutter": 30}}}'>
             @foreach ($data['items'] as $review)
 
                     <blockquote class="mb-2">
