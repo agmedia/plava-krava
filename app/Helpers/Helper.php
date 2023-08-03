@@ -277,6 +277,7 @@ class Helper
                 $widgets[] = [
                     'title' => $widget->title,
                     'subtitle' => $widget->subtitle,
+                    'color' => $widget->badge,
                     'url' => $widget->url,
                     'image' => str_replace('.jpg', '.webp', $widget->image),
                     'width' => $widget->width,

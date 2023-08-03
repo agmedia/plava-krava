@@ -150,8 +150,8 @@
                                     </div>
 
                                     <div class="form-group mb-2">
-                                        <label for="sort_order">Badge Traka @include('back.layouts.partials.popover', ['title' => 'Badge traka', 'content' => 'Ako polje ostane prazno badge traka se neće prikazivati. Ako se upiše prikazivat će se badge traka sa upisanim tekstom.'])</label>
-                                        <input type="text" class="form-control" name="badge" value="{{ isset($widget) ? $widget->badge : '' }}">
+                                        <label for="sort_order">Boja pozadine @include('back.layouts.partials.popover', ['title' => 'Badge traka', 'content' => 'Ako polje ostane prazno badge traka se neće prikazivati. Ako se upiše prikazivat će se badge traka sa upisanim tekstom.'])</label>
+                                        <input type="color" class="form-control" name="badge" value="{{ isset($widget) ? $widget->badge : '#e9f3fc' }}">
                                     </div>
                                 </div>
                             </div>
