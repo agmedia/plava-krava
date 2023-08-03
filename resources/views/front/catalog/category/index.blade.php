@@ -144,7 +144,8 @@
 
 
     @if (isset($author) && $author && ! empty($author->description))
-        <div class="container pb-4 mb-2 mb-md-4" >
+
+        <div class=" pb-4 mb-2 mt-4 mb-md-4" >
             {!! $author->description !!}
         </div>
     @endif
