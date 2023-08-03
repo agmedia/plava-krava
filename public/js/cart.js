@@ -2787,10 +2787,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -6738,12 +6734,15 @@ var render = function() {
               _vm._l(_vm.categories, function(cat) {
                 return _c(
                   "div",
-                  { staticClass: "accordion-item border-bottom" },
+                  { staticClass: "accordion-item border-bottom " },
                   [
                     _vm.category && _vm.category.id == cat.id
                       ? _c(
                           "h3",
-                          { staticClass: "accordion-header px-grid-gutter" },
+                          {
+                            staticClass:
+                              "accordion-header px-grid-gutter bg-default"
+                          },
                           [
                             cat.subs
                               ? _c(

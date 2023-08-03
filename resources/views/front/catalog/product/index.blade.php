@@ -202,7 +202,7 @@
                                         @endif
 
 
-                                    <li><strong>Dostupnost:</strong> Dostupno </li>
+
                                 </ul>
 
                             </div>
@@ -314,8 +314,8 @@
                     <div class="tab-pane fade" id="reviews" role="tabpanel">
                         <!-- Reviews-->
                         <div class="row pt-2 pb-3">
-                            <div class="col-lg-4 col-md-5">
-                                <h2 class="h3 mb-4"> {{ $prod->totalreviews() }} {{ $recenzija }}  </h2>
+                            <div class="col-lg-4 col-md-5 mb-3">
+                                <h2 class="h3 mb-1"> {{ $prod->totalreviews() }} {{ $recenzija }}  </h2>
                                 <div class="star-rating me-2">
 
 

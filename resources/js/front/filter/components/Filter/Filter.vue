@@ -6,10 +6,8 @@
 
                     <div class="accordion " id="shop-categories">
 
-                        <div class="accordion-item border-bottom" v-for="cat in categories">
-                            <h3 class="accordion-header px-grid-gutter" v-if="category && (category.id == cat.id)" >
-
-
+                        <div class="accordion-item border-bottom " v-for="cat in categories">
+                            <h3 class="accordion-header px-grid-gutter bg-default" v-if="category && (category.id == cat.id)" >
                                 <button class="accordion-button collapsed py-3" v-if="cat.subs " type="button" data-bs-toggle="collapse" :data-bs-target="'#id' + cat.id" aria-expanded="false" :aria-controls="'id'+ cat.id" ><span class="d-flex align-items-center"><i class="ci-book fs-lg opacity-60 mt-n1 me-2"></i>{{ cat.title }} </span></button>
 
                                 <!--type="button"  -->
@@ -20,8 +18,6 @@
 
 
                             <h3 class="accordion-header px-grid-gutter" v-else >
-
-
 
                                 <button class="accordion-button collapsed py-3" v-if="cat.subs " type="button" data-bs-toggle="collapse" :data-bs-target="'#id' + cat.id" aria-expanded="false" :aria-controls="'id'+ cat.id" ><span class="d-flex align-items-center"><i class="ci-book fs-lg opacity-60 mt-n1 me-2"></i>{{ cat.title }} </span></button>
 
