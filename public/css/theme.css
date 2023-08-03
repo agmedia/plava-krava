@@ -237,11 +237,11 @@ background-color: rgb(246, 249, 252);
 
 
 h3.bg-default{
-    background-color: #18326d;
+    background-color: rgb(246, 249, 252);
 }
 
 h3.bg-default a.nav-link-style, h3.bg-default span {
-    color: #fff;
+    color: #18326d;
 }
 
 h3.bg-default:hover a span, h3.bg-default:hover span{
