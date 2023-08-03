@@ -246,7 +246,7 @@
 
     <!-- Visually Hidden Preheader Text : BEGIN -->
     <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all;">
-       Narudžba Zuzi Shop
+       Narudžba Plava Krava
     </div>
     <!-- Visually Hidden Preheader Text : END -->
 

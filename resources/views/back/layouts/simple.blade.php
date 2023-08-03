@@ -6,7 +6,7 @@
 
     <title>Plava Krava</title>
 
-    <meta name="description" content="Zuzi shop">
+    <meta name="description" content="Plava Krava">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
 

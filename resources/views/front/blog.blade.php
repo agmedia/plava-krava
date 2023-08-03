@@ -1,9 +1,9 @@
 @extends('front.layouts.app')
 @if(isset($blogs))
-        @section ( 'title', 'Blog - Zuzi Shop' )
-        @section ( 'description', 'Medijske objave, članci i obavijesti -  Zuzi Shop' )
+        @section ( 'title', 'Blog - Plava Krava' )
+        @section ( 'description', 'Medijske objave, članci i obavijesti -  Plava Krava' )
 @else
-    @section ( 'title', $blog->title. ' - Zuzi Shop' )
+    @section ( 'title', $blog->title. ' - Plava Krava' )
 @section ( 'description', $blog->meta_description )
 
 @endif
