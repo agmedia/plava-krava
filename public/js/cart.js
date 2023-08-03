@@ -6922,22 +6922,26 @@ var render = function() {
                                       )
                                     }),
                                     _vm._v(" "),
-                                    _c("ul", { staticClass: "widget-list" }, [
-                                      _c(
-                                        "li",
-                                        { staticClass: "widget-list-item" },
-                                        [
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass: "widget-list-link",
-                                              attrs: { href: cat.url }
-                                            },
-                                            [_vm._v("Pogledajte sve")]
-                                          )
-                                        ]
-                                      )
-                                    ])
+                                    _c(
+                                      "ul",
+                                      { staticClass: "widget-list mt-2" },
+                                      [
+                                        _c(
+                                          "li",
+                                          { staticClass: "widget-list-item" },
+                                          [
+                                            _c(
+                                              "a",
+                                              {
+                                                staticClass: "widget-list-link",
+                                                attrs: { href: cat.url }
+                                              },
+                                              [_vm._v("Pogledajte sve")]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
                                   ],
                                   2
                                 )
@@ -6997,22 +7001,26 @@ var render = function() {
                                       )
                                     }),
                                     _vm._v(" "),
-                                    _c("ul", { staticClass: "widget-list" }, [
-                                      _c(
-                                        "li",
-                                        { staticClass: "widget-list-item" },
-                                        [
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass: "widget-list-link",
-                                              attrs: { href: cat.url }
-                                            },
-                                            [_vm._v("Pogledajte sve")]
-                                          )
-                                        ]
-                                      )
-                                    ])
+                                    _c(
+                                      "ul",
+                                      { staticClass: "widget-list mt-2" },
+                                      [
+                                        _c(
+                                          "li",
+                                          { staticClass: "widget-list-item" },
+                                          [
+                                            _c(
+                                              "a",
+                                              {
+                                                staticClass: "widget-list-link",
+                                                attrs: { href: cat.url }
+                                              },
+                                              [_vm._v("Pogledajte sve")]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
                                   ],
                                   2
                                 )
