@@ -10,28 +10,39 @@
 
 @section('content')
 
-    <section class="d-md-flex justify-content-between align-items-center mb-2 pb-2">
-        <h1 class="h2 mb-3 mb-md-0 me-3">Lista autora</h1>
+    <nav class="mb-4" aria-label="breadcrumb">
+        <ol class="breadcrumb flex-lg-nowrap">
+            <li class="breadcrumb-item"><a class="text-nowrap" href="{{ route('index') }}"><i class="ci-home"></i>Naslovnica</a></li>
+            <li class="breadcrumb-item text-nowrap active" aria-current="page"><a class="text-nowrap" href="{{ route('catalog.route.author') }}">Lista autora</a></li>
 
+
+
+        </ol>
+    </nav>
+
+    <section class="d-md-flex justify-content-between align-items-center mb-2 pb-2">
+        <h1 class="h2 mb-1 mb-md-0 me-3">Lista autora</h1>
     </section>
 
+
+
     <!-- Topics grid-->
-    <section class=" py-3 mb-5">
-        <div class="row align-items-center py-md-3">
-            <div class="col-lg-12   py-2 text-center">
+    <section class=" py-1 mb-5">
+        <div class="row align-items-center py-md-1">
+            <div class="col-lg-12   py-2 ">
                 <div class="scrolling-wrapper">
                     @foreach ($letters as $item)
                         <a href="{{ route('catalog.route.author', ['author' => null, 'letter' => $item['value']]) }}"
-                           class="btn btn-outline-primary btn-sm  mb-2 @if( ! $item['active']) disabled @endif @if($item['value'] == $letter) bg-primary  @endif">
-                            <h3 class="h6  @if($item['value'] == $letter) text-white @else  @endif  py-0 mt-1 mb-0 px-1">{{ $item['value'] }}</h3></a>
+                           class="btn btn-outline-primary btn-sm text-white  bg-primary mb-2 @if( ! $item['active'])  disabled @endif @if($item['value'] == $letter) bg-primary  @endif">
+                            <strong>{{ $item['value'] }}</strong></a>
                     @endforeach
                 </div>
             </div>
         </div>
 
         <div class="row py-md-3">
-            <div class="col-lg-12 text-center mb-5">
-                <h2>{{ $letter ?: 'Svi autori' }}</h2>
+            <div class="col-lg-12  mt-3 mb-2">
+                <h2 class="h5">{{ $letter ?: 'Svi autori' }}</h2>
 
             </div>
             @foreach ($authors as $author)
