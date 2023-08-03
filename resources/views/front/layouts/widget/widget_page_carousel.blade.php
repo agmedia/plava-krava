@@ -29,6 +29,43 @@
             @endforeach
         </div>
 
+    @elseif ($data['tablename'] == 'reviews')
+
+        <div class="tns-carousel">
+            <div class="tns-carousel-inner" data-carousel-options='{"items": 1, "controls": true, "autoHeight": false, "responsive": {"0":{"items":1, "gutter": 20},"480":{"items":2, "gutter": 20},"800":{"items":3, "gutter": 20}, "1300":{"items":4, "gutter": 30}, "1800":{"items":5, "gutter": 30}}}'>
+            @foreach ($data['items'] as $review)
+
+                    <blockquote class="mb-2">
+                        <div class="card card-body fs-md text-muted border-0 shadow-sm">
+                            <div class="mb-2">
+                                <div class="star-rating"> @for ($i = 0; $i < 5; $i++)
+                                        @if (floor($review->stars) - $i >= 1)
+                                            {{--Full Start--}}
+                                            <i class="star-rating-icon ci-star-filled active"></i>
+                                        @elseif ($review->stars - $i > 0)
+                                            {{--Half Start--}}
+                                            <i class="star-rating-icon ci-star"></i>
+                                        @else
+                                            {{--Empty Start--}}
+                                            <i class="star-rating-icon ci-star"></i>
+                                        @endif
+                                    @endfor
+                                </div>
+                            </div>{{ strip_tags($review->message) }}
+                        </div>
+                        <footer class="d-flex justify-content-center align-items-center pt-4">
+                            <div class="ps-3">
+                                <h6 class="fs-sm mb-n1">{{ $review->fname }} {{ $review->lname }}.</h6>
+                            </div>
+                        </footer>
+                    </blockquote>
+
+
+
+                @endforeach
+            </div>
+        </div>
+
     @else
 
 

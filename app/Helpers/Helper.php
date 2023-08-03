@@ -8,6 +8,7 @@ use App\Models\Back\Settings\Settings;
 use App\Models\Back\Widget\WidgetGroup;
 use App\Models\Front\Blog;
 use App\Models\Front\Catalog\Author;
+use App\Models\Back\Marketing\Review;
 use App\Models\Front\Catalog\Product;
 use App\Models\Front\Catalog\Publisher;
 use Illuminate\Database\Eloquent\Builder;
@@ -251,6 +252,11 @@ class Helper
                 $tablename = 'publisher';
             }
 
+            if (static::isDescriptionTarget($data, 'reviews')) {
+                $items = static::reviews($data)->get();
+                $tablename = 'reviews';
+            }
+
 
 
             $widgets = [
@@ -424,6 +430,23 @@ class Helper
         }
 
         return $publisher;
+    }
+
+
+    /**
+     * @param array $data
+     *
+     * @return Builder
+     */
+    private static function reviews(array $data): Builder
+    {
+        $reviews = (new Review())->newQuery();
+
+        $reviews->where('featured', '1')->limit(10)->get();
+
+
+
+        return $reviews;
     }
 
 
