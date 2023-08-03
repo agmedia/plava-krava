@@ -1,4 +1,4 @@
-<!-- {"title": "Simple Card Widget", "description": "Some description of a Simple Card Widget."} -->
+<!-- {"title": "Banneri", "description": "Widget za bannere"} -->
 <section class=" py-3 " >
     <div class="d-flex flex-wrap justify-content-between align-items-center pt-1  pb-3 mb-3">
         <h2 class="h3 mb-0 pt-3 font-title me-3"><img src="{{ asset('img/logo-plava-krava-glava.svg') }}" style="max-height:35px" alt="Akcije i popusti"/> DODATNO U PONUDI </h2>

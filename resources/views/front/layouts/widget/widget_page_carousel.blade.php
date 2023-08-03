@@ -1,4 +1,4 @@
-<!-- {"title": "Page Carousel", "description": "Some description of a Page Carousel widget template."} -->
+<!-- {"title": "Page Carousel", "description": "Category, Publisher, Reviews."} -->
 <section class=" py-3 " >
     <div class="d-flex flex-wrap justify-content-between align-items-center pt-1  pb-3 mb-3">
         <h2 class="h3 mb-0 pt-3 font-title me-3"><img src="{{ asset('img/logo-plava-krava-glava.svg') }}" style="max-height:35px" alt="{{ $data['title'] }}"/> {{ $data['title'] }}</h2>

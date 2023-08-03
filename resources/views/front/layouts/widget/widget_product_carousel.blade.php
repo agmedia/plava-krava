@@ -1,4 +1,4 @@
-<!-- {"title": "Product Carousel", "description": "Some description of a Product Carousel."} -->
+<!-- {"title": "Carousel", "description": "Widget za product carousel"} -->
 <section class="pt-2">
 
     <div class="d-flex flex-wrap justify-content-between align-items-center pt-1  pb-2 mb-2">

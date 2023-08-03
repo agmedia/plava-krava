@@ -1,4 +1,4 @@
-<!-- {"title": "Simple Widget", "description": "Some description of a Simple Widget."} -->
+<!-- {"title": "Slider Index", "description": "Index main slider."} -->
 
 <section class="tns-carousel mb-3 ">
     <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 1, &quot;mode&quot;: &quot;gallery&quot;, &quot;nav&quot;: true, &quot;responsive&quot;: {&quot;0&quot;: {&quot;nav&quot;: true, &quot;controls&quot;: true}, &quot;576&quot;: {&quot;nav&quot;: false, &quot;controls&quot;: true}}}">
