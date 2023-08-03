@@ -46,7 +46,7 @@
 
             </div>
             @foreach ($authors as $author)
-                <div class=" col-sm-4 col-md-3 mb-3">
+                <div class="col-sm-6 col-md-4 col-xl-3 mb-3">
                     <div class="card border-bottom-primary">
                         <div class="card-body">
                             <h6 class="card-title mb-0"><a href="{{ url($author['url']) }}" class="text-dark">{{ $author['title'] }} <span class="badge rounded-pill bg-secondary float-end">{{ $author['products_count'] }}</span></a></h6>
