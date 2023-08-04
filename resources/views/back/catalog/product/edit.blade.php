@@ -66,8 +66,8 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label for="polica-input">ISBN </label>
-                                    <input type="text" class="form-control" id="polica-input" name="isbn" placeholder="Upišite ISBN" value="{{ isset($product) ? $product->isbn : old('isbn') }}" >
+                                    <label for="polica-input">EAN </label>
+                                    <input type="text" class="form-control" id="polica-input" name="isbn" placeholder="Upišite EAN" value="{{ isset($product) ? $product->isbn : old('isbn') }}" >
                                 </div>
                             </div>
                             <div class="form-group row items-push mb-3">
@@ -209,7 +209,7 @@
                             </div>
 
                             <div class="form-group row items-push mb-4">
-                                <div class="col-md-4">
+                                <div class="col-md-4 d-none">
                                     <label for="letter-select">Pismo</label>
                                     <select class="js-select2 form-control" id="letter-select" name="letter" style="width: 100%;" data-placeholder="Odaberite ili upišite pismo">
                                         <option></option>
@@ -242,22 +242,24 @@
                                         @endif
                                     </select>
                                 </div>
-                            </div>
 
-                            <div class="form-group row items-push mb-3">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <label for="origin-input">Jezik</label>
                                     <input type="text" class="form-control" id="origin-input" name="origin" placeholder="Upišite jezik" value="{{ isset($product) ? $product->origin : old('origin') }}">
                                 </div>
-                                <div class="col-md-3">
+                            </div>
+
+                            <div class="form-group row items-push mb-3">
+
+                                <div class="col-md-4 ">
                                     <label for="origin-input">Godina izdavanja</label>
                                     <input type="text" class="form-control" id="year-input" name="year" placeholder="Upišite godinu izdavanja" value="{{ isset($product) ? $product->year : old('year') }}">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <label for="pages-input">Broj stranica</label>
                                     <input type="text" class="form-control" id="pages-input" name="pages" placeholder="Upišite broj stranica" value="{{ isset($product) ? $product->pages : old('pages') }}">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <label for="dimensions-input">Dimenzije</label>
                                     <input type="text" class="form-control" id="dimensions-input" name="dimensions" placeholder="Upišite dimenzije" value="{{ isset($product) ? $product->dimensions : old('dimensions') }}">
                                 </div>
