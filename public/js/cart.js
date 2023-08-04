@@ -5878,7 +5878,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _c("div", { staticClass: "ps-2" }, [
+                            _c("div", { staticClass: "ps-2 py-2" }, [
                               _c(
                                 "h6",
                                 { staticClass: "widget-product-title" },
