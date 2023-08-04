@@ -83,44 +83,46 @@
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body tab-content py-4">
-                <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
+                <form method="POST" class="needs-validation tab-pane fade show active" action="{{ route('login') }}" autocomplete="off" novalidate id="signin-tab">
+                    @csrf
                     <div class="mb-3">
                         <label class="form-label" for="si-email">Email adresa</label>
-                        <input class="form-control" type="email" id="si-email" placeholder="" required>
-                        <div class="invalid-feedback">Please provide a valid email address.</div>
+                        <input class="form-control" type="email" id="si-email" name="email" placeholder="" required>
+                        <div class="invalid-feedback">Molimo unesite ispravnu email adresu.</div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="si-password">Zaporka</label>
                         <div class="password-toggle">
-                            <input class="form-control" type="password" id="si-password" required>
+                            <input class="form-control" type="password" name="password" id="si-password" required>
                             <label class="password-toggle-btn" aria-label="Show/hide password">
                                 <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                             </label>
                         </div>
                     </div>
                     <div class="mb-3 d-flex flex-wrap justify-content-between">
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" id="si-remember">
+                        <div class="form-check mb-2 ps-0">
+                            <x-jet-checkbox id="remember_me" name="remember" />
                             <label class="form-check-label" for="si-remember">Zapamti me</label>
                         </div><a class="fs-sm" href="#">Zaboravljena lozinka</a>
                     </div>
                     <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Prijavi se</button>
                 </form>
-                <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
+                <form class="needs-validation tab-pane fade" method="POST" action="{{ route('register') }}" autocomplete="off" novalidate id="signup-tab">
+                    @csrf
                     <div class="mb-3">
                         <label class="form-label" for="su-name">Korisničko ime</label>
-                        <input class="form-control" type="text" id="su-name" placeholder="" required>
-                        <div class="invalid-feedback">Please fill in your name.</div>
+                        <input class="form-control" type="text" name="name" id="su-name" placeholder="" required>
+                        <div class="invalid-feedback">Molimo unesite korisničko ime.</div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="si-email">Email adresa</label>
-                        <input class="form-control" type="email" id="su-email" placeholder="" required>
-                        <div class="invalid-feedback">Please provide a valid email address.</div>
+                        <input class="form-control" type="email" name="email"  id="su-email" placeholder="" required>
+                        <div class="invalid-feedback">Molimo unesite ispravnu email adresu.</div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="su-password">Zaporka</label>
                         <div class="password-toggle">
-                            <input class="form-control" type="password" id="su-password" required>
+                            <input class="form-control" type="password" name="password" id="su-password" required>
                             <label class="password-toggle-btn" aria-label="Show/hide password">
                                 <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                             </label>
@@ -129,13 +131,29 @@
                     <div class="mb-3">
                         <label class="form-label" for="su-password-confirm">Potvrdite zaporku</label>
                         <div class="password-toggle">
-                            <input class="form-control" type="password" id="su-password-confirm" required>
+                            <input class="form-control" type="password" name="password_confirmation"  id="su-password-confirm" required>
                             <label class="password-toggle-btn" aria-label="Show/hide password">
                                 <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                             </label>
                         </div>
                     </div>
+                    @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                        <div class="form-group mb-3" >
+                            <x-jet-label for="terms">
+                                <div class="flex items-center">
+                                    <x-jet-checkbox name="terms" id="terms"/>
+                                    <label class="form-label">
+                                        {!! __('Slažem se sa :terms_of_service', [
+                                                'terms_of_service' => '<a target="_blank" href="'.route('catalog.route.page',['page' => 'opci-uvjeti-kupnje']).'" class="link-fx">'.__('Uvjetima kupovine').'</a>',
+                                                'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="link-fx">'.__('Privacy Policy').'</a>',
+                                        ]) !!}
+                                    </label>
+                                </div>
+                            </x-jet-label>
+                        </div>
+                    @endif
                     <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Registriraj se</button>
+                    <input type="hidden" name="recaptcha" id="recaptcha">
                 </form>
             </div>
         </div>
@@ -240,6 +258,9 @@
 </script>
 -->
 @stack('js_after')
+@push('js_after')
+    @include('front.layouts.partials.recaptcha-js')
+@endpush
 
 </body>
 </html>

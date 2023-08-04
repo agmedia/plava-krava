@@ -21,9 +21,18 @@
             <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center ms-xl-2">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideNav"><span class="navbar-toggler-icon"></span></button><a class="navbar-tool d-flex d-lg-none" href="#searchBox" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="searchBox"><span class="navbar-tool-tooltip">Pretraži</span>
                     <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-search"></i></div></a>
-                    <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="#signin-modal" data-bs-toggle="modal">
-                    <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
-                    <div class="navbar-tool-text ms-n3"><small>Prijava</small>Moj Račun</div></a>
+
+                    @if(auth()->user())
+                        <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="{{ route('login') }}" >
+                            <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
+                            <div class="navbar-tool-text ms-n3"><small>{{ auth()->user()->details->fname }} {{ auth()->user()->details->lname }}</small>Moj Račun</div>
+                        </a>
+                    @else
+                        <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="#signin-modal" data-bs-toggle="modal">
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
+                        <div class="navbar-tool-text ms-n3"><small>Prijava</small>Moj Račun</div>
+                        </a>
+                    @endif
 
                      <cart-nav-icon carturl="{{ route('kosarica') }}" checkouturl="{{ route('naplata') }}"></cart-nav-icon>
 
@@ -44,6 +53,8 @@
         </div>
     </div>
 </header>
+
+
 
 <!-- Sidebar menu-->
 <aside class="offcanvas offcanvas-expand w-100 border-end zindex-lg-5 pt-lg-5" id="sideNav" style="max-width: 19.875rem;">
