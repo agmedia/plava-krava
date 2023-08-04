@@ -27,7 +27,7 @@
                                     <div class="text-muted mb-2 fs-sm">Količina:</div>{{ $product->quantity }}
                                 </div>
                                 <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-                                    <div class="text-muted mb-2 fs.sm">Ukupno</div>{{ number_format($product->total, 2, ',', '.') }} €
+                                    <div class="text-muted mb-2 fs-sm">Ukupno</div>{{ number_format($product->total, 2, ',', '.') }} €
                                 </div>
                             </div>
                         @endforeach

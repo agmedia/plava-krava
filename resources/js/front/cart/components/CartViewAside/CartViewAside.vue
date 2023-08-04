@@ -18,7 +18,7 @@
                 <div class="widget mb-3">
                     <h2 class="widget-title text-center mb-2">Sažetak narudžbe</h2>
 
-                    <div class="d-flex align-items-center pb-2 border-bottom" v-for="item in $store.state.cart.items">
+                    <div class="d-flex align-items-center py-2 border-bottom" v-for="item in $store.state.cart.items">
                         <a class="d-block flex-shrink-0" :href="base_path + item.attributes.path"><img :src="item.associatedModel.image" :alt="item.name" width="64"></a>
                         <div class="ps-2">
                             <h6 class="widget-product-title"><a :href="base_path + item.attributes.path">{{ item.name }}</a></h6>

@@ -6332,7 +6332,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "d-flex align-items-center pb-2 border-bottom"
+                          "d-flex align-items-center py-2 border-bottom"
                       },
                       [
                         _c(
