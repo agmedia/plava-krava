@@ -4,7 +4,7 @@
         <div class="dropdown-menu dropdown-menu-end">
             <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;" v-if="$store.state.cart.count">
                 <div data-simplebar-auto-hide="false" v-for="item in $store.state.cart.items">
-                    <div class="widget-cart-item pb-2 border-bottom">
+                    <div class="widget-cart-item py-2 border-bottom">
                         <button class="btn-close text-danger" type="button" @click.prevent="removeFromCart(item)" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
                         <div class="d-flex align-items-center">
                             <a class="d-block flex-shrink-0 pt-2" href="#"><img :src="item.associatedModel.image" :alt="item.name" :title="item.name" style="width: 5rem;"></a>

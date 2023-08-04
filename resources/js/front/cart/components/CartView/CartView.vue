@@ -20,7 +20,7 @@
                 <a class="d-inline-block flex-shrink-0 mx-auto me-sm-4" :href="base_path + item.attributes.path">
                     <img :src="item.associatedModel.image" width="120" :alt="item.name" :title="item.name">
                 </a>
-                <div class="pt-2">
+                <div class="py-2">
                     <h3 class="product-title fs-base mb-2"><a :href="base_path + item.attributes.path">{{ item.name }}</a></h3>
 
                     <div class="fs-lg text-primary pt-2">{{ Object.keys(item.conditions).length ? item.associatedModel.main_special_text : item.associatedModel.main_price_text }}</div>
