@@ -11,7 +11,7 @@
 @section('content')
 
     <!-- Page Title-->
-    <div class=" pt-4 pb-3">
+    <div class=" pt-0 pb-3">
         <div class="container d-lg-block justify-content-end py-2 py-lg-3">
             <div class="order-lg-2 mb-3 mb-lg-0 pb-lg-2">
 
