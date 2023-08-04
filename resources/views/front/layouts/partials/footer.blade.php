@@ -34,7 +34,7 @@
                             <div class="subscription-status"></div>
                         </form>
                     </div>
-                    <div><a class="btn-social bs-dark bs-twitter me-2 mb-2" href="#"><i class="ci-twitter"></i></a><a class="btn-social bs-dark bs-facebook me-2 mb-2" href="#"><i class="ci-facebook"></i></a><a class="btn-social bs-dark bs-instagram me-2 mb-2" href="#"><i class="ci-instagram"></i></a><a class="btn-social bs-dark bs-youtube me-2 mb-2" href="#"><i class="ci-youtube"></i></a></div>
+                    <div><a class="btn-social bs-dark bs-facebook me-2 mb-2" href="https://www.facebook.com/plavakravahr"><i class="ci-facebook"></i></a><a class="btn-social bs-dark bs-instagram me-2 mb-2" href="https://www.instagram.com/plavakravaofficial/"><i class="ci-instagram"></i></a></div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
                     <div class="d-flex flex-sm-row flex-column justify-content-sm-between mt-n4 mx-lg-n3">
@@ -63,8 +63,8 @@
     <div class="wave-container-blue"></div>
     <div class="bg-darker px-lg-5 py-3">
         <div class="d-sm-flex justify-content-between align-items-center mx-auto px-3" >
-            <div class="fs-sm text-light opacity-50 text-center text-sm-start py-3">Plava krava d.o.o. © Sva prava pridržana. Web by <a class="text-light" href="https://www.agmedia.hr" target="_blank" rel="noopener">AG media</a></div>
-            <div class="widget widget-links widget-light pb-4 text-center text-md-end"><img src="https://zuzi.selectpo.lin48.host25.com/media/cards/visa.svg" alt="Visa" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="https://zuzi.selectpo.lin48.host25.com/media/cards/maestro.svg" alt="Maestro" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="https://zuzi.selectpo.lin48.host25.com/media/cards/mastercard.svg" alt="MasterCard" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="https://zuzi.selectpo.lin48.host25.com/media/cards/diners.svg" alt="Diners" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"></div>
+            <div class="fs-sm text-light opacity-50 text-center text-sm-start py-3">Plava krava © Sva prava pridržana. Web by <a class="text-light" href="https://www.agmedia.hr" target="_blank" rel="noopener">AG media</a></div>
+            <div class="widget widget-links widget-light pb-4 text-center text-md-end"><img src="{{ asset('media/cards/visa.svg') }}" alt="Visa" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="{{ asset('media/cards/maestro.svg') }}" alt="Maestro" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="{{ asset('media/cards/mastercard.svg') }}" alt="MasterCard" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="{{ asset('media/cards/diners.svg) }}" alt="Diners" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"></div>
         </div>
     </div>
 </footer>
