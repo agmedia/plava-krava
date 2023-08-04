@@ -61,11 +61,11 @@
 
     </div>
     @else
-        <div class="mt-5 mb-5 fs-md" style="max-width:1240px">
+        <div class="mt-2 mb-5 fs-md" style="max-width:1240px">
                     <!-- Post meta-->
                     <!-- Gallery-->
                     <div class="gallery row pb-2">
-                        <div class="col-sm-12 mb-2"><img src="{{ asset($blog->image) }}" alt="Gallery image">{{ $blog->title }}</div>
+                        <div class="col-sm-12 mb-2"><img src="{{ asset($blog->image) }}" alt="Gallery image"></div>
 
                     </div>
                     <!-- Post content-->
