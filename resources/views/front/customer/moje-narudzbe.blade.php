@@ -20,14 +20,14 @@
                                     </a>
                                     <div class="ps-sm-4 pt-2">
                                         <h3 class="product-title fs-base mb-2"><a href="{{ url($product->real->url) }}">{{ $product->name }}</a></h3>
-                                        <div class="fs-lg text-accent pt-2">{{ number_format($product->price, 2, ',', '.') }}</div>
+                                        <div class="fs-lg text-accent pt-2">{{ number_format($product->price, 2, ',', '.') }} €</div>
                                     </div>
                                 </div>
                                 <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
                                     <div class="text-muted mb-2">Količina:</div>{{ $product->quantity }}
                                 </div>
                                 <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-                                    <div class="text-muted mb-2">Ukupno</div>{{ number_format($product->total, 2, ',', '.') }}
+                                    <div class="text-muted mb-2">Ukupno</div>{{ number_format($product->total, 2, ',', '.') }} €
                                 </div>
                             </div>
                         @endforeach
@@ -35,7 +35,7 @@
                     <!-- Footer-->
                     <div class="modal-footer flex-wrap justify-content-between bg-secondary fs-md">
                         @foreach ($order->totals as $total)
-                            <div class="px-2 py-1"><span class="text-muted">{{ $total->title }}:&nbsp;</span><span>{{ number_format($total->value, 2, ',', '.') }}</span></div>
+                            <div class="px-2 py-1"><span class="text-muted">{{ $total->title }}:&nbsp;</span><span>{{ number_format($total->value, 2, ',', '.') }} €</span></div>
                         @endforeach
                     </div>
                 </div>
@@ -73,8 +73,8 @@
                                 <td class="py-3"><a class="nav-link-style fw-medium fs-sm" href="#order-details{{ $order->id }}" data-bs-toggle="modal">{{ $order->id }}</a></td>
                                 <td class="py-3">{{ \Illuminate\Support\Carbon::make($order->created_at)->format('d.m.Y') }}</td>
                                 <td class="py-3"><span class="badge bg-info m-0">{{ $order->status->title }}</span></td>
-                                <td class="py-3">{{ number_format($order->total, 2, ',', '.') }} kn</td>
-                                <td class="py-3"><a class="badge bg-primary text-white m-0 p-1" href="#order-details{{ $order->id }}" data-bs-toggle="modal">Pregled</a></td>
+                                <td class="py-3">{{ number_format($order->total, 2, ',', '.') }} €</td>
+                                <td class="py-3"><a class="badge bg-primary text-white m-0 " href="#order-details{{ $order->id }}" data-bs-toggle="modal">Pregled</a></td>
                             </tr>
                         @empty
                             <tr>
