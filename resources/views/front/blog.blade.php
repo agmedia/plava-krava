@@ -16,7 +16,7 @@
             <div class="order-lg-2 mb-3 mb-lg-0 pb-lg-2">
 
                         <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center ">
+                            <ol class="breadcrumb breadcrumb-dark flex-lg-nowrap justify-content-center ">
                                 <li class="breadcrumb-item"><a class="text-nowrap" href="{{ route('index') }}"><i class="ci-home"></i>Naslovnica</a></li>
                                 <li class="breadcrumb-item"><a class="text-nowrap" href="{{ route('catalog.route.blog') }}"><i class="ci-home"></i>Blog</a></li>
 
@@ -27,9 +27,9 @@
             </div>
             <div class="order-lg-1 pe-lg-4 text-center ">
                 @if(isset($blogs))
-            <h1 class="text-light">Blog</h1>
+            <h1 class="text-dark">Blog</h1>
                 @else
-                    <h1 class="text-light">{{ $blog->title }}</h1>
+                    <h1 class="text-dark">{{ $blog->title }}</h1>
                 @endif
         </div>
         </div>
@@ -39,7 +39,7 @@
 
     <div class="container pb-5 mb-2 mb-md-4">
 
-        <div class="pt-5 mt-md-2">
+        <div class="pt-3 mt-md-2">
             <!-- Entries grid-->
             <div class="masonry-grid" data-columns="3">
                 @foreach ($blogs as $blog)
@@ -66,7 +66,7 @@
     </div>
     @else
         <div class="container pb-5">
-            <div class="row justify-content-center pt-5 mt-md-2">
+            <div class="row justify-content-center pt-3 mt-md-2">
                 <div class="col-lg-9">
                     <!-- Post meta-->
                     <!-- Gallery-->
