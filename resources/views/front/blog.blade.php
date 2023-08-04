@@ -35,7 +35,7 @@
 
     <div class=" pb-5 mb-2 mb-md-4">
 
-        <div class="pt-3 mt-md-2">
+
             <!-- Entries grid-->
             <div class="masonry-grid" data-columns="3">
                 @foreach ($blogs as $blog)
@@ -57,7 +57,7 @@
 
             </div>
 
-        </div>
+
 
     </div>
     @else
