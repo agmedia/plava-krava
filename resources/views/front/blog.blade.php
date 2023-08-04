@@ -10,13 +10,13 @@
 
 @section('content')
 
+    <!-- Page Title-->
+    <div class=" pt-4 pb-3">
+        <div class="container d-lg-block justify-content-end py-2 py-lg-3">
+            <div class="order-lg-2 mb-3 mb-lg-0 pb-lg-2">
 
-
-
-
-
-    <nav class="mb-4" aria-label="breadcrumb">
-        <ol class="breadcrumb flex-lg-nowrap">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center ">
                                 <li class="breadcrumb-item"><a class="text-nowrap" href="{{ route('index') }}"><i class="ci-home"></i>Naslovnica</a></li>
                                 <li class="breadcrumb-item"><a class="text-nowrap" href="{{ route('catalog.route.blog') }}"><i class="ci-home"></i>Blog</a></li>
 
@@ -24,27 +24,22 @@
                             </ol>
                         </nav>
 
-
-    <section class="d-md-flex justify-content-between align-items-center mb-4 pb-2">
-
-
-        @if(isset($blogs))
-            <h1 class="h2 mb-3 mb-md-0 me-3">Blog</h1>
-        @else
-
-            <h1 class="h2 mb-3 mb-md-0 me-3">{{ $blog->title }}</h1>
-        @endif
-
-    </section>
-
-
-
+            </div>
+            <div class="order-lg-1 pe-lg-4 text-center ">
+                @if(isset($blogs))
+            <h1 class="text-light">Blog</h1>
+                @else
+                    <h1 class="text-light">{{ $blog->title }}</h1>
+                @endif
+        </div>
+        </div>
+    </div>
 
     @if(isset($blogs))
 
-    <div class=" pb-5 mb-2 mb-md-4">
+    <div class="container pb-5 mb-2 mb-md-4">
 
-        <div class="pt-2 mt-md-2">
+        <div class="pt-5 mt-md-2">
             <!-- Entries grid-->
             <div class="masonry-grid" data-columns="3">
                 @foreach ($blogs as $blog)
@@ -71,7 +66,7 @@
     </div>
     @else
         <div class="container pb-5">
-            <div class="row justify-content-center pt-2 mt-md-2">
+            <div class="row justify-content-center pt-5 mt-md-2">
                 <div class="col-lg-9">
                     <!-- Post meta-->
                     <!-- Gallery-->
