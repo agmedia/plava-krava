@@ -153,8 +153,17 @@
                         </div>
                     @endif
                     <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Registriraj se</button>
+
+
                     <input type="hidden" name="recaptcha" id="recaptcha">
+                    <div class="mt-2 d-block"><small>Ova je stranica zaštićena reCAPTCHA-om i primjenjuju se Googleova
+                        <a href="https://policies.google.com/privacy">Pravila o privatnosti</a> i
+                        <a href="https://policies.google.com/terms">Uvjeti pružanja usluge</a>.
+                    </small>
+                    </div>
+
                 </form>
+
             </div>
         </div>
     </div>

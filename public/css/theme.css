@@ -235,7 +235,9 @@ h3.px-grid-gutter.accordion-header:hover{
 background-color: rgb(246, 249, 252);
 }
 
-
+.grecaptcha-badge {
+    visibility: hidden;
+}
 h3.bg-default{
     background-color: rgb(246, 249, 252);
 }

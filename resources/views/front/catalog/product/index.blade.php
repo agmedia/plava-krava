@@ -189,7 +189,7 @@
                                         <li><strong>Nakladnik:</strong> <a href="{{ route('catalog.route.publisher', ['publisher' => $prod->publisher]) }}">{{ $prod->publisher->title }}</a> </li>
                                     @endif
                                     @if ($prod->isbn)
-                                    <li><strong>ISBN:</strong> {{ $prod->isbn }} </li>
+                                    <li><strong>EAN:</strong> {{ $prod->isbn }} </li>
                                     @endif
                                         @if ($prod->quantity)
                                             @if ($prod->decrease)
@@ -303,7 +303,7 @@
                                     <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Broj stranica:</span><span>{{ $prod->pages ?: '...' }}</span></li>
                                     <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Dimenzije:</span><span>{{ $prod->dimensions.' cm' ?: '...' }}</span></li>
                                     @if ($prod->isbn)
-                                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">ISBN:</span><span>{{ $prod->isbn }}</span></li>
+                                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">EAN:</span><span>{{ $prod->isbn }}</span></li>
                                     @endif
                                 </ul>
 
