@@ -5835,7 +5835,7 @@ var render = function() {
                   [
                     _c(
                       "div",
-                      { staticClass: "widget-cart-item pb-2 border-bottom" },
+                      { staticClass: "widget-cart-item py-2 border-bottom" },
                       [
                         _c(
                           "button",
@@ -6093,7 +6093,7 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "pt-2" }, [
+                _c("div", { staticClass: "py-2" }, [
                   _c("h3", { staticClass: "product-title fs-base mb-2" }, [
                     _c(
                       "a",
