@@ -74,7 +74,7 @@
                                 <td class="py-3">{{ \Illuminate\Support\Carbon::make($order->created_at)->format('d.m.Y') }}</td>
                                 <td class="py-3"><span class="badge bg-info m-0">{{ $order->status->title }}</span></td>
                                 <td class="py-3">{{ number_format($order->total, 2, ',', '.') }} kn</td>
-                                <td class="py-3"><a class="badge bg-primary m-0" href="#order-details{{ $order->id }}" data-bs-toggle="modal">Pregled</a></td>
+                                <td class="py-3"><a class="badge bg-primary text-white m-0 p-1" href="#order-details{{ $order->id }}" data-bs-toggle="modal">Pregled</a></td>
                             </tr>
                         @empty
                             <tr>
