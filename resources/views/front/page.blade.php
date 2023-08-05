@@ -1,48 +1,43 @@
 @extends('front.layouts.app')
 @if (request()->routeIs(['index']))
     @section ( 'title', 'Plava Krava | Webshop | Knjige | Porculan | Posuđe' )
-@section ( 'description', 'Iza simpatičnog imena Plava krava, krije se odlična ekipa koja kupca itekako stavlja na prvo mjesto. Jednostavna kupovina i brza dostava.' )
+    @section ( 'description', 'Iza simpatičnog imena Plava krava, krije se odlična ekipa koja kupca itekako stavlja na prvo mjesto. Jednostavna kupovina i brza dostava.' )
 
 
-@push('meta_tags')
+    @push('meta_tags')
 
-    <link rel="canonical" href="{{ env('APP_URL')}}" />
-    <meta property="og:locale" content="hr_HR" />
-    <meta property="og:type" content="product" />
-    <meta property="og:title" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
-    <meta property="og:description" content="Iza simpatičnog imena Plava krava, krije se odlična ekipa koja kupca itekako stavlja na prvo mjesto. Jednostavna kupovina i brza dostava." />
-    <meta property="og:url" content="{{ env('APP_URL')}}"  />
-    <meta property="og:site_name" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
-    <meta property="og:image" content="{{ asset('media/cover-zuzi.jpg') }}" />
-    <meta property="og:image:secure_url" content="{{ asset('media/cover-zuzi.jpg') }}" />
-    <meta property="og:image:width" content="1920" />
-    <meta property="og:image:height" content="720" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
-    <meta name="twitter:description" content="Iza simpatičnog imena Plava krava, krije se odlična ekipa koja kupca itekako stavlja na prvo mjesto. Jednostavna kupovina i brza dostava." />
-    <meta name="twitter:image" content="{{ asset('media/cover-zuzi.jpg') }}" />
+        <link rel="canonical" href="{{ env('APP_URL')}}" />
+        <meta property="og:locale" content="hr_HR" />
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
+        <meta property="og:description" content="Iza simpatičnog imena Plava krava, krije se odlična ekipa koja kupca itekako stavlja na prvo mjesto. Jednostavna kupovina i brza dostava." />
+        <meta property="og:url" content="{{ env('APP_URL')}}"  />
+        <meta property="og:site_name" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
+        <meta property="og:image" content="{{ asset('media/cover-zuzi.jpg') }}" />
+        <meta property="og:image:secure_url" content="{{ asset('media/cover-zuzi.jpg') }}" />
+        <meta property="og:image:width" content="1920" />
+        <meta property="og:image:height" content="720" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:alt" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
+        <meta name="twitter:description" content="Iza simpatičnog imena Plava krava, krije se odlična ekipa koja kupca itekako stavlja na prvo mjesto. Jednostavna kupovina i brza dostava." />
+        <meta name="twitter:image" content="{{ asset('media/cover-zuzi.jpg') }}" />
 
-@endpush
+    @endpush
 
 @else
     @section ( 'title', $page->title. ' - Plava Krava' )
-@section ( 'description', $page->meta_description )
+    @section ( 'description', $page->meta_description )
 @endif
 
 @section('content')
 
     @if (request()->routeIs(['index']))
 
-
       {{--@include('front.layouts.partials.hometemp') --}}
 
-
         {!! $page->description !!}
-
-
-
 
 
     @else

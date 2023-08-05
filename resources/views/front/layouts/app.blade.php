@@ -194,7 +194,7 @@
 
         </section>
 
-            @include('front.layouts.partials.footer')
+        @include('front.layouts.partials.footer')
         @include('front.layouts.partials.handheld')
 
     </main>
