@@ -148,8 +148,14 @@ class AgCart extends Model
                         $quantity = $item->quantity + 1;
                     }
                 }
+                
+                $relative = false;
+                
+                if (isset($request['item']['relative']) && $request['item']['relative']) {
+                    $relative = true;
+                }
 
-                return $this->updateCartItem($item->id, $quantity);
+                return $this->updateCartItem($item->id, $quantity, $relative);
             }
         }
 
@@ -178,9 +184,6 @@ class AgCart extends Model
     public function coupon($coupon)
     {
         $items = $this->cart->getContent();
-        
-        Log::info('\App\Models\Front\AgCart::coupon');
-        Log::info(session($this->session_key . '_coupon'));
 
         // Refreshaj košaricu sa upisanim kuponom.
         foreach ($items as $item) {
@@ -277,19 +280,20 @@ class AgCart extends Model
 
         return $this->get();
     }
-
-
+    
+    
     /**
-     * @param $id
-     * @param $quantity
+     * @param      $id
+     * @param      $quantity
+     * @param bool $relative
      *
      * @return array
      */
-    private function updateCartItem($id, $quantity): array
+    private function updateCartItem($id, $quantity, bool $relative): array
     {
         $this->cart->update($id, [
             'quantity' => [
-                'relative' => false,
+                'relative' => $relative,
                 'value'    => $quantity
             ],
         ]);

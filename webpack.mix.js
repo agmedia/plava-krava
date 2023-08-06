@@ -46,6 +46,7 @@ mix
 .js('resources/js/front/cart/app.js', 'public/js/cart.js').vue()
 //.js('resources/js/front/filter/app.js', 'public/js/filter.js').vue()
 //.js('resources/js/back/ag-order-products.js', 'public/js/components/ag-order-products.js').vue()
+//.js('resources/js/back/ag-star-rating.js', 'public/js/ag-star-rating.js').vue()
 
 /* Tools */
 /*.browserSync('http://127.0.0.1:8000/')

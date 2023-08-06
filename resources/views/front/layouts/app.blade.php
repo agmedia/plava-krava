@@ -201,7 +201,7 @@
 <script src="{{ asset('js/shufflejs/dist/shuffle.min.js') }}"></script>
 <!-- Main theme script-->
 
-<script src="{{ asset('js/cart.js?v=2.0.1') }}"></script>
+<script src="{{ asset('js/cart.js?v=2.0.2') }}"></script>
 
 <script src="{{ asset('js/theme.min.js') }}"></script>
 
