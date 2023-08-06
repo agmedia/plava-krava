@@ -1,6 +1,6 @@
 /* */
 let storage_cart = {
-    name: 'sl_cart',
+    name: 'pk_cart',
     cart: { count: 0 }
 };
 let messages = {

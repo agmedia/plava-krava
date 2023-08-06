@@ -64,7 +64,6 @@
             /></noscript> -->
     @endif
 
-
     <style>
         [v-cloak] { display:none !important; }
     </style>
@@ -154,7 +153,6 @@
                     @endif
                     <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Registriraj se</button>
 
-
                     <input type="hidden" name="recaptcha" id="recaptcha">
                     <div class="mt-2 d-block"><small>Ova je stranica zaštićena reCAPTCHA-om i primjenjuju se Googleova
                         <a href="https://policies.google.com/privacy">Pravila o privatnosti</a> i
@@ -163,7 +161,6 @@
                     </div>
 
                 </form>
-
             </div>
         </div>
     </div>
@@ -176,27 +173,17 @@
     </noscript> -->
 @endif
 
-
-
-
 <div id="agapp">
-
     @include('front.layouts.partials.header')
-    <main class="offcanvas-enabled" >
-
+    <main class="offcanvas-enabled">
         <section class="ps-lg-4 pe-lg-3 pt-4">
             <div class="px-3 pt-2">
-
                @yield('content')
-
             </div>
-
-
         </section>
 
         @include('front.layouts.partials.footer')
         @include('front.layouts.partials.handheld')
-
     </main>
 </div>
 
@@ -210,17 +197,11 @@
 <script src="{{ asset('vendor/simplebar/dist/simplebar.min.js') }}"></script>
 <script src="{{ asset('vendor/tiny-slider/dist/min/tiny-slider.js') }}"></script>
 <script src="{{ asset('vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
-
-
-
-
-
-
 <script src="{{ asset('js/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
 <script src="{{ asset('js/shufflejs/dist/shuffle.min.js') }}"></script>
 <!-- Main theme script-->
 
-<script src="{{ asset('js/cart.js') }}"></script>
+<script src="{{ asset('js/cart.js?v=2.0.1') }}"></script>
 
 <script src="{{ asset('js/theme.min.js') }}"></script>
 

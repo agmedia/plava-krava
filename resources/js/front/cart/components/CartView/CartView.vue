@@ -23,8 +23,18 @@
                 <div class="py-2">
                     <h3 class="product-title fs-base mb-2"><a :href="base_path + item.attributes.path">{{ item.name }}</a></h3>
 
-                    <div class="fs-lg text-primary pt-2">{{ Object.keys(item.conditions).length ? item.associatedModel.main_special_text : item.associatedModel.main_price_text }}</div>
-                    <div class="fs-sm text-dark pt-2" v-if="item.associatedModel.secondary_price">{{ Object.keys(item.conditions).length ? item.associatedModel.secondary_special_text : item.associatedModel.secondary_price_text }}</div>
+                    <div class="fs-lg text-primary pt-2">
+                        {{ Object.keys(item.conditions).length ? item.associatedModel.main_special_text : item.associatedModel.main_price_text }}
+                        <span class="text-primary fs-md fw-light" style="margin-left: 20px;" v-if="Object.keys(item.conditions).length && item.associatedModel.action.coupon == $store.state.cart.coupon">
+                            Kupon kod: {{ item.associatedModel.action.title }} ({{ Math.round(item.associatedModel.action.discount).toFixed(0) }}%)
+                        </span>
+                    </div>
+                    <div class="fs-sm text-dark pt-2">
+
+                    </div>
+                    <div class="fs-sm text-dark pt-2" v-if="item.associatedModel.secondary_price">
+                        {{ Object.keys(item.conditions).length ? item.associatedModel.secondary_special_text : item.associatedModel.secondary_price_text }}
+                    </div>
                 </div>
             </div>
             <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-start" style="max-width: 9rem;">

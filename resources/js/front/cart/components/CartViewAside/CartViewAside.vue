@@ -80,6 +80,20 @@
                 <p class="small text-center mt-0 mb-0">PDV uračunat u cijeni</p>
             </div>
         </div>
+
+
+      <div class="rounded-3 p-4 mt-3" v-if="route == 'kosarica' || route == 'naplata'" style="border: 2px solid #d8e4ff;background-color: #fff !important;">
+        <div class="py-2 px-xl-2" v-cloak>
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" v-model="coupon" placeholder="Imate Kupon kod?">
+              <div class="input-group-append">
+                <button type="button" v-on:click="setCoupon" class="btn btn-primary btn-shadow">Da!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
 </template>
@@ -107,9 +121,7 @@ export default {
         }
 
         this.checkIfEmpty();
-        this.setCoupon();
-
-
+        //this.setCoupon();
     },
 
     methods: {
@@ -149,6 +161,11 @@ export default {
         checkIfEmpty() {
             let cart = this.$store.state.storage.getCart();
 
+            // Check coupon
+            if (cart.coupon != '' && cart.coupon != 'null') {
+                this.coupon = cart.coupon;
+            }
+
             if (cart && ! cart.count && window.location.pathname != '/kosarica') {
                 window.location.href = '/kosarica';
             }
@@ -160,7 +177,8 @@ export default {
         setCoupon() {
             let cart = this.$store.state.storage.getCart();
 
-            this.coupon = cart.coupon;
+            cart.coupon = this.coupon;
+            this.checkCoupon();
         },
 
         /**

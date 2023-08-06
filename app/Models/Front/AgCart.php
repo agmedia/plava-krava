@@ -30,6 +30,11 @@ class AgCart extends Model
      * @var
      */
     private $cart;
+    
+    /**
+     * @var string
+     */
+    private $session_key;
 
 
     /**
@@ -39,8 +44,9 @@ class AgCart extends Model
      */
     public function __construct(string $id)
     {
-        $this->cart_id = $id;
-        $this->cart    = Cart::session($id);
+        $this->cart_id     = $id;
+        $this->cart        = Cart::session($id);
+        $this->session_key = config('session.cart');
     }
 
 
@@ -51,10 +57,11 @@ class AgCart extends Model
     {
         $detail_conditions = $this->setCartConditions();
         $eur = $this->getEur();
+        $coupon = session()->has($this->session_key . '_coupon') ? session($this->session_key . '_coupon') : '';
 
         $response = [
             'id'         => $this->cart_id,
-            'coupon'     => session()->has('sl_cart_coupon') ? session('sl_cart_coupon') : '',
+            'coupon'     => $coupon,
             'items'      => $this->cart->getContent(),
             'count'      => $this->cart->getTotalQuantity(),
             'subtotal'   => $this->cart->getSubTotal(),
@@ -171,6 +178,9 @@ class AgCart extends Model
     public function coupon($coupon)
     {
         $items = $this->cart->getContent();
+        
+        Log::info('\App\Models\Front\AgCart::coupon');
+        Log::info(session($this->session_key . '_coupon'));
 
         // Refreshaj košaricu sa upisanim kuponom.
         foreach ($items as $item) {
@@ -178,11 +188,11 @@ class AgCart extends Model
             $this->addToCart($this->resolveItemRequest($item));
         }
 
-        /*$has_coupon = ProductAction::active()->where('coupon', $coupon)->get();
+        $has_coupon = ProductAction::active()->where('coupon', $coupon)->get();
 
         if ($has_coupon->count()) {
             return 1;
-        }*/
+        }
 
         return 0;
     }

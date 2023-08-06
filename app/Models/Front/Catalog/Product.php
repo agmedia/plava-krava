@@ -203,6 +203,12 @@ class Product extends Model
         return $this->hasMany(Review::class, 'product_id')->where('status', 1)->orderBy('sort_order');
     }
 
+
+    public function action()
+    {
+        return $this->hasOne(ProductAction::class, 'id', 'action_id')->where('status', 1);
+    }
+
     
     /**
      * @param $ocjena
@@ -224,8 +230,19 @@ class Product extends Model
      */
     public function special()
     {
+        $coupon_session_key = config('session.cart') . '_coupon';
+        $coupon_ok = false;
+
+        if ( ! $this->action || ($this->action && ! $this->action->coupon)) {
+            $coupon_ok = true;
+        }
+
+        if ((isset($this->action->coupon) && $this->action->coupon) && session()->has($coupon_session_key) && session($coupon_session_key) == $this->action->coupon) {
+            $coupon_ok = true;
+        }
+
         // If special is set, return special.
-        if ($this->special) {
+        if ($this->special && $coupon_ok) {
             $from = now()->subDay();
             $to = now()->addDay();
 

@@ -137,6 +137,10 @@ class CartController extends Controller
     {
         session([$this->key . '_coupon' => $coupon]);
 
+        Log::info('Sesija bi se trebala tu već napraviti??? ... \App\Http\Controllers\Api\v2\CartController::coupon');
+        Log::info($coupon);
+        Log::info(session($this->key . '_coupon'));
+
         return response()->json($this->cart->coupon($coupon));
     }
     
