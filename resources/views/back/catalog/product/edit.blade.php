@@ -42,6 +42,11 @@
                     <div class="block-options">
                         <div class="dropdown">
                             <div class="custom-control custom-switch custom-control-info block-options-item ml-4">
+                                <input type="checkbox" class="custom-control-input" id="product-gift-switch" name="gift"{{ (isset($product->gift) and $product->gift) ? 'checked' : '' }}>
+                                <label class="custom-control-label pt-1" for="product-gift-switch">Poklon Bon</label>
+                            </div>
+
+                            <div class="custom-control custom-switch custom-control-info block-options-item ml-4">
                                 <input type="checkbox" class="custom-control-input" id="product-decrease-switch" name="decrease"{{ (isset($product->decrease) and $product->decrease) ? '' : 'checked' }}>
                                 <label class="custom-control-label pt-1" for="product-decrease-switch">Neograničena Količina</label>
                             </div>

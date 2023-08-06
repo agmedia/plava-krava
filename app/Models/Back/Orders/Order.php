@@ -139,15 +139,15 @@ class Order extends Model
         $request->validate([
             'payment'  => 'required',
             'shipping' => 'required',
-            'fname'           => 'required',
-            'lname'           => 'required',
-            'address'         => 'required',
-            'city'            => 'required',
-            'state'            => 'required',
-            'zip'             => 'required',
-            'email'           => 'required',
-            'items'           => 'required',
-            'sums'            => 'required',
+            'fname'    => 'required',
+            'lname'    => 'required',
+            'address'  => 'required',
+            'city'     => 'required',
+            'state'    => 'required',
+            'zip'      => 'required',
+            'email'    => 'required',
+            'items'    => 'required',
+            'sums'     => 'required',
         ]);
 
         $this->setRequest($request);
@@ -194,33 +194,7 @@ class Order extends Model
      */
     public function make()
     {
-        $id = $this->insertGetId([
-            'user_id'          => auth()->user() ? auth()->user()->id : 0,
-            'order_status_id'  => 1,
-            'payment_fname'    => $this->request->fname,
-            'payment_lname'    => $this->request->lname,
-            'payment_address'  => $this->request->address,
-            'payment_zip'      => $this->request->zip,
-            'payment_city'     => $this->request->city,
-            'payment_state'    => $this->request->state,
-            'payment_phone'    => $this->request->phone ?: null,
-            'payment_email'    => $this->request->email,
-            'payment_method'   => $this->request->payment,
-            'payment_code'     => null,
-            'shipping_fname'   => $this->request->fname,
-            'shipping_lname'   => $this->request->lname,
-            'shipping_address' => $this->request->address,
-            'shipping_zip'     => $this->request->zip,
-            'shipping_city'    => $this->request->city,
-            'shipping_phone'   => $this->request->phone ?: null,
-            'shipping_email'   => $this->request->email,
-            'shipping_method'  => $this->request->shipping,
-            'shipping_code'    => '',
-            'company'          => isset($this->request->company) ? $this->request->company : null,
-            'oib'              => isset($this->request->oib) ? $this->request->oib : null,
-            'created_at'       => Carbon::now(),
-            'updated_at'       => Carbon::now()
-        ]);
+        $id = $this->insertGetId($this->createModelArray('make'));
 
         if ($id) {
             (new OrderProduct())->make($this->request, $id);
@@ -260,34 +234,7 @@ class Order extends Model
      */
     private function storeData()
     {
-        $payment = Settings::get('payment', 'list.' . $this->request->payment)->first();
-        $shipping = Settings::get('shipping', 'list.' . $this->request->shipping)->first();
-
-        $id = $this->insertGetId([
-            'payment_fname'    => $this->request->fname,
-            'payment_lname'    => $this->request->lname,
-            'payment_address'  => $this->request->address,
-            'payment_zip'      => $this->request->zip,
-            'payment_city'     => $this->request->city,
-            'payment_state'    => $this->request->state,
-            'payment_phone'    => $this->request->phone ?: null,
-            'payment_email'    => $this->request->email,
-            'payment_method'   => $payment->title,
-            'payment_code'     => $payment->code,
-            'shipping_fname'   => $this->request->fname,
-            'shipping_lname'   => $this->request->lname,
-            'shipping_address' => $this->request->address,
-            'shipping_zip'     => $this->request->zip,
-            'shipping_city'    => $this->request->city,
-            'shipping_phone'   => $this->request->phone ?: null,
-            'shipping_email'   => $this->request->email,
-            'shipping_method'  => $shipping->title,
-            'shipping_code'    => $shipping->code,
-            'company'          => isset($this->request->company) ? $this->request->company : null,
-            'oib'              => isset($this->request->oib) ? $this->request->oib : null,
-            'created_at'       => Carbon::now(),
-            'updated_at'       => Carbon::now()
-        ]);
+        $id = $this->insertGetId($this->createModelArray());
 
         if ($id) {
             OrderHistory::store($id);
@@ -306,10 +253,36 @@ class Order extends Model
      */
     private function updateData($id)
     {
+        $updated = $this->where('id', $id)->update($this->createModelArray('update'));
+
+        if ($updated) {
+            $order = $this->find($id);
+
+            $request = new Request([
+                'status' => 0,
+                'comment' => 'Izmjenjeni podaci narudžbe.!'
+            ]);
+
+            OrderHistory::store($id, $request);
+
+            return $order;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * @param string $method
+     *
+     * @return array
+     */
+    private function createModelArray(string $method = 'insert')
+    {
         $payment = Settings::get('payment', 'list.' . $this->request->payment)->first();
         $shipping = Settings::get('shipping', 'list.' . $this->request->shipping)->first();
 
-        $updated = $this->where('id', $id)->update([
+        $response = [
             'payment_fname'    => $this->request->fname,
             'payment_lname'    => $this->request->lname,
             'payment_address'  => $this->request->address,
@@ -332,22 +305,19 @@ class Order extends Model
             'company'          => isset($this->request->company) ? $this->request->company : null,
             'oib'              => isset($this->request->oib) ? $this->request->oib : null,
             'updated_at'       => Carbon::now()
-        ]);
+        ];
 
-        if ($updated) {
-            $order = $this->find($id);
-
-            $request = new Request([
-                'status' => 0,
-                'comment' => 'Izmjenjeni podaci narudžbe.!'
-            ]);
-
-            OrderHistory::store($id, $request);
-
-            return $order;
+        if ($method == 'insert') {
+            $response['created_at'] = Carbon::now();
         }
 
-        return false;
+        if ($method == 'make') {
+            $response['user_id'] = auth()->user() ? auth()->user()->id : 0;
+            $response['order_status_id'] = 1;
+            $response['created_at'] = Carbon::now();
+        }
+
+        return $response;
     }
 
 
@@ -396,6 +366,31 @@ class Order extends Model
         }
 
         return $query->orderBy('created_at', 'desc');
+    }
+
+
+    /**
+     * @param $products
+     *
+     * @return bool
+     */
+    public function decreaseCartProducts($products): bool
+    {
+        foreach ($products as $product) {
+            $real = $product->real;
+
+            if ($real->decrease) {
+                $real->decrement('quantity', $product->quantity);
+
+                if ( ! $real->quantity) {
+                    $real->update([
+                        'status' => 0
+                    ]);
+                }
+            }
+        }
+
+        return true;
     }
 
 

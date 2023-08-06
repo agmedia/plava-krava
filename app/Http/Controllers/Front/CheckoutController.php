@@ -127,7 +127,7 @@ class CheckoutController extends Controller
             return redirect()->route('index');
         }
 
-        $order = \App\Models\Back\Orders\Order::where('id', $data['order']['id'])->first();
+        $order = \App\Models\Back\Orders\Order::find($data['order']['id']);
 
         if ($order) {
             dispatch(function () use ($order) {
@@ -135,19 +135,7 @@ class CheckoutController extends Controller
                 Mail::to($order->payment_email)->send(new OrderSent($order));
             });
 
-            foreach ($order->products as $product) {
-                $real = $product->real;
-
-                if ($real->decrease) {
-                    $real->decrement('quantity', $product->quantity);
-
-                    if ( ! $real->quantity) {
-                        $real->update([
-                            'status' => 0
-                        ]);
-                    }
-                }
-            }
+            $order->decreaseCartProducts($order->products);
 
             CheckoutSession::forgetOrder();
             CheckoutSession::forgetStep();

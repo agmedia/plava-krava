@@ -2,11 +2,8 @@
 
 namespace App\Models\Back\Catalog\Product;
 
-use App\Helpers\Helper;
 use App\Helpers\ProductHelper;
-use App\Models\Back\Catalog\Author;
 use App\Models\Back\Catalog\Category;
-use App\Models\Back\Catalog\Publisher;
 use App\Models\Back\Settings\Settings;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,7 +11,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Bouncer;
@@ -176,49 +172,14 @@ class Product extends Model
     {
         $slug = $this->resolveSlug();
 
-        $id = $this->insertGetId([
-            'author_id'        => $this->request->author_id ?: 6,
-            'publisher_id'     => $this->request->publisher_id ?: 2,
-            'action_id'        => $this->request->action ?: 0,
-            'name'             => $this->request->name,
-            'sku'              => $this->request->sku,
-            'polica'           => $this->request->polica,
-            'isbn'             => $this->request->isbn,
-            'description'      => $this->cleanHTML($this->request->description),
-            'slug'             => $slug,
-            'price'            => $this->request->price,
-            'quantity'         => $this->request->quantity ?: 0,
-            'decrease'         => (isset($this->request->decrease) and $this->request->decrease == 'on') ? 0 : 1,
-            'tax_id'           => $this->request->tax_id ?: 1,
-            'special'          => $this->request->special,
-            'special_from'     => $this->request->special_from ? Carbon::make($this->request->special_from) : null,
-            'special_to'       => $this->request->special_to ? Carbon::make($this->request->special_to) : null,
-            'meta_title'       => $this->request->meta_title ?: $this->request->name/* . ($author ? '-' . $author->title : '')*/,
-            'meta_description' => $this->request->meta_description,
-            'pages'            => $this->request->pages,
-            'dimensions'       => $this->request->dimensions,
-            'origin'           => $this->request->origin,
-            'letter'           => $this->request->letter,
-            'condition'        => $this->request->condition,
-            'binding'          => $this->request->binding,
-            'year'             => $this->request->year,
-            'viewed'           => 0,
-            'sort_order'       => 0,
-            'push'             => 0,
-            'status'           => (isset($this->request->status) and $this->request->status == 'on') ? 1 : 0,
-            'created_at'       => Carbon::now(),
-            'updated_at'       => Carbon::now()
-        ]);
+        $id = $this->insertGetId($this->createModelArray($slug));
 
         if ($id) {
             $this->resolveCategories($id);
 
             $product = $this->find($id);
 
-            $product->update([
-                'url'             => ProductHelper::url($product),
-                'category_string' => ProductHelper::categoryString($product)
-            ]);
+            $product->update($this->updateProductDependencies($product));
 
             return $product;
         }
@@ -238,46 +199,12 @@ class Product extends Model
 
         $slug = $this->request->slug;//$this->resolveSlug('update');
 
-        $updated = $this->update([
-            'author_id'        => $this->request->author_id ?: 6,
-            'publisher_id'     => $this->request->publisher_id ?: 2,
-            'action_id'        => $this->request->action ?: 0,
-            'name'             => $this->request->name,
-            'sku'              => $this->request->sku,
-            'polica'           => $this->request->polica,
-            'isbn'             => $this->request->isbn,
-            'description'      => $this->cleanHTML($this->request->description),
-            'slug'             => $slug,
-            'price'            => isset($this->request->price) ? $this->request->price : 0,
-            'quantity'         => $this->request->quantity ?: 0,
-            'decrease'         => (isset($this->request->decrease) and $this->request->decrease == 'on') ? 0 : 1,
-            'tax_id'           => $this->request->tax_id ?: 1,
-            'special'          => $this->request->special,
-            'special_from'     => $this->request->special_from ? Carbon::make($this->request->special_from) : null,
-            'special_to'       => $this->request->special_to ? Carbon::make($this->request->special_to) : null,
-            'meta_title'       => $this->request->meta_title ?: $this->request->name/* . '-' . ($author ? '-' . $author->title : '')*/,
-            'meta_description' => $this->request->meta_description,
-            'pages'            => $this->request->pages,
-            'dimensions'       => $this->request->dimensions,
-            'origin'           => $this->request->origin,
-            'letter'           => $this->request->letter,
-            'condition'        => $this->request->condition,
-            'binding'          => $this->request->binding,
-            'year'             => $this->request->year,
-            'viewed'           => 0,
-            'sort_order'       => 0,
-            'push'             => 0,
-            'status'           => (isset($this->request->status) and $this->request->status == 'on') ? 1 : 0,
-            'updated_at'       => Carbon::now()
-        ]);
+        $updated = $this->update($this->createModelArray($slug, 'update'));
 
         if ($updated) {
             $this->resolveCategories($this->id);
 
-            $this->update([
-                'url'             => ProductHelper::url($this),
-                'category_string' => ProductHelper::categoryString($this)
-            ]);
+            $this->update($this->updateProductDependencies($this));
 
             return $this;
         }
@@ -411,6 +338,74 @@ class Product extends Model
         }
 
         return $query;
+    }
+
+    /*******************************************************************************
+    *                                Copyright : AGmedia                           *
+    *                              email: filip@agmedia.hr                         *
+    *******************************************************************************/
+
+    /**
+     * @param string $slug
+     * @param string $method
+     *
+     * @return array
+     */
+    private function createModelArray(string $slug, string $method = 'insert'): array
+    {
+        $response = [
+            'author_id'        => $this->request->author_id ?: 6,
+            'publisher_id'     => $this->request->publisher_id ?: 2,
+            'action_id'        => $this->request->action ?: 0,
+            'name'             => $this->request->name,
+            'sku'              => $this->request->sku,
+            'polica'           => $this->request->polica,
+            'isbn'             => $this->request->isbn,
+            'description'      => $this->cleanHTML($this->request->description),
+            'slug'             => $slug,
+            'price'            => isset($this->request->price) ? $this->request->price : 0,
+            'quantity'         => $this->request->quantity ?: 0,
+            'decrease'         => (isset($this->request->decrease) and $this->request->decrease == 'on') ? 0 : 1,
+            'tax_id'           => $this->request->tax_id ?: 1,
+            'gift'             => (isset($this->request->gift) and $this->request->gift == 'on') ? 1 : 0,
+            'special'          => $this->request->special,
+            'special_from'     => $this->request->special_from ? Carbon::make($this->request->special_from) : null,
+            'special_to'       => $this->request->special_to ? Carbon::make($this->request->special_to) : null,
+            'meta_title'       => $this->request->meta_title ?: $this->request->name/* . '-' . ($author ? '-' . $author->title : '')*/,
+            'meta_description' => $this->request->meta_description,
+            'pages'            => $this->request->pages,
+            'dimensions'       => $this->request->dimensions,
+            'origin'           => $this->request->origin,
+            'letter'           => $this->request->letter,
+            'condition'        => $this->request->condition,
+            'binding'          => $this->request->binding,
+            'year'             => $this->request->year,
+            'viewed'           => 0,
+            'sort_order'       => 0,
+            'push'             => 0,
+            'status'           => (isset($this->request->status) and $this->request->status == 'on') ? 1 : 0,
+            'updated_at'       => Carbon::now()
+        ];
+
+        if ($method == 'insert') {
+            $response['created_at'] = Carbon::now();
+        }
+
+        return $response;
+    }
+
+
+    /**
+     * @param $product
+     *
+     * @return array
+     */
+    private function updateProductDependencies($product): array
+    {
+        return [
+            'url'             => ProductHelper::url($product),
+            'category_string' => ProductHelper::categoryString($product)
+        ];
     }
 
 
