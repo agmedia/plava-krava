@@ -99,6 +99,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group row items-push mb-2 mt-4">
+                                        <div class="col-md-4 pt-2">
+                                            <label>Zahtjeva Kupon kod @include('back.layouts.partials.popover', ['title' => 'Ako upišete kupon kod', 'content' => 'Smatrat će se da ga zahtjevate prilikom kupnje za ostvranje akcije i pripadajučeg popusta...'])</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="coupon" placeholder="Upišite kupon kod..." value="{{ isset($action) ? $action->coupon : old('coupon') }}">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

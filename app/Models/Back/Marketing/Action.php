@@ -3,7 +3,6 @@
 namespace App\Models\Back\Marketing;
 
 use App\Helpers\Helper;
-use App\Models\Back\Catalog\Author;
 use App\Models\Back\Catalog\Product\Product;
 use App\Models\Back\Catalog\Product\ProductCategory;
 use Carbon\Carbon;
@@ -11,8 +10,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 class Action extends Model
 {
@@ -88,6 +85,7 @@ class Action extends Model
             'links'      => $links->flatten()->toJson(),
             'date_start' => $start,
             'date_end'   => $end,
+            'coupon'     => $this->request->coupon,
             'status'     => $status,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -130,6 +128,7 @@ class Action extends Model
             'links'      => $links->flatten()->toJson(),
             'date_start' => $start,
             'date_end'   => $end,
+            'coupon'     => $this->request->coupon,
             'status'     => $status,
             'updated_at' => Carbon::now()
         ]);
