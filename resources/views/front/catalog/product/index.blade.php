@@ -109,7 +109,7 @@
             <div class="h-100 bg-light rounded-3 py-5 px-4 px-sm-5">
 
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <a href="#reviews" data-scroll>
+                    <a href="#reviews" id="openReview" data-scroll>
                         <div class="star-rating">
 
                             @for ($i = 0; $i < 5; $i++)
@@ -253,17 +253,17 @@
     </section>
     <!-- Related products-->
 
-    <section class="mx-n2 pb-4 px-2 mb-xl-3">
+    <section class="mx-n2 pb-4 px-2 mb-xl-3" id="tabs_widget">
         <div class="bg-light px-2 mb-3 shadow-lg rounded-3">
             <!-- Tabs-->
             <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="#specs" data-bs-toggle="tab" role="tab"><span>Opis</span> </a></li>
-                <li class="nav-item"><a class="nav-link py-4 px-sm-4 active" href="#reviews" data-bs-toggle="tab" role="tab">Recenzije <span class="fs-sm opacity-60">({{ $reviews->count() }})</span></a></li>
+                <li class="nav-item"><a class="nav-link py-4 px-sm-4 active" href="#specs" data-bs-toggle="tab" role="tab"><span>Opis</span> </a></li>
+                <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="#reviews" data-bs-toggle="tab" role="tab">Recenzije <span class="fs-sm opacity-60">({{ $reviews->count() }})</span></a></li>
             </ul>
             <div class="px-4 pt-lg-3 pb-3 mb-5">
                 <div class="tab-content px-lg-3">
                     <!-- Tech specs tab-->
-                    <div class="tab-pane fade" id="specs" role="tabpanel">
+                    <div class="tab-pane fade show active" id="specs" role="tabpanel">
                         <!-- Specs table-->
                         <div class="row pt-2">
                             <div class="col-lg-7 col-sm-7">
@@ -297,7 +297,7 @@
                         </div>
                     </div>
                     <!-- Reviews tab-->
-                    <div class="tab-pane fade show active" id="reviews" role="tabpanel">
+                    <div class="tab-pane fade" id="reviews" role="tabpanel">
                         <!-- Reviews-->
                         <div class="row pt-2 pb-3">
                             <div class="col-lg-4 col-md-5 mb-3">
@@ -463,4 +463,10 @@
         {!! collect($bookscheme)->toJson() !!}
     </script>
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6134a372eae16400120a5035&product=sop' async='async'></script>
+<script>
+    $('#openReview').on('click', function() {
+    $('.nav-tabs a[href="#reviews"]').tab('show');
+      //  document.getElementById("tabs_widget").scrollIntoView();
+    });
+</script>
 @endpush
