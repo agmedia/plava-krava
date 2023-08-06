@@ -203,26 +203,19 @@ class Product extends Model
         return $this->hasMany(Review::class, 'product_id')->where('status', 1)->orderBy('sort_order');
     }
 
-
-    public function totalreviews()
-    {
-
-        return $this->hasMany(Review::class, 'product_id')->where('status', 1)->count();
-
-    }
-
-
-    public function avgreviews()
-    {
-        return number_format($this->hasMany(Review::class, 'product_id')->where('status', 1)->avg('stars'), 2);
-
-    }
-
-    public function percentreviews($ocjena){
-        if($this->totalreviews()){
-            return round(($ocjena / $this->totalreviews()) * 100, 2);
+    
+    /**
+     * @param $ocjena
+     * @param $total
+     *
+     * @return float|void
+     */
+    public function percentreviews($ocjena, $total) {
+        if ($total) {
+            return round(($ocjena / $total) * 100, 2);
         }
-
+        
+        return 0;
     }
 
 

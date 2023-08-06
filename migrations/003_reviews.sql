@@ -1,5 +1,3 @@
-
-
 CREATE TABLE `reviews` (
                            `id` bigint(20) UNSIGNED NOT NULL,
                            `product_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',

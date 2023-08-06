@@ -50,31 +50,45 @@
 
                             <div class="form-group row items-push mb-2">
 
-                                <div class="col-md-3">
-                                    <label for="firstname-input">{{ __('back/review.firstname') }}  @include('back.layouts.partials.required-star')</label>
-                                    <input type="text" class="form-control" id="firstname-input" name="firstname" placeholder="" value="{{ isset($review) ? $review->fname : old('fname') }}">
+                                <div class="col-md-6">
+                                    <label for="name-input">{{ __('back/review.firstname') }} @include('back.layouts.partials.required-star')</label>
+                                    <input type="text" class="form-control" id="name-input" name="name" placeholder="" value="{{ isset($review) ? $review->fname : old('fname') }}">
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="lastname-input">{{ __('back/review.lastname') }} </label>
-                                    <input type="text" class="form-control" id="lastname-input" name="lastname" placeholder="" value="{{ isset($review) ? $review->lname : old('lname') }}">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="email-input">Email</label>
+{{--                                <div class="col-md-3">--}}
+{{--                                    <label for="lastname-input">{{ __('back/review.lastname') }} </label>--}}
+{{--                                    <input type="text" class="form-control" id="lastname-input" name="lastname" placeholder="" value="{{ isset($review) ? $review->lname : old('lname') }}">--}}
+{{--                                </div>--}}
+                                <div class="col-md-6">
+                                    <label for="email-input">Email @include('back.layouts.partials.required-star')</label>
                                     <input type="text" class="form-control" id="email-input" name="email" placeholder="" value="{{ isset($review) ? $review->email : old('email') }}">
                                 </div>
                             </div>
 
                             <div class="form-group row items-push mb-3">
+                                <div class="col-md-4" id="ag-star-rating-component">
+                                    <label class="mb-2">{{ __('back/review.rating') }} @include('back.layouts.partials.required-star')</label>
+{{--                                    <ag-star-rating value="{{ isset($review) ? $review->stars : old('stars') }}" increment="0.1" decimals="1"></ag-star-rating>--}}
+                                    <select class="form-control form-select" required id="review-stars" name="stars">
+                                        <option value="">Odaberite ocjenu</option>
+                                        @for ($i = 5; $i > 0; $i--)
+                                            @if (isset($review) && $review->stars == $i)
+                                                <option value="{{ $i }}" selected>{{ $i }} stars</option>
+                                            @else
+                                                <option value="{{ $i }}">{{ $i }} star{{ $i != 1 ? 's' : '' }}</option>
+                                            @endif
+                                        @endfor
+                                    </select>
+                                </div>
 
-                                <div class="col-md-12" id="ag-star-rating-component">
-                                    <label class="mb-2">{{ __('back/review.rating') }}</label>
-                                    <ag-star-rating value="{{ isset($review) ? $review->stars : old('stars') }}" increment="0.1" decimals="1"></ag-star-rating>
+                                <div class="col-md-8">
+                                    <label for="email-input">Proizvod @include('back.layouts.partials.required-star')</label>
+                                    @livewire('back.layout.search.product-search', ['product_id' => isset($review) ? $review->product_id : old('product_id'), 'list' => true])
                                 </div>
                             </div>
 
                             <div class="form-group row items-push">
                                 <div class="col-md-12">
-                                    <label for="email-input">{{ __('back/review.message') }}</label>
+                                    <label for="email-input">{{ __('back/review.message') }} @include('back.layouts.partials.required-star')</label>
                                     <textarea id="message-editor" name="message">{!! isset($review) ? $review->message : old('message') !!}</textarea>
                                 </div>
                             </div>

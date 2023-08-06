@@ -26,6 +26,15 @@ class Review extends Model
      * @var array
      */
     protected $guarded = ['id', 'created_at', 'updated_at'];
+    
+    /**
+     * @var string[]
+     */
+    //protected $appends = [];
+    
+    protected $casts = [
+        'stars' => 'integer',
+    ];
 
     /**
      * @var Request
@@ -43,9 +52,11 @@ class Review extends Model
     public function validateRequest(Request $request)
     {
         $request->validate([
-            'firstname'        => 'required',
-            /*'message'      => 'required',
-            'stars'        => 'required'*/
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'stars' => ['required', 'string', 'max:3'],
+            'product_id' => ['required', 'string', 'max:11'],
+            'message' => ['required', 'string', 'max:1000']
         ]);
 
         $this->request = $request;
@@ -99,19 +110,17 @@ class Review extends Model
      */
     private function createModelArray(string $method = 'insert'): array
     {
-        $stars = $this->request->stars ?: 0;
-
         $response = [
-            'product_id' => 0,
+            'product_id'   => $this->request->product_id,
             'order_id'     => 0,
             'user_id'      => 0,
-            'lang'         => $this->request->lang,
-            'fname'        => $this->request->firstname,
+            'lang'         => 'hr',
+            'fname'        => $this->request->name,
             'lname'        => isset($this->request->lastname) ? $this->request->lastname : '',
-            'email'        => isset($this->request->email) ? $this->request->email : '',
+            'email'        => $this->request->email,
             'avatar'       => isset($this->request->avatar) ? $this->request->avatar : 'media/avatar.jpg',
             'message'      => $this->request->message,
-            'stars'        => $stars,
+            'stars'        => $this->request->stars ?: 5,
             'sort_order'   => isset($this->request->sort_order) ? $this->request->sort_order : 0,
             'featured'     => (isset($this->request->featured) and $this->request->featured == 'on') ? 1 : 0,
             'status'       => (isset($this->request->status) and $this->request->status == 'on') ? 1 : 0,

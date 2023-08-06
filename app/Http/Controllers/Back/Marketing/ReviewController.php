@@ -45,8 +45,6 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-
         $review = new Review();
 
         $stored = $review->validateRequest($request)->create();
