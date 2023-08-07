@@ -162,6 +162,8 @@ class Checkout extends Component
             $this->setAddress();
 
             session()->flash('login_success', 'Uspješno ste se prijavili na vaš račun...');
+
+            return redirect(request()->header('Referer'));
         }
 
         session()->flash('error', 'Upisani podaci ne odgovaraju našim korisnicima...');
