@@ -42,6 +42,11 @@
                     <div class="block-options">
                         <div class="dropdown">
                             <div class="custom-control custom-switch custom-control-info block-options-item ml-4">
+                                <input type="checkbox" class="custom-control-input" id="product-gift-switch" name="gift"{{ (isset($product->gift) and $product->gift) ? 'checked' : '' }}>
+                                <label class="custom-control-label pt-1" for="product-gift-switch">Poklon Bon</label>
+                            </div>
+
+                            <div class="custom-control custom-switch custom-control-info block-options-item ml-4">
                                 <input type="checkbox" class="custom-control-input" id="product-decrease-switch" name="decrease"{{ (isset($product->decrease) and $product->decrease) ? '' : 'checked' }}>
                                 <label class="custom-control-label pt-1" for="product-decrease-switch">Neograničena Količina</label>
                             </div>
@@ -138,11 +143,11 @@
                                 <div class="col-md-6">
                                     <label for="special-from-input">Akcija vrijedi</label>
                                     <div class="input-daterange input-group" data-date-format="mm/dd/yyyy" data-week-start="1" data-autoclose="true" data-today-highlight="true">
-                                        <input type="text" class="form-control" id="special-from-input" name="special_from" placeholder="od" value="{{ isset($product->special_from) ? \Carbon\Carbon::make($product->special_from)->format('d.m.Y') : '' }}" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                        <input type="text" class="form-control" id="special-from-input" name="special_from" placeholder="od" value="{{ (isset($product->special_from) && $product->special_from != '0000-00-00 00:00:00') ? \Carbon\Carbon::make($product->special_from)->format('d.m.Y') : '' }}" data-week-start="1" data-autoclose="true" data-today-highlight="true">
                                         <div class="input-group-prepend input-group-append">
                                             <span class="input-group-text font-w600"><i class="fa fa-fw fa-arrow-right"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" id="special-to-input" name="special_to" placeholder="do" value="{{ isset($product->special_to) ? \Carbon\Carbon::make($product->special_to)->format('d.m.Y') : '' }}" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                        <input type="text" class="form-control" id="special-to-input" name="special_to" placeholder="do" value="{{ (isset($product->special_from) && $product->special_from != '0000-00-00 00:00:00') ? \Carbon\Carbon::make($product->special_to)->format('d.m.Y') : '' }}" data-week-start="1" data-autoclose="true" data-today-highlight="true">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
