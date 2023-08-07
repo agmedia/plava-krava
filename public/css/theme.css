@@ -300,7 +300,7 @@ h3.bg-default:hover a span, h3.bg-default:hover span{
     transition: all 0.3s ease-in;
 }
 #gdpr-cookie-message a:hover {
-    color: white;
+    color: #18326d;
     border-bottom-color: #18326d;
     transition: all 0.3s ease-in;
 }
