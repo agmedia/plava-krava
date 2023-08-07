@@ -13,7 +13,7 @@
                             <a class="card border-0 shadow" href="{{ $item['group'] }}/{{ $item['slug'] }}">
                                 <span class="blog-entry-meta-label fs-sm"><i class="ci-book text-primary me-0"></i></span>
                                 <img class="card-img-top" loading="lazy" width="400" height="300" src="{{ $item['image'] }}" alt="{{ $item['title'] }}">
-                                <div class="card-body py-2 text-center">
+                                <div class="card-body py-2 text-center px-sm-0">
                                     <h3 class="h4 mt-1 font-title text-primary">{{ $item['title'] }}</h3>
                                 </div>
                             </a>
