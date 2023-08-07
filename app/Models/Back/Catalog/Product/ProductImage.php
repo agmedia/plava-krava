@@ -49,8 +49,9 @@ class ProductImage extends Model
             foreach ($new as $new_image) {
                 if (isset($new_image['image']) && $new_image['image']) {
                     $data = json_decode($new_image['image']);
+                    $sort_order = (isset($new_image['sort_order']) && $new_image['sort_order']) ? $new_image['sort_order'] : 0;
 
-                    $saved = $this->saveNew($data->output, $new_image['sort_order']);
+                    $saved = $this->saveNew($data->output, $sort_order);
                     // Ako je novi default ujedno i novo uploadana fotka.
                     // Također ako je ime novo uploadane slike isto kao $existing['default']
                     if (
