@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'Komentari Apartmana',
+    'title' => 'Komentari Artikala',
     'write_new' => 'Dodaj novi komentar',
     'all_reviews' => 'Svi komentari',
     'title_review' => 'Ocjena',
