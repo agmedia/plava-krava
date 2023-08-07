@@ -204,6 +204,9 @@ class Product extends Model
     }
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function action()
     {
         return $this->hasOne(ProductAction::class, 'id', 'action_id')->where('status', 1);
