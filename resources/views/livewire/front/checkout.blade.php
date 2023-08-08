@@ -312,6 +312,13 @@
             /*$('#state-select').select2();*/
             $('input').attr('autocomplete','off');
         });
+
+        $(document).ready(function(){
+            $(this).scrollTop(0);
+        });
     </script>
+
+
+
 
 @endpush

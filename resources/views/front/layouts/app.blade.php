@@ -69,7 +69,7 @@
     </style>
 </head>
 <!-- Body-->
-<body class="bg-secondary">
+<body class="bg-secondary handheld-toolbar-enabled">
 <!-- Sign in / sign up modal-->
 @include('front.layouts.modals.login')
 
@@ -82,8 +82,8 @@
 
 <div id="agapp">
     @include('front.layouts.partials.header')
-    <main class="offcanvas-enabled">
-        <section class="ps-lg-4 pe-lg-3 pt-4">
+    <main class="offcanvas-enabled ">
+        <section class="ps-lg-4 pe-lg-3 pt-4 page-wrapper">
             <div class="px-3 pt-2">
                @yield('content')
             </div>
