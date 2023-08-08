@@ -69,7 +69,7 @@
     </style>
 </head>
 <!-- Body-->
-<body class="bg-secondary handheld-toolbar-enabled">
+<body class="bg-secondary ">
 <!-- Sign in / sign up modal-->
 @include('front.layouts.modals.login')
 
