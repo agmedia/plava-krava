@@ -1,6 +1,6 @@
 <template>
     <div class="cart d-flex flex-wrap align-items-center pt-2 pb-2 mb-3">
-        <input class="form-control me-3 mb-1" type="number" v-model="quantity" min="1" :max="available" style="width: 5rem;">
+        <input class="form-control me-3 mb-1" type="number" inputmode="numeric" pattern="[0-9]*" v-model="quantity" min="1" :max="available" style="width: 5rem;">
         <button class="btn btn-primary btn-shadow me-3 mb-1 " @click="add()"><i class="ci-cart"></i> Dodaj u Košaricu</button>
         <p style="width: 100%;" class="fs-md fw-light text-danger" v-if="has_in_cart">Imate {{ has_in_cart }} artikala u košarici.</p>
     </div>

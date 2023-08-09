@@ -42,8 +42,9 @@
                              </div>
 
 
+
                             <div class="collapse " :id="'id'+ cat.id"  v-else data-bs-parent="#shop-categories">
-                                <div class="px-grid-gutter pt-1 pb-4">
+                                <div class="px-grid-gutter pt-1 pb-4 ">
                                     <div class="widget widget-links">
 
                                         <ul class="widget-list" v-for="subcategory in cat.subs" >
@@ -62,7 +63,7 @@
                         </div>
                     </div>
                     <div class="accordion-item border-bottom">
-                        <h3 class="accordion-header px-grid-gutter"  >
+                        <h3   class="accordion-header px-grid-gutter "  >
                             <!--type="button"  -->
                             <a :href="origin + 'autor'" class="nav-link-style d-block  fs-md fw-normal py-3" role="link">
                                 <span class="d-flex align-items-center"><i class="ci-add-user fs-lg mt-n1 me-2"></i> Autori </span>

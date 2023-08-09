@@ -2822,6 +2822,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -5705,7 +5706,13 @@ var render = function() {
         ],
         staticClass: "form-control me-3 mb-1",
         staticStyle: { width: "5rem" },
-        attrs: { type: "number", min: "1", max: _vm.available },
+        attrs: {
+          type: "number",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          min: "1",
+          max: _vm.available
+        },
         domProps: { value: _vm.quantity },
         on: {
           input: function($event) {
@@ -7103,7 +7110,7 @@ var render = function() {
                           [
                             _c(
                               "div",
-                              { staticClass: "px-grid-gutter pt-1 pb-4" },
+                              { staticClass: "px-grid-gutter pt-1 pb-4 " },
                               [
                                 _c(
                                   "div",
@@ -7177,7 +7184,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "accordion-item border-bottom" }, [
-              _c("h3", { staticClass: "accordion-header px-grid-gutter" }, [
+              _c("h3", { staticClass: "accordion-header px-grid-gutter " }, [
                 _c(
                   "a",
                   {
