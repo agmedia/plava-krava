@@ -2439,11 +2439,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -6124,75 +6119,77 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "div",
-        { staticClass: "d-block pt-3 pb-2 mt-1 text-center text-sm-start" },
-        [
-          _vm.$store.state.cart.total < _vm.freeship &&
-          _vm.$store.state.cart.count
-            ? _c(
-                "div",
-                {
-                  staticClass: "alert alert-info  d-flex",
-                  attrs: { role: "alert" }
-                },
-                [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "Još " +
-                        _vm._s(
-                          _vm.$store.state.service.formatMainPrice(
-                            _vm.freeship - _vm.$store.state.cart.total
-                          )
-                        ) +
-                        " "
-                    ),
-                    _vm.$store.state.cart.secondary_price
-                      ? _c("span", [
-                          _vm._v(
-                            "(" +
-                              _vm._s(
-                                _vm.$store.state.service.formatSecondaryPrice(
-                                  _vm.freeship - _vm.$store.state.cart.total
-                                )
-                              ) +
-                              ")"
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" do besplatne dostave!")
-                  ])
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.$store.state.cart.total > _vm.freeship &&
-          _vm.$store.state.cart.count
-            ? _c(
-                "div",
-                {
-                  staticClass: "alert alert-success d-flex",
-                  attrs: { role: "alert" }
-                },
-                [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v("Ostvarili ste pravo na besplatnu dostavu!")
-                  ])
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c("h2", { staticClass: "h6 text-primary  mb-0" }, [
-            _vm._v("Artikli")
-          ])
-        ]
-      ),
+      _vm.$store.state.cart.total > 0
+        ? _c(
+            "div",
+            { staticClass: "d-block pt-3 pb-2 mt-1 text-center text-sm-start" },
+            [
+              _vm.$store.state.cart.total < _vm.freeship &&
+              _vm.$store.state.cart.count
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "alert alert-info  d-flex",
+                      attrs: { role: "alert" }
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("div", [
+                        _vm._v(
+                          "Još " +
+                            _vm._s(
+                              _vm.$store.state.service.formatMainPrice(
+                                _vm.freeship - _vm.$store.state.cart.total
+                              )
+                            ) +
+                            " "
+                        ),
+                        _vm.$store.state.cart.secondary_price
+                          ? _c("span", [
+                              _vm._v(
+                                "(" +
+                                  _vm._s(
+                                    _vm.$store.state.service.formatSecondaryPrice(
+                                      _vm.freeship - _vm.$store.state.cart.total
+                                    )
+                                  ) +
+                                  ")"
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" do besplatne dostave!")
+                      ])
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.$store.state.cart.total > _vm.freeship &&
+              _vm.$store.state.cart.count
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "alert alert-success d-flex",
+                      attrs: { role: "alert" }
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("div", [
+                        _vm._v("Ostvarili ste pravo na besplatnu dostavu!")
+                      ])
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("h2", { staticClass: "h6 text-primary  mb-0" }, [
+                _vm._v("Artikli")
+              ])
+            ]
+          )
+        : _vm._e(),
       _vm._v(" "),
-      !_vm.$store.state.cart.count
+      _vm.$store.state.cart.total < 1
         ? _c("div", { staticClass: "d-flex pt-3 pb-2 mt-1" }, [
             _c("p", { staticClass: "text-dark mb-0" }, [
               _vm._v("Vaša košarica je prazna!")

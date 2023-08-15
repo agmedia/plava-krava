@@ -1,26 +1,21 @@
 <template>
     <div>
-        <div class="d-block pt-3 pb-2 mt-1 text-center text-sm-start">
+        <div class="d-block pt-3 pb-2 mt-1 text-center text-sm-start" v-if="$store.state.cart.total > 0">
             <div class="alert alert-info  d-flex" v-if="$store.state.cart.total < freeship && $store.state.cart.count" role="alert">
                 <div class="alert-icon">
                     <i class="ci-announcement"></i>
                 </div>
                 <div>Još {{ $store.state.service.formatMainPrice(freeship - $store.state.cart.total) }} <span v-if="$store.state.cart.secondary_price">({{ $store.state.service.formatSecondaryPrice(freeship - $store.state.cart.total) }})</span> do besplatne dostave!</div>
             </div>
-
-
-
             <div class="alert alert-success d-flex" v-if="$store.state.cart.total > freeship && $store.state.cart.count" role="alert">
                 <div class="alert-icon">
                     <i class="ci-check-circle"></i>
                 </div>
                 <div>Ostvarili ste pravo na besplatnu dostavu!</div>
             </div>
-
-
             <h2 class="h6 text-primary  mb-0">Artikli</h2>
         </div>
-        <div class="d-flex pt-3 pb-2 mt-1" v-if="!$store.state.cart.count">
+        <div class="d-flex pt-3 pb-2 mt-1" v-if="$store.state.cart.total < 1">
             <p class="text-dark mb-0">Vaša košarica je prazna!</p>
         </div>
 
