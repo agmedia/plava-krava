@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'free_shipping' => 70,
+    'free_shipping' => 50,
 
     'pagination' => [
         'front' => 40,
@@ -30,6 +30,8 @@ return [
     'images_domain'     =>  env('APP_IMAGE_DOMAIN'),
 
     'eur_divide_amount' => 0.13272280,
+
+    'hrk_divide_amount' => 7.53450,
 
     'sorting_list' => [
         0 => [

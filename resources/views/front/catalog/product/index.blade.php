@@ -199,15 +199,18 @@
                         <h3 class="accordion-header"><a class="accordion-button collapsed" href="#shippingOptions" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="shippingOptions"><i class="ci-delivery text-muted lead align-middle mt-n1 me-2"></i>Opcije dostave</a></h3>
                         <div class="accordion-collapse collapse" id="shippingOptions" data-bs-parent="#productPanels">
                             <div class="accordion-body fs-sm">
-                                <div class="d-flex justify-content-between ">
-                                    <div>
-                                        <div class="fw-semibold text-dark">GLS dostava</div>
-                                        <div class="fs-sm text-muted">2 - 4 dana</div>
 
-                                        <div class="fs-sm text-muted"> Besplatna dostava za narudžbe iznad 30€</div>
+                                @foreach($shipping_methods as $shipping_method)
+                                    <div class="d-flex justify-content-between ">
+                                        <div>
+                                            <div class="fw-semibold text-dark">{{ $shipping_method->title }}</div>
+                                            <div class="fs-sm text-muted"> Besplatna dostava za narudžbe iznad {{ config('settings.free_shipping') }}€</div>
+                                        </div>
+                                        <div>{{ $shipping_method->data->price }}€ <small> {{ number_format(config('settings.hrk_divide_amount') * $shipping_method->data->price), 2 }}kn</small></div>
+
+
                                     </div>
-                                    <div>3.31€ <small>24.94 kn</small></div>
-                                </div>
+                                @endforeach
 
                             </div>
                             <small class="mt-2"></small>

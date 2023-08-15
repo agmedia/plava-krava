@@ -76,29 +76,6 @@
                                 </div>
                             </div>
                             <div class="form-group row items-push mb-3">
-                                <div class="col-md-3">
-                                    <label for="quantity-input">Količina <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="quantity-input" name="quantity" placeholder="Upišite količinu artikla" value="{{ isset($product) ? $product->quantity : ( ! isset($product) ? 1 : old('quantity')) }}">
-                                    @error('quantity ')
-                                    <span class="text-danger font-italic">Količina je potrebna...</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-3">
-                                    <label for="sku-input">Šifra <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="sku-input" name="sku" placeholder="Upišite šifru artikla" value="{{ isset($product) ? $product->sku : old('sku') }}">
-                                    @error('sku')
-                                    <span class="text-danger font-italic">Šifra je potrebna...</span>
-                                    @enderror
-                                    @error('sku_dupl')
-                                    <span class="text-danger small font-italic">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-3">
-                                    <label for="polica-input">Šifra police </label>
-                                    <input type="text" class="form-control" id="polica-input" name="polica" placeholder="Upišite šifru police" value="{{ isset($product) ? $product->polica : old('polica') }}" >
-                                </div>
 
                                 <div class="col-md-3">
                                     <label for="price-input">Cijena <span class="text-danger">*</span> <span class="small text-gray">(S PDV-om)</span></label>
@@ -112,23 +89,44 @@
                                     <span class="text-danger font-italic">Cijena je potrebna...</span>
                                     @enderror
                                 </div>
-                            </div>
 
-{{--                            @if( ! isset($product) && $active_actions->count())--}}
-{{--                                <div class="alert alert-secondary d-flex align-items-center justify-content-between" role="alert">--}}
-{{--                                    <div class="flex-fill mr-3">--}}
-{{--                                        <p class="mb-0">Upozorenje..! Postoje aktivne akcije u trgovini!</p>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="flex-00-auto">--}}
-{{--                                        <select class="js-select2 form-control" id="action-select" style="width: 100%;" data-placeholder="Odaberite akciju...">--}}
-{{--                                            <option></option>--}}
-{{--                                            @foreach ($active_actions as $action)--}}
-{{--                                                <option value="{{ $action->id }}">{{ $action->title }}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            @endif--}}
+                                <div class="col-md-2">
+                                    <label for="quantity-input">Količina <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="quantity-input" name="quantity" placeholder="Upišite količinu artikla" value="{{ isset($product) ? $product->quantity : ( ! isset($product) ? 1 : old('quantity')) }}">
+                                    @error('quantity ')
+                                    <span class="text-danger font-italic">Količina je potrebna...</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="sku-input">Šifra <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="sku-input" name="sku" placeholder="Upišite šifru artikla" value="{{ isset($product) ? $product->sku : old('sku') }}">
+                                    @error('sku')
+                                    <span class="text-danger font-italic">Šifra je potrebna...</span>
+                                    @enderror
+                                    @error('sku_dupl')
+                                    <span class="text-danger small font-italic">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="polica-input">Šifra police </label>
+                                    <input type="text" class="form-control" id="polica-input" name="polica" placeholder="Upišite šifru police" value="{{ isset($product) ? $product->polica : old('polica') }}" >
+                                </div>
+
+
+                                <div class="col-md-3">
+                                    <label for="dm-post-edit-slug">Vrijeme isporuke</label>
+                                    <select class="js-select2 form-control" id="shipping_time-select" name="shipping_time" style="width: 100%;" data-placeholder="Odaberite ili upišite vrijem isporuke">
+                                        <option></option>
+                                        @if ($data['shipping_times'])
+                                            @foreach ($data['shipping_times'] as $shipping_time)
+                                                <option value="{{ $shipping_time }}" {{ ((isset($product)) and ($shipping_time == $product->shipping_time)) ? 'selected' : '' }}>{{ $shipping_time }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
 
                             <div class="form-group row items-push mb-3">
                                 <div class="col-md-3">
@@ -185,20 +183,6 @@
                                             @endforeach
                                         @endforeach
                                     </select>
-{{--                                    <label for="dm-post-edit-slug">Kategorija <span class="text-danger">*</span></label>--}}
-{{--                                    <select class="js-select2 form-control" id="category-select" name="category" style="width: 100%;" data-placeholder="Odaberite kategoriju">--}}
-{{--                                        <option></option>--}}
-{{--                                        @foreach ($data['categories'] as $group => $cats)--}}
-{{--                                            @foreach ($cats as $id => $category)--}}
-{{--                                                <option value="{{ $id }}" class="font-weight-bold small" {{ ((isset($product)) and (in_array($id, $product->categories()->pluck('id')->toArray()))) ? 'selected' : '' }}>{{ $group . ' >> ' . $category['title'] }}</option>--}}
-{{--                                                @if ( ! empty($category['subs']))--}}
-{{--                                                    @foreach ($category['subs'] as $sub_id => $subcategory)--}}
-{{--                                                        <option value="{{ $sub_id }}" class="pl-3 text-sm" {{ ((isset($product) && $product->subcategory()) and ($sub_id == $product->subcategory()->id)) ? 'selected' : '' }}>{{ $subcategory['title'] }}</option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                @endif--}}
-{{--                                            @endforeach--}}
-{{--                                        @endforeach--}}
-{{--                                    </select>--}}
                                     @error('category')
                                     <span class="text-danger font-italic">Kategorija je potrebna...</span>
                                     @enderror
@@ -273,6 +257,66 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="block">
+                <div class="block-header block-header-default">
+                    <h3 class="block-title">Dodatna polja</h3>
+                </div>
+                <div class="block-content">
+
+                    <div class="row justify-content-center push">
+                        <div class="col-md-10">
+
+                                <div class="form-group row items-push mb-3">
+                                        <div class="col-md-6">
+                                            <label for="pages-input">YouTube (product url)</label>
+                                            <input type="text" class="form-control" id="youtube_product_url-input" name="youtube_product_url" placeholder="https://www.youtube.com/watch..." value="{{ isset($product) ? $product->youtube_product_url : old('youtube_product_url') }}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="pages-input">YouTube (channel)</label>
+                                            <input type="text" class="form-control" id="youtube_channel-input" name="youtube_channel" placeholder="https://www.youtube.com/@..." value="{{ isset($product) ? $product->youtube_channel : old('youtube_channel') }}">
+                                        </div>
+                               </div>
+
+                            <div class="form-group row items-push mb-3">
+                                <div class="col-md-6">
+                                    <label for="pages-input">Goodreads (author url) </label>
+                                    <input type="text" class="form-control" id="goodreads_author_url-input" name="goodreads_author_url" placeholder="https://www.goodreads.com/author..." value="{{ isset($product) ? $product->goodreads_author_url : old('goodreads_author_url') }}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="pages-input">Goodreads (book url) </label>
+                                    <input type="text" class="form-control" id="goodreads_book_url-input" name="goodreads_book_url" placeholder="https://www.goodreads.com/book..." value="{{ isset($product) ? $product->goodreads_book_url : old('goodreads_book_url') }}">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group row items-push mb-3">
+                                <div class="col-md-4">
+                                    <label for="pages-input">Wiki (url) </label>
+                                    <input type="text" class="form-control" id="wiki_url-input" name="wiki_url" placeholder="https://bs.wikipedia.org/wiki..." value="{{ isset($product) ? $product->wiki_url : old('wiki_url') }}">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="pages-input">Author Web Page (url) </label>
+                                    <input type="text" class="form-control" id="author_web_url-input" name="author_web_url" placeholder="https://www..." value="{{ isset($product) ? $product->author_web_url : old('author_web_url') }}">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="pages-input">Serial Web Page (url) </label>
+                                    <input type="text" class="form-control" id="serial_web_url-input" name="serial_web_url" placeholder="https://www..." value="{{ isset($product) ? $product->serial_web_url : old('serial_web_url') }}">
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="block">
@@ -389,6 +433,9 @@
                 tags: true
             });
             $('#binding-select').select2({
+                tags: true
+            });
+            $('#shipping_time-select').select2({
                 tags: true
             });
             $('#condition-select').select2({

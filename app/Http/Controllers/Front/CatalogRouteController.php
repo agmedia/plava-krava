@@ -6,6 +6,7 @@ use App\Helpers\Breadcrumb;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Imports\ProductImport;
+use App\Models\Back\Settings\Settings;
 use App\Models\Front\Blog;
 use App\Models\Front\Page;
 use App\Models\Front\Faq;
@@ -61,10 +62,12 @@ class CatalogRouteController extends Controller
             $bc = new Breadcrumb();
             $crumbs = $bc->product($group, $cat, $subcat, $prod)->resolve();
             $bookscheme = $bc->productBookSchema($prod);
-            
+
+            $shipping_methods = Settings::getList('shipping', 'list.%', true);
+
             $reviews = $prod->reviews()->get();
 
-            return view('front.catalog.product.index', compact('prod', 'group', 'cat', 'subcat', 'seo', 'crumbs', 'bookscheme', 'gdl', 'reviews'));
+            return view('front.catalog.product.index', compact('prod', 'group', 'cat', 'subcat', 'seo', 'shipping_methods', 'crumbs', 'bookscheme', 'gdl', 'reviews'));
         }
 
         // If only group...
@@ -147,14 +150,14 @@ class CatalogRouteController extends Controller
             }
 
             $currentPage = request()->get('page', 1);
-            
+
             $authors = Helper::resolveCache('authors')->remember('aut_' . $letter . '.' . $currentPage, config('cache.life'), function () use ($letter) {
                 $auts = Author::query()->select('id', 'title', 'url')->where('status',  1);
-                
+
                 if ($letter) {
                     $auts->where('letter', $letter);
                 }
-                
+
                 return $auts->orderBy('title')
                     ->withCount('products')
                     ->paginate(36)
@@ -199,14 +202,14 @@ class CatalogRouteController extends Controller
             }
 
             $currentPage = request()->get('page', 1);
-            
+
             $publishers = Helper::resolveCache('publishers')->remember('pub_' . $letter . '.' . $currentPage, config('cache.life'), function () use ($letter) {
                 $pubs = Publisher::query()->select('id', 'title', 'url')->where('status',  1);
-                
+
                 if ($letter) {
                     $pubs->where('letter', $letter);
                 }
-                
+
                 return $pubs->orderBy('title')
                     ->withCount('products')
                     ->paginate(36)

@@ -202,6 +202,14 @@ class Product extends Model
             'condition'        => $this->request->condition,
             'binding'          => $this->request->binding,
             'year'             => $this->request->year,
+            'shipping_time'    => $this->request->shipping_time,
+            'youtube_product_url'             => $this->request->youtube_product_url,
+            'youtube_channel'             => $this->request->youtube_channel,
+            'goodreads_author_url'             => $this->request->goodreads_author_url,
+            'goodreads_book_url'             => $this->request->goodreads_book_url,
+            'author_web_url'             => $this->request->author_web_url,
+            'serial_web_url'             => $this->request->serial_web_url,
+            'wiki_url'             => $this->request->wiki_url,
             'viewed'           => 0,
             'sort_order'       => 0,
             'push'             => 0,
@@ -264,6 +272,14 @@ class Product extends Model
             'condition'        => $this->request->condition,
             'binding'          => $this->request->binding,
             'year'             => $this->request->year,
+            'shipping_time'    => $this->request->shipping_time,
+            'youtube_product_url'             => $this->request->youtube_product_url,
+            'youtube_channel'             => $this->request->youtube_channel,
+            'goodreads_author_url'             => $this->request->goodreads_author_url,
+            'goodreads_book_url'             => $this->request->goodreads_book_url,
+            'author_web_url'             => $this->request->author_web_url,
+            'serial_web_url'             => $this->request->serial_web_url,
+            'wiki_url'             => $this->request->wiki_url,
             'viewed'           => 0,
             'sort_order'       => 0,
             'push'             => 0,
@@ -297,6 +313,7 @@ class Product extends Model
             'letters'    => Settings::get('product', 'letter_styles'),
             'conditions' => Settings::get('product', 'condition_styles'),
             'bindings'   => Settings::get('product', 'binding_styles'),
+            'shipping_times'   => Settings::get('product', 'shipping_time_styles'),
             'taxes'      => Settings::get('tax', 'list')
         ];
     }
@@ -310,6 +327,7 @@ class Product extends Model
         Settings::setProduct('letter_styles', $this->request->letter);
         Settings::setProduct('condition_styles', $this->request->condition);
         Settings::setProduct('binding_styles', $this->request->binding);
+        Settings::setProduct('shipping_time_styles', $this->request->shipping_time);
 
         return $this;
     }
