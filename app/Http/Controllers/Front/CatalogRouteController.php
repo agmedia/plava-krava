@@ -64,10 +64,11 @@ class CatalogRouteController extends Controller
             $bookscheme = $bc->productBookSchema($prod);
 
             $shipping_methods = Settings::getList('shipping', 'list.%', true);
+            $payment_methods = Settings::getList('payment', 'list.%', true);
 
             $reviews = $prod->reviews()->get();
 
-            return view('front.catalog.product.index', compact('prod', 'group', 'cat', 'subcat', 'seo', 'shipping_methods', 'crumbs', 'bookscheme', 'gdl', 'reviews'));
+            return view('front.catalog.product.index', compact('prod', 'group', 'cat', 'subcat', 'seo', 'shipping_methods' , 'payment_methods', 'crumbs', 'bookscheme', 'gdl', 'reviews'));
         }
 
         // If only group...

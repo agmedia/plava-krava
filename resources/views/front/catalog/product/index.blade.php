@@ -160,8 +160,11 @@
                     </div>
 
                 @endif
-
-
+                @if ($prod->shipping_time)
+                <div class="mb-3 mt-1 text-center text-lg-start">
+                    <span class=" fs-sm text-muted me-1"> <i class="ci-delivery text-muted lead align-middle mt-n1 me-1"></i> Rok dostave: {{ $prod->shipping_time }}</span>
+                </div>
+                @endif
                 <add-to-cart-btn id="{{ $prod->id }}" available="{{ $prod->quantity }}"></add-to-cart-btn>
 
                 <!-- Product panels-->
@@ -207,8 +210,6 @@
                                             <div class="fs-sm text-muted"> Besplatna dostava za narudžbe iznad {{ config('settings.free_shipping') }}€</div>
                                         </div>
                                         <div>{{ $shipping_method->data->price }}€ <small> {{ number_format(config('settings.hrk_divide_amount') * $shipping_method->data->price), 2 }}kn</small></div>
-
-
                                     </div>
                                 @endforeach
 
@@ -220,28 +221,15 @@
                         <h3 class="accordion-header"><a class="accordion-button collapsed" href="#localStore" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="localStore"><i class="ci-card text-muted fs-lg align-middle mt-n1 me-2"></i>Načini plaćanja</a></h3>
                         <div class="accordion-collapse collapse" id="localStore" data-bs-parent="#productPanels">
                             <div class="accordion-body fs-sm">
-                                <div class="d-flex justify-content-between border-bottom pb-2">
-                                    <div>
-                                        <div class="fw-semibold text-dark">CorvusPay</div>
-                                        <div class="fs-sm text-muted">kreditnom karticom jednokratno ili na rate</div>
+                                @foreach($payment_methods as $payment_method)
+                                    <div class="d-flex justify-content-between border-bottom py-2">
+                                        <div>
+                                            <div class="fw-semibold text-dark">{{ $payment_method->title }}</div>
+                                            <div class="fs-sm text-muted">{{ $payment_method->data->description }}</div>
+                                        </div>
+
                                     </div>
-
-                                </div>
-                                <div class="d-flex justify-content-between border-bottom py-2">
-                                    <div>
-                                        <div class="fw-semibold text-dark">Bankovna transakcija</div>
-                                        <div class="fs-sm text-muted">virmanom / općom uplatnicom / internet bankarstvom</div>
-                                    </div>
-
-                                </div>
-                                <div class="d-flex justify-content-between border-bottom py-2">
-                                    <div>
-                                        <div class="fw-semibold text-dark">Pouzećem</div>
-                                        <div class="fs-sm text-muted">gotovinom prilikom preuzimanja</div>
-                                    </div>
-
-                                </div>
-
+                                @endforeach
 
                             </div>
 
@@ -274,6 +262,44 @@
                                 <div class=" fs-md pb-2">
                                     {!! $prod->description !!}
                                 </div>
+
+
+                                @if ($prod->author_web_url or $prod->serial_web_url or $prod->wiki_url or $prod->youtube_channel or $prod->youtube_product_url or $prod->goodreads_author_url or $prod->goodreads_book_url)
+
+                                    <h3 class="h6 mt-4">Multimedia i linkovi</h3>
+                                    <ul class="list-unstyled fs-sm pb-2">
+                                        @if ($prod->youtube_product_url)
+                                            <li class="d-flex justify-content-between py-2 border-bottom"><span class="text-muted">YouTube Video:</span><span><i class="ci-youtube text-muted fs-lg align-middle mt-n1 me-1"></i> <a href="{{ $prod->youtube_product_url }}">Pogledajte video</a></span></li>
+                                        @endif
+
+                                        @if ($prod->youtube_channel)
+                                             <li class="d-flex justify-content-between py-2 border-bottom"><span class="text-muted">YouTube Kanal:</span><span><i class="ci-youtube text-muted fs-lg align-middle mt-n1 me-1"></i> <a href="{{ $prod->youtube_channel }}">Pogledajte video</a></span></li>
+                                        @endif
+
+                                        @if ($prod->wiki_url)
+                                                <li class="d-flex justify-content-between py-2 border-bottom"><span class="text-muted">Wikipedia:</span><span><i class="ci-link text-muted fs-lg align-middle mt-n1 me-1"></i> <a href="{{ $prod->wiki_url }}">Pogledajte stranicu</a></span></li>
+                                        @endif
+
+                                        @if ($prod->author_web_url)
+                                                <li class="d-flex justify-content-between py-2 border-bottom"><span class="text-muted">Web stranica autora:</span><span><i class="ci-link text-muted fs-lg align-middle mt-n1 me-1"></i> <a href="{{ $prod->author_web_url }}">Pogledajte stranicu</a></span></li>
+                                        @endif
+
+                                         @if ($prod->serial_web_url)
+                                                <li class="d-flex justify-content-between py-2 border-bottom"><span class="text-muted">Web stranica serijala:</span><span><i class="ci-link text-muted fs-lg align-middle mt-n1 me-1"></i> <a href="{{ $prod->serial_web_url }}">Pogledajte stranicu</a></span></li>
+                                         @endif
+
+                                         @if ($prod->goodreads_author_url)
+                                                <li class="d-flex justify-content-between py-2 border-bottom"><span class="text-muted">Goodreads stranica autora:</span><span><i class="ci-link text-muted fs-lg align-middle mt-n1 me-1"></i> <a href="{{ $prod->goodreads_author_url }}">Pogledajte stranicu</a></span></li>
+
+                                         @endif
+
+                                         @if ($prod->goodreads_book_url)
+                                                <li class="d-flex justify-content-between py-2 border-bottom"><span class="text-muted">Goodreads stranica knjige:</span><span><i class="ci-link text-muted fs-lg align-middle mt-n1 me-1"></i> <a href="{{ $prod->goodreads_book_url }}">Pogledajte stranicu</a></span></li>
+
+                                         @endif
+                                    </ul>
+
+                                @endif
                             </div>
                             <div class="col-lg-5 col-sm-5 ">
                                 <h3 class="h6">Dodatne informacije</h3>
