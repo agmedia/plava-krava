@@ -23,6 +23,7 @@ use App\Http\Controllers\Back\Settings\HistoryController;
 use App\Http\Controllers\Back\Settings\PageController;
 use App\Http\Controllers\Back\Settings\QuickMenuController;
 use App\Http\Controllers\Back\Settings\SettingsController;
+use App\Http\Controllers\Back\Settings\System\ApplicationController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Back\Widget\WidgetController;
 use App\Http\Controllers\Back\Widget\WidgetGroupController;
@@ -178,6 +179,12 @@ Route::middleware(['auth:sanctum', 'verified', 'no.customers'])->prefix('admin')
 
         //Route::get('application', [SettingsController::class, 'index'])->name('settings');
 
+        // SISTEM
+        Route::prefix('system')->group(function () {
+            // APPLICATION SETTINGS
+            Route::get('application', [ApplicationController::class, 'index'])->name('application.settings');
+        });
+
         Route::prefix('application')->group(function () {
             // GEO ZONES
             Route::get('geo-zones', [GeoZoneController::class, 'index'])->name('geozones');
@@ -260,6 +267,14 @@ Route::prefix('api/v2')->group(function () {
         Route::prefix('widget')->group(function () {
             Route::post('destroy', [WidgetController::class, 'destroy'])->name('widget.destroy');
             Route::get('get-links', [WidgetController::class, 'getLinks'])->name('widget.api.get-links');
+        });
+        // SYSTEM
+        Route::prefix('system')->group(function () {
+            // APPLICATION
+            Route::prefix('application')->group(function () {
+                Route::post('basic/store', [ApplicationController::class, 'basicInfoStore'])->name('api.application.basic.store');
+                Route::post('maps-api/store', [ApplicationController::class, 'storeGoogleMapsApiKey'])->name('api.application.google-api.store.key');
+            });
         });
         // APPLICATION SETTINGS
         Route::prefix('app')->group(function () {
