@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class=" rounded-3  p-4" v-if="route == 'kosarica'" style="border: 2px solid #d8e4ff;background-color: #fff !important;">
-            <div class="py-2 px-xl-2" v-cloak>
+            <div class="py-2 px-xl-2" >
                 <div class="text-center mb-2 pb-2">
                     <h2 class="h6 mb-3 pb-1">Ukupno</h2>
                     <h3 class="fw-bold text-primary">{{ $store.state.service.formatMainPrice($store.state.cart.total) }}</h3>

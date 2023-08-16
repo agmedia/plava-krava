@@ -65,14 +65,56 @@
     @endif
 
     <style>
-        [v-cloak] > * { display:none; }
-        [v-cloak]::before {
-            content: " ";
-            display: block;
-            width: 16px;
-            height: 16px;
-            background-image: url('data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==');
+        .spinner {
+            width: 40px;
+            height: 40px;
+            background-color: red;
+
+            margin: 400px auto;
+            -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+            animation: sk-rotateplane 1.2s infinite ease-in-out;
         }
+
+        @-webkit-keyframes sk-rotateplane {
+            0% { -webkit-transform: perspective(120px) }
+            50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+            100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+        }
+
+        @keyframes sk-rotateplane {
+            0% {
+                transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+            } 50% {
+                  transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                  -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+              } 100% {
+                    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                }
+        }
+
+        [v-cloak] .v-cloak--block {
+            display: block;
+        }
+        [v-cloak] .v-cloak--inline {
+            display: inline;
+        }
+        [v-cloak] .v-cloak--inlineBlock {
+            display: inline-block;
+        }
+        [v-cloak] .v-cloak--hidden {
+            display: none;
+        }
+        [v-cloak] .v-cloak--invisible {
+            visibility: hidden;
+        }
+        .v-cloak--block,
+        .v-cloak--inline,
+        .v-cloak--inlineBlock {
+            display: none;
+        }
+
     </style>
 </head>
 <!-- Body-->
@@ -87,18 +129,27 @@
     </noscript> -->
 @endif
 
-<div id="agapp" v-cloak>
-    @include('front.layouts.partials.header')
-    <main class="offcanvas-enabled ">
-        <section class="ps-lg-4 pe-lg-3 pt-4 page-wrapper">
-            <div class="px-3 pt-2">
-               @yield('content')
-            </div>
-        </section>
+<div id="agapp">
+    <div v-cloak>
 
-        @include('front.layouts.partials.footer')
-        @include('front.layouts.partials.handheld')
-    </main>
+        <div class="v-cloak--inline"> <!-- Parts that will be visible before compiled your HTML -->
+            <div class="spinner"></div> <!-- this is a cool spinner taken from spinKit -->
+        </div>
+
+        <div class="v-cloak--hidden">
+        @include('front.layouts.partials.header')
+            <main class="offcanvas-enabled ">
+                <section class="ps-lg-4 pe-lg-3 pt-4 page-wrapper">
+                    <div class="px-3 pt-2">
+                       @yield('content')
+                    </div>
+                </section>
+
+                @include('front.layouts.partials.footer')
+                @include('front.layouts.partials.handheld')
+            </main>
+        </div>
+    </div>
 </div>
 
 
