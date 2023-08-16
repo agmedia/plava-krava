@@ -65,61 +65,35 @@
     @endif
 
     <style>
-        .sk-chase {
+        .spinner {
             width: 40px;
             height: 40px;
-            position: relative;
-            animation: sk-chase 2.5s infinite linear both;
-        }
+            margin: 100px auto;
+            background-color: #333;
 
-        .sk-chase-dot {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            animation: sk-chase-dot 2.0s infinite ease-in-out both;
-        }
-
-        .sk-chase-dot:before {
-            content: '';
-            display: block;
-            width: 25%;
-            height: 25%;
-            background-color: #18326d;
             border-radius: 100%;
-            animation: sk-chase-dot-before 2.0s infinite ease-in-out both;
+            -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+            animation: sk-scaleout 1.0s infinite ease-in-out;
         }
 
-        .sk-chase-dot:nth-child(1) { animation-delay: -1.1s; }
-        .sk-chase-dot:nth-child(2) { animation-delay: -1.0s; }
-        .sk-chase-dot:nth-child(3) { animation-delay: -0.9s; }
-        .sk-chase-dot:nth-child(4) { animation-delay: -0.8s; }
-        .sk-chase-dot:nth-child(5) { animation-delay: -0.7s; }
-        .sk-chase-dot:nth-child(6) { animation-delay: -0.6s; }
-        .sk-chase-dot:nth-child(1):before { animation-delay: -1.1s; }
-        .sk-chase-dot:nth-child(2):before { animation-delay: -1.0s; }
-        .sk-chase-dot:nth-child(3):before { animation-delay: -0.9s; }
-        .sk-chase-dot:nth-child(4):before { animation-delay: -0.8s; }
-        .sk-chase-dot:nth-child(5):before { animation-delay: -0.7s; }
-        .sk-chase-dot:nth-child(6):before { animation-delay: -0.6s; }
-
-        @keyframes sk-chase {
-            100% { transform: rotate(360deg); }
+        @-webkit-keyframes sk-scaleout {
+            0% { -webkit-transform: scale(0) }
+            100% {
+                -webkit-transform: scale(1.0);
+                opacity: 0;
+            }
         }
 
-        @keyframes sk-chase-dot {
-            80%, 100% { transform: rotate(360deg); }
-        }
-
-        @keyframes sk-chase-dot-before {
-            50% {
-                transform: scale(0.4);
-            } 100%, 0% {
+        @keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            } 100% {
+                  -webkit-transform: scale(1.0);
                   transform: scale(1.0);
+                  opacity: 0;
               }
         }
-
         [v-cloak] .v-cloak--block {
             display: block;
         }
@@ -159,14 +133,7 @@
     <div v-cloak>
 
         <div class="v-cloak--inline"> <!-- Parts that will be visible before compiled your HTML -->
-            <div class="sk-chase">
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-                <div class="sk-chase-dot"></div>
-            </div> <!-- this is a cool spinner taken from spinKit -->
+            <div class="spinner"></div>
         </div>
 
         <div class="v-cloak--hidden">
