@@ -115,9 +115,9 @@ class Order extends Model
      *
      * @return mixed
      */
-    public function scopeFinished($query, $count = 9)
+    public function scopeFinished($query)
     {
-        return $query->whereIn('order_status_id', [1, 2, 3, 4 ])->orderBy('created_at', 'desc')->limit($count);
+        return $query->whereIn('order_status_id', [1, 2, 3, 4 ])->orderBy('created_at', 'desc')->limit(9);
     }
 
 
