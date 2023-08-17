@@ -105,7 +105,7 @@ class Order extends Model
      *
      * @return mixed
      */
-    public function scopeLast($query, $count = 10)
+    public function scopeLast($query, $count = 9)
     {
         return $query->whereIn('order_status_id', [1, 2, 3, 4, 5, 6, 7,8])->orderBy('created_at', 'desc')->limit($count);
     }
@@ -115,7 +115,7 @@ class Order extends Model
      *
      * @return mixed
      */
-    public function scopeFinished($query, $count = 10)
+    public function scopeFinished($query, $count = 9)
     {
         return $query->whereIn('order_status_id', [1, 2, 3, 4 ])->orderBy('created_at', 'desc')->limit($count);
     }
