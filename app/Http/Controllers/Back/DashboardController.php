@@ -56,7 +56,7 @@ class DashboardController extends Controller
         $ordersfinished   = Order::finished()->with('products')->get();
         $products = $ordersfinished->map(function ($item) {
             return $item->products()->get();
-        })->flatten();
+        })->take(9)->flatten();
 
 
         $bestsellers = DB::table('order_products')
@@ -69,7 +69,6 @@ class DashboardController extends Controller
             ->limit(10)
             ->get();
 
-     //   dd($bestsellers);
 
         $chart     = new Chart();
         $this_year = json_encode($chart->setDataByYear(
