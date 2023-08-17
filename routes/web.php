@@ -12,6 +12,7 @@ use App\Http\Controllers\Back\Marketing\ReviewController;
 use App\Http\Controllers\Back\OrderController;
 use App\Http\Controllers\Back\Marketing\ActionController;
 use App\Http\Controllers\Back\Marketing\BlogController;
+use App\Http\Controllers\Back\Settings\ApiController;
 use App\Http\Controllers\Back\Settings\App\CurrencyController;
 use App\Http\Controllers\Back\Settings\App\GeoZoneController;
 use App\Http\Controllers\Back\Settings\App\OrderStatusController;
@@ -99,6 +100,14 @@ Route::middleware(['auth:sanctum', 'verified', 'no.customers'])->prefix('admin')
         Route::get('product/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
         Route::patch('product/{product}', [ProductController::class, 'update'])->name('products.update');
         Route::delete('product/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+        // BLOG
+        Route::get('blogs', [BlogController::class, 'index'])->name('blogs');
+        Route::get('blog/create', [BlogController::class, 'create'])->name('blogs.create');
+        Route::post('blog', [BlogController::class, 'store'])->name('blogs.store');
+        Route::get('blog/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+        Route::patch('blog/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+        Route::delete('blog/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
     });
 
     // NARUDŽBE
@@ -119,14 +128,6 @@ Route::middleware(['auth:sanctum', 'verified', 'no.customers'])->prefix('admin')
         Route::patch('action/{action}', [ActionController::class, 'update'])->name('actions.update');
         Route::delete('action/{action}', [ActionController::class, 'destroy'])->name('actions.destroy');
 
-        // BLOG
-        Route::get('blogs', [BlogController::class, 'index'])->name('blogs');
-        Route::get('blog/create', [BlogController::class, 'create'])->name('blogs.create');
-        Route::post('blog', [BlogController::class, 'store'])->name('blogs.store');
-        Route::get('blog/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
-        Route::patch('blog/{blog}', [BlogController::class, 'update'])->name('blogs.update');
-        Route::delete('blog/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
-
         // REWIEVS
         Route::get('reviews', [ReviewController::class, 'index'])->name('reviews');
         Route::get('review/create', [ReviewController::class, 'create'])->name('reviews.create');
@@ -134,6 +135,14 @@ Route::middleware(['auth:sanctum', 'verified', 'no.customers'])->prefix('admin')
         Route::get('review/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
         Route::patch('review/{review}', [ReviewController::class, 'update'])->name('reviews.update');
         Route::delete('review/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+
+        // FAQ
+        Route::get('faqs', [FaqController::class, 'index'])->name('faqs');
+        Route::get('faq/create', [FaqController::class, 'create'])->name('faqs.create');
+        Route::post('faq', [FaqController::class, 'store'])->name('faqs.store');
+        Route::get('faq/{faq}/edit', [FaqController::class, 'edit'])->name('faqs.edit');
+        Route::patch('faq/{faq}', [FaqController::class, 'update'])->name('faqs.update');
+        Route::delete('faq/{faq}', [FaqController::class, 'destroy'])->name('faqs.destroy');
     });
 
     // KORISNICI
@@ -169,13 +178,8 @@ Route::middleware(['auth:sanctum', 'verified', 'no.customers'])->prefix('admin')
         Route::patch('page/{page}', [PageController::class, 'update'])->name('pages.update');
         Route::delete('page/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
 
-        // FAQ
-        Route::get('faqs', [FaqController::class, 'index'])->name('faqs');
-        Route::get('faq/create', [FaqController::class, 'create'])->name('faqs.create');
-        Route::post('faq', [FaqController::class, 'store'])->name('faqs.store');
-        Route::get('faq/{faq}/edit', [FaqController::class, 'edit'])->name('faqs.edit');
-        Route::patch('faq/{faq}', [FaqController::class, 'update'])->name('faqs.update');
-        Route::delete('faq/{faq}', [FaqController::class, 'destroy'])->name('faqs.destroy');
+        // API
+        Route::get('api', [ApiController::class, 'index'])->name('api.index');
 
         //Route::get('application', [SettingsController::class, 'index'])->name('settings');
 
@@ -267,6 +271,11 @@ Route::prefix('api/v2')->group(function () {
         Route::prefix('widget')->group(function () {
             Route::post('destroy', [WidgetController::class, 'destroy'])->name('widget.destroy');
             Route::get('get-links', [WidgetController::class, 'getLinks'])->name('widget.api.get-links');
+        });
+        // API
+        Route::prefix('api')->group(function () {
+            Route::post('import', [ApiController::class, 'import'])->name('api.api.import');
+            Route::post('update', [ApiController::class, 'update'])->name('api.api.update');
         });
         // SYSTEM
         Route::prefix('system')->group(function () {
