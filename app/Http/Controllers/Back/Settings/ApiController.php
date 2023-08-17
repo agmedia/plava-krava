@@ -74,7 +74,7 @@ class ApiController extends Controller
      *
      * @return array
      */
-    private function validate(Request $request)
+    public function validateTarget(Request $request)
     {
         return $request->validate([
             'target' => 'required',
