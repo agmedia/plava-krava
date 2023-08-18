@@ -53,11 +53,12 @@
                         <label class="form-label" for="su-password">Zaporka</label>
                         <div class="password-toggle">
                             <input class="form-control" type="password" name="password" minlength="8" id="su-password" required>
-                            <div id="emailHelp" class="form-text">Minimalno 8 znakova</div>
+
                             <label class="password-toggle-btn" aria-label="Show/hide password">
                                 <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                             </label>
                         </div>
+                        <div id="emailHelp" class="form-text">Minimalno 8 znakova</div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="su-password-confirm">Potvrdite zaporku</label>
