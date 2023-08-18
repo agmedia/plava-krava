@@ -165,6 +165,7 @@
 <script src="{{ asset('vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
 <script src="{{ asset('js/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
 <script src="{{ asset('js/shufflejs/dist/shuffle.min.js') }}"></script>
+<script src="{{ asset('js/fastclick.js') }}"></script>
 <!-- Main theme script-->
 
 <script src="{{ asset('js/cart.js?v=2.0.3') }}"></script>
@@ -179,6 +180,11 @@
                 document.getElementById('recaptcha').value = token;
             }
         });
+    });
+</script>
+<script>
+    $(function() {
+        FastClick.attach(document.body);
     });
 </script>
 <script type="text/javascript">
