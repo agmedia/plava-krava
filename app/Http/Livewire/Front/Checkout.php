@@ -266,6 +266,7 @@ class Checkout extends Component
      */
     public function selectPayment(string $payment)
     {
+
         $this->payment = $payment;
 
         $this->checkPayment($payment);
