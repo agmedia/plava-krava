@@ -252,7 +252,7 @@ class Checkout extends Component
     public function selectShipping(string $shipping)
     {
 
-        dd($shipping);
+
         $this->shipping = $shipping;
 
         $this->checkShipping($shipping);
