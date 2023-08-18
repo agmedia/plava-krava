@@ -6334,30 +6334,7 @@ var render = function() {
             )
           ]
         )
-      }),
-      _vm._v(" "),
-      _vm.show_buttons
-        ? _c(
-            "div",
-            {
-              staticClass:
-                "d-block pt-3 pb-4 pb-sm-5 mt-1 text-center text-sm-start"
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-outline-dark btn-sm ps-2",
-                  attrs: { href: _vm.continueurl }
-                },
-                [
-                  _c("i", { staticClass: "ci-arrow-left me-2" }),
-                  _vm._v("Natrag na trgovinu")
-                ]
-              )
-            ]
-          )
-        : _vm._e()
+      })
     ],
     2
   )

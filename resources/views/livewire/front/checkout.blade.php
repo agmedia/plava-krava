@@ -71,7 +71,7 @@
 
         @if (session()->has('login_success'))
             <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
-                {{ session('login_success') }}
+                <small>{{ session('login_success') }}</small>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
@@ -86,7 +86,7 @@
 
             @if (session()->has('error'))
                 <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                    {{ session('error') }}
+                    <small>  {{ session('error') }}</small>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
@@ -199,22 +199,27 @@
             </div>
         </div>
 
-        <h2 class="h6 pt-3 pb-3 mb-2">Trebate R1 račun?</h2>
-        <div class="row mt-3">
-            <div class="col-sm-6">
-                <div class="mb-3">
-                    <label class="form-label" for="checkout-company">Tvrtka</label>
-                    <input class="form-control" type="text" wire:model="address.company">
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="mb-3">
-                    <div class="mb-3">
-                        <label class="form-label" for="checkout-oib">OIB</label>
-                        <input class="form-control" type="text" wire:model="address.oib">
+        <h2 class="h6 pt-3 pb-3 mb-2"><a data-bs-toggle="collapse" href="#collapseOib" role="button" aria-expanded="false" aria-controls="collapseLogin" class="alert-link">Trebate R1 račun?</a></h2>
+
+        <div id="collapseOib" aria-expanded="false" class="collapse">
+
+                    <div class="row ">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="checkout-company">Tvrtka</label>
+                                <input class="form-control" type="text" wire:model="address.company">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="checkout-oib">OIB</label>
+                                    <input class="form-control" type="text" wire:model="address.oib">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+
         </div>
 
         <div class="d-flex pt-4 mt-3">
