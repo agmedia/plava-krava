@@ -250,14 +250,13 @@
                         <td class="align-middle">{{ $s_method->data->time }}</td>
                         <td class="align-middle">
                             @if ($is_free_shipping)
-                                € 0
-                                @if ($secondary_price)
-                                    <br>0 kn
+                                 0€
+                                @if ($secondary_price)0kn
                                 @endif
                             @else
-                                € {{ $s_method->data->price }}
+                               {{ $s_method->data->price }}€
                                     @if ($secondary_price)
-                                        <br>{{ $s_method->data->price ? number_format($s_method->data->price * $secondary_price, 2) : '0' }} kn
+                                        <br>{{ $s_method->data->price ? number_format($s_method->data->price * $secondary_price, 2) : '0' }}kn
                                     @endif
                             @endif
                         </td>

@@ -130,10 +130,14 @@ class Checkout extends Component
 
         if (CheckoutSession::hasShipping()) {
             $this->shipping = CheckoutSession::getShipping();
+        }else{
+            $this->shipping ='gls';
         }
 
         if (CheckoutSession::hasPayment()) {
             $this->payment = CheckoutSession::getPayment();
+        }else{
+            $this->payment ='corvus';
         }
 
         $this->secondary_price = Currency::secondary() ? Currency::secondary()->value : false;
@@ -247,6 +251,8 @@ class Checkout extends Component
      */
     public function selectShipping(string $shipping)
     {
+
+        dd($shipping);
         $this->shipping = $shipping;
 
         $this->checkShipping($shipping);
@@ -283,7 +289,7 @@ class Checkout extends Component
 
         return view('livewire.front.checkout', [
             'shippingMethods' => (new ShippingMethod())->findGeo($geo->id),
-            'paymentMethods' => (new PaymentMethod())->findGeo($geo->id)->checkShipping($this->shipping)->resolve(),
+            'paymentMethods' => (new PaymentMethod())->findGeo($geo->id)->checkShipping($this->shipping)->resolve()->sortBy('sort_order'),
             'countries' => Country::list()
         ]);
     }
