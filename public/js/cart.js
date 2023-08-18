@@ -2434,11 +2434,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -4020,8 +4015,8 @@ var AgService = /*#__PURE__*/function () {
           }
         }
       });
-      var left = main_currency.symbol_left ? main_currency.symbol_left + ' ' : '';
-      var right = main_currency.symbol_right ? ' ' + main_currency.symbol_right : '';
+      var left = main_currency.symbol_left ? main_currency.symbol_left + '' : '';
+      var right = main_currency.symbol_right ? '' + main_currency.symbol_right : '';
       return left + Number(price * main_currency.value).toFixed(main_currency.decimal_places) + right;
     }
 
@@ -6120,22 +6115,20 @@ var render = function() {
     "div",
     [
       _vm.$store.state.cart.total > 0
-        ? _c(
-            "div",
-            { staticClass: "d-block pt-3 pb-2 mt-1 text-center text-sm-start" },
-            [
-              _vm.$store.state.cart.total < _vm.freeship &&
-              _vm.$store.state.cart.count
-                ? _c(
-                    "div",
-                    {
-                      staticClass: "alert alert-info  d-flex",
-                      attrs: { role: "alert" }
-                    },
-                    [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("div", [
+        ? _c("div", { staticClass: "d-block pt-3 pb-2 mt-1 text-start" }, [
+            _vm.$store.state.cart.total < _vm.freeship &&
+            _vm.$store.state.cart.count
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "alert alert-info  d-flex",
+                    attrs: { role: "alert" }
+                  },
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("small", [
                         _vm._v(
                           "Još " +
                             _vm._s(
@@ -6160,33 +6153,27 @@ var render = function() {
                           : _vm._e(),
                         _vm._v(" do besplatne dostave!")
                       ])
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.$store.state.cart.total > _vm.freeship &&
-              _vm.$store.state.cart.count
-                ? _c(
-                    "div",
-                    {
-                      staticClass: "alert alert-success d-flex",
-                      attrs: { role: "alert" }
-                    },
-                    [
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _c("div", [
-                        _vm._v("Ostvarili ste pravo na besplatnu dostavu!")
-                      ])
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _c("h2", { staticClass: "h6 text-primary  mb-0" }, [
-                _vm._v("Artikli")
-              ])
-            ]
-          )
+                    ])
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.$store.state.cart.total > _vm.freeship &&
+            _vm.$store.state.cart.count
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "alert alert-success d-flex",
+                    attrs: { role: "alert" }
+                  },
+                  [_vm._m(1), _vm._v(" "), _vm._m(2)]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("h2", { staticClass: "h6 text-primary  mb-0" }, [
+              _vm._v("Artikli")
+            ])
+          ])
         : _vm._e(),
       _vm._v(" "),
       _vm.$store.state.cart.total < 1
@@ -6205,101 +6192,93 @@ var render = function() {
               "d-sm-flex justify-content-between align-items-center my-2 pb-3 border-bottom"
           },
           [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "d-block d-sm-flex align-items-center text-center text-sm-start"
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "d-inline-block flex-shrink-0 mx-auto me-sm-4",
-                    attrs: { href: _vm.base_path + item.attributes.path }
-                  },
-                  [
-                    _c("img", {
-                      attrs: {
-                        src: item.associatedModel.image,
-                        width: "120",
-                        alt: item.name,
-                        title: item.name
-                      }
-                    })
-                  ]
-                ),
+            _c("div", { staticClass: "d-flex align-items-center text-start" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "d-inline-block flex-shrink-0 mx-auto me-sm-4",
+                  attrs: { href: _vm.base_path + item.attributes.path }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: item.associatedModel.image,
+                      width: "120",
+                      alt: item.name,
+                      title: item.name
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "py-2" }, [
+                _c("h3", { staticClass: "product-title fs-base mb-2" }, [
+                  _c(
+                    "a",
+                    { attrs: { href: _vm.base_path + item.attributes.path } },
+                    [_vm._v(_vm._s(item.name))]
+                  )
+                ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "py-2" }, [
-                  _c("h3", { staticClass: "product-title fs-base mb-2" }, [
-                    _c(
-                      "a",
-                      { attrs: { href: _vm.base_path + item.attributes.path } },
-                      [_vm._v(_vm._s(item.name))]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "fs-lg text-primary pt-2" }, [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(
-                          Object.keys(item.conditions).length
-                            ? item.associatedModel.main_special_text
-                            : item.associatedModel.main_price_text
-                        ) +
-                        "\n                    "
-                    ),
-                    Object.keys(item.conditions).length &&
-                    item.associatedModel.action &&
-                    item.associatedModel.action.coupon ==
-                      _vm.$store.state.cart.coupon
-                      ? _c(
-                          "span",
-                          {
-                            staticClass: "text-primary fs-md fw-light",
-                            staticStyle: { "margin-left": "20px" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Kupon kod: " +
-                                _vm._s(item.associatedModel.action.title) +
-                                " (" +
-                                _vm._s(
-                                  Math.round(
-                                    item.associatedModel.action.discount
-                                  ).toFixed(0)
-                                ) +
-                                "%)\n                    "
-                            )
-                          ]
-                        )
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "fs-sm text-dark pt-2" }),
-                  _vm._v(" "),
-                  item.associatedModel.secondary_price
-                    ? _c("div", { staticClass: "fs-sm text-dark pt-2" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(
-                              Object.keys(item.conditions).length
-                                ? item.associatedModel.secondary_special_text
-                                : item.associatedModel.secondary_price_text
-                            ) +
-                            "\n                "
-                        )
-                      ])
+                _c("div", { staticClass: "fs-lg text-primary pt-2" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(
+                        Object.keys(item.conditions).length
+                          ? item.associatedModel.main_special_text
+                          : item.associatedModel.main_price_text
+                      ) +
+                      "\n                    "
+                  ),
+                  Object.keys(item.conditions).length &&
+                  item.associatedModel.action &&
+                  item.associatedModel.action.coupon ==
+                    _vm.$store.state.cart.coupon
+                    ? _c(
+                        "span",
+                        {
+                          staticClass: "text-primary fs-md fw-light",
+                          staticStyle: { "margin-left": "20px" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Kupon kod: " +
+                              _vm._s(item.associatedModel.action.title) +
+                              " (" +
+                              _vm._s(
+                                Math.round(
+                                  item.associatedModel.action.discount
+                                ).toFixed(0)
+                              ) +
+                              "%)\n                    "
+                          )
+                        ]
+                      )
                     : _vm._e()
-                ])
-              ]
-            ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "fs-sm text-dark pt-2" }),
+                _vm._v(" "),
+                item.associatedModel.secondary_price
+                  ? _c("div", { staticClass: "fs-sm text-dark pt-2" }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(
+                            Object.keys(item.conditions).length
+                              ? item.associatedModel.secondary_special_text
+                              : item.associatedModel.secondary_price_text
+                          ) +
+                          "\n                "
+                      )
+                    ])
+                  : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
             _c(
               "div",
               {
-                staticClass:
-                  "pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-start",
+                staticClass: "pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-start",
                 staticStyle: { "max-width": "9rem" }
               },
               [
@@ -6401,6 +6380,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "alert-icon" }, [
       _c("i", { staticClass: "ci-check-circle" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("small", [_vm._v("Ostvarili ste pravo na besplatnu dostavu!")])
     ])
   }
 ]

@@ -1,17 +1,17 @@
 <template>
     <div>
-        <div class="d-block pt-3 pb-2 mt-1 text-center text-sm-start" v-if="$store.state.cart.total > 0">
+        <div class="d-block pt-3 pb-2 mt-1 text-start" v-if="$store.state.cart.total > 0">
             <div class="alert alert-info  d-flex" v-if="$store.state.cart.total < freeship && $store.state.cart.count" role="alert">
                 <div class="alert-icon">
                     <i class="ci-announcement"></i>
                 </div>
-                <div>Još {{ $store.state.service.formatMainPrice(freeship - $store.state.cart.total) }} <span v-if="$store.state.cart.secondary_price">({{ $store.state.service.formatSecondaryPrice(freeship - $store.state.cart.total) }})</span> do besplatne dostave!</div>
+                <div><small>Još {{ $store.state.service.formatMainPrice(freeship - $store.state.cart.total) }} <span v-if="$store.state.cart.secondary_price">({{ $store.state.service.formatSecondaryPrice(freeship - $store.state.cart.total) }})</span> do besplatne dostave!</small></div>
             </div>
             <div class="alert alert-success d-flex" v-if="$store.state.cart.total > freeship && $store.state.cart.count" role="alert">
                 <div class="alert-icon">
                     <i class="ci-check-circle"></i>
                 </div>
-                <div>Ostvarili ste pravo na besplatnu dostavu!</div>
+                <div><small>Ostvarili ste pravo na besplatnu dostavu!</small></div>
             </div>
             <h2 class="h6 text-primary  mb-0">Artikli</h2>
         </div>
@@ -21,14 +21,9 @@
 
 
 
-
-
-
-
-
         <!-- Item-->
         <div class="d-sm-flex justify-content-between align-items-center my-2 pb-3 border-bottom" v-for="item in $store.state.cart.items">
-            <div class="d-block d-sm-flex align-items-center text-center text-sm-start">
+            <div class="d-flex align-items-center text-start">
                 <a class="d-inline-block flex-shrink-0 mx-auto me-sm-4" :href="base_path + item.attributes.path">
                     <img :src="item.associatedModel.image" width="120" :alt="item.name" :title="item.name">
                 </a>
@@ -50,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-start" style="max-width: 9rem;">
+            <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-start" style="max-width: 9rem;">
                 <label class="form-label">Količina: {{item.quantity}}</label>
                 <input class="form-control" type="number" v-model="item.quantity" min="1" :max="item.associatedModel.quantity" @click.prevent="updateCart(item)">
                 <button class="btn btn-link px-0 text-danger" type="button" @click.prevent="removeFromCart(item)"><i class="ci-close-circle me-2"></i><span class="fs-sm">Ukloni</span></button>
