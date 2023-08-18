@@ -131,13 +131,13 @@ class Checkout extends Component
         if (CheckoutSession::hasShipping()) {
             $this->shipping = CheckoutSession::getShipping();
         }else{
-            $this->shipping ='gls';
+            $this->selectShipping('gls');
         }
 
         if (CheckoutSession::hasPayment()) {
             $this->payment = CheckoutSession::getPayment();
         }else{
-            $this->payment ='corvus';
+            $this->selectPayment('corvus');
         }
 
         $this->secondary_price = Currency::secondary() ? Currency::secondary()->value : false;
@@ -251,8 +251,6 @@ class Checkout extends Component
      */
     public function selectShipping(string $shipping)
     {
-
-
         $this->shipping = $shipping;
 
         $this->checkShipping($shipping);
