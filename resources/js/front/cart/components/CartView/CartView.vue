@@ -24,7 +24,7 @@
         <!-- Item-->
         <div class="d-sm-flex justify-content-between align-items-center my-2 pb-3 border-bottom" v-for="item in $store.state.cart.items">
             <div class="d-flex align-items-center text-start">
-                <a class="d-inline-block flex-shrink-0 mx-auto me-sm-4" :href="base_path + item.attributes.path">
+                <a class="d-inline-block flex-shrink-0 me-3" :href="base_path + item.attributes.path">
                     <img :src="item.associatedModel.image" width="120" :alt="item.name" :title="item.name">
                 </a>
                 <div class="py-2">
@@ -37,17 +37,15 @@
                             Kupon kod: {{ item.associatedModel.action.title }} ({{ Math.round(item.associatedModel.action.discount).toFixed(0) }}%)
                         </span>
                     </div>
-                    <div class="fs-sm text-dark pt-2">
 
-                    </div>
-                    <div class="fs-sm text-dark pt-2" v-if="item.associatedModel.secondary_price">
+                    <div class="fs-sm text-dark pt-1" v-if="item.associatedModel.secondary_price">
                         {{ Object.keys(item.conditions).length ? item.associatedModel.secondary_special_text : item.associatedModel.secondary_price_text }}
                     </div>
                 </div>
             </div>
-            <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-start" style="max-width: 9rem;">
+            <div class="pt-2 pt-sm-0 ps-sm-3 mx-auto justify-content-between mx-sm-0 text-start" style="max-width: 9rem;">
                 <label class="form-label">Količina: {{item.quantity}}</label>
-                <input class="form-control" type="number" v-model="item.quantity" min="1" :max="item.associatedModel.quantity" @click.prevent="updateCart(item)">
+                <input class="form-control d-none d-sm-block" type="number" v-model="item.quantity" min="1" :max="item.associatedModel.quantity" @click.prevent="updateCart(item)">
                 <button class="btn btn-link px-0 text-danger" type="button" @click.prevent="removeFromCart(item)"><i class="ci-close-circle me-2"></i><span class="fs-sm">Ukloni</span></button>
             </div>
         </div>

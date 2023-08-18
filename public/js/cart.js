@@ -2432,8 +2432,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -6196,7 +6194,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "d-inline-block flex-shrink-0 mx-auto me-sm-4",
+                  staticClass: "d-inline-block flex-shrink-0 me-3",
                   attrs: { href: _vm.base_path + item.attributes.path }
                 },
                 [
@@ -6257,10 +6255,8 @@ var render = function() {
                     : _vm._e()
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "fs-sm text-dark pt-2" }),
-                _vm._v(" "),
                 item.associatedModel.secondary_price
-                  ? _c("div", { staticClass: "fs-sm text-dark pt-2" }, [
+                  ? _c("div", { staticClass: "fs-sm text-dark pt-1" }, [
                       _vm._v(
                         "\n                    " +
                           _vm._s(
@@ -6278,7 +6274,8 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-start",
+                staticClass:
+                  "pt-2 pt-sm-0 ps-sm-3 mx-auto justify-content-between mx-sm-0 text-start",
                 staticStyle: { "max-width": "9rem" }
               },
               [
@@ -6295,7 +6292,7 @@ var render = function() {
                       expression: "item.quantity"
                     }
                   ],
-                  staticClass: "form-control",
+                  staticClass: "form-control d-none d-sm-block",
                   attrs: {
                     type: "number",
                     min: "1",
