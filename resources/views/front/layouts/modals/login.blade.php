@@ -72,9 +72,27 @@
                                                 'terms_of_service' => '<a target="_blank" href="'.route('catalog.route.page',['page' => 'opci-uvjeti-kupnje']).'" class="link-fx">'.__('Uvjetima kupovine').'</a>',
                                                 'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="link-fx">'.__('Privacy Policy').'</a>',
                                         ]) !!}</label>
-                        <input class="form-check-input" type="checkbox" id="ex-check-4" required>
-                        <div class="invalid-feedback" id="ex-check-4">Morate se složiti sa Uvjetima kupnje.</div>
+                        <input class="form-check-input" type="checkbox" name="terms" id="terms" required>
+                        <div class="invalid-feedback" id="terms">Morate se složiti sa Uvjetima kupnje.</div>
                     </div>
+
+
+                   {{-- @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                        <div class="form-group mb-3" >
+                            <x-jet-label for="terms">
+                                <div class="flex items-center">
+                                    <x-jet-checkbox name="terms" id="terms"/>
+                                    <label class="form-label">
+                                        {!! __('Slažem se sa :terms_of_service', [
+                                                'terms_of_service' => '<a target="_blank" href="'.route('catalog.route.page',['page' => 'opci-uvjeti-kupnje']).'" class="link-fx">'.__('Uvjetima kupovine').'</a>',
+                                                'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="link-fx">'.__('Privacy Policy').'</a>',
+                                        ]) !!}
+                                    </label>
+                                    <div class="invalid-feedback" id="terms">Morate se složiti sa Uvjetima kupnje.</div>
+                                </div>
+                            </x-jet-label>
+                        </div>
+                    @endif--}}
 
 
 
