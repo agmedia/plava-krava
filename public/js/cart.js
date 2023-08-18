@@ -5864,227 +5864,251 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "navbar-tool dropdown ms-3" }, [
-    _c(
-      "a",
-      {
-        staticClass: "navbar-tool-icon-box bg-secondary dropdown-toggle",
-        attrs: { href: _vm.carturl }
-      },
-      [
-        _c("span", { staticClass: "navbar-tool-label" }, [
-          _vm._v(
-            _vm._s(_vm.$store.state.cart ? _vm.$store.state.cart.count : 0)
-          )
-        ]),
-        _c("i", { staticClass: "navbar-tool-icon ci-cart" })
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "dropdown-menu dropdown-menu-end" }, [
-      _vm.$store.state.cart.count
-        ? _c(
-            "div",
-            {
-              staticClass: "widget widget-cart px-3 pt-2 pb-3",
-              staticStyle: { width: "20rem" }
-            },
-            [
-              _vm._l(_vm.$store.state.cart.items, function(item) {
-                return _c(
-                  "div",
-                  { attrs: { "data-simplebar-auto-hide": "false" } },
-                  [
-                    _c(
+  return _vm.$store.state.cart
+    ? _c("div", { staticClass: "navbar-tool dropdown ms-3" }, [
+        _c(
+          "a",
+          {
+            staticClass: "navbar-tool-icon-box bg-secondary dropdown-toggle",
+            attrs: { href: _vm.carturl }
+          },
+          [
+            _c("span", { staticClass: "navbar-tool-label" }, [
+              _vm._v(
+                _vm._s(_vm.$store.state.cart ? _vm.$store.state.cart.count : 0)
+              )
+            ]),
+            _c("i", { staticClass: "navbar-tool-icon ci-cart" })
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "dropdown-menu dropdown-menu-end" }, [
+          _vm.$store.state.cart.count
+            ? _c(
+                "div",
+                {
+                  staticClass: "widget widget-cart px-3 pt-2 pb-3",
+                  staticStyle: { width: "20rem" }
+                },
+                [
+                  _vm._l(_vm.$store.state.cart.items, function(item) {
+                    return _c(
                       "div",
-                      { staticClass: "widget-cart-item py-2 border-bottom" },
+                      { attrs: { "data-simplebar-auto-hide": "false" } },
                       [
                         _c(
-                          "button",
+                          "div",
                           {
-                            staticClass: "btn-close text-danger",
-                            attrs: { type: "button", "aria-label": "Remove" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.removeFromCart(item)
-                              }
-                            }
+                            staticClass: "widget-cart-item py-2 border-bottom"
                           },
                           [
-                            _c("span", { attrs: { "aria-hidden": "true" } }, [
-                              _vm._v("×")
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "d-flex align-items-center" },
-                          [
                             _c(
-                              "a",
+                              "button",
                               {
-                                staticClass: "d-block flex-shrink-0 pt-2",
-                                attrs: { href: "#" }
+                                staticClass: "btn-close text-danger",
+                                attrs: {
+                                  type: "button",
+                                  "aria-label": "Remove"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.removeFromCart(item)
+                                  }
+                                }
                               },
                               [
-                                _c("img", {
-                                  staticStyle: { width: "5rem" },
-                                  attrs: {
-                                    src: item.associatedModel.image,
-                                    alt: item.name,
-                                    title: item.name
-                                  }
-                                })
+                                _c(
+                                  "span",
+                                  { attrs: { "aria-hidden": "true" } },
+                                  [_vm._v("×")]
+                                )
                               ]
                             ),
                             _vm._v(" "),
-                            _c("div", { staticClass: "ps-2 py-2" }, [
-                              _c(
-                                "h6",
-                                { staticClass: "widget-product-title" },
-                                [
-                                  _c(
-                                    "a",
-                                    {
+                            _c(
+                              "div",
+                              { staticClass: "d-flex align-items-center" },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "d-block flex-shrink-0 pt-2",
+                                    attrs: { href: "#" }
+                                  },
+                                  [
+                                    _c("img", {
+                                      staticStyle: { width: "5rem" },
                                       attrs: {
-                                        href:
-                                          _vm.base_path + item.attributes.path
+                                        src: item.associatedModel.image,
+                                        alt: item.name,
+                                        title: item.name
                                       }
-                                    },
-                                    [_vm._v(_vm._s(item.name))]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "widget-product-meta" },
-                                [
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "ps-2 py-2" }, [
                                   _c(
-                                    "span",
-                                    { staticClass: "text-primary me-2" },
+                                    "h6",
+                                    { staticClass: "widget-product-title" },
                                     [
-                                      _vm._v(
-                                        _vm._s(
-                                          Object.keys(item.conditions).length
-                                            ? item.associatedModel
-                                                .main_special_text
-                                            : item.associatedModel
-                                                .main_price_text
-                                        )
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: {
+                                            href:
+                                              _vm.base_path +
+                                              item.attributes.path
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(item.name))]
                                       )
                                     ]
                                   ),
-                                  _c("span", { staticClass: "text-muted" }, [
-                                    _vm._v("x " + _vm._s(item.quantity))
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "widget-product-meta" },
-                                [
-                                  item.associatedModel.secondary_price
-                                    ? _c(
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "widget-product-meta" },
+                                    [
+                                      _c(
                                         "span",
-                                        { staticClass: "text-dark fs-sm me-2" },
+                                        { staticClass: "text-primary me-2" },
                                         [
                                           _vm._v(
                                             _vm._s(
                                               Object.keys(item.conditions)
                                                 .length
                                                 ? item.associatedModel
-                                                    .secondary_special_text
+                                                    .main_special_text
                                                 : item.associatedModel
-                                                    .secondary_price_text
+                                                    .main_price_text
                                             )
                                           )
                                         ]
+                                      ),
+                                      _c(
+                                        "span",
+                                        { staticClass: "text-muted" },
+                                        [_vm._v("x " + _vm._s(item.quantity))]
                                       )
-                                    : _vm._e(),
-                                  _c("span", { staticClass: "text-muted" }, [
-                                    _vm._v("x " + _vm._s(item.quantity))
-                                  ])
-                                ]
-                              )
-                            ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "widget-product-meta" },
+                                    [
+                                      item.associatedModel.secondary_price
+                                        ? _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "text-dark fs-sm me-2"
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  Object.keys(item.conditions)
+                                                    .length
+                                                    ? item.associatedModel
+                                                        .secondary_special_text
+                                                    : item.associatedModel
+                                                        .secondary_price_text
+                                                )
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _c(
+                                        "span",
+                                        { staticClass: "text-muted" },
+                                        [_vm._v("x " + _vm._s(item.quantity))]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            )
                           ]
                         )
                       ]
                     )
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "d-flex flex-wrap justify-content-between align-items-center py-3"
-                },
-                [
-                  _c("div", { staticClass: "fs-sm me-2 py-2" }, [
-                    _c("span", { staticClass: "text-muted" }, [
-                      _vm._v("Ukupno:")
-                    ]),
-                    _c("span", { staticClass: "text-primary fs-base ms-1" }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.$store.state.service.formatMainPrice(
-                            _vm.$store.state.cart.total
-                          )
-                        )
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm.$store.state.cart.secondary_price
-                      ? _c("span", { staticClass: "text-muted" }, [
-                          _vm._v(
-                            _vm._s(
-                              _vm.$store.state.service.formatSecondaryPrice(
-                                _vm.$store.state.cart.total
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex flex-wrap justify-content-between align-items-center py-3"
+                    },
+                    [
+                      _c("div", { staticClass: "fs-sm me-2 py-2" }, [
+                        _c("span", { staticClass: "text-muted" }, [
+                          _vm._v("Ukupno:")
+                        ]),
+                        _c(
+                          "span",
+                          { staticClass: "text-primary fs-base ms-1" },
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.$store.state.service.formatMainPrice(
+                                  _vm.$store.state.cart.total
+                                )
                               )
                             )
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                ]
-              ),
-              _c(
-                "a",
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.$store.state.cart.secondary_price
+                          ? _c("span", { staticClass: "text-muted" }, [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.$store.state.service.formatSecondaryPrice(
+                                    _vm.$store.state.cart.total
+                                  )
+                                )
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    ]
+                  ),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary btn-sm d-block w-100",
+                      attrs: { href: _vm.carturl }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "ci-card me-2 fs-base align-middle"
+                      }),
+                      _vm._v("Dovrši kupnju")
+                    ]
+                  )
+                ],
+                2
+              )
+            : _c(
+                "div",
                 {
-                  staticClass: "btn btn-primary btn-sm d-block w-100",
-                  attrs: { href: _vm.carturl }
+                  staticClass: "widget widget-cart px-3 pt-2 pb-3",
+                  staticStyle: { width: "20rem" }
                 },
                 [
-                  _c("i", { staticClass: "ci-card me-2 fs-base align-middle" }),
-                  _vm._v("Dovrši kupnju")
+                  _c("i", {
+                    staticClass: "fa fa-cart-arrow-down fa-2x",
+                    staticStyle: { color: "#aaaaaa" }
+                  }),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Vaša košarica je prazna!")])
                 ]
               )
-            ],
-            2
-          )
-        : _c(
-            "div",
-            {
-              staticClass: "widget widget-cart px-3 pt-2 pb-3",
-              staticStyle: { width: "20rem" }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-cart-arrow-down fa-2x",
-                staticStyle: { color: "#aaaaaa" }
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v("Vaša košarica je prazna!")])
-            ]
-          )
-    ])
-  ])
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
