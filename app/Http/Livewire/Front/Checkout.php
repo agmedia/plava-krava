@@ -257,7 +257,7 @@ class Checkout extends Component
 
         CheckoutSession::setShipping($shipping);
 
-        return redirect()->route('naplata', ['step' => 'dostava']);
+       // return redirect()->route('naplata', ['step' => 'dostava']);
     }
 
 
