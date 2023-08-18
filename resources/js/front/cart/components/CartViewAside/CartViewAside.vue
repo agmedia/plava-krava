@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$store.state.cart">
+    <div>
         <div class=" rounded-3  p-4" v-if="route == 'kosarica'" style="border: 2px solid #d8e4ff;background-color: #fff !important;">
             <div class="py-2 px-xl-2" >
                 <div class="text-center mb-2 pb-2">
