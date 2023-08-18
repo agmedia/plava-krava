@@ -8,7 +8,7 @@
     <div class="w-50 ps-2">
       <!--  <button style="z-index:10000" class="btn btn-primary w-100" type="submit"><span>Završi kupnju</span><i class="ci-arrow-right  ms-1"></i></button>-->
 
-        <input type="submit" class="btn btn-primary w-100" value="Završi kupnju">
+        <input type="submit" class="w-100" value="Završi kupnju">
     </div>
 
     </div>
