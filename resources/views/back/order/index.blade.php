@@ -169,7 +169,7 @@
                 console.log('Selected ID: ' + selected);
                 console.log('Orders ID: ' + orders);
 
-                axios.get('{{ route('api.order.status.change') }}' + '?selected=' + selected + '&orders=' + orders)
+                axios.post('{{ route('api.order.status.change') }}', {selected: selected, orders: orders})
                 .then((r) => {
                     location.reload();
                 })
