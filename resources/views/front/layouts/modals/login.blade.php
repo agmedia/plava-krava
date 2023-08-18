@@ -33,7 +33,9 @@
                     </div>
                     <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Prijavi se</button>
                 </form>
-                <form class="needs-validation tab-pane fade" method="POST" action="{{ route('register') }}" autocomplete="off" novalidate id="signup-tab">
+                <form class="needs-validation tab-pane fade" method="POST" action="{{ route('register') }}" autocomplete="off" novalidate id="signup-tab" oninput='password_confirmation.setCustomValidity(password_confirmation.value != password.value ? "Passwords do not match." : "")'>
+                    <p>>
+
                     @csrf
                     <div class="mb-3">
                         <label class="form-label" for="su-name">Korisničko ime</label>
@@ -63,21 +65,18 @@
                             </label>
                         </div>
                     </div>
-                    @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                        <div class="form-group mb-3" >
-                            <x-jet-label for="terms">
-                                <div class="flex items-center">
-                                    <x-jet-checkbox name="terms" id="terms"/>
-                                    <label class="form-label">
-                                        {!! __('Slažem se sa :terms_of_service', [
+
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="ex-check-4">{!! __('Slažem se sa :terms_of_service', [
                                                 'terms_of_service' => '<a target="_blank" href="'.route('catalog.route.page',['page' => 'opci-uvjeti-kupnje']).'" class="link-fx">'.__('Uvjetima kupovine').'</a>',
                                                 'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="link-fx">'.__('Privacy Policy').'</a>',
-                                        ]) !!}
-                                    </label>
-                                </div>
-                            </x-jet-label>
-                        </div>
-                    @endif
+                                        ]) !!}</label>
+                        <input class="form-check-input" type="checkbox" id="ex-check-4" required>
+                        <div class="invalid-feedback" id="ex-check-4">Morate se složiti sa Uvjetima kupnje.</div>
+                    </div>
+
+
+
                     <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Registriraj se</button>
 
                     <input type="hidden" name="recaptcha" id="recaptcha">
