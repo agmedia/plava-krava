@@ -34,7 +34,8 @@
                     <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Prijavi se</button>
                 </form>
                 <form class="needs-validation tab-pane fade" method="POST" action="{{ route('register') }}" autocomplete="off" novalidate id="signup-tab" oninput='password_confirmation.setCustomValidity(password_confirmation.value != password.value ? "Passwords do not match." : "")'>
-                    <p>>
+
+
 
                     @csrf
                     <div class="mb-3">
