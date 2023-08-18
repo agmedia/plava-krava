@@ -183,7 +183,7 @@ class Order extends Model
         if ( ! empty($data)) {
             $this->order = $data;
         }
-        
+
         $updated = \App\Models\Back\Orders\Order::where('id', $data['id'])->update([
             'payment_fname'    => $this->order['address']['fname'],
             'payment_lname'    => $this->order['address']['lname'],
