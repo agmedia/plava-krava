@@ -6411,499 +6411,538 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.route == "kosarica"
-      ? _c(
-          "div",
-          {
-            staticClass: " rounded-3  p-4",
-            staticStyle: {
-              border: "2px solid #d8e4ff",
-              "background-color": "#fff !important"
-            }
-          },
-          [
-            _c("div", { staticClass: "py-2 px-xl-2" }, [
-              _c("div", { staticClass: "text-center mb-2 pb-2" }, [
-                _c("h2", { staticClass: "h6 mb-3 pb-1" }, [_vm._v("Ukupno")]),
-                _vm._v(" "),
-                _c("h3", { staticClass: "fw-bold text-primary" }, [
-                  _vm._v(
-                    _vm._s(
-                      _vm.$store.state.service.formatMainPrice(
-                        _vm.$store.state.cart.total
-                      )
-                    )
-                  )
-                ]),
-                _vm._v(" "),
-                _vm.$store.state.cart.secondary_price
-                  ? _c("h4", { staticClass: "fs-sm" }, [
+  return _vm.$store.state.cart
+    ? _c("div", [
+        _vm.route == "kosarica"
+          ? _c(
+              "div",
+              {
+                staticClass: " rounded-3  p-4",
+                staticStyle: {
+                  border: "2px solid #d8e4ff",
+                  "background-color": "#fff !important"
+                }
+              },
+              [
+                _c("div", { staticClass: "py-2 px-xl-2" }, [
+                  _c("div", { staticClass: "text-center mb-2 pb-2" }, [
+                    _c("h2", { staticClass: "h6 mb-3 pb-1" }, [
+                      _vm._v("Ukupno")
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "fw-bold text-primary" }, [
                       _vm._v(
                         _vm._s(
-                          _vm.$store.state.service.formatSecondaryPrice(
+                          _vm.$store.state.service.formatMainPrice(
                             _vm.$store.state.cart.total
                           )
                         )
                       )
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-primary btn-shadow d-block w-100 mt-4",
-                  attrs: { href: _vm.checkouturl }
-                },
-                [
-                  _vm._v("NASTAVI NA NAPLATU "),
-                  _c("i", { staticClass: "ci-arrow-right fs-sm" })
-                ]
-              )
-            ])
-          ]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.route == "naplata"
-      ? _c(
-          "div",
-          {
-            staticClass: " rounded-3  p-4 ms-lg-auto",
-            staticStyle: {
-              border: "2px solid #d8e4ff",
-              "background-color": "#fff !important"
-            }
-          },
-          [
-            _c("div", { staticClass: "py-2 px-xl-2" }, [
-              _c(
-                "div",
-                { staticClass: "widget mb-3" },
-                [
-                  _c("h2", { staticClass: "widget-title text-center mb-2" }, [
-                    _vm._v("Sažetak narudžbe")
+                    ]),
+                    _vm._v(" "),
+                    _vm.$store.state.cart.secondary_price
+                      ? _c("h4", { staticClass: "fs-sm" }, [
+                          _vm._v(
+                            _vm._s(
+                              _vm.$store.state.service.formatSecondaryPrice(
+                                _vm.$store.state.cart.total
+                              )
+                            )
+                          )
+                        ])
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
-                  _vm._l(_vm.$store.state.cart.items, function(item) {
-                    return _c(
-                      "div",
-                      {
-                        staticClass:
-                          "d-flex align-items-center py-2 border-bottom"
-                      },
-                      [
-                        _c(
-                          "a",
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "btn btn-primary btn-shadow d-block w-100 mt-4",
+                      attrs: { href: _vm.checkouturl }
+                    },
+                    [
+                      _vm._v("NASTAVI NA NAPLATU "),
+                      _c("i", { staticClass: "ci-arrow-right fs-sm" })
+                    ]
+                  )
+                ])
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.route == "naplata"
+          ? _c(
+              "div",
+              {
+                staticClass: " rounded-3  p-4 ms-lg-auto",
+                staticStyle: {
+                  border: "2px solid #d8e4ff",
+                  "background-color": "#fff !important"
+                }
+              },
+              [
+                _c("div", { staticClass: "py-2 px-xl-2" }, [
+                  _c(
+                    "div",
+                    { staticClass: "widget mb-3" },
+                    [
+                      _c(
+                        "h2",
+                        { staticClass: "widget-title text-center mb-2" },
+                        [_vm._v("Sažetak narudžbe")]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.$store.state.cart.items, function(item) {
+                        return _c(
+                          "div",
                           {
-                            staticClass: "d-block flex-shrink-0",
-                            attrs: {
-                              href: _vm.base_path + item.attributes.path
-                            }
+                            staticClass:
+                              "d-flex align-items-center py-2 border-bottom"
                           },
                           [
-                            _c("img", {
-                              attrs: {
-                                src: item.associatedModel.image,
-                                alt: item.name,
-                                width: "64"
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "ps-2" }, [
-                          _c("h6", { staticClass: "widget-product-title" }, [
                             _c(
                               "a",
                               {
+                                staticClass: "d-block flex-shrink-0",
                                 attrs: {
                                   href: _vm.base_path + item.attributes.path
                                 }
                               },
-                              [_vm._v(_vm._s(item.name))]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "widget-product-meta" }, [
-                            _c("span", { staticClass: "text-primary me-2" }, [
-                              _vm._v(
-                                _vm._s(
-                                  Object.keys(item.conditions).length
-                                    ? item.associatedModel.main_special_text
-                                    : item.associatedModel.main_price_text
-                                )
+                              [
+                                _c("img", {
+                                  attrs: {
+                                    src: item.associatedModel.image,
+                                    alt: item.name,
+                                    width: "64"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "ps-2" }, [
+                              _c(
+                                "h6",
+                                { staticClass: "widget-product-title" },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: {
+                                        href:
+                                          _vm.base_path + item.attributes.path
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(item.name))]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "widget-product-meta" },
+                                [
+                                  _c(
+                                    "span",
+                                    { staticClass: "text-primary me-2" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          Object.keys(item.conditions).length
+                                            ? item.associatedModel
+                                                .main_special_text
+                                            : item.associatedModel
+                                                .main_price_text
+                                        )
+                                      )
+                                    ]
+                                  ),
+                                  _c("span", { staticClass: "text-muted" }, [
+                                    _vm._v("x " + _vm._s(item.quantity))
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "widget-product-meta" },
+                                [
+                                  item.associatedModel.secondary_price_text
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "text-muted me-2" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              Object.keys(item.conditions)
+                                                .length
+                                                ? item.associatedModel
+                                                    .secondary_special_text
+                                                : item.associatedModel
+                                                    .secondary_price_text
+                                            )
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _c("span", { staticClass: "text-muted" }, [
+                                    _vm._v("x " + _vm._s(item.quantity))
+                                  ])
+                                ]
                               )
-                            ]),
-                            _c("span", { staticClass: "text-muted" }, [
-                              _vm._v("x " + _vm._s(item.quantity))
                             ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "widget-product-meta" }, [
-                            item.associatedModel.secondary_price_text
-                              ? _c("span", { staticClass: "text-muted me-2" }, [
-                                  _vm._v(
-                                    _vm._s(
-                                      Object.keys(item.conditions).length
-                                        ? item.associatedModel
-                                            .secondary_special_text
-                                        : item.associatedModel
-                                            .secondary_price_text
-                                    )
-                                  )
-                                ])
-                              : _vm._e(),
-                            _c("span", { staticClass: "text-muted" }, [
-                              _vm._v("x " + _vm._s(item.quantity))
-                            ])
-                          ])
-                        ])
-                      ]
-                    )
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "ul",
-                { staticClass: "list-unstyled fs-sm pb-2 border-bottom" },
-                [
-                  _c(
-                    "li",
-                    {
-                      staticClass:
-                        "d-flex justify-content-between align-items-center"
-                    },
-                    [
-                      _c("span", { staticClass: "me-2" }, [_vm._v("Ukupno:")]),
-                      _c("span", { staticClass: "text-end" }, [
-                        _vm._v(
-                          _vm._s(
-                            _vm.$store.state.service.formatMainPrice(
-                              _vm.$store.state.cart.subtotal
-                            )
-                          )
+                          ]
                         )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm.$store.state.cart.secondary_price
-                    ? _c(
-                        "li",
-                        {
-                          staticClass:
-                            "d-flex justify-content-between align-items-center"
-                        },
-                        [
-                          _c("span", { staticClass: "me-2" }),
-                          _c("span", { staticClass: "text-end" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.$store.state.service.formatSecondaryPrice(
-                                  _vm.$store.state.cart.subtotal
-                                )
-                              )
-                            )
-                          ])
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm._l(_vm.$store.state.cart.detail_con, function(condition) {
-                    return _c("div", [
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "d-flex justify-content-between align-items-center"
-                        },
-                        [
-                          _c("span", { staticClass: "me-2" }, [
-                            _vm._v(_vm._s(condition.name))
-                          ]),
-                          _c("span", { staticClass: "text-end" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.$store.state.service.formatMainPrice(
-                                  condition.value
-                                )
-                              )
-                            )
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm.$store.state.cart.secondary_price
-                        ? _c(
-                            "li",
-                            {
-                              staticClass:
-                                "d-flex justify-content-between align-items-center"
-                            },
-                            [
-                              _c("span", { staticClass: "me-2" }),
-                              _c("span", { staticClass: "text-end" }, [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm.$store.state.service.formatSecondaryPrice(
-                                      condition.value
-                                    )
-                                  )
-                                )
-                              ])
-                            ]
-                          )
-                        : _vm._e()
-                    ])
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "h3",
-                { staticClass: "fw-bold text-primary text-center my-2" },
-                [
-                  _vm._v(
-                    _vm._s(
-                      _vm.$store.state.service.formatMainPrice(
-                        _vm.$store.state.cart.total
-                      )
-                    )
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _vm.$store.state.cart.secondary_price
-                ? _c("h4", { staticClass: "fs-sm text-center my-2" }, [
-                    _vm._v(
-                      _vm._s(
-                        _vm.$store.state.service.formatSecondaryPrice(
-                          _vm.$store.state.cart.total
-                        )
-                      )
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("p", { staticClass: "small text-center mt-0 mb-0" }, [
-                _vm._v("PDV uračunat u cijeni")
-              ])
-            ])
-          ]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.route == "pregled"
-      ? _c(
-          "div",
-          {
-            staticClass: " rounded-3 p-4 ms-lg-auto",
-            staticStyle: {
-              border: "2px solid #d8e4ff",
-              "background-color": "#fff !important"
-            }
-          },
-          [
-            _c("div", { staticClass: "py-2 px-xl-2" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "ul",
-                { staticClass: "list-unstyled fs-sm pb-2 border-bottom" },
-                [
-                  _c(
-                    "li",
-                    {
-                      staticClass:
-                        "d-flex justify-content-between align-items-center"
-                    },
-                    [
-                      _c("span", { staticClass: "me-2" }, [_vm._v("Ukupno:")]),
-                      _c("span", { staticClass: "text-end" }, [
-                        _vm._v(
-                          _vm._s(
-                            _vm.$store.state.service.formatMainPrice(
-                              _vm.$store.state.cart.subtotal
-                            )
-                          )
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm.$store.state.cart.secondary_price
-                    ? _c(
-                        "li",
-                        {
-                          staticClass:
-                            "d-flex justify-content-between align-items-center"
-                        },
-                        [
-                          _c("span", { staticClass: "me-2" }),
-                          _c("span", { staticClass: "text-end" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.$store.state.service.formatSecondaryPrice(
-                                  _vm.$store.state.cart.subtotal
-                                )
-                              )
-                            )
-                          ])
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm._l(_vm.$store.state.cart.detail_con, function(condition) {
-                    return _c("div", [
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "d-flex justify-content-between align-items-center"
-                        },
-                        [
-                          _c("span", { staticClass: "me-2" }, [
-                            _vm._v(_vm._s(condition.name))
-                          ]),
-                          _c("span", { staticClass: "text-end" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm.$store.state.service.formatMainPrice(
-                                  condition.value
-                                )
-                              )
-                            )
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm.$store.state.cart.secondary_price
-                        ? _c(
-                            "li",
-                            {
-                              staticClass:
-                                "d-flex justify-content-between align-items-center"
-                            },
-                            [
-                              _c("span", { staticClass: "me-2" }),
-                              _c("span", { staticClass: "text-end" }, [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm.$store.state.service.formatSecondaryPrice(
-                                      condition.value
-                                    )
-                                  )
-                                )
-                              ])
-                            ]
-                          )
-                        : _vm._e()
-                    ])
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "h3",
-                { staticClass: "fw-bold text-primary text-center my-2" },
-                [
-                  _vm._v(
-                    _vm._s(
-                      _vm.$store.state.service.formatMainPrice(
-                        _vm.$store.state.cart.total
-                      )
-                    )
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _vm.$store.state.cart.secondary_price
-                ? _c("h4", { staticClass: "fs-sm text-center my-2" }, [
-                    _vm._v(
-                      _vm._s(
-                        _vm.$store.state.service.formatSecondaryPrice(
-                          _vm.$store.state.cart.total
-                        )
-                      )
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("p", { staticClass: "small text-center mt-0 mb-0" }, [
-                _vm._v("PDV uračunat u cijeni")
-              ])
-            ])
-          ]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.route == "kosarica" || _vm.route == "naplata"
-      ? _c(
-          "div",
-          {
-            staticClass: "rounded-3 p-4 mt-3",
-            staticStyle: {
-              border: "2px solid #d8e4ff",
-              "background-color": "#fff !important"
-            }
-          },
-          [
-            _c("div", { staticClass: "py-2 px-xl-2" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c("label", { staticClass: "form-label" }, [
-                  _vm._v("Imate li kod za popust?")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.coupon,
-                        expression: "coupon"
-                      }
+                      })
                     ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      placeholder: "Upišite kod ovdje..."
-                    },
-                    domProps: { value: _vm.coupon },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.coupon = $event.target.value
-                      }
-                    }
-                  }),
+                    2
+                  ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "input-group-append" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary btn-shadow",
-                        attrs: { type: "button" },
-                        on: { click: _vm.setCoupon }
-                      },
-                      [_vm._v("Dodaj")]
-                    )
+                  _c(
+                    "ul",
+                    { staticClass: "list-unstyled fs-sm pb-2 border-bottom" },
+                    [
+                      _c(
+                        "li",
+                        {
+                          staticClass:
+                            "d-flex justify-content-between align-items-center"
+                        },
+                        [
+                          _c("span", { staticClass: "me-2" }, [
+                            _vm._v("Ukupno:")
+                          ]),
+                          _c("span", { staticClass: "text-end" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm.$store.state.service.formatMainPrice(
+                                  _vm.$store.state.cart.subtotal
+                                )
+                              )
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.$store.state.cart.secondary_price
+                        ? _c(
+                            "li",
+                            {
+                              staticClass:
+                                "d-flex justify-content-between align-items-center"
+                            },
+                            [
+                              _c("span", { staticClass: "me-2" }),
+                              _c("span", { staticClass: "text-end" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.$store.state.service.formatSecondaryPrice(
+                                      _vm.$store.state.cart.subtotal
+                                    )
+                                  )
+                                )
+                              ])
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm._l(_vm.$store.state.cart.detail_con, function(
+                        condition
+                      ) {
+                        return _c("div", [
+                          _c(
+                            "li",
+                            {
+                              staticClass:
+                                "d-flex justify-content-between align-items-center"
+                            },
+                            [
+                              _c("span", { staticClass: "me-2" }, [
+                                _vm._v(_vm._s(condition.name))
+                              ]),
+                              _c("span", { staticClass: "text-end" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.$store.state.service.formatMainPrice(
+                                      condition.value
+                                    )
+                                  )
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm.$store.state.cart.secondary_price
+                            ? _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "d-flex justify-content-between align-items-center"
+                                },
+                                [
+                                  _c("span", { staticClass: "me-2" }),
+                                  _c("span", { staticClass: "text-end" }, [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.$store.state.service.formatSecondaryPrice(
+                                          condition.value
+                                        )
+                                      )
+                                    )
+                                  ])
+                                ]
+                              )
+                            : _vm._e()
+                        ])
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "h3",
+                    { staticClass: "fw-bold text-primary text-center my-2" },
+                    [
+                      _vm._v(
+                        _vm._s(
+                          _vm.$store.state.service.formatMainPrice(
+                            _vm.$store.state.cart.total
+                          )
+                        )
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.$store.state.cart.secondary_price
+                    ? _c("h4", { staticClass: "fs-sm text-center my-2" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm.$store.state.service.formatSecondaryPrice(
+                              _vm.$store.state.cart.total
+                            )
+                          )
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "small text-center mt-0 mb-0" }, [
+                    _vm._v("PDV uračunat u cijeni")
                   ])
                 ])
-              ])
-            ])
-          ]
-        )
-      : _vm._e()
-  ])
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.route == "pregled"
+          ? _c(
+              "div",
+              {
+                staticClass: " rounded-3 p-4 ms-lg-auto",
+                staticStyle: {
+                  border: "2px solid #d8e4ff",
+                  "background-color": "#fff !important"
+                }
+              },
+              [
+                _c("div", { staticClass: "py-2 px-xl-2" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    { staticClass: "list-unstyled fs-sm pb-2 border-bottom" },
+                    [
+                      _c(
+                        "li",
+                        {
+                          staticClass:
+                            "d-flex justify-content-between align-items-center"
+                        },
+                        [
+                          _c("span", { staticClass: "me-2" }, [
+                            _vm._v("Ukupno:")
+                          ]),
+                          _c("span", { staticClass: "text-end" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm.$store.state.service.formatMainPrice(
+                                  _vm.$store.state.cart.subtotal
+                                )
+                              )
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.$store.state.cart.secondary_price
+                        ? _c(
+                            "li",
+                            {
+                              staticClass:
+                                "d-flex justify-content-between align-items-center"
+                            },
+                            [
+                              _c("span", { staticClass: "me-2" }),
+                              _c("span", { staticClass: "text-end" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.$store.state.service.formatSecondaryPrice(
+                                      _vm.$store.state.cart.subtotal
+                                    )
+                                  )
+                                )
+                              ])
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm._l(_vm.$store.state.cart.detail_con, function(
+                        condition
+                      ) {
+                        return _c("div", [
+                          _c(
+                            "li",
+                            {
+                              staticClass:
+                                "d-flex justify-content-between align-items-center"
+                            },
+                            [
+                              _c("span", { staticClass: "me-2" }, [
+                                _vm._v(_vm._s(condition.name))
+                              ]),
+                              _c("span", { staticClass: "text-end" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.$store.state.service.formatMainPrice(
+                                      condition.value
+                                    )
+                                  )
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm.$store.state.cart.secondary_price
+                            ? _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "d-flex justify-content-between align-items-center"
+                                },
+                                [
+                                  _c("span", { staticClass: "me-2" }),
+                                  _c("span", { staticClass: "text-end" }, [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.$store.state.service.formatSecondaryPrice(
+                                          condition.value
+                                        )
+                                      )
+                                    )
+                                  ])
+                                ]
+                              )
+                            : _vm._e()
+                        ])
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "h3",
+                    { staticClass: "fw-bold text-primary text-center my-2" },
+                    [
+                      _vm._v(
+                        _vm._s(
+                          _vm.$store.state.service.formatMainPrice(
+                            _vm.$store.state.cart.total
+                          )
+                        )
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.$store.state.cart.secondary_price
+                    ? _c("h4", { staticClass: "fs-sm text-center my-2" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm.$store.state.service.formatSecondaryPrice(
+                              _vm.$store.state.cart.total
+                            )
+                          )
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "small text-center mt-0 mb-0" }, [
+                    _vm._v("PDV uračunat u cijeni")
+                  ])
+                ])
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.route == "kosarica" || _vm.route == "naplata"
+          ? _c(
+              "div",
+              {
+                staticClass: "rounded-3 p-4 mt-3",
+                staticStyle: {
+                  border: "2px solid #d8e4ff",
+                  "background-color": "#fff !important"
+                }
+              },
+              [
+                _c("div", { staticClass: "py-2 px-xl-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("Imate li kod za popust?")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.coupon,
+                            expression: "coupon"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Upišite kod ovdje..."
+                        },
+                        domProps: { value: _vm.coupon },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.coupon = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-append" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary btn-shadow",
+                            attrs: { type: "button" },
+                            on: { click: _vm.setCoupon }
+                          },
+                          [_vm._v("Dodaj")]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            )
+          : _vm._e()
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
