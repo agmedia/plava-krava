@@ -63,7 +63,7 @@
 
             <section class="col-lg-8">
                <h2 class="h5 pt-1 pb-3 mb-3">Pregledaj i potvrdi narudžbu</h2>
-               <!-- <cart-view continueurl="{{ route('index') }}" checkouturl="{{ route('naplata') }}" buttons="false"></cart-view>-->
+                <cart-view continueurl="{{ route('index') }}" checkouturl="{{ route('naplata') }}" buttons="false"></cart-view>
 
                 <div class="bg-secondary rounded-3 px-4 pt-4 pb-2">
                     <div class="row">
