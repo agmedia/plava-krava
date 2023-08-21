@@ -1,4 +1,4 @@
-<form name="pay needs-validation" class="w-100" action="{{ route('checkout') }}"  method="GET">
+<form name="needs-validation pay" class="w-100" action="{{ route('checkout') }}"  method="GET">
     @csrf
     <input type="hidden" name="provjera" value="{{ $data['order_id'] }}">
 
