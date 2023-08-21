@@ -318,10 +318,6 @@
     {{--    <script src="{{ asset('js/plugins/select2/js/select2.full.min.js') }}"></script>--}}
 
     <script>
-        $( document ).ready(function() {
-            /*$('#state-select').select2();*/
-            $('input').attr('autocomplete','off');
-        });
 
         $(document).ready(function(){
             $(this).scrollTop(0);
