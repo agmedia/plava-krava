@@ -88,7 +88,7 @@ class CheckoutController extends Controller
 
         $uvjeti = DB::table('pages')
             ->select('description')
-            ->whereIn('id', [36])
+            ->whereIn('id', [6])
             ->get();
 
         $data['payment_form'] = $order->resolvePaymentForm();
