@@ -11,6 +11,7 @@ use App\Models\Front\AgCart;
 use App\Models\Front\Checkout\Order;
 use App\Models\TagManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -85,9 +86,14 @@ class CheckoutController extends Controller
             CheckoutSession::setOrder($order->getData());
         }
 
+        $uvjeti = DB::table('pages')
+            ->select('description')
+            ->whereIn('id', [3])
+            ->get();
+
         $data['payment_form'] = $order->resolvePaymentForm();
 
-        return view('front.checkout.view', compact('data'));
+        return view('front.checkout.view', compact('data','uvjeti'));
     }
 
 
