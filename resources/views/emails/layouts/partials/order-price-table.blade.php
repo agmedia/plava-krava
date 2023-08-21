@@ -28,6 +28,7 @@
             text-align: left;
             background-color: #18326d;
             color: white;
+            border:none;
         }
     </style>
 @endpush
@@ -52,8 +53,8 @@
     @foreach ($order->totals as $total)
         <tr>
             <td style="border-right: none; border-top: none;"></td>
-            <td style="border-left: none; border-right: none;"></td>
-            <td style="border-left: none; text-align: right; {{ $total->code == 'shipping' ? '' : 'font-weight: bold;' }}">{{ $total->title }}</td>
+            <td style="border-left: none; border-right: none; border-top: none;"></td>
+            <td style="border-left: none; text-align: right; border-top: none; {{ $total->code == 'shipping' ? '' : 'font-weight: bold;' }}">{{ $total->title }}</td>
             @if ($order->shipping_state != 'Croatia' && $total->code == 'shipping')
                 <td style="border-left: none; text-align: right; {{ $total->code == 'shipping' ? '' : 'font-weight: bold;' }}" width="20%">Trošak dostave će Vam biti poslan u roku od 24h.</td>
             @else
@@ -63,7 +64,7 @@
     @endforeach
 </table>
 
-<p style="text-align: right;font-size: 10px;"> PDV uključen u cijenu. Od toga
+<small style="text-align: right;"> PDV uključen u cijenu. Od toga
     @foreach ($order->totals as $total)
         @if($total->code == 'subtotal')
         €<strong>{{ number_format($total->value - ($total->value / 1.05 ), 2, ',', '.') }}</strong>  PDV knjige i
@@ -71,5 +72,5 @@
         €<strong>{{number_format($total->value - ($total->value / 1.25 ), 2, ',', '.') }}</strong>  PDV dostava
     @endif
     @endforeach
-</p>
+</small>
 

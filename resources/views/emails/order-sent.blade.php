@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td class="ag-mail-tableset">
-                {{ __('Način plaćanja') }}:
+                <b> {{ __('Način plaćanja') }}:</b>
                 @if ($order->payment_code == 'bank')
                     <b>{{ __('Općom uplatnicom / Virmanom / Internet bankarstvom') }}</b>
 
