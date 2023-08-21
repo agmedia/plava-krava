@@ -2,6 +2,17 @@
     @csrf
     <input type="hidden" name="provjera" value="{{ $data['order_id'] }}">
 
+
+    <div class="d-block pt-3 pb-2 mt-1 text-start" >
+        <div class="alert alert-info  d-flex"  role="alert">
+            <div class="alert-icon">
+                <i class="ci-announcement"></i>
+            </div>
+            <div><small>Morate se složiti sa Uvjetima kupnje.</small></div>
+        </div>
+
+    </div>
+
     <div class="form-check form-check-inline">
         <label class="form-check-label" for="ex-check-4">{!! __('Slažem se sa :terms_of_service', [
                                                 'terms_of_service' => '<a target="_blank" href="'.route('catalog.route.page',['page' => 'opci-uvjeti-kupnje']).'" class="link-fx">'.__('Uvjetima kupovine').'</a>',
