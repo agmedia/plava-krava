@@ -13,7 +13,7 @@
     @endif
 
     <div class="pb-5 mb-sm-4">
-        <div class="pt-5">
+        <div class="pt-0">
             <div class="card py-3 mt-sm-3">
                 <div class="card-body text-center">
                     <h2 class="h4 pb-3">Vaša narudžba je uspješno dovršena!</h2>
