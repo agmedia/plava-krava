@@ -144,7 +144,7 @@
                     </div>
 
                 @if($prod->secondary_price_text)
-                    <div class="mb-1 mt-1 text-center text-lg-start">
+                    <div class="mb-1 mt-1 text-start">
                         @if ($prod->main_price > $prod->main_special)
                             <span class=" fs-sm text-muted me-1"> {{ $prod->secondary_special_text }}</span>
                             <span class="text-muted fs-sm me-3">*{{ $prod->secondary_price_text }}</span>
@@ -155,13 +155,13 @@
                 @endif
                 @if ($prod->main_price > $prod->main_special)
 
-                    <div class="mb-3 mt-1 text-center text-lg-start">
+                    <div class="mb-3 mt-1 text-start">
                         <span class=" fs-sm text-muted me-1"> *Najniža cijena u zadnjih 30 dana.</span>
                     </div>
 
                 @endif
                 @if ($prod->shipping_time)
-                <div class="mb-3 mt-1 text-center text-lg-start">
+                <div class="mb-3 mt-1 text-start">
                     <span class=" fs-sm text-muted me-1"> <i class="ci-delivery text-muted lead align-middle mt-n1 me-1"></i> Rok dostave: {{ $prod->shipping_time }}</span>
                 </div>
                 @endif
