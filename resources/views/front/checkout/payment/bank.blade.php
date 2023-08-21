@@ -8,14 +8,14 @@
             <div class="alert-icon">
                 <i class="ci-announcement"></i>
             </div>
-            <div><small>Morate se složiti sa Uvjetima kupnje.</small></div>
+            <div><small>Prije kupnje potrebno je prihvatiti Opće uvjete korištenja i privatnosti</small></div>
         </div>
 
     </div>
 
     <div class="form-check form-check-inline">
-        <label class="form-check-label" for="ex-check-4">{!! __('Prije kupnje potrebno je prihvatiti :terms_of_service', [
-                                                'terms_of_service' => '<a target="_blank" href="'.route('catalog.route.page',['page' => 'opci-uvjeti-koristenja-i-privatnosti']).'" class="link-fx">'.__('Opći uvjete korištenja i privatnosti').'</a>',
+        <label class="form-check-label" for="ex-check-4">{!! __('Slažem se sa :terms_of_service', [
+                                                'terms_of_service' => '<a target="_blank" href="'.route('catalog.route.page',['page' => 'opci-uvjeti-koristenja-i-privatnosti']).'" class="link-fx">'.__('Općim uvjetima korištenja i privatnosti').'</a>',
                                                 'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="link-fx">'.__('Privacy Policy').'</a>',
                                         ]) !!}</label>
         <input class="form-check-input" type="checkbox" name="terms" id="terms" required>
