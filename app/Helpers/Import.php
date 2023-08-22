@@ -74,7 +74,7 @@ class Import
      */
     public function resolveCategories(array $categories)
     {
-        $response = [];
+        $response[] = config('settings.eng_default_category');
 
         foreach ($categories as $category) {
             $parent_id = 0;
@@ -84,11 +84,10 @@ class Import
                 $response[] = $parent_id;
             }
 
-            $response[] = $this->saveCategory($category['title'], $parent_id, $category['position']);
-        }
+            if ( ! $parent_id) {
+                $response[] = $this->saveCategory($category['title'], $parent_id, $category['position']);
+            }
 
-        if (empty($response)) {
-            $response[] = 1;
         }
 
         return $response;

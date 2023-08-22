@@ -134,7 +134,7 @@ class AkademskaKnjigaMk
                         'condition'            => null,
                         'binding'              => $data['formaCover'],
                         'year'                 => $data['yearPublished'],
-                        'shipping_time'        => '',
+                        'shipping_time'        => '7-14 dana',
                         'youtube_product_url'  => '',
                         'youtube_channel'      => '',
                         'goodreads_author_url' => '',

@@ -21,16 +21,17 @@ return [
         'back'  => 30
     ],
 
-    'search_keyword'    => 'pojam',
-    'author_path'       => 'autor',
-    'publisher_path'    => 'nakladnik',
-    'group_path'        => 'Kategorija proizvoda',
-    'unknown_author'    => 6,
-    'unknown_publisher' => 6,
-    'images_domain'     =>  env('APP_IMAGE_DOMAIN'),
-    'image_default'     => 'media/avatars/avatar0.jpg',
+    'search_keyword'       => 'pojam',
+    'author_path'          => 'autor',
+    'publisher_path'       => 'nakladnik',
+    'group_path'           => 'Kategorija proizvoda',
+    'eng_default_category' => 358,
+    'unknown_author'       => 6,
+    'unknown_publisher'    => 6,
+    'images_domain'        => env('APP_IMAGE_DOMAIN'),
+    'image_default'        => 'media/avatars/avatar0.jpg',
     //
-    'default_tax_id' => 1,
+    'default_tax_id'       => 1,
 
     'eur_divide_amount' => 0.13272280,
 
@@ -60,8 +61,8 @@ return [
     ],
 
     'order' => [
-        'made_text' => 'Narudžba napravljena.',
-        'status'    => [
+        'made_text'       => 'Narudžba napravljena.',
+        'status'          => [
             'new'        => 1,
             'unfinished' => 8,
             'declined'   => 7,
@@ -70,7 +71,7 @@ return [
             'send'       => 4,
         ],
         // Can be number or array.
-        'new_status' => 1,
+        'new_status'      => 1,
         'canceled_status' => [7, 5],
     ],
 
