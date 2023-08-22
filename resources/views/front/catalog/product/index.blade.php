@@ -470,7 +470,7 @@
         </div>
         <div class="tns-carousel tns-controls-static tns-controls-outside tns-nav-enabled pt-2">
             <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 2, &quot;gutter&quot;: 16, &quot;controls&quot;: true, &quot;autoHeight&quot;: true, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:2}, &quot;480&quot;:{&quot;items&quot;:2}, &quot;720&quot;:{&quot;items&quot;:3}, &quot;991&quot;:{&quot;items&quot;:2}, &quot;1140&quot;:{&quot;items&quot;:3}, &quot;1300&quot;:{&quot;items&quot;:4}, &quot;1500&quot;:{&quot;items&quot;:5}}}">
-                @foreach ($cat->products()->get()->unique()->take(10) as $cat_product)
+                @foreach ($cat->products()->get()->random(10) as $cat_product)
                     @if ($cat_product->id  != $prod->id)
                         <div>
                             @include('front.catalog.category.product', ['product' => $cat_product])
