@@ -18588,8 +18588,9 @@ html:not([dir=rtl]) .range-slider-ui.noUi-horizontal .noUi-handle {
 }
 .product-gallery-preview-item > img {
     display: block;
-    width: 100%;
+    width: auto;
     border-radius: 5px;
+    margin:0 auto;
 }
 .product-gallery-preview-item.active {
     position: relative;
