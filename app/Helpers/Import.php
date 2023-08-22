@@ -74,18 +74,19 @@ class Import
      */
     public function resolveCategories(array $categories)
     {
-        $response[] = config('settings.eng_default_category');
+        $parent = config('settings.eng_default_category');
+        $response[] = $parent;
 
         foreach ($categories as $category) {
             $parent_id = 0;
 
             if (isset($category['parentId']['title'])) {
-                $parent_id = $this->saveCategory($category['parentId']['title'], 0, $category['parentId']['position']);
+                $parent_id = $this->saveCategory($category['parentId']['title'], $parent, $category['parentId']['position']);
                 $response[] = $parent_id;
             }
 
             if ( ! $parent_id) {
-                $response[] = $this->saveCategory($category['title'], $parent_id, $category['position']);
+                $response[] = $this->saveCategory($category['title'], $parent, $category['position']);
             }
 
         }
