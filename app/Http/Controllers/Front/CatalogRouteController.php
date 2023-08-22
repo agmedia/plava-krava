@@ -67,8 +67,9 @@ class CatalogRouteController extends Controller
             $payment_methods = Settings::getList('payment', 'list.%', true);
 
             $reviews = $prod->reviews()->get();
+            $related = Helper::getRelated($cat, $subcat);
 
-            return view('front.catalog.product.index', compact('prod', 'group', 'cat', 'subcat', 'seo', 'shipping_methods' , 'payment_methods', 'crumbs', 'bookscheme', 'gdl', 'reviews'));
+            return view('front.catalog.product.index', compact('prod', 'group', 'cat', 'subcat', 'related', 'seo', 'shipping_methods' , 'payment_methods', 'crumbs', 'bookscheme', 'gdl', 'reviews'));
         }
 
         // If only group...

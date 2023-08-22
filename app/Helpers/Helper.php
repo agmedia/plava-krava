@@ -176,6 +176,31 @@ class Helper
 
 
     /**
+     * @param $cat
+     * @param $subcat
+     *
+     * @return mixed
+     */
+    public static function getRelated($cat = null, $subcat = null)
+    {
+        $related = [];
+
+        if ($subcat) {
+            $related = $subcat->products()->inRandomOrder()->take(10)->get();
+        }
+        if ($cat) {
+            $related = $cat->products()->inRandomOrder()->take(10)->get();
+        }
+
+        if ($related->count() < 9) {
+            $related->merge(Product::query()->inRandomOrder()->take(10 - $related->count())->get());
+        }
+
+        return Product::query()->inRandomOrder()->take(10)->get();
+    }
+
+
+    /**
      * @param string $description
      *
      * @return false|string
