@@ -15,6 +15,9 @@ class CreateTempTableTable extends Migration
     {
         Schema::create('temp_table', function (Blueprint $table) {
             $table->bigInteger('product_id');
+            $table->string('sku', 14)->nullable();
+            $table->integer('quantity')->unsigned()->default(0);
+            $table->decimal('price', 15, 4)->nullable();
             $table->decimal('special', 15, 4)->nullable();
         });
     }

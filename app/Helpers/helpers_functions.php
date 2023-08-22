@@ -3,6 +3,9 @@
 /**
  *
  */
+
+use Illuminate\Support\Facades\Log;
+
 if ( ! function_exists('group')) {
     /**
      * Function that returns category group based on
@@ -20,5 +23,30 @@ if ( ! function_exists('group')) {
         }
 
         return config('settings.group_path');
+    }
+}
+
+/**
+ *
+ */
+if ( ! function_exists('logiraj_vrijeme')) {
+    /**
+     * Function that returns category group based on
+     * settings.php "group_path" key value. Returns it as is or
+     * as a slug if the $slug parameter is true.
+     *
+     * @param bool $slug
+     *
+     * @return string
+     */
+    function logiraj_vrijeme($code, string $log_text = '')
+    {
+        $log_start1 = microtime(true);
+
+        $code();
+
+        $log_end1 = microtime(true);
+        $sec1 = number_format(($log_end1 - $log_start1), 2, ',', '.');
+        Log::info($log_text . ' --- Time: ' . $sec1 . ' sec.');
     }
 }

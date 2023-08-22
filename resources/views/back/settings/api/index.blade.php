@@ -48,7 +48,18 @@
                                                                     <tbody>
                                                                     <tr>
                                                                         <td style="width: 30%;">
-                                                                            <button type="button" class="btn btn-sm btn-alt-info" onclick="event.preventDefault(); importTarget('akademska-knjiga-mk', 'products', '{{ route('api.api.import') }}');">Import Proizvoda</button>
+                                                                            <button type="button" class="btn btn-sm btn-alt-warning" onclick="event.preventDefault(); importTarget('akademska-knjiga-mk', 'check-products', '{{ route('api.api.import') }}');">Provjera Novih
+                                                                                                                                                                                                                                                               Proizvoda
+                                                                            </button>
+                                                                        </td>
+                                                                        <td>
+                                                                            <code>Provjeri ima li novih proizvoda za import...</code>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width: 30%;">
+                                                                            <button type="button" class="btn btn-sm btn-alt-info" onclick="event.preventDefault(); importTarget('akademska-knjiga-mk', 'products', '{{ route('api.api.import') }}');">Import Proizvoda
+                                                                            </button>
                                                                         </td>
                                                                         <td>
                                                                             <code>Import novih proizvoda...</code>
@@ -56,7 +67,10 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td>
-                                                                            <button type="button" class="btn btn-sm btn-alt-info" onclick="event.preventDefault(); importTarget('akademska-knjiga-mk', 'prices-quantities', '{{ route('api.api.update') }}');">Update Cijena i Količina</button>
+                                                                            <button type="button" class="btn btn-sm btn-alt-info" onclick="event.preventDefault(); importTarget('akademska-knjiga-mk', 'update-prices-quantities', '{{ route('api.api.import') }}');">Update
+                                                                                                                                                                                                                                                                      Cijena i
+                                                                                                                                                                                                                                                                      Količina
+                                                                            </button>
                                                                         </td>
                                                                         <td>
                                                                             <code>Update cijena i količina...</code>
@@ -69,10 +83,10 @@
                                                         <div class="col-md-4">
                                                             <div class="block block-rounded block-bordered" id="my-block">
                                                                 <div class="block-header block-header-default">
-                                                                    <h3 class="block-title">Rezultat Api Poziva</h3>
+                                                                    <h3 class="block-title">Rezultat</h3>
                                                                 </div>
                                                                 <div class="block-content">
-
+                                                                    <p class="font-w300 font-size-sm" id="api-result">Ovdje će se prikazati rezultati ili greške API poziva, zavisno od toga što ste pozvali...</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -108,26 +122,35 @@
         });
 
         function importTarget(target, method, route) {
-            let item = {
-                target: target,
-                method: method
-            };
+            let block = $('#my-block');
+            let item  = {target: target, method: method};
 
-            console.log(target, method, route)
+            block.addClass('block-mode-loading');
 
             axios.post(route, {data: item})
             .then(response => {
-                console.log(response.data)
-                if (response.data.success) {
-                    return successToast.fire(response.data.success);
-                } else {
-                    return errorToast.fire(response.data.message);
-                }
+                showToast(response.data);
+                showResult(response.data);
+
+                block.removeClass('block-mode-loading');
             });
         }
 
 
-        function updateTarget(target, method) {}
+        function showResult(result) {
+            let text = result.success ? result.success : result.error;
+
+            $('#api-result').html(text);
+        }
+
+
+        function showToast(result) {
+            if (result.success) {
+                successToast.fire();
+            } else {
+                errorToast.fire(result.message);
+            }
+        }
 
     </script>
 @endpush

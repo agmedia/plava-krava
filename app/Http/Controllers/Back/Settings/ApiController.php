@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 class ApiController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -23,25 +24,22 @@ class ApiController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
     public function import(Request $request)
     {
-        Log::info($request);
+        $data = $this->validateTarget($request);
 
-        $this->validate($request);
-        $request->merge(['type' => 'import']);
+        $targetClass = $this->resolveTargetClass($data);
 
-        $targetClass = $this->resolveTargetClass($request);
+        if ($targetClass) {
+            $ok = $targetClass->process($data);
 
-        $ok = $targetClass->process();
-
-        if ($ok) {
-            return response()->json(['success' => 'Application basic info is saved.']);
+            if ($ok) {
+                return response()->json(['success' => 'Success.!! Saved ' . $ok . ' items.']);
+            }
         }
 
         return response()->json(['error' => 'Whoops.!! Pokušajte ponovo ili kontaktirajte administratora!']);
@@ -49,8 +47,6 @@ class ApiController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
@@ -71,24 +67,44 @@ class ApiController extends Controller
 
     /**
      * @param Request $request
+     * @param string  $type
      *
-     * @return array
+     * @return mixed
      */
-    public function validateTarget(Request $request)
+    public function validateTarget(Request $request, string $type = 'import')
     {
-        return $request->validate([
-            'target' => 'required',
-            'method' => 'required'
+        $request->validate([
+            'data.target' => 'required',
+            'data.method' => 'required'
         ]);
+
+        $data = $request->input('data');
+
+        $request->merge([
+            'data' => [
+                'target' => $data['target'],
+                'method' => $data['method'],
+                'type' => $type
+            ]
+        ]);
+
+        return $request->input('data');
     }
 
 
-    private function resolveTargetClass(Request $request)
+    /**
+     * @param array $data
+     *
+     * @return mixed
+     */
+    private function resolveTargetClass(array $data)
     {
-        $class = new \stdClass();
+        $class = null;
 
-        if ($request->input('target') == '') {
-            $class = new AkademskaKnjigaMk($request);
+        if (isset($data['target'])) {
+            if ($data['target'] == 'akademska-knjiga-mk') {
+                $class = new AkademskaKnjigaMk();
+            }
         }
 
         return $class;
