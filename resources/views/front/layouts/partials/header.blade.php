@@ -67,7 +67,7 @@
     <div class="offcanvas-body px-0 pt-3 pb-0" data-simplebar>
         <div class="tab-content">
                         <filter-view ids="{{ isset($ids) ? $ids : null }}"
-                                     group="kategorije-proizvoda"
+                                     group="kategorija-proizvoda"
                                      cat="{{ isset($cat) ? $cat : null }}"
                                      subcat="{{ isset($subcat) ? $subcat : null }}"
                                      author="{{ isset($author) ? $author['slug'] : null }}"
