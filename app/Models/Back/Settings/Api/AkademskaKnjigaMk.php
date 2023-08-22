@@ -88,7 +88,7 @@ class AkademskaKnjigaMk
     private function importNewProducts()
     {
         $count = 0;
-        $for_import = TempTable::query()->take(100)->get();
+        $for_import = TempTable::query()->get();
 
         foreach ($for_import as $item) {
             $exist = Product::query()->where('sku', $item['sku'])->first();

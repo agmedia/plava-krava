@@ -49,13 +49,16 @@ class Import
 
                 // Thumb creation
                 $str_thumb = $id . '/' . Str::limit(Str::slug($name)) . '-' . $time . '-thumb.';
+                $canvas = Image::canvas(400, 400, '#ffffff');
 
-                $img = $img->resize(null, 300, function ($constraint) {
+                $img = $img->resize(null, 350, function ($constraint) {
                     $constraint->aspectRatio();
-                })->fit(250, 300);
+                });
+
+                $canvas->insert($img, 'center');
 
                 $path_webp_thumb = $str_thumb . 'webp';
-                Storage::disk('products')->put($path_webp_thumb, $img->encode('webp'));
+                Storage::disk('products')->put($path_webp_thumb, $canvas->encode('webp'));
 
                 $response = config('filesystems.disks.products.url') . $path;
 
