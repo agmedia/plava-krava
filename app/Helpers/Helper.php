@@ -187,7 +187,7 @@ class Helper
 
         if ($subcat) {
             $related = $subcat->products()->inRandomOrder()->take(10)->get();
-            
+
         } else {
             if ($cat) {
                 $related = $cat->products()->inRandomOrder()->take(10)->get();
@@ -198,7 +198,7 @@ class Helper
             $related->merge(Product::query()->inRandomOrder()->take(10 - $related->count())->get());
         }
 
-        return Product::query()->inRandomOrder()->take(10)->get();
+        return $related;
     }
 
 

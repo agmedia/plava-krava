@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use function Livewire\str;
 
 class AkademskaKnjigaMk
 {
@@ -26,6 +25,11 @@ class AkademskaKnjigaMk
     protected $request;
 
 
+    /**
+     * @param array $request
+     *
+     * @return false|\Illuminate\Http\JsonResponse|int|string
+     */
     public function process(array $request)
     {
         if ($request) {
@@ -90,7 +94,7 @@ class AkademskaKnjigaMk
     private function importNewProducts()
     {
         $count = 0;
-        $for_import = TempTable::query()->get();
+        $for_import = TempTable::query()->take(1000)->get();
 
         foreach ($for_import as $item) {
             $exist = Product::query()->where('sku', $item['sku'])->first();
