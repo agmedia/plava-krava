@@ -259,7 +259,7 @@
                         <div class="row pt-2">
                             <div class="col-lg-7 col-sm-7">
                                 <h3 class="h6">Sažetak</h3>
-                                <div class=" fs-md pb-2">
+                                <div class=" fs-md pb-2 mb-4">
                                     {!! $prod->description !!}
                                 </div>
 
@@ -305,12 +305,15 @@
                                 <h3 class="h6">Dodatne informacije</h3>
                                 <ul class="list-unstyled fs-sm pb-2">
 
+
                                     @if ($prod->author)
-                                        <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Autor:</span><span>{{ $prod->author->title }}</span></li>
+                                            <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Autor:</span><span><a href="{{ route('catalog.route.author', ['author' => $prod->author]) }}">{{ Illuminate\Support\Str::limit($prod->author->title, 30) }}</a></span></li>
                                     @endif
                                     @if ($prod->publisher)
-                                        <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Nakladnik:</span><span>{{ $prod->publisher->title }}</span></li>
+                                            <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Nakladnik:</span><span><a href="{{ route('catalog.route.publisher', ['publisher' => $prod->publisher]) }}">{{ Illuminate\Support\Str::limit($prod->publisher->title, 30) }}</a> </span></li>
                                     @endif
+
+
 
                                     <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Uvez:</span><span>{{ $prod->binding ?: '...' }}</span></li>
                                     <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Jezik:</span><span>{{ $prod->origin ?: '...' }}</span></li>
