@@ -7697,7 +7697,7 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              "d-flex flex-wrap justify-content-between align-items-start pb-2"
+                              "d-flex flex-wrap justify-content-between align-items-start pb-1"
                           },
                           [
                             _c(

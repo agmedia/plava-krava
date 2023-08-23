@@ -31,7 +31,7 @@
                            <img load="lazy" :src="product.image.replace('.webp', '-thumb.webp')" width="400" height="400" :alt="product.name">
                     </a>
                     <div class="card-body py-2">
-                        <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
+                        <div class="d-flex flex-wrap justify-content-between align-items-start pb-1">
                             <div class="text-muted fs-xs me-1">
                                 <a class="product-meta fw-medium" :href="product.author ? (origin + product.author.url) : '#'">{{ product.author ? product.author.title : '' }}</a>
                             </div>
