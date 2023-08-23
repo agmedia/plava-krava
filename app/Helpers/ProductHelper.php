@@ -26,12 +26,12 @@ class ProductHelper
         $catstring   = '';
 
         if ($category) {
-            $catstring = '<a href="' . route('catalog.route', ['group' => Str::slug($category->group), 'cat' => $category->slug]) . '" class="product-meta d-block fs-xs pb-1">' . $category->title . '</a> ';
+            $catstring = '<a href="' . route('catalog.route', ['group' => Str::slug($category->group), 'cat' => $category->slug]) . '" class="product-meta maincat d-block fs-xs pb-1">' . $category->title . '</a> ';
         }
 
         if ($subcategory) {
             $substring = '<a href="' . route('catalog.route',
-                    ['group' => Str::slug($category->group), 'cat' => $category->slug, 'subcat' => $subcategory->slug]) . '" class="product-meta d-block fs-xs pb-1">' . $subcategory->title . '</a>';
+                    ['group' => Str::slug($category->group), 'cat' => $category->slug, 'subcat' => $subcategory->slug]) . '" class="product-meta subcat d-block fs-xs pb-1">' . $subcategory->title . '</a>';
 
             return $catstring . $substring;
         }
