@@ -29,11 +29,30 @@ if ( ! function_exists('group')) {
 /**
  *
  */
+if ( ! function_exists('run_query')) {
+    /**
+     *
+     * @param bool $slug
+     *
+     * @return string
+     */
+    function run_query(string $query = null)
+    {
+        if ($query) {
+            return \Illuminate\Support\Facades\DB::statement(
+                \Illuminate\Support\Facades\DB::raw($query)
+            );
+        }
+
+        return false;
+    }
+}
+
+/**
+ *
+ */
 if ( ! function_exists('logiraj_vrijeme')) {
     /**
-     * Function that returns category group based on
-     * settings.php "group_path" key value. Returns it as is or
-     * as a slug if the $slug parameter is true.
      *
      * @param bool $slug
      *

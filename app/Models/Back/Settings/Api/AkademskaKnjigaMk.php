@@ -2,6 +2,7 @@
 
 namespace App\Models\Back\Settings\Api;
 
+use App\Helpers\ApiHelper;
 use App\Helpers\Helper;
 use App\Helpers\Import;
 use App\Helpers\ProductHelper;
@@ -36,7 +37,7 @@ class AkademskaKnjigaMk
                 case 'products':
                     return $this->importNewProducts();
                 case 'update-prices-quantities':
-                    return $this->importNewProducts();
+                    return $this->updatePriceAndQuantity();
             }
         }
 
@@ -57,10 +58,9 @@ class AkademskaKnjigaMk
         $data  = Http::get('http://akademskakniga.mk/api/ASyn/' . $limit);
 
         $existing = Product::query()->pluck('sku');
-        $list     = collect($data->json())
-            ->pluck('bookId')
-            ->diff($existing)
-            ->flatten();
+        $list     = collect($data->json())->pluck('bookId')
+                                          ->diff($existing)
+                                          ->flatten();
 
         $for_import = collect($data->json())->whereIn('bookId', $list)->chunk(10000);
 
@@ -78,7 +78,9 @@ class AkademskaKnjigaMk
             TempTable::query()->insert($query);
         }
 
-        return response()->json(['success' => 1]);
+        $count = TempTable::query()->count();
+
+        return ApiHelper::response(1, 'Ima ' . $count . ' novih artikala za import.');
     }
 
 
@@ -88,7 +90,7 @@ class AkademskaKnjigaMk
     private function importNewProducts()
     {
         $count = 0;
-        $for_import = TempTable::query()->get();
+        $for_import = TempTable::query()->inRandomOrder()->take(5)->get();
 
         foreach ($for_import as $item) {
             $exist = Product::query()->where('sku', $item['sku'])->first();
@@ -112,12 +114,12 @@ class AkademskaKnjigaMk
                         'author_id'            => $author_id,
                         'publisher_id'         => $publisher_id,
                         'action_id'            => 0,
-                        'name'                 => $data['imageAltText'],
+                        'name'                 => $data['title'],
                         'sku'                  => $data['bookId'],
                         'polica'               => null,
                         'isbn'                 => $data['ISBN'],
                         'description'          => $data['description'],
-                        'slug'                 => Helper::resolveSlug($data, 'imageAltText'),
+                        'slug'                 => Helper::resolveSlug($data, 'title'),
                         'price'                => $data['price'],
                         'quantity'             => $data['inStock'] ?: 0,
                         'decrease'             => 1,
@@ -125,8 +127,8 @@ class AkademskaKnjigaMk
                         'special'              => null,
                         'special_from'         => null,
                         'special_to'           => null,
-                        'meta_title'           => $data['imageAltText'],
-                        'meta_description'     => $data['imageAltText'],
+                        'meta_title'           => $data['title'],
+                        'meta_description'     => $data['title'],
                         'pages'                => $data['numberOfPages'],
                         'dimensions'           => null,
                         'origin'               => null,
@@ -153,9 +155,9 @@ class AkademskaKnjigaMk
                     if ($id) {
                         $image = config('settings.image_default');
                         try {
-                            $image = $import->resolveImages($data['imageBigInternet'], $data['imageAltText'], $id);
+                            $image = $import->resolveImages($data['imageBig'], $data['title'], $id);
                         } catch (\ErrorException $e) {
-                            Log::info('Image not imported. Product SKU: (' . $data['bookId'] . ') - ' . $data['imageAltText']);
+                            Log::info('Image not imported. Product SKU: (' . $data['bookId'] . ') - ' . $data['title']);
                             Log::info($e->getMessage());
                         }
 
@@ -179,7 +181,22 @@ class AkademskaKnjigaMk
             }
         }
 
-        return $count;
+        return ApiHelper::response(1, 'Importano je ' . $count . ' novih artikala u bazu.');
+    }
+
+
+    /**
+     * @return string
+     */
+    private function updatePriceAndQuantity()
+    {
+        $this->checkProductsForImport();
+
+        run_query("UPDATE products p INNER JOIN temp_table tt ON p.sku = tt.sku SET p.quantity = tt.quantity, p.price = tt.price;");
+
+        $count = TempTable::query()->get()->count();
+
+        return ApiHelper::response(1, 'Obnovljene su cijene i količine na ' . $count . ' artikala.');
     }
 
 }

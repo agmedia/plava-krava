@@ -38,27 +38,8 @@ class ApiController extends Controller
             $ok = $targetClass->process($data);
 
             if ($ok) {
-                return response()->json(['success' => 'Success.!! Saved ' . $ok . ' items.']);
+                return response()->json(['success' => $ok]);
             }
-        }
-
-        return response()->json(['error' => 'Whoops.!! Pokušajte ponovo ili kontaktirajte administratora!']);
-    }
-
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
-    {
-        Log::info($request);
-
-        $updated = 1;
-
-        if ($updated) {
-            return response()->json(['success' => 'Application basic info is saved.']);
         }
 
         return response()->json(['error' => 'Whoops.!! Pokušajte ponovo ili kontaktirajte administratora!']);
