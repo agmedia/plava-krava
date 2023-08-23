@@ -72,12 +72,9 @@ class CatalogRouteController extends Controller
             return view('front.catalog.product.index', compact('prod', 'group', 'cat', 'subcat', 'related', 'seo', 'shipping_methods' , 'payment_methods', 'crumbs', 'bookscheme', 'gdl', 'reviews'));
         }
 
-        // If only group...
+        // If only group and has any category... continue...
         if ($group && ! $cat && ! $subcat) {
-
-            $categories = Category::where('group', $group)->first('id');
-
-            if ( ! $categories) {
+            if ( ! Category::where('group', $group)->first('id')) {
                 abort(404);
             }
         }
