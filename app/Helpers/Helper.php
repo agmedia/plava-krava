@@ -187,9 +187,11 @@ class Helper
 
         if ($subcat) {
             $related = $subcat->products()->inRandomOrder()->take(10)->get();
-        }
-        if ($cat) {
-            $related = $cat->products()->inRandomOrder()->take(10)->get();
+            
+        } else {
+            if ($cat) {
+                $related = $cat->products()->inRandomOrder()->take(10)->get();
+            }
         }
 
         if ($related->count() < 9) {
