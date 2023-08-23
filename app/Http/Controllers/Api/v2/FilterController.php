@@ -106,7 +106,7 @@ class FilterController extends Controller
                 'icon' => $category['icon'],
                 'count' => $category['products_count'],
                 'url' => $url,
-                'subs' => sort($subs)
+                'subs' => $subs
             ];
 
 
