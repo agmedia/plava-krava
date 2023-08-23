@@ -3484,6 +3484,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ProductsList',
@@ -7684,6 +7694,42 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "card-body py-2" }, [
                         _c(
+                          "div",
+                          {
+                            staticClass:
+                              "d-flex flex-wrap justify-content-between align-items-start pb-2"
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "text-muted fs-xs me-1" },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "product-meta fw-medium",
+                                    attrs: {
+                                      href: product.author
+                                        ? _vm.origin + product.author.url
+                                        : "#"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(
+                                        product.author
+                                          ? product.author.title
+                                          : ""
+                                      )
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
                           "h3",
                           { staticClass: "product-title fs-sm text-truncate" },
                           [
@@ -7694,6 +7740,25 @@ var render = function() {
                             )
                           ]
                         ),
+                        _vm._v(" "),
+                        product.category_string
+                          ? _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "d-flex flex-wrap justify-content-between align-items-center"
+                              },
+                              [
+                                _c("div", { staticClass: "fs-sm me-2" }, [
+                                  _c("span", {
+                                    domProps: {
+                                      innerHTML: _vm._s(product.category_string)
+                                    }
+                                  })
+                                ])
+                              ]
+                            )
+                          : _vm._e(),
                         _vm._v(" "),
                         _c("div", { staticClass: "product-price" }, [
                           product.special

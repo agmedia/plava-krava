@@ -20,6 +20,8 @@
         </div>
         <!-- Products grid-->
 
+
+
         <div class="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 g-0 mx-n2"  v-if="products.total">
 
             <div class="col-md-3 col-6 px-2 mb-4 d-flex align-items-stretch" v-for="product in products.data">
@@ -29,8 +31,16 @@
                            <img load="lazy" :src="product.image.replace('.webp', '-thumb.webp')" width="400" height="400" :alt="product.name">
                     </a>
                     <div class="card-body py-2">
-                        <h3 class="product-title fs-sm text-truncate"><a :href="origin + product.url">{{ product.name }}</a></h3>
+                        <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
+                            <div class="text-muted fs-xs me-1">
+                                <a class="product-meta fw-medium" :href="product.author ? (origin + product.author.url) : '#'">{{ product.author ? product.author.title : '' }}</a>
+                            </div>
 
+                        </div>
+                        <h3 class="product-title fs-sm text-truncate"><a :href="origin + product.url">{{ product.name }}</a></h3>
+                        <div class="d-flex flex-wrap justify-content-between align-items-center" v-if="product.category_string">
+                            <div class="fs-sm me-2"><span v-html="product.category_string"></span></div>
+                        </div>
                         <div class="product-price">
                             <span class="fs-sm text-muted"  v-if="product.special"><small>NC 30 dana: {{ product.main_price_text }} </small> <small v-if="product.secondary_price_text">{{ product.secondary_price_text }} </small></span>
                         </div>
