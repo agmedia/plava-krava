@@ -162,7 +162,7 @@ class AkademskaKnjigaMk
                         'meta_description'     => $data['title'],
                         'pages'                => $data['numberOfPages'],
                         'dimensions'           => null,
-                        'origin'               => null,
+                        'origin'               => 'Engleski',
                         'letter'               => null,
                         'condition'            => null,
                         'binding'              => $data['formaCover'],
