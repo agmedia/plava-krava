@@ -101,8 +101,9 @@ class AkademskaKnjigaMk
      */
     private function getPrice($price)
     {
-        $round = floor($price * 1.05);
-        $diff = $price - $round;
+        $price = $price * 1.05;
+        $round = floor($price);
+        $diff  = $price - $round;
 
         if ($diff < 0.5) {
             $price = $round + 0.5;
@@ -119,7 +120,7 @@ class AkademskaKnjigaMk
      */
     private function importNewProducts()
     {
-        $count = 0;
+        $count      = 0;
         $for_import = TempTable::query()->take(1000)->get();
 
         foreach ($for_import as $item) {
@@ -127,11 +128,11 @@ class AkademskaKnjigaMk
 
             if ( ! $exist) {
                 $import = new Import();
-                $data = Http::get('https://akademskakniga.mk/api/Akniga/' . $item['sku'])->json();
+                $data   = Http::get('https://akademskakniga.mk/api/Akniga/' . $item['sku'])->json();
 
                 if (is_array($data) && ! empty($data)) {
                     $publisher_id = 0;
-                    $author_id = 0;
+                    $author_id    = 0;
 
                     if (isset($data['bookPublisherId']['bookPublisherName'])) {
                         $publisher_id = $import->resolvePublisher($data['bookPublisherId']['bookPublisherName']);
