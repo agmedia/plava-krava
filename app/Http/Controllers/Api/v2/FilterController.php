@@ -94,7 +94,7 @@ class FilterController extends Controller
                     $subs[] = [
                         'id' => $subcategory['id'],
                         'title' => $subcategory['title'],
-                        'count' => Category::find($subcategory['id'])->products()->count(),
+                        'count' => 0,//Category::find($subcategory['id'])->products()->count(),
                         'url' => $sub_url
                     ];
                 }
