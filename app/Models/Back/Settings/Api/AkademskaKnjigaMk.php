@@ -80,7 +80,7 @@ class AkademskaKnjigaMk
                 $query[] = [
                     'sku'      => (string) $item['bookId'],
                     'quantity' => $item['inStock'],
-                    'price'    => $item['price'],
+                    'price'    => $this->getPrice($item['price']),
                     'special'  => $item['priceWithDiscount'],
                 ];
             }
@@ -91,6 +91,26 @@ class AkademskaKnjigaMk
         $count = TempTable::query()->count();
 
         return ApiHelper::response(1, 'Ima ' . $count . ' novih artikala za import.');
+    }
+
+
+    /**
+     * @param $price
+     *
+     * @return float|int
+     */
+    private function getPrice($price)
+    {
+        $round = floor($price * 1.05);
+        $diff = $price - $round;
+
+        if ($diff < 0.5) {
+            $price = $round + 0.5;
+        } else {
+            $price = $round + 1;
+        }
+
+        return $price;
     }
 
 
@@ -130,8 +150,8 @@ class AkademskaKnjigaMk
                         'isbn'                 => $data['ISBN'],
                         'description'          => $data['description'],
                         'slug'                 => Helper::resolveSlug($data, 'title'),
-                        'price'                => $data['price'],
-                        'quantity'             => $data['inStock'] ?: 0,
+                        'price'                => $item->price,
+                        'quantity'             => $item->inStock,
                         'decrease'             => 1,
                         'tax_id'               => config('settings.default_tax_id'),
                         'special'              => null,
@@ -157,7 +177,7 @@ class AkademskaKnjigaMk
                         'viewed'               => 0,
                         'sort_order'           => 0,
                         'push'                 => 0,
-                        'status'               => $data['inStock'] ? 1 : 0,
+                        'status'               => $item->inStock ? 1 : 0,
                         'created_at'           => Carbon::now(),
                         'updated_at'           => Carbon::now()
                     ]);
