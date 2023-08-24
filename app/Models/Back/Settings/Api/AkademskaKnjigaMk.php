@@ -55,19 +55,24 @@ class AkademskaKnjigaMk
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    private function checkProductsForImport()
+    private function checkProductsForImport(bool $diff = true)
     {
         TempTable::query()->truncate();
 
         $limit = '60000';
         $data  = Http::get('http://akademskakniga.mk/api/ASyn/' . $limit);
 
-        $existing = Product::query()->pluck('sku');
-        $list     = collect($data->json())->pluck('bookId')
-                                          ->diff($existing)
-                                          ->flatten();
+        if ($diff) {
+            $existing = Product::query()->pluck('sku');
+            $list     = collect($data->json())->pluck('bookId')
+                                              ->diff($existing)
+                                              ->flatten();
 
-        $for_import = collect($data->json())->whereIn('bookId', $list)->chunk(10000);
+            $for_import = collect($data->json())->whereIn('bookId', $list)->chunk(10000);
+
+        } else {
+            $for_import = collect($data->json())->chunk(10000);
+        }
 
         foreach ($for_import->all() as $item_list) {
             $query = [];
@@ -195,7 +200,7 @@ class AkademskaKnjigaMk
      */
     private function updatePriceAndQuantity()
     {
-        $this->checkProductsForImport();
+        $this->checkProductsForImport(false);
 
         Query::run("UPDATE products p INNER JOIN temp_table tt ON p.sku = tt.sku SET p.quantity = tt.quantity, p.price = tt.price;");
 
