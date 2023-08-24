@@ -6,6 +6,7 @@ use App\Helpers\ApiHelper;
 use App\Helpers\Helper;
 use App\Helpers\Import;
 use App\Helpers\ProductHelper;
+use App\Helpers\Query;
 use App\Models\Back\Catalog\Product\Product;
 use App\Models\Back\Catalog\Product\ProductCategory;
 use App\Models\Back\Settings\Settings;
@@ -196,7 +197,7 @@ class AkademskaKnjigaMk
     {
         $this->checkProductsForImport();
 
-        run_query("UPDATE products p INNER JOIN temp_table tt ON p.sku = tt.sku SET p.quantity = tt.quantity, p.price = tt.price;");
+        Query::run("UPDATE products p INNER JOIN temp_table tt ON p.sku = tt.sku SET p.quantity = tt.quantity, p.price = tt.price;");
 
         $count = TempTable::query()->get()->count();
 
