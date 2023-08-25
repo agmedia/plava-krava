@@ -314,9 +314,12 @@
                                     @endif
 
 
-
-                                    <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Uvez:</span><span>{{ $prod->binding ?: '...' }}</span></li>
-                                    <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Jezik:</span><span>{{ $prod->origin ?: '...' }}</span></li>
+                                    @if ($prod->binding)
+                                        <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Uvez:</span><span>{{ $prod->binding  }}</span></li>
+                                     @endif
+                                    @if ($prod->origin)
+                                        <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Jezik:</span><span>{{ $prod->origin  }}</span></li>
+                                    @endif
                                      @if ($prod->year)
                                         <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Godina izdanja:</span><span>{{ $prod->year }}</span></li>
                                     @endif
