@@ -3,13 +3,13 @@
         <div class="modal-content">
             <div class="modal-header bg-secondary">
                 <ul class="nav nav-tabs card-header-tabs" role="tablist">
-                    <li class="nav-item"><a class="nav-link fw-medium active" href="#signin-tab" data-bs-toggle="tab" role="tab" aria-selected="true"><i class="ci-unlocked me-2 mt-n1"></i>Prijava</a></li>
-                    <li class="nav-item"><a class="nav-link fw-medium" href="#signup-tab" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="ci-user me-2 mt-n1"></i>Registracija</a></li>
+                    <li class="nav-item"><a class="nav-link fw-medium active" data-bs-target="#signin-tab"  id="pills-signin-tab" data-bs-toggle="tab" role="tab" aria-controls="signin-tab" aria-selected="true"><i class="ci-unlocked me-2 mt-n1"></i>Prijava</a></li>
+                    <li class="nav-item"><a class="nav-link fw-medium" data-bs-target="#signup-tab" id="pills-signup-tab" data-bs-toggle="tab" role="tab" aria-controls="signup-tab" aria-selected="false"><i class="ci-user me-2 mt-n1"></i>Registracija</a></li>
                 </ul>
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body tab-content py-4">
-                <form method="POST" class="needs-validation tab-pane fade show active" action="{{ route('login') }}" autocomplete="off" novalidate id="signin-tab">
+            <div class="modal-body tab-content py-4"  >
+                <form method="POST" class="needs-validation tab-pane fade show active" action="{{ route('login') }}" autocomplete="off" novalidate id="signin-tab" aria-controls="pills-signin">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label" for="si-email">Email adresa</label>
@@ -29,11 +29,11 @@
                         <div class="form-check mb-2 ps-0">
                             <x-jet-checkbox id="remember_me" name="remember" />
                             <label class="form-check-label" for="si-remember">Zapamti me</label>
-                        </div><a class="fs-sm" href="#">Zaboravljena lozinka</a>
+                        </div><!--<a class="fs-sm" href="#">Zaboravljena lozinka</a>-->
                     </div>
                     <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Prijavi se</button>
                 </form>
-                <form class="needs-validation tab-pane fade" method="POST" action="{{ route('register') }}" autocomplete="off" novalidate id="signup-tab" oninput='password_confirmation.setCustomValidity(password_confirmation.value != password.value ? "Passwords do not match." : "")'>
+                <form class="needs-validation tab-pane fade" method="POST" action="{{ route('register') }}" autocomplete="off" novalidate id="signup-tab"  aria-controls="pills-signup" oninput='password_confirmation.setCustomValidity(password_confirmation.value != password.value ? "Passwords do not match." : "")'>
 
 
 
@@ -113,3 +113,5 @@
         </div>
     </div>
 </div>
+
+

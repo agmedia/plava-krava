@@ -119,7 +119,13 @@
                                         <input class="form-check-input" type="checkbox" wire:model.defer="login.remember" id="si-remember">
                                         <label class="form-check-label" for="si-remember">Zapamti me</label>
                                     </div>
-                                    <a class="fs-sm" href="{{ route('register') }}">Registriraj se..!</a>
+
+
+                                    <button id="signup-button" data-tab-id="pills-signup-tab" type="button" href="signup-tab" class="btn btn-outline-primary  btn-sm float-end" data-bs-toggle="modal" data-bs-target="#signin-modal">
+                                      Registriraj se
+                                    </button>
+
+
                                 </div>
                                 <button class="btn btn-primary btn-shadow d-block w-100" wire:click="authUser()" type="button">Prijava</button>
                             </div>
@@ -323,6 +329,7 @@
             $(this).scrollTop(0);
         });
     </script>
+
 
 
 
