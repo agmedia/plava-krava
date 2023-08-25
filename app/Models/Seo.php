@@ -23,7 +23,7 @@ class Seo
     public static function getProductData(Product $product): array
     {
         return [
-            'title'       => rtrim($product->nam)e . ' - ' . (isset($product->author->title) ? $product->author->title : ''),
+            'title'       => rtrim($product->name) . ' - ' . (isset($product->author->title) ? $product->author->title : ''),
             'description' => 'Knjiga ' . rtrim($product->name) . ' izdavača ' . (isset($product->author->title) ? $product->author->title : '') . ' godine izdanja ' . ($product->year ?: '') . ' i mjesta izdavanja ' . ($product->origin ?: '') . ' u Plava Krava shop-u.'
         ];
     }
