@@ -317,11 +317,17 @@
 
                                     <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Uvez:</span><span>{{ $prod->binding ?: '...' }}</span></li>
                                     <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Jezik:</span><span>{{ $prod->origin ?: '...' }}</span></li>
-                                    <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Godina izdanja:</span><span>{{ $prod->year ?: '...' }}</span></li>
-                                    <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Broj stranica:</span><span>{{ $prod->pages ?: '...' }}</span></li>
-                                    <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Dimenzije:</span><span>{{ $prod->dimensions.' cm' ?: '...' }}</span></li>
+                                     @if ($prod->year)
+                                        <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Godina izdanja:</span><span>{{ $prod->year }}</span></li>
+                                    @endif
+                                    @if ($prod->pages)
+                                        <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Broj stranica:</span><span>{{ $prod->pages }}</span></li>
+                                   @endif
+                                    @if ($prod->dimensions)
+                                        <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">Dimenzije:</span><span>{{ $prod->dimensions.' cm'  }}</span></li>
+                                    @endif
                                     @if ($prod->isbn)
-                                      <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">EAN:</span><span>{{ $prod->isbn }}</span></li>
+                                         <li class="d-flex justify-content-between pb-2 border-bottom"><span class="text-muted">EAN:</span><span>{{ $prod->isbn }}</span></li>
                                     @endif
                                 </ul>
 
