@@ -18383,7 +18383,7 @@ html:not([dir=rtl]) .range-slider-ui.noUi-horizontal .noUi-handle {
   color: #4b566b;
 }
 
-.product-meta.maincat{display:none}
+.product-meta.maincat{display:none!important;}
 
 .product-floating-btn {
   position: absolute;
