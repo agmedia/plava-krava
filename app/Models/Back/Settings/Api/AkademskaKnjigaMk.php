@@ -152,7 +152,7 @@ class AkademskaKnjigaMk
                         'description'          => $data['description'],
                         'slug'                 => Helper::resolveSlug($data, 'title'),
                         'price'                => $item->price,
-                        'quantity'             => $item->inStock,
+                        'quantity'             => $item->quantity ?: 0,
                         'decrease'             => 1,
                         'tax_id'               => config('settings.default_tax_id'),
                         'special'              => null,
@@ -178,7 +178,7 @@ class AkademskaKnjigaMk
                         'viewed'               => 0,
                         'sort_order'           => 0,
                         'push'                 => 0,
-                        'status'               => $item->inStock ? 1 : 0,
+                        'status'               => $item->quantity ? 1 : 0,
                         'created_at'           => Carbon::now(),
                         'updated_at'           => Carbon::now()
                     ]);
