@@ -159,7 +159,7 @@ class AkademskaKnjigaMk
                         'special_from'         => null,
                         'special_to'           => null,
                         'meta_title'           => $data['title'],
-                        'meta_description'     => $data['title'],
+                        'meta_description'     => $data['title'].' - '.$data['author'].' - '.$data['bookPublisherId']['bookPublisherName'],
                         'pages'                => $data['numberOfPages'],
                         'dimensions'           => null,
                         'origin'               => 'Engleski',
