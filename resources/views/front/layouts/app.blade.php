@@ -211,17 +211,7 @@
     });
 </script>
 
-<script>
-    const myModal = document.getElementById('signin-modal')
 
-    myModal.addEventListener('show.bs.modal', (ev) => {
-        var invoker = ev.relatedTarget
-        var selected_tab = invoker.getAttribute("data-tab-id")
-        const tab_btn = document.querySelector('#' + selected_tab)
-        const tab = new bootstrap.Tab(tab_btn)
-        tab.show()
-    })
-</script>
 
 
 <!-- Messenger Chat Plugin Code
