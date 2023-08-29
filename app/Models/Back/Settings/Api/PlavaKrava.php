@@ -75,7 +75,7 @@ class PlavaKrava
             if ($key > 1) {
                 $exist = Product::query()->where('sku', $item[6])->first();
 
-                if ( ! $exist) {
+                if ( ! $exist && ! empty($item[3])) {
                     $import       = new Import();
                     $publisher_id = 0;
                     $author_id    = 0;

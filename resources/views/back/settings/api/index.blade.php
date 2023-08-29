@@ -96,13 +96,9 @@
                                                                 <table class="table table-bordered table-vcenter mb-0">
                                                                     <tbody>
                                                                     <tr>
-                                                                        <td style="width: 20%;">
+                                                                        <td style="width: 30%;">
                                                                             <input type="file" id="excel-file" name="file" accept=".xlsx,.xls" style="display: none;" onchange="uploadFile(event)">
-                                                                            <button class="btn btn-sm btn-alt-success" onclick="document.getElementById('excel-file').click()">Upload Excel</button>
-                                                                        </td>
-                                                                        <td style="width: 20%;">
-                                                                            <button type="button" class="btn btn-sm btn-alt-info" onclick="event.preventDefault(); importTarget('plava-krava', 'import-excel');">Import Proizvoda
-                                                                            </button>
+                                                                            <button class="btn btn-sm btn-alt-info" onclick="document.getElementById('excel-file').click()">Upload Excel & Import</button>
                                                                         </td>
                                                                         <td>
                                                                             <code>Upload excel -> Import novih proizvoda iz excela.</code>
