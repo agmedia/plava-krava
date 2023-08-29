@@ -29,7 +29,7 @@
                         <div class="px-grid-gutter pt-1 pb-4">
                             <div class="widget widget-links">
                                 <ul class="widget-list" v-for="sub in cat.subs" >
-                                    <li class="widget-list-item pb-1" :class="{'active': (subcategory.id == sub.id)}">
+                                    <li class="widget-list-item pb-1" :class="{'active': (subcategory && subcategory.id == sub.id)}">
                                         <a class="widget-list-link" :href="sub.url">{{ sub.title }} </a>
                                     </li>
                                 </ul>

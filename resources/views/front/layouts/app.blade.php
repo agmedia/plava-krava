@@ -168,7 +168,7 @@
 
 <!-- Main theme script-->
 
-<script src="{{ asset('js/cart.js?v=2.0.4') }}"></script>
+<script src="{{ asset('js/cart.js?v=2.0.5') }}"></script>
 
 <script src="{{ asset('js/theme.min.js') }}"></script>
 
