@@ -8,6 +8,7 @@ use App\Models\Back\Widget\Widget;
 use App\Models\Back\Widget\WidgetGroup;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
@@ -70,7 +71,7 @@ class WidgetController extends Controller
                 $stored->resolveImage($request);
             }
 
-            $this->flush($stored);
+            $this->flush();
 
             return redirect()->route('widgets')->with(['success' => 'Widget je uspješno snimljen!']);
         }
@@ -135,7 +136,7 @@ class WidgetController extends Controller
                 $updated->resolveImage($request);
             }
 
-            $this->flush($updated);
+            $this->flush();
 
             return redirect()->back()->with(['success' => 'Widget je uspješno snimljen!']);
         }
@@ -162,14 +163,11 @@ class WidgetController extends Controller
 
 
     /**
-     * @param Page $page
+     * @return void
      */
-    private function flush(Widget $widget): void
+    private function flush(): void
     {
-        $widget_group = WidgetGroup::where('id', $widget->group_id)->first();
-
-        Cache::forget('wg.' . $widget_group->id);
-        Cache::forget('wg.' . $widget_group->slug);
+        Artisan::call('optimize:clear');
     }
 
 
