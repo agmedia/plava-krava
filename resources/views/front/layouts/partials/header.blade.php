@@ -13,35 +13,28 @@
             </a>
             <!-- Search-->
             <form action="{{ route('pretrazi') }}" id="search-form-first" class="w-100 d-none d-lg-flex flex-nowrap mx-4" method="get">
-            <div class="input-group "><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                <input class="form-control rounded-start w-100" type="text" name="{{ config('settings.search_keyword') }}" value="{{ request()->query('pojam') ?: '' }}" placeholder="Pretražite proizvode">
-            </div>
+                <div class="input-group "><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                    <input class="form-control rounded-start w-100" type="text" name="{{ config('settings.search_keyword') }}" value="{{ request()->query('pojam') ?: '' }}" placeholder="Pretražite proizvode">
+                </div>
             </form>
             <!-- Toolbar-->
             <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center ms-xl-2">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideNav"><span class="navbar-toggler-icon"></span></button><a class="navbar-tool d-flex d-lg-none" href="#searchBox" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="searchBox"><span class="navbar-tool-tooltip">Pretraži</span>
                     <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-search"></i></div></a>
 
-                    @if(auth()->user())
-                        <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="{{ route('login') }}" >
-                            <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
-                            <div class="navbar-tool-text ms-n3"><small>{{ auth()->user()->details->fname }} {{ auth()->user()->details->lname }}</small>Moj Račun</div>
-                        </a>
-                    @else
-                        <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" data-tab-id="pills-signin-tab" href="signin-tab" data-bs-toggle="modal" data-bs-target="#signin-modal">
-
-
-
-
-
-
-
-                            <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
+                @if(auth()->user())
+                    <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="{{ route('login') }}" >
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
+                        <div class="navbar-tool-text ms-n3"><small>{{ auth()->user()->details->fname }} {{ auth()->user()->details->lname }}</small>Moj Račun</div>
+                    </a>
+                @else
+                    <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" data-tab-id="pills-signin-tab" href="signin-tab" data-bs-toggle="modal" data-bs-target="#signin-modal">
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
                         <div class="navbar-tool-text ms-n3"><small>Prijava</small>Moj Račun</div>
-                        </a>
-                    @endif
+                    </a>
+                @endif
 
-                     <cart-nav-icon carturl="{{ route('kosarica') }}" checkouturl="{{ route('naplata') }}"></cart-nav-icon>
+                <cart-nav-icon carturl="{{ route('kosarica') }}" checkouturl="{{ route('naplata') }}"></cart-nav-icon>
 
             </div>
         </div>
@@ -61,8 +54,6 @@
     </div>
 </header>
 
-
-
 <!-- Sidebar menu-->
 <aside class="offcanvas offcanvas-expand w-100 border-end zindex-lg-5 pt-lg-5" id="sideNav" style="max-width: 19.875rem;">
     <div class="pt-2 d-none d-lg-block"></div>
@@ -73,13 +64,13 @@
     </ul>
     <div class="offcanvas-body px-0 pt-3 pb-0" data-simplebar>
         <div class="tab-content">
-                        <filter-view ids="{{ isset($ids) ? $ids : null }}"
-                                     group="kategorija-proizvoda"
-                                     cat="{{ isset($cat) ? $cat : null }}"
-                                     subcat="{{ isset($subcat) ? $subcat : null }}"
-                                     author="{{ isset($author) ? $author['slug'] : null }}"
-                                     publisher="{{ isset($publisher) ? $publisher['slug'] : null }}">
-                        </filter-view>
+            <filter-view ids="{{ isset($ids) ? $ids : null }}"
+                         group="kategorija-proizvoda"
+                         cat="{{ isset($cat) ? $cat : null }}"
+                         subcat="{{ isset($subcat) ? $subcat : null }}"
+                         author="{{ isset($author) ? $author['slug'] : null }}"
+                         publisher="{{ isset($publisher) ? $publisher['slug'] : null }}">
+            </filter-view>
             <!-- Menu-->
             <div class="sidebar-nav tab-pane fade" id="menu" role="tabpanel">
                 <div class="widget widget-categories">

@@ -49,6 +49,12 @@ class ApiController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     */
     public function upload(Request $request)
     {
         $request->validate([

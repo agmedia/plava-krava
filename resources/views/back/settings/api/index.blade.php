@@ -165,6 +165,7 @@
 
 
         function uploadFile(event) {
+            let block = $('#my-block');
             let file = event.target.files[0];
 
             if (!file) {
@@ -176,10 +177,14 @@
             fd.append("target", 'plava-krava');
             fd.append("method", 'upload-excel');
 
+            block.addClass('block-mode-loading');
+
             axios.post('{{ route('api.api.upload') }}', fd)
             .then(response => {
-                successToast.fire();
-                showResult({success: 'Excel je uspješno učitan. Možete importirati proizvode...'})
+                showToast(response.data);
+                showResult(response.data);
+
+                block.removeClass('block-mode-loading');
             });
         }
 
