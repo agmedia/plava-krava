@@ -220,8 +220,8 @@ class AgCart extends Model
     {
         return [
             'item' => [
-                'id'       => $item->id,
-                'quantity' => $item->quantity
+                'id'       => $item['id'],
+                'quantity' => $item['quantity']
             ]
         ];
     }

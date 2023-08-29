@@ -6,6 +6,8 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class Cart extends Model
 {
@@ -19,26 +21,6 @@ class Cart extends Model
      * @var array
      */
     protected $guarded = ['id', 'created_at', 'updated_at'];
-
-
-    /**
-     * @param $value
-     *
-     * @return mixed
-     */
-    public function getCartDataAttribute($value)
-    {
-        return unserialize($value);
-    }
-
-
-    /**
-     * @param $value
-     */
-    public function setCartDataAttribute($value)
-    {
-        $this->attributes['cart_data'] = serialize($value);
-    }
 
 
     /**
@@ -64,7 +46,7 @@ class Cart extends Model
     public static function edit($request)
     {
         return self::where('user_id', Auth::user()->id)->update([
-            'cart_data'  => serialize($request),
+            'cart_data'  => $request,
             'updated_at' => Carbon::now()
         ]);
     }
@@ -76,32 +58,30 @@ class Cart extends Model
      *
      * @return bool
      */
-    public static function checkLogged($session_id, $cart = null)
+    public static function checkLogged($cart, $session_id = null)
     {
         if (Auth::user()) {
             $has_cart = Cart::where('user_id', Auth::user()->id)->first();
 
             if ($has_cart) {
-                $cart_data = json_decode(json_encode($has_cart->cart_data));
+                $cart_data = json_decode($has_cart->cart_data, true);
 
-                if (isset($cart_data->items)) {
-                    foreach ($cart_data->items as $item) {
+                if (isset($cart_data['items'])) {
+                    foreach ($cart_data['items'] as $item) {
                         $cart->add($cart->resolveItemRequest($item));
                     }
                 }
 
-                if (isset($cart_data->coupon) && ! empty($cart_data->coupon)) {
-                    $cart->coupon($cart_data->coupon);
+                if (isset($cart_data['coupon']) && ! empty($cart_data['coupon'])) {
+                    $cart->coupon($cart_data['coupon']);
                 }
 
                 $has_cart->update(['session_id' => $session_id]);
 
-                return true;
+                return $session_id;
             }
-
-            return false;
         }
 
-        return false;
+        return Str::random(8);
     }
 }
