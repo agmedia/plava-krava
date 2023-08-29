@@ -33,16 +33,16 @@
                     <div class="block-content tab-content">
                         <div class="tab-pane active" id="btabs-static-home" role="tabpanel">
                             <div class="row">
-                                <div class="col-12 mb-4">
+                                <div class="col-md-8 mb-4">
                                     <div id="accordion2" role="tablist" aria-multiselectable="true">
                                         <div class="block block-rounded mb-1">
                                             <div class="block-header block-header-default" role="tab" id="akademska_knjiga_tab">
                                                 <a class="font-w600" data-toggle="collapse" data-parent="#accordion2" href="#akademska_knjiga" aria-expanded="true" aria-controls="akademska_knjiga">Akademska Knjiga .mk</a>
                                             </div>
                                             <div id="akademska_knjiga" class="collapse" role="tabpanel" aria-labelledby="akademska_knjiga_tab">
-                                                <div class="block-content">
+                                                <div class="block-content px-1">
                                                     <div class="row items-push">
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-12">
                                                             <div class="table-responsive">
                                                                 <table class="table table-bordered table-vcenter mb-0">
                                                                     <tbody>
@@ -80,19 +80,51 @@
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <div class="block block-rounded block-bordered" id="my-block">
-                                                                <div class="block-header block-header-default">
-                                                                    <h3 class="block-title">Rezultat</h3>
-                                                                </div>
-                                                                <div class="block-content">
-                                                                    <p class="font-w300 font-size-sm" id="api-result">Ovdje će se prikazati rezultati ili greške API poziva, zavisno od toga što ste pozvali...</p>
-                                                                </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="block block-rounded mb-1">
+                                            <div class="block-header block-header-default" role="tab" id="plava_krava_tab">
+                                                <a class="font-w600" data-toggle="collapse" data-parent="#accordion2" href="#plava_krava" aria-expanded="true" aria-controls="plava_krava">Plava-Krava.hr</a>
+                                            </div>
+                                            <div id="plava_krava" class="collapse" role="tabpanel" aria-labelledby="plava_krava_tab">
+                                                <div class="block-content px-1">
+                                                    <div class="row items-push">
+                                                        <div class="col-md-12">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered table-vcenter mb-0">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td style="width: 20%;">
+                                                                            <input type="file" id="excel-file" name="file" accept=".xlsx,.xls" style="display: none;" onchange="uploadFile(event)">
+                                                                            <button class="btn btn-sm btn-alt-success" onclick="document.getElementById('excel-file').click()">Upload Excel</button>
+                                                                        </td>
+                                                                        <td style="width: 20%;">
+                                                                            <button type="button" class="btn btn-sm btn-alt-info" onclick="event.preventDefault(); importTarget('plava-krava', 'import-excel');">Import Proizvoda
+                                                                            </button>
+                                                                        </td>
+                                                                        <td>
+                                                                            <code>Upload excel -> Import novih proizvoda iz excela.</code>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="block block-rounded block-bordered" id="my-block">
+                                        <div class="block-header block-header-default">
+                                            <h3 class="block-title">Rezultat</h3>
+                                        </div>
+                                        <div class="block-content">
+                                            <p class="font-w300 font-size-sm" id="api-result">Ovdje će se prikazati rezultati ili greške API poziva, zavisno od toga što ste pozvali...</p>
                                         </div>
                                     </div>
                                 </div>
@@ -115,24 +147,43 @@
 @endpush
 
 @push('js_after')
-    <script src="{{ asset('js/plugins/select2/js/select2.full.min.js') }}"></script>
     <script>
         $(() => {
 
         });
 
-        function importTarget(target, method, route) {
+        function importTarget(target, method) {
             let block = $('#my-block');
             let item  = {target: target, method: method};
 
             block.addClass('block-mode-loading');
 
-            axios.post(route, {data: item})
+            axios.post('{{ route('api.api.import') }}', {data: item})
             .then(response => {
                 showToast(response.data);
                 showResult(response.data);
 
                 block.removeClass('block-mode-loading');
+            });
+        }
+
+
+        function uploadFile(event) {
+            let file = event.target.files[0];
+
+            if (!file) {
+                return errorToast.fire('Molimo učitajte Excel datoteku!');
+            }
+
+            let fd = new FormData();
+            fd.append("file", file);
+            fd.append("target", 'plava-krava');
+            fd.append("method", 'upload-excel');
+
+            axios.post('{{ route('api.api.upload') }}', fd)
+            .then(response => {
+                successToast.fire();
+                showResult({success: 'Excel je uspješno učitan. Možete importirati proizvode...'})
             });
         }
 

@@ -38,7 +38,7 @@ class FilterController extends Controller
         // Ako je normal kategorija
         if ($params['group']) {
             $categories = Helper::resolveCache('categories')->remember($params['group'], config('cache.life'), function () use ($params) {
-                return Category::active()->topList($params['group'])->sortByName()->with('subcategories')->withCount('products')->get()->toArray();
+                return Category::active()->topList($params['group'])->sortByName()->with('subcategories')/*->withCount('products')*/->get()->toArray();
             });
 
             $response = $this->resolveCategoryArray($categories, 'categories');
@@ -57,7 +57,7 @@ class FilterController extends Controller
         }
 
         // Ako su posebni ID artikala.
-        if ($params['ids'] && $params['ids'] != '[]') {
+        /*if ($params['ids'] && $params['ids'] != '[]') {
             $_ids = collect(explode(',', substr($params['ids'], 1, -1)))->unique();
 
             $categories = Category::active()->whereHas('products', function ($query) use ($_ids) {
@@ -65,7 +65,7 @@ class FilterController extends Controller
             })->sortByName()->withCount('products')->get()->toArray();
 
             $response = $this->resolveCategoryArray($categories, 'categories');
-        }
+        }*/
 
         return response()->json($response);
     }
@@ -104,7 +104,7 @@ class FilterController extends Controller
                 'id' => $category['id'],
                 'title' => $category['title'],
                 'icon' => $category['icon'],
-                'count' => $category['products_count'],
+                'count' => 0,//$category['products_count'],
                 'url' => $url,
                 'subs' => $subs
             ];

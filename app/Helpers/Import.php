@@ -99,6 +99,32 @@ class Import
 
 
     /**
+     * @param array $categories
+     *
+     * @return int|mixed
+     */
+    public function resolveStringCategories(string $categories)
+    {
+        $parent = config('settings.eng_default_category');
+        $response[] = $parent;
+
+        $categories = explode(', ', $categories);
+
+        foreach ($categories as $category) {
+            $parent_id = $this->saveCategory($category[0]);
+            $response[] = $parent_id;
+
+            if (isset($category[1])) {
+                $response[] = $this->saveCategory($category[1], $parent_id);
+            }
+
+        }
+
+        return $response;
+    }
+
+
+    /**
      * @param string $name
      * @param int    $parent
      *
