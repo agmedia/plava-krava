@@ -95,7 +95,6 @@ class PlavaKrava
                         'sku'                  => $item[6],
                         'polica'               => null,
                         'isbn'                 => $item[6],
-                        'image'                => '/media/img/products/plava-krava/' . $item[10],
                         'description'          => $item[7],
                         'slug'                 => Helper::resolveSlug($item, '3'),
                         'price'                => $item[12],
@@ -131,6 +130,15 @@ class PlavaKrava
                     ]);
 
                     if ($id) {
+                        $image = config('settings.image_default');
+                        try {
+                            $image_path = public_path('/media/img/products/plava-krava/' . $item[10]);
+                            $image = $import->resolveImages($image_path, $item[3], $id);
+                        } catch (\ErrorException $e) {
+                            Log::info('Image not imported. Product SKU: (' . $item[6] . ') - ' . $item[3]);
+                            Log::info($e->getMessage());
+                        }
+
                         $categories = $import->resolveStringCategories($item[9]);
 
                         ProductCategory::storeData($categories, $id);
@@ -138,6 +146,7 @@ class PlavaKrava
                         $product = Product::query()->find($id);
 
                         $product->update([
+                            'image'           => $image,
                             'url'             => ProductHelper::url($product),
                             'category_string' => ProductHelper::categoryString($product)
                         ]);
