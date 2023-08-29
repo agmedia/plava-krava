@@ -17136,6 +17136,17 @@ a.nav-link:hover .media-tab-media {
 .page-link:focus, .page-link:hover {
   color: #fff;
 }
+
+
+.pagination-next-nav .page-link:focus, .pagination-next-nav .page-link:hover {
+    color: #18326d;
+}
+.pagination-prev-nav .page-link:focus, .pagination-prev-nav .page-link:hover {
+    color: #18326d;
+}
+
+
+
 .page-link.page-link-static:hover {
   border-color: transparent;
   background-color: transparent;
