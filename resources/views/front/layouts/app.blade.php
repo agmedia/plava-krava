@@ -124,17 +124,6 @@
 <script src="{{ asset('js/cart.js?v=2.0.5') }}"></script>
 <script src="{{ asset('js/theme.min.js') }}"></script>
 
-<script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.sitekey') }}"></script>
-<script>
-    grecaptcha.ready(function() {
-        grecaptcha.execute('{{ config('services.recaptcha.sitekey') }}', {action: 'register'}).then(function(token) {
-            if (token) {
-                document.getElementById('recaptcha').value = token;
-            }
-        });
-    });
-</script>
-
 @if (config('app.env') == 'production')
     @yield('google_data_layer')
 
@@ -179,11 +168,26 @@
     const myModal = document.getElementById('signin-modal')
 
     myModal.addEventListener('show.bs.modal', (ev) => {
-        var invoker = ev.relatedTarget
-        var selected_tab = invoker.getAttribute("data-tab-id")
+        let invoker = ev.relatedTarget
+        let selected_tab = invoker.getAttribute("data-tab-id")
         const tab_btn = document.querySelector('#' + selected_tab)
         const tab = new bootstrap.Tab(tab_btn)
         tab.show()
+
+        let head = document.getElementsByTagName('head')[0];
+        let script = document.createElement('script');
+        script.src = 'https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.sitekey') }}';
+        head.appendChild(script);
+
+        setInterval(() => {
+            grecaptcha.ready(function() {
+                grecaptcha.execute('{{ config('services.recaptcha.sitekey') }}', {action: 'register'}).then(function(token) {
+                    if (token) {
+                        document.getElementById('recaptcha').value = token;
+                    }
+                });
+            });
+        }, 270);
     })
 </script>
 
