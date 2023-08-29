@@ -17138,10 +17138,10 @@ a.nav-link:hover .media-tab-media {
 }
 
 
-.pagination-next-nav .page-link:focus, .pagination-next-nav .page-link:hover {
+.pagination-next-nav .page-link:focus {
     color: #18326d;
 }
-.pagination-prev-nav .page-link:focus, .pagination-prev-nav .page-link:hover {
+.pagination-prev-nav .page-link:focus {
     color: #18326d;
 }
 
