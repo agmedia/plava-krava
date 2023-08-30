@@ -55,7 +55,7 @@
                         </div>
                         <footer class="d-flex justify-content-center align-items-center pt-4">
                             <div class="ps-3">
-                                <h6 class="fs-sm mb-n1">{{ $review->fname }} {{ $review->lname }}</h6>
+                                <p class="fs-sm fw-bold text-default mb-n1">{{ $review->fname }} {{ $review->lname }}</p>
                             </div>
                         </footer>
                     </blockquote>
