@@ -19,7 +19,7 @@
             </form>
             <!-- Toolbar-->
             <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center ms-xl-2">
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideNav"><span class="navbar-toggler-icon"></span></button><a class="navbar-tool d-flex d-lg-none" href="#searchBox" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="searchBox"><span class="navbar-tool-tooltip">Pretraži</span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" aria-label="Open the menu" data-bs-target="#sideNav"><span class="navbar-toggler-icon" aria-hidden="true"></span></button><a class="navbar-tool d-flex d-lg-none" href="#searchBox" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="searchBox"><span class="navbar-tool-tooltip">Pretraži</span>
                     <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-search"></i></div></a>
 
                 @if(auth()->user())
