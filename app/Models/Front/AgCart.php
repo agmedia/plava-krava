@@ -105,18 +105,22 @@ class AgCart extends Model
      */
     public function check($request)
     {
-        $products = Product::whereIn('id', $request['ids'])->pluck('quantity', 'id');
-        $message = null;
+        $message = Helper::resolveCache('cart')->remember($this->cart_id, config('cache.cart_life'), function () use ($request) {
+            $products = Product::whereIn('id', $request['ids'])->pluck('quantity', 'id');
+            $message = null;
 
-        foreach ($products as $id => $quantity) {
-            if ( ! $quantity) {
-                $this->remove(intval($id));
+            foreach ($products as $id => $quantity) {
+                if ( ! $quantity) {
+                    $this->remove(intval($id));
 
-                $product = Product::where('id', intval($id))->first();
+                    $product = Product::where('id', intval($id))->first();
 
-                $message = 'Nažalost, knjiga ' . substr($product->name, 0, 150) . ' više nije dostupna.';
+                    $message = 'Nažalost, knjiga ' . substr($product->name, 0, 150) . ' više nije dostupna.';
+                }
             }
-        }
+
+            return $message;
+        });
 
         return [
             'cart' => $this->get(),

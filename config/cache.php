@@ -109,5 +109,6 @@ return [
 
     'widget_life' => 86400, // 1 day
     'page_life' => 86400,
+    'cart_life' => 1800,
     'life' => 2592000, //30 Days
 ];

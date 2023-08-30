@@ -130,13 +130,13 @@ class Checkout extends Component
 
         if (CheckoutSession::hasShipping()) {
             $this->shipping = CheckoutSession::getShipping();
-        }else{
+        } else {
             $this->selectShipping('gls');
         }
 
         if (CheckoutSession::hasPayment()) {
             $this->payment = CheckoutSession::getPayment();
-        }else{
+        } else {
             $this->selectPayment('corvus');
         }
 
@@ -286,8 +286,10 @@ class Checkout extends Component
             $geo->id = 1;
         }
 
+        $cart = $this->cart ? $this->cart->get() : [];
+
         return view('livewire.front.checkout', [
-            'shippingMethods' => (new ShippingMethod())->findGeo($geo->id),
+            'shippingMethods' => (new ShippingMethod())->findGeo($geo->id)->checkCart($cart)->resolve(),
             'paymentMethods' => (new PaymentMethod())->findGeo($geo->id)->checkShipping($this->shipping)->resolve()->sortBy('sort_order'),
             'countries' => Country::list()
         ]);
