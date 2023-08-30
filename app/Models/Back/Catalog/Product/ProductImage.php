@@ -259,7 +259,7 @@ class ProductImage extends Model
 
         $time = Str::random(4);
         $img  = Image::make($this->makeImageFromBase($image));
-        $path = $this->resource->id . '/' . Str::slug($this->resource->name) . '-' . $time . '.';
+        $path = $this->resource->id . '/' . Str::slug($title) . '-' . $time . '.';
 
         $path_jpg = $path . 'jpg';
         Storage::disk('products')->put($path_jpg, $img->encode('jpg'));
@@ -268,14 +268,17 @@ class ProductImage extends Model
         Storage::disk('products')->put($path_webp, $img->encode('webp'));
 
         // Thumb creation
-        $path_thumb = $this->resource->id . '/' . Str::slug($this->resource->name) . '-' . $time . '-thumb.';
+        $path_thumb = $this->resource->id . '/' . Str::slug($title) . '-' . $time . '-thumb.';
+        $canvas = Image::canvas(400, 400, '#ffffff');
 
-        $img = $img->resize(null, 400, function ($constraint) {
+        $img = $img->resize(null, 350, function ($constraint) {
             $constraint->aspectRatio();
-        })->resizeCanvas(400, null);
+        });
+
+        $canvas->insert($img, 'center');
 
         $path_webp_thumb = $path_thumb . 'webp';
-        Storage::disk('products')->put($path_webp_thumb, $img->encode('webp'));
+        Storage::disk('products')->put($path_webp_thumb, $canvas->encode('webp'));
 
         return $path_jpg;
     }
