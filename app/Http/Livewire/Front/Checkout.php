@@ -290,7 +290,7 @@ class Checkout extends Component
 
         return view('livewire.front.checkout', [
             'shippingMethods' => (new ShippingMethod())->findGeo($geo->id)->checkCart($cart)->resolve(),
-            'paymentMethods' => (new PaymentMethod())->findGeo($geo->id)->checkShipping($this->shipping)->resolve()->sortBy('sort_order'),
+            'paymentMethods' => (new PaymentMethod())->findGeo($geo->id)->checkShipping($this->shipping)->checkCart($cart)->resolve()->sortBy('sort_order'),
             'countries' => Country::list()
         ]);
     }

@@ -86,9 +86,14 @@ class ShippingMethod
     }
 
 
+    /**
+     * @param array $cart
+     *
+     * @return $this
+     */
     public function checkCart(array $cart)
     {
-        $pass = true;
+        /*$pass = true;
 
         if (isset($cart['items'])) {
             foreach ($cart['items'] as $item) {
@@ -107,7 +112,7 @@ class ShippingMethod
                     $this->response_methods->push($method);
                 }
             }
-        }
+        }*/
 
         return $this;
     }
