@@ -286,6 +286,7 @@ class Checkout extends Component
             $geo->id = 1;
         }
 
+        $this->checkCart();
         $cart = $this->cart ? $this->cart->get() : [];
 
         return view('livewire.front.checkout', [
