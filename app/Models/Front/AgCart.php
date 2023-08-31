@@ -15,6 +15,7 @@ use App\Models\TagManager;
 use Darryldecode\Cart\CartCondition;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -77,6 +78,28 @@ class AgCart extends Model
         //$response['totals'] = $this->getTotals();
 
         //Log::info($response);
+
+        return $response;
+    }
+
+
+    /**
+     * @param bool $just_basic
+     *
+     * @return Collection
+     */
+    public function getCartItems(bool $just_basic = false): Collection
+    {
+        $response = collect();
+
+        foreach ($this->cart->getContent() as $item) {
+            if ($just_basic) {
+                $data = ['id' => $item->id, 'quantity' => $item->quantity];
+                $response->push($data);
+            } else {
+                $response->push($item);
+            }
+        }
 
         return $response;
     }
