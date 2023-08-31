@@ -70,11 +70,11 @@
                                     <li class="widget-list-item"><a href="#" class="widget-list-link"> virmanom / općom uplatnicom / internet bankarstvom</a></li> <li class="widget-list-item"><a href="#" class="widget-list-link">gotovinom prilikom pouzeća</a></li>
                                 </ul>
                                 <div class="mt-3">
-                                    <img src="{{ asset('img/logici/CorvusPAY.svg') }}" alt="CorvusPay" class="d-inline-block" style="height: 40px; margin-right: 3px;" height="40" width="163px">
+                                    <img src="{{ asset('img/logici/CorvusPAY.svg') }}" loading="lazy" alt="CorvusPay" class="d-inline-block" style="height: 40px; margin-right: 3px;" height="40" width="163px">
                                 </div>
                                 <div class="mt-3">
-                                    <img src="{{ asset('img/logici/PCIDSS-small-a63323dc7c.png') }}" alt="PCIDSS" class="d-inline-block" style="height: 40px; margin-right: 3px;" height="40" width="100">
-                                    <img src="{{ asset('img/logici/PCIDSS_Certified_Badge.png') }}" alt="PCIDSS_Certified" class="d-inline-block" style="height: 60px; margin-right: 3px;" height="60" width="57">
+                                    <img src="{{ asset('img/logici/PCIDSS-small-a63323dc7c.png') }}" loading="lazy" alt="PCIDSS" class="d-inline-block" style="height: 40px; margin-right: 3px;" height="40" width="100">
+                                    <img src="{{ asset('img/logici/PCIDSS_Certified_Badge.png') }}" loading="lazy" alt="PCIDSS_Certified" class="d-inline-block" style="height: 60px; margin-right: 3px;" height="60" width="57">
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
         <div class="bg-darker px-lg-5 py-3">
             <div class="d-sm-flex justify-content-between align-items-center mx-auto px-3" >
                 <div class="fs-sm text-light opacity-50 text-center text-sm-start py-3">Plava krava © Sva prava pridržana. Web by <a class="text-light" href="https://www.agmedia.hr" target="_blank" rel="noopener">AG media</a></div>
-                <div class="widget widget-links widget-light pb-4 text-center text-md-end"><img src="{{ asset('media/cards/visa.svg') }}" alt="Visa" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="{{ asset('media/cards/maestro.svg') }}" alt="Maestro" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="{{ asset('media/cards/mastercard.svg') }}" alt="MasterCard" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="{{ asset('media/cards/diners.svg') }}" alt="Diners" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"></div>
+                <div class="widget widget-links widget-light pb-4 text-center text-md-end"><img src="{{ asset('media/cards/visa.svg') }}" loading="lazy" alt="Visa" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="{{ asset('media/cards/maestro.svg') }}" loading="lazy" alt="Maestro" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="{{ asset('media/cards/mastercard.svg') }}" loading="lazy" alt="MasterCard" class="d-inline-block" style="width: 55px; margin-right: 3px;" width="55" height="35"> <img src="{{ asset('media/cards/diners.svg') }}" alt="Diners" class="d-inline-block" loading="lazy" style="width: 55px; margin-right: 3px;" width="55" height="35"></div>
             </div>
         </div>
     </footer>
