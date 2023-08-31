@@ -70,11 +70,11 @@
                                     <li class="widget-list-item"><a href="#" class="widget-list-link"> virmanom / općom uplatnicom / internet bankarstvom</a></li> <li class="widget-list-item"><a href="#" class="widget-list-link">gotovinom prilikom pouzeća</a></li>
                                 </ul>
                                 <div class="mt-3">
-                                    <img src="{{ asset('img/logici/CorvusPAY.svg') }}" alt="CorvusPay" class="d-inline-block" style="height: 40px; margin-right: 3px;" height="40">
+                                    <img src="{{ asset('img/logici/CorvusPAY.svg') }}" alt="CorvusPay" class="d-inline-block" style="height: 40px; margin-right: 3px;" height="40" width="163px">
                                 </div>
                                 <div class="mt-3">
-                                    <img src="{{ asset('img/logici/PCIDSS-small-a63323dc7c.png') }}" alt="PCIDSS" class="d-inline-block" style="height: 40px; margin-right: 3px;" height="60">
-                                    <img src="{{ asset('img/logici/PCIDSS_Certified_Badge.png') }}" alt="PCIDSS_Certified" class="d-inline-block" style="height: 60px; margin-right: 3px;" height="60">
+                                    <img src="{{ asset('img/logici/PCIDSS-small-a63323dc7c.png') }}" alt="PCIDSS" class="d-inline-block" style="height: 40px; margin-right: 3px;" height="40" width="100">
+                                    <img src="{{ asset('img/logici/PCIDSS_Certified_Badge.png') }}" alt="PCIDSS_Certified" class="d-inline-block" style="height: 60px; margin-right: 3px;" height="60" width="57">
                                 </div>
                             </div>
                         </div>
