@@ -4,12 +4,12 @@
         <div class="container-fluid">
             <a class="navbar-brand d-none d-md-block me-1 flex-shrink-0 py-0" href="{{ route('index') }}">
                 <div class="logo-bg" style="background-color:#f6f9fc;margin-left:-30px; padding: 0 0px 0 30px; ">
-                    <img src="{{ asset('img/logo-blue.svg') }}" width="90" alt="Plava Krava" >
+                    <img src="{{ asset('img/logo-blue.svg') }}" width="90" height="81" alt="Plava Krava" >
                     <span class="arrow"></span>
                 </div>
             </a>
             <a class="navbar-brand pt-1 pb-1 d-md-none me-2" href="{{ route('index') }}">
-                <img src="{{ asset('img/logo-blue.svg') }}" width="64" alt="Plava Krava">
+                <img src="{{ asset('img/logo-blue.svg') }}" width="64" height="57" alt="Plava Krava">
             </a>
             <!-- Search-->
             <form action="{{ route('pretrazi') }}" id="search-form-first" class="w-100 d-none d-lg-flex flex-nowrap mx-4" method="get">
@@ -57,10 +57,10 @@
 <!-- Sidebar menu-->
 <aside class="offcanvas offcanvas-expand w-100 border-end zindex-lg-5 pt-lg-5" id="sideNav" style="max-width: 19.875rem;">
     <div class="pt-2 d-none d-lg-block"></div>
-    <ul class="nav nav-tabs nav-justified mt-4 mt-lg-5 mb-0" role="tablist" style="min-height: 3rem;">
+    <ul class="nav nav-tabs nav-justified mt-1 mt-lg-5 mb-0" role="tablist" style="min-height: 3rem;">
         <li class="nav-item"><a class="nav-link fw-medium active" href="#categories" data-bs-toggle="tab" role="tab">Kategorije</a></li>
         <li class="nav-item"><a class="nav-link fw-medium" href="#menu" data-bs-toggle="tab" role="tab">Info</a></li>
-        <li class="nav-item d-lg-none"><a class="nav-link " href="#" data-bs-dismiss="offcanvas" role="tab"><i class="ci-close fs-xs me-2"></i></a></li>
+        <li class="nav-item d-lg-none"><a class="nav-link " href="#" data-bs-dismiss="offcanvas" aria-label="Close Navigation" role="tab"><i class="ci-close fs-xs me-2"></i></a></li>
     </ul>
     <div class="offcanvas-body px-0 pt-3 pb-0" data-simplebar>
         <div class="tab-content">
