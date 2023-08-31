@@ -8,7 +8,7 @@
     <meta name="author" content="Plava Krava">
     @stack('meta_tags')
     <!-- Viewport-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 />
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" media="screen" href="{{ asset('vendor/simplebar/dist/simplebar.min.css') }}"/>
@@ -35,6 +35,13 @@
             -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
             animation: sk-scaleout 1.0s infinite ease-in-out;
         }
+
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            .form-control {
+                font-size: 16px;
+            }
+        }
+
 
         @-webkit-keyframes sk-scaleout {
             0% { -webkit-transform: scale(0) }
