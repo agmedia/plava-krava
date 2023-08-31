@@ -4,6 +4,7 @@ namespace App\Models;
 
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -21,6 +22,18 @@ class Cart extends Model
      * @var array
      */
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+
+    /**
+     * @param Builder $query
+     * @param int     $days
+     *
+     * @return Builder
+     */
+    public function scopeNotOlderThan(Builder $query, int $days = 30): Builder
+    {
+        return $query->where('updated_at', '>', now()->subDays($days)->endOfDay());
+    }
 
 
     /**
@@ -64,11 +77,16 @@ class Cart extends Model
             $has_cart = Cart::where('user_id', Auth::user()->id)->first();
 
             if ($has_cart) {
+                $cart_items = $cart->getCartItems(true);
                 $cart_data = json_decode($has_cart->cart_data, true);
 
                 if (isset($cart_data['items'])) {
                     foreach ($cart_data['items'] as $item) {
-                        $cart->add($cart->resolveItemRequest($item));
+                        $has_item_in_cart = $cart_items->where('id', $item['id'])->first();
+
+                        if ( ! $has_item_in_cart) {
+                            $cart->add($cart->resolveItemRequest($item));
+                        }
                     }
                 }
 
