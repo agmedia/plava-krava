@@ -19,16 +19,16 @@
             </form>
             <!-- Toolbar-->
             <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center ms-xl-2">
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" aria-label="Open the menu" data-bs-target="#sideNav"><span class="navbar-toggler-icon" aria-hidden="true"></span></button><a class="navbar-tool d-flex d-lg-none" href="#searchBox" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="searchBox"><span class="navbar-tool-tooltip">Pretraži</span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" aria-label="Open the menu" data-bs-target="#sideNav"><span class="navbar-toggler-icon" aria-hidden="true"></span></button><a class="navbar-tool d-flex d-lg-none" href="#searchBox" data-bs-toggle="collapse" aria-label="Search" role="button" aria-expanded="false" aria-controls="searchBox"><span class="navbar-tool-tooltip">Pretraži</span>
                     <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-search"></i></div></a>
 
                 @if(auth()->user())
-                    <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="{{ route('login') }}" >
+                    <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" aria-label="My account" href="{{ route('login') }}" >
                         <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
                         <div class="navbar-tool-text ms-n3"><small>{{ auth()->user()->details->fname }} {{ auth()->user()->details->lname }}</small>Moj Račun</div>
                     </a>
                 @else
-                    <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" data-tab-id="pills-signin-tab" href="signin-tab" data-bs-toggle="modal" data-bs-target="#signin-modal">
+                    <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" data-tab-id="pills-signin-tab" aria-label="Login" href="signin-tab" data-bs-toggle="modal" data-bs-target="#signin-modal">
                         <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
                         <div class="navbar-tool-text ms-n3"><small>Prijava</small>Moj Račun</div>
                     </a>

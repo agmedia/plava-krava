@@ -50,7 +50,7 @@
                                 <div class="subscription-status"></div>
                             </form>
                         </div>
-                        <div><a class="btn-social bs-dark bs-facebook me-2 mb-2" href="https://www.facebook.com/plavakravahr"><i class="ci-facebook"></i></a><a class="btn-social bs-dark bs-instagram me-2 mb-2" href="https://www.instagram.com/plavakravaofficial/"><i class="ci-instagram"></i></a></div>
+                        <div><a class="btn-social bs-dark bs-facebook me-2 mb-2" aria-label="FAacebook" href="https://www.facebook.com/plavakravahr"><i class="ci-facebook"></i></a><a class="btn-social bs-dark bs-instagram me-2 mb-2" aria-label="Instagram" href="https://www.instagram.com/plavakravaofficial/"><i class="ci-instagram"></i></a></div>
                     </div>
                     <div class="col-lg-6 offset-lg-1">
                         <div class="d-flex flex-sm-row flex-column justify-content-sm-between mt-n4 mx-lg-n3">

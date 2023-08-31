@@ -96,7 +96,7 @@ function resetFakeBody(body, docOverflow) {
   }
 }
 
-// get css-calc 
+// get css-calc
 function calc() {
   var doc = document,
       body = getBody(),
@@ -1659,7 +1659,7 @@ var tns = function (options) {
 
     if (hasControls) {
       if (!controlsContainer && (!prevButton || !nextButton)) {
-        outerWrapper.insertAdjacentHTML(getInsertPosition(options.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[1] + '</button></div>');
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" aria-label="prev" data-controls="prev" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[0] + '</button><button type="button" aria-label="next" data-controls="next" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[1] + '</button></div>');
         controlsContainer = outerWrapper.querySelector('.tns-controls');
       }
 
