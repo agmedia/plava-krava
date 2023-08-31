@@ -43,7 +43,7 @@
                                     <div id="accordion_q{{ $category->id }}" class="collapse @if($loop->first) show @endif" role="tabpanel" aria-labelledby="accordion_h{{ $category->id }}" data-parent="#accordion">
                                         <div class="block-content pb-4">
                                             @foreach($category->subcategories()->orderBy('title')->get() as $subcategory)
-                                                <a href="{{ route('category.edit', ['category' => $subcategory]) }}" class="btn btn-sm mb-3  btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Uredi">
+                                                <a href="{{ route('category.edit', ['category' => $subcategory]) }}" class="btn btn-sm mb-3  @if ($subcategory->products()->count() == 0) btn-warning @else btn-success @endif js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Uredi">
                                                     {{ $subcategory->title }} - {{ $subcategory->products()->count() }}
                                                 </a>
                                             @endforeach
