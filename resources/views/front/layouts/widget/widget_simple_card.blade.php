@@ -12,7 +12,7 @@
                                 <h2 class="font-title">{{ $widget['title'] }}</h2>
                                 <p class="text-muted pb-2">{{ $widget['subtitle'] }}</p><a class="btn btn-primary" href="{{ url($widget['url']) }}">Pogledajte ponudu <i class="ci-arrow-right ms-2 me-n1"></i></a>
                         </div>
-                       <img class="d-block mx-auto mx-sm-0 rounded-end" src="{{ $widget['image'] }}" width="220" alt="{{ $widget['title'] }}">
+                       <img class="d-block mx-auto mx-sm-0 rounded-end" src="{{ $widget['image'] }}" width="220" height="263" alt="{{ $widget['title'] }}">
                 </div>
             </div>
         @endforeach
