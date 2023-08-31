@@ -44,7 +44,7 @@
                                         <div class="block-content pb-4">
                                             @foreach($category->subcategories()->get() as $subcategory)
                                                 <a href="{{ route('category.edit', ['category' => $subcategory]) }}" class="btn btn-sm mb-3  btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Uredi">
-                                                    {{ $subcategory->title }} - {{ $category->subcategories()->count() }}
+                                                    {{ $subcategory->title }} - {{ $subcategory->products()->count() }}
                                                 </a>
                                             @endforeach
                                         </div>
