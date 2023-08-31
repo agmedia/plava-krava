@@ -33,7 +33,7 @@
                     <p style="font-size:12px">MOLIMO IZVRŠITE UPLATU U IZNOSU OD € {{number_format($order->total, 2)}}</p>
 
 
-                    <p style="font-size:12px"> IBAN RAČUN: HR1624020061140345999<br>
+                    <p style="font-size:12px"> IBAN RAČUN: HR98 2402 0061 1011 2296 1<br>
                         MODEL: 00 POZIV NA BROJ: {{ $order->id }}-{{date('ym')}}</p>
 
 

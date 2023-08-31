@@ -80,10 +80,10 @@ class Bank
                         ),
                     'receiver'    =>
                         array(
-                            'name'      => 'Plava Krava d.o.o.',
-                            'street'    => 'Martićeva ulica 37',
+                            'name'      => 'Plava krava izdavaštvo d.o.o.',
+                            'street'    => 'Nova cesta 130',
                             'place'     => '10000 Zagreb',
-                            'iban'      => 'HR6423400091111149888',
+                            'iban'      => 'HR9824020061101122961',
                             'model'     => '00',
                             'reference' => $pozivnabroj,
                         ),

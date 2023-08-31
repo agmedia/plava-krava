@@ -23,7 +23,7 @@
                         <p> Rok za uplatu je maksimalno 48h tijekom koga robu koju ste naručili držimo rezerviranu za vas.</p>
                         <p> Ukoliko u tom roku ne zaprimimo uplatu, nažalost moramo poništiti ovu narudžbu.</p>
                         <p>MOLIMO IZVRŠITE UPLATU U IZNOSU OD  {{number_format($data['order']['total'], 2)}} €<br>
-                           IBAN RAČUN: HR6423400091111149888<br>
+                           IBAN RAČUN: HR98 2402 0061 1011 2296 1<br>
                            MODEL: 00 POZIV NA BROJ: {{ $data['order']['id'] }}-{{date('ym')}}</p>
                         <p>ILI JEDNOSTAVNO POSKENIRAJTE 2D BARKOD</p>
                         <p><img src="{{ asset('media/img/qr/'.$data['order']['id']) }}.jpg"></p>
