@@ -9,7 +9,7 @@
         @section ( 'description', $cat->meta_description )
     @elseif ($cat && $subcat)
         @section ( 'title', $subcat->title . ' - Plava Krava' )
-        @section ( 'description', $cat->meta_description )
+        @section ( 'description', 'Najveći izbor knjiga iz kategorije'. $subcat->meta_description )
     @endif
 @endif
 
