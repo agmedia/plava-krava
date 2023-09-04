@@ -90,7 +90,7 @@
     <div class="offcanvas-footer d-block px-grid-gutter pt-4 pb-3 mb-2">
         <div class="d-flex mb-3"><i class="ci-support h4 mb-0 fw-normal text-primary mt-1 me-1"></i>
             <div class="ps-2">
-                <div class="text-muted fs-sm">Podrška</div><a class="nav-link-style fs-md" href="tel:+385 99 542 7216">+385 99 542 7216</a>
+                <div class="text-muted fs-sm">Podrška</div><a class="nav-link-style fs-md" href="tel:+385 1 213 2487">+385 1 213 2487</a>
             </div>
         </div>
         <div class="d-flex mb-3"><i class="ci-mail h5 mb-0 fw-normal text-primary mt-1 me-1"></i>

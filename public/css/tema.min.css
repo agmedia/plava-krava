@@ -91,9 +91,7 @@ body {
 }
 
 
-#content[aria-hidden=true] {
-    display:none;
-}
+
 
 hr {
   margin: 0 0;
