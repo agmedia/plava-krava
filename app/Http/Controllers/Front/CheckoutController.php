@@ -165,7 +165,7 @@ class CheckoutController extends Controller
 
                 if ($order['payment_code'] == 'cod') {
 
-                        $mani = $order_info['total'];
+                        $mani = $order['total'];
                         $mani = number_format((float)$mani, 2, '.', '');
 
                 } else {
