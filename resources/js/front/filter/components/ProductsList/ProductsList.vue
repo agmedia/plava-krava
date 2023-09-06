@@ -1,11 +1,9 @@
 <template>
     <section class="col">
-
         <!-- Toolbar-->
         <div class="d-flex justify-content-between align-items-center pt-2 pb-4 pb-sm-2">
             <div class="d-flex flex-wrap">
                 <div class="d-flex align-items-center flex-nowrap me-3 me-sm-4 pb-3">
-
                     <select class="form-select pe-2" style="min-width: 170px;" v-model="sorting">
                         <option value="">Sortiraj</option>
                         <option value="novi">Najnovije</option>
@@ -19,17 +17,12 @@
             <div class="d-flex pb-3"><span class="fs-sm text-dark btn btn-white btn-sm text-nowrap ms-2 d-block">Ukupno {{ products.total ? Number(products.total).toLocaleString('hr-HR') : 0 }} artikala</span></div>
         </div>
         <!-- Products grid-->
-
-
-
         <div class="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 g-0 mx-n2 mb-5"  v-if="products.total">
-
-            <div class="col-md-3 col-6 px-2 mb-4 d-flex align-items-stretch" v-for="product in products.data">
+            <div class="px-2 mb-4 d-flex align-items-stretch" v-for="product in products.data">
                 <div class="card product-card card-static pb-3">
                     <span class="badge rounded-pill bg-primary mt-1 ms-1 badge-shadow" v-if="product.special">-{{ ($store.state.service.getDiscountAmount(product.price, product.special)) }}%</span>
-                       <a class="card-img-top d-block overflow-hidden" :href="origin + product.url">
-                           <img load="lazy" :src="product.image.replace('.webp', '-thumb.webp')" width="400" height="400" :alt="product.name">
-                    </a>
+                       <a class="card-img-top d-block overflow-hidden" :href="origin + product.url"><img load="lazy" :src="product.image.replace('.webp', '-thumb.webp')" width="400" height="400" :alt="product.name">
+                     </a>
                     <div class="card-body py-2">
                         <div class="d-flex flex-wrap justify-content-between align-items-start pb-1">
                             <div class="text-muted fs-xs me-1">
