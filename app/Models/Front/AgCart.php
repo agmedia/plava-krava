@@ -16,6 +16,7 @@ use Darryldecode\Cart\CartCondition;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -234,6 +235,10 @@ class AgCart extends Model
      */
     public function flush()
     {
+        if (Auth::user()) {
+            \App\Models\Cart::query()->where('user_id', Auth::user()->id)->delete();
+        }
+
         return $this->cart->clear();
     }
 
