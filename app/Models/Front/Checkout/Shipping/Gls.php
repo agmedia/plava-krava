@@ -3,6 +3,8 @@
 namespace App\Models\Front\Checkout\Shipping;
 
 use App\Models\Back\Orders\Order;
+use SoapClient;
+use \stdClass;
 
 /**
  * Class Cod
