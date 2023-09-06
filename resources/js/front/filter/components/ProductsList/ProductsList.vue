@@ -3,8 +3,8 @@
         <!-- Toolbar-->
         <div class="d-flex justify-content-between align-items-center pt-2 pb-4 pb-sm-2">
             <div class="d-flex flex-wrap">
-                <div class="d-flex align-items-center flex-nowrap me-3 me-sm-4 pb-3">
-                    <select class="form-select pe-2" style="min-width: 170px;" v-model="sorting">
+                <div class="d-flex align-items-center flex-nowrap me-0 me-sm-4 pb-3">
+                    <select class="form-select pe-2" style="min-width: 130px;" v-model="sorting">
                         <option value="">Sortiraj</option>
                         <option value="novi">Najnovije</option>
                         <option value="price_up">Najmanja cijena</option>
@@ -14,10 +14,16 @@
                     </select>
                 </div>
             </div>
-            <div class="d-flex pb-3"><span class="fs-sm text-dark btn btn-white btn-sm text-nowrap ms-2 d-block">Ukupno {{ products.total ? Number(products.total).toLocaleString('hr-HR') : 0 }} artikala</span></div>
+
+            <div class="d-flex pb-3"><span class="fs-sm text-dark btn btn-white btn-sm text-nowrap ms-0 d-block">{{ products.total ? Number(products.total).toLocaleString('hr-HR') : 0 }} artikala</span></div>
+            <div class="d-flex d-sm-none pb-3">
+                <button class="btn btn-icon btn-sm nav-link-style  me-1" v-on:click="tworow()" ><i class="ci-view-grid"></i></button>
+
+                <button class="btn btn-icon btn-sm nav-link-style " v-on:click="onerow()"><i class="ci-view-list"></i></button>
+            </div>
         </div>
         <!-- Products grid-->
-        <div class="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 g-0 mx-n2 mb-5"  v-if="products.total">
+        <div class="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 g-0 mx-n2 mb-5"  id="product-grid" v-if="products.total">
             <div class="px-2 mb-4 d-flex align-items-stretch" v-for="product in products.data">
                 <div class="card product-card card-static pb-3">
                     <span class="badge rounded-pill bg-primary mt-1 ms-1 badge-shadow" v-if="product.special">-{{ ($store.state.service.getDiscountAmount(product.price, product.special)) }}%</span>
@@ -300,6 +306,16 @@
              */
             closeFilter() {
                 $('#shop-sidebar').removeClass('collapse show');
+            },
+
+            onerow() {
+                $('#product-grid').removeClass('row-cols-2');
+                $('#product-grid').addClass('row-cols-1');
+            },
+
+            tworow() {
+                $('#product-grid').removeClass('row-cols-1');
+                $('#product-grid').addClass('row-cols-2');
             }
         }
     };
