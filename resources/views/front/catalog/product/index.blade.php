@@ -221,7 +221,12 @@
                         <h3 class="accordion-header"><a class="accordion-button collapsed" href="#localStore" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="localStore"><i class="ci-card text-muted fs-lg align-middle mt-n1 me-2"></i>Načini plaćanja</a></h3>
                         <div class="accordion-collapse collapse" id="localStore" data-bs-parent="#productPanels">
                             <div class="accordion-body fs-sm">
+
+
                                 @foreach($payment_methods as $payment_method)
+                                    @if($prod->origin == 'Engleski' and $payment_method->code == 'cod' )
+
+                                    @else
                                     <div class="d-flex justify-content-between border-bottom py-2">
                                         <div>
                                             <div class="fw-semibold text-dark">{{ $payment_method->title }}</div>
@@ -229,6 +234,7 @@
                                         </div>
 
                                     </div>
+                                    @endif
                                 @endforeach
 
                             </div>
