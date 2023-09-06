@@ -65,7 +65,7 @@ class Gls
             $deliveryAddress->City            = $this->order['payment_city'];
             $deliveryAddress->ZipCode         = $this->order['payment_zip'];
             $deliveryAddress->CountryIsoCode  = "HR";
-            $deliveryAddress->HouseNumberInfo = "/b";
+            $deliveryAddress->HouseNumberInfo = "";
             $parcel->DeliveryAddress          = $deliveryAddress;
             $pickupAddress                    = new StdClass();
             $pickupAddress->ContactName       = "Ines Draganić";
@@ -77,7 +77,7 @@ class Gls
             $pickupAddress->City              = "Zagreb";
             $pickupAddress->ZipCode           = "10000";
             $pickupAddress->CountryIsoCode    = "HR";
-            $pickupAddress->HouseNumberInfo   = "/a";
+            $pickupAddress->HouseNumberInfo   = "";
             $parcel->PickupAddress            = $pickupAddress;
             $parcel->PickupDate               = date('Y-m-d');
             /* $service1 = new StdClass();
@@ -185,7 +185,7 @@ class Gls
         $parcelIdList = [];
         if ($response != null && count((array) $response->PrepareLabelsResult->PrepareLabelsError) == 0 && count((array) $response->PrepareLabelsResult->ParcelInfoList) > 0) {
             $parcelIdList[] = $response->PrepareLabelsResult->ParcelInfoList->ParcelInfo->ParcelId;
-            $order->update(['printed', 1]);
+            $order->update(['printed' => 1]);
 
         }
 
