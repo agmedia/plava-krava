@@ -87,6 +87,7 @@
                             <th>Kupac</th>
                             <th class="text-center">Artikli</th>
                             <th class="text-right">Vrijednost</th>
+                            <th class="text-right">GLS Labels</th>
                             <th class="text-right">Detalji</th>
                         </tr>
                         </thead>
@@ -117,6 +118,8 @@
                                 <td class="text-right">
                                     <strong>€ {{ number_format($order->total, 2, ',', '.') }}</strong>
                                 </td>
+
+                                <td class="text-center">{{ $order->printed }}</td>
                                 <td class="text-right font-size-base">
                                     <a class="btn btn-sm btn-alt-secondary" href="{{ route('orders.show', ['order' => $order]) }}">
                                         <i class="fa fa-fw fa-eye"></i>
