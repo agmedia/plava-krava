@@ -4,9 +4,6 @@ namespace App\Models\Front;
 
 use App\Helpers\Currency;
 use App\Helpers\Helper;
-use App\Helpers\Session\CheckoutSession;
-use App\Models\Back\Settings\Settings;
-use App\Models\Front\Cart\Totals;
 use App\Models\Front\Catalog\Product;
 use App\Models\Front\Catalog\ProductAction;
 use App\Models\Front\Checkout\PaymentMethod;
@@ -17,7 +14,6 @@ use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class AgCart extends Model
@@ -235,11 +231,11 @@ class AgCart extends Model
      */
     public function flush()
     {
-        if (Auth::user()) {
-            \App\Models\Cart::query()->where('user_id', Auth::user()->id)->delete();
-        }
+        $this->cart->clear();
 
-        return $this->cart->clear();
+        Helper::flushCache('cart', $this->cart_id);
+
+        return $this;
     }
 
 
@@ -256,6 +252,27 @@ class AgCart extends Model
                 'quantity' => $item['quantity']
             ]
         ];
+    }
+
+
+    /**
+     * If user is logged store or update the DB session.
+     *
+     * @param $response
+     */
+    public function resolveDB(): void
+    {
+        $cart = $this->get();
+
+        if (Auth::user()) {
+            $has_cart = \App\Models\Cart::where('user_id', Auth::user()->id)->first();
+
+            if ($has_cart) {
+                \App\Models\Cart::edit($cart);
+            } else {
+                \App\Models\Cart::store($cart);
+            }
+        }
     }
 
 

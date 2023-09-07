@@ -166,7 +166,9 @@ class CheckoutController extends Controller
             CheckoutSession::forgetStep();
             CheckoutSession::forgetPayment();
             CheckoutSession::forgetShipping();
-            $this->shoppingCart()->flush();
+
+            $cart = $this->shoppingCart();
+            $cart->flush()->resolveDB();
 
             $data['google_tag_manager'] = TagManager::getGoogleSuccessDataLayer($order);
 
