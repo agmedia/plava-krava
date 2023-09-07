@@ -113,7 +113,7 @@ class PlavaKrava
                         'condition'            => null,
                         'binding'              => $item[20],
                         'year'                 => $item[21],
-                        'shipping_time'        => '',
+                        'shipping_time'        => '2-4 dana',
                         'youtube_product_url'  => '',
                         'youtube_channel'      => '',
                         'goodreads_author_url' => '',
