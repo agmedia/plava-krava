@@ -84,6 +84,17 @@
 
     </style>
 </head>
+@if (config('app.env') == 'production')
+    @yield('google_data_layer')
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B0BP9R6HH4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', ' G-B0BP9R6HH4');
+    </script>
+@endif
 <!-- Body-->
 <body class="bg-secondary">
 <div id="agapp">
@@ -131,17 +142,7 @@
 <script src="{{ asset('js/cart.js?v=2.0.7') }}"></script>
 <script src="{{ asset('js/theme.min.js') }}"></script>
 
-@if (config('app.env') == 'production')
-    @yield('google_data_layer')
 
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', ' G-B0BP9R6HH4');
-    </script>
-@endif
 
 <script type="text/javascript">
     $(document).ready(function() {
