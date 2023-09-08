@@ -30,8 +30,8 @@ class OrderController extends Controller
 
         return view('back.order.index', compact('orders', 'statuses'));
     }
-    
-    
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -41,8 +41,8 @@ class OrderController extends Controller
     {
         return view('back.order.edit');
     }
-    
-    
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -95,8 +95,8 @@ class OrderController extends Controller
 
         return view('back.order.edit', compact('order', 'countries', 'statuses', 'shippings', 'payments'));
     }
-    
-    
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -115,8 +115,8 @@ class OrderController extends Controller
 
         return redirect()->back()->with(['error' => 'Oops..! Dogodila se greška prilikom snimanja.']);
     }
-    
-    
+
+
     /**
      * Remove the specified resource from storage.
      *
