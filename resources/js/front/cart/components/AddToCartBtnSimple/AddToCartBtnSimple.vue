@@ -1,5 +1,5 @@
 <template>
-    <button class="btn btn-outline-primary btn-shadow btn-sm d-sm-block d-none" @click="addToCart()" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
+    <button class="btn btn-outline-primary btn-shadow btn-sm d-sm-block d-none" :disabled="disabled" @click="add()" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
 
 </template>
 
@@ -13,7 +13,8 @@ export default {
     data() {
         return {
             quantity: 1,
-            has_in_cart: false
+            has_in_cart: false,
+            disabled: false
         }
     },
 
@@ -26,15 +27,21 @@ export default {
                 this.quantity = cart.items[key].quantity;
             }
         }
+
+        this.checkAvailability();
     },
 
     methods: {
         add() {
+            this.checkAvailability();
+
             if (this.has_in_cart) {
                 this.updateCart();
             } else {
-                this.add();
+                this.addToCart();
             }
+
+            this.quantity += 1;
         },
         /**
          *
@@ -52,16 +59,22 @@ export default {
          *
          */
         updateCart() {
-            if (this.available != 'undefined' && this.quantity > this.available) {
-                this.quantity = this.available;
-            }
-
             let item = {
                 id: this.id,
                 quantity: this.quantity
             }
+
             this.$store.dispatch('updateCart', item);
         },
+
+        checkAvailability() {
+            console.log(this.available, this.quantity);
+
+            if (this.available <= this.quantity) {
+                this.disabled = true;
+                this.quantity = this.available;
+            }
+        }
     }
 };
 </script>
