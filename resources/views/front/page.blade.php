@@ -13,8 +13,8 @@
         <meta property="og:description" content="Iza simpatičnog imena Plava krava, krije se odlična ekipa koja kupca itekako stavlja na prvo mjesto. Jednostavna kupovina i brza dostava." />
         <meta property="og:url" content="{{ env('APP_URL')}}"  />
         <meta property="og:site_name" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
-        <meta property="og:image" content="{{ asset('media/cover-zuzi.jpg') }}" />
-        <meta property="og:image:secure_url" content="{{ asset('media/cover-zuzi.jpg') }}" />
+        <meta property="og:image" content="{{ asset('media/plavakrava.jpg') }}" />
+        <meta property="og:image:secure_url" content="{{ asset('media/plavakrava.jpg') }}" />
         <meta property="og:image:width" content="1920" />
         <meta property="og:image:height" content="720" />
         <meta property="og:image:type" content="image/jpeg" />
@@ -22,7 +22,7 @@
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Plava Krava | Webshop | Knjige | Porculan | Posuđe" />
         <meta name="twitter:description" content="Iza simpatičnog imena Plava krava, krije se odlična ekipa koja kupca itekako stavlja na prvo mjesto. Jednostavna kupovina i brza dostava." />
-        <meta name="twitter:image" content="{{ asset('media/cover-zuzi.jpg') }}" />
+        <meta name="twitter:image" content="{{ asset('media/plavakrava.jpg') }}" />
 
     @endpush
 
