@@ -506,7 +506,7 @@ class Helper
      *
      * @return object|bool|mixed|null
      */
-    public static function flushCache(string $tag, string $key): ?object
+    public static function flushCache(string $tag, string $key)
     {
         if (env('APP_ENV') == 'local') {
             return Cache::getFacadeRoot();
