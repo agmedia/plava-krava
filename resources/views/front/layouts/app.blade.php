@@ -83,19 +83,20 @@
         }
 
     </style>
-</head>
-@if (config('app.env') == 'production')
-    @yield('google_data_layer')
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B0BP9R6HH4"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    @if (config('app.env') == 'production')
+        @yield('google_data_layer')
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B0BP9R6HH4"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-        gtag('config', 'G-B0BP9R6HH4');
-    </script>
-@endif
+            gtag('config', 'G-B0BP9R6HH4');
+        </script>
+    @endif
+</head>
+
 <!-- Body-->
 <body class="bg-secondary">
 <div id="agapp">
