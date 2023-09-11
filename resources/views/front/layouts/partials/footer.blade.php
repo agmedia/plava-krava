@@ -36,19 +36,16 @@
                 <div class="row py-lg-4">
                     <div class="col-lg-4 mb-lg-0 mb-4">
                         <div class="widget pb-3 mb-lg-4">
-                            <h3 class="widget-title text-dark pb-1">Ne propusti akciju</h3>
-                            <form class="subscription-form validate" action="#" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
-                                <div class="input-group flex-nowrap"><i class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
-                                    <input class="form-control rounded-start" type="email" name="EMAIL" placeholder="Vaša email adresa" required>
-                                    <button class="btn btn-primary" type="submit" name="subscribe">Prijavi se*</button>
-                                </div>
-                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                                <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                                    <input class="subscription-form-antispam" type="text" name="b_c7103e2c981361a6639545bd5_29ca296126" tabindex="-1">
-                                </div>
-                                <div class="form-text mt-3 fs-md text-dark opacity-50">*Prijavi se na naš Newsletter i budi u toku sa najnovijim akcijama i novostima!</div>
-                                <div class="subscription-status"></div>
-                            </form>
+                            <h3 class="widget-title text-dark pb-1">O nama</h3>
+                            <ul class="widget-list">
+                            <li  class="widget-list-item"><span class="widget-list-link">Plava krava izdavaštvo d.o.o., Nova cesta 130, 10000 Zagreb</span></li>
+                            <li  class="widget-list-item"><span class="widget-list-link">Registarski sud: Trgovački sud u Zagrebu</span></li>
+                            <li  class="widget-list-item"><span class="widget-list-link">Temeljni kapital: 20.000,00 kn uplaćen u cjelosti.</span></li>
+                            <li  class="widget-list-item"><span class="widget-list-link">MBS: 081437207 - OIB: 79503141656</span></li>
+                            <li  class="widget-list-item"><span class="widget-list-link">Osnivači/članovi društva: Ines Draganić</span></li>
+                            <li  class="widget-list-item"><span class="widget-list-link">Žiro račun: Erste&amp;Steiermärkische Bank d.d.</span></li>
+                                <li  class="widget-list-item"> <span class="widget-list-link">IBAN: HR98 2402 0061 1011 2296 1</span></li>
+                            </ul>
                         </div>
                         <div><a class="btn-social bs-dark bs-facebook me-2 mb-2" aria-label="FAacebook" href="https://www.facebook.com/plavakravahr"><i class="ci-facebook"></i></a><a class="btn-social bs-dark bs-instagram me-2 mb-2" aria-label="Instagram" href="https://www.instagram.com/plavakravaofficial/"><i class="ci-instagram"></i></a></div>
                     </div>
