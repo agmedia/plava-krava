@@ -29,33 +29,8 @@
             <div class="col-12 col-sm-6 mb-5">
 
                         <h3 class=" mb-4">Impressum</h3>
-                        <p>
-
-                           <strong> ULTRA WEBSHOP d.o.o. </strong></p>
-
-                <p> Sjedište: Martićeva 37, 10000 Zagreb<br><br>
-
-
-                    Registarski sud: Trgovački sud u Zagrebu <br>
-
-                    Temeljni kapital: 20.000,00 kn uplaćen u cjelosti. <br>
-
-                    MBS: 081387689 <br>
-                    OIB: 81274036107 <br>
-
-                    Članovi društva: Plava krava d.o.o. <br>
-
-                    Direktor: Ines Draganić <br> <br>
-
-                    Žiro račun otvoren u: Privredna banka Zagreb d.d. <br>
-                    IBAN: HR64 2340 0091 1111 4988 8 <br>
-                    SWIFT: PBZGHR2X
-
-
-
-                    <br>
-
-                </p>
+                <p><strong>Registarski sud: Trgovački sud u Zagrebu</strong></p> <p><strong>Temeljni kapital: 20.000,00 kn uplaćen u cjelosti.</strong></p> <p><strong>MBS: 081437207<br>
+                        OIB: 79503141656</strong></p> <p><strong>Osnivači/članovi društva: Ines Draganić</strong></p> <p><strong>Žiro račun otvoren u: Erste&amp;Steiermärkische Bank d.d.</strong><br> <strong>IBAN: HR98 2402 0061 1011 2296 1</strong><br> <strong>SWIFT: ESBCHR22</strong></p>
 
             </div>
 
