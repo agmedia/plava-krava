@@ -192,10 +192,7 @@
         function sendGLS(order_id) {
             axios.post("{{ route('api.order.send.gls') }}", {order_id: order_id})
             .then(response => {
-                console.log(response)
                 if (response.data.message) {
-                    $('#comment-modal').modal('hide');
-
                     successToast.fire({
                         timer: 1500,
                         text: response.data.message,
