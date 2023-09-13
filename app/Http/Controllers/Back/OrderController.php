@@ -202,6 +202,7 @@ class OrderController extends Controller
 
         $gls = new Gls($order);
         $label = $gls->resolve();
+        Log::info($label);
 
         return response()->json(collect($label)->toArray());
     }
