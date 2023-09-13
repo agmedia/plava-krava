@@ -202,8 +202,11 @@ class OrderController extends Controller
 
         $gls = new Gls($order);
         $label = $gls->resolve();
-        Log::info($label);
 
-        return response()->json(collect($label)->toArray());
+        if (isset($label['ParcelIdList'])) {
+            return response()->json(['message' => 'GLS je uspješno poslan sa ID: ' . $label['ParcelIdList'][0]]);
+        }
+
+        return response()->json(['error' => 'Greška..! Molimo pokušajte ponovo ili kontaktirajte administratora..']);
     }
 }
