@@ -11,6 +11,7 @@ use App\Mail\StatusPaid;
 use App\Models\Back\Orders\Order;
 use App\Models\Back\Orders\OrderHistory;
 use App\Models\Back\Settings\Settings;
+use App\Models\Front\Checkout\Shipping\Gls;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -185,5 +186,23 @@ class OrderController extends Controller
         }
 
         return response()->json(['error' => 'Greška..! Molimo pokušajte ponovo ili kontaktirajte administratora..']);
+    }
+
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function api_send_gls(Request $request)
+    {
+        $request->validate(['order_id' => 'required']);
+
+        $order = Order::where('id', $request->input('order_id'))->first();
+
+        $gls = new Gls($order);
+        $label = $gls->resolve();
+
+        return response()->json(collect($label)->toArray());
     }
 }
