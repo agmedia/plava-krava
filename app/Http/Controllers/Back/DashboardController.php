@@ -64,7 +64,7 @@ class DashboardController extends Controller
             ->select('order_products.name','order_products.product_id',
                 DB::raw('SUM(order_products.quantity) as total'))
             ->groupBy('order_products.product_id')
-            ->whereIn('orders.order_status_id', [1, 2, 3, 4, 5, 6, 7])
+            ->whereIn('orders.order_status_id', [1, 2, 3, 4])
             ->orderBy('total','desc')
             ->limit(10)
             ->get();
