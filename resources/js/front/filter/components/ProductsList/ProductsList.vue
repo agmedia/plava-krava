@@ -53,7 +53,7 @@
 
                     </div>
                     <div class="product-floating-btn  d-sm-block d-none">
-                        <button class="btn btn-outline-primary btn-shadow btn-sm" v-on:click="add(product.id)" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
+                        <button class="btn btn-outline-primary btn-shadow btn-sm" :disabled="product.disabled" v-on:click="add(product.id, product.quantity)" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
                     </div>
                 </div>
             </div>
@@ -154,6 +154,7 @@
                     this.products = response.data;
                     this.checkHrTotal();
                     this.checkSpecials();
+                    this.checkAvailables();
 
                     if (params.pojam != '' && !this.products.total) {
                         this.search_zero_result = true;
@@ -182,6 +183,7 @@
                     this.products = response.data;
                     this.checkHrTotal();
                     this.checkSpecials();
+                    this.checkAvailables();
                 });
             },
 
@@ -268,13 +270,34 @@
                 return params;
             },
 
-
+            /**
+             *
+             */
             checkSpecials() {
                 let now = new Date();
 
                 for (let i = 0; i < this.products.data.length; i++) {
                     if (Number(this.products.data[i].main_price) <= Number(this.products.data[i].main_special)) {
                         this.products.data[i].special = false;
+                    }
+                }
+            },
+
+            /**
+             *
+             */
+            checkAvailables() {
+                let cart = this.$store.state.storage.getCart();
+
+                for (let i = 0; i < this.products.data.length; i++) {
+                    this.products.data[i].disabled = false;
+
+                    for (const key in cart.items) {
+                        if (this.products.data[i].id == cart.items[key].id) {
+                            if (this.products.data[i].quantity <= cart.items[key].quantity) {
+                                this.products.data[i].disabled = true;
+                            }
+                        }
                     }
                 }
             },
@@ -294,7 +317,17 @@
              *
              * @param id
              */
-            add(id) {
+            add(id, product_quantity) {
+                let cart = this.$store.state.storage.getCart();
+
+                for (const key in cart.items) {
+                    if (id == cart.items[key].id) {
+                        if (product_quantity <= cart.items[key].quantity) {
+                            return window.ToastWarning.fire('Nažalost nema dovoljnih količina artikla..!');
+                        }
+                    }
+                }
+
                 this.$store.dispatch('addToCart', {
                     id: id,
                     quantity: 1
