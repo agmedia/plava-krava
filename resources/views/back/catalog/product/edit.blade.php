@@ -116,7 +116,7 @@
 
 
                                 <div class="col-md-3">
-                                    <label for="dm-post-edit-slug">Vrijeme isporuke</label>
+                                    <label for="dm-post-edit-slug">Vrijeme isporuke @include('back.layouts.partials.required-star')</label>
                                     <select class="js-select2 form-control" id="shipping_time-select" name="shipping_time" style="width: 100%;" data-placeholder="Odaberite ili upišite vrijem isporuke">
                                         <option></option>
                                         @if ($data['shipping_times'])
@@ -169,7 +169,7 @@
 
                             <div class="form-group row items-push mb-4">
                                 <div class="col-md-12">
-                                    <label for="categories">Odaberi kategorije</label>
+                                    <label for="categories">Odaberi kategorije @include('back.layouts.partials.required-star')</label>
                                     <select class="form-control" id="category-select" name="category[]" style="width: 100%;" multiple>
                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach ($data['categories'] as $group => $cats)

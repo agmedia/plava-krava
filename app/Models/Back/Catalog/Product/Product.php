@@ -60,7 +60,7 @@ class Product extends Model
      */
     public function subcategories()
     {
-        return $this->hasManyThrough(Category::class, ProductCategory::class, 'product_id', 'id', 'id', 'category_id')->where('parent_id', '=!', 0);
+        return $this->hasManyThrough(Category::class, ProductCategory::class, 'product_id', 'id', 'id', 'category_id')->where('parent_id', '!=', 0);
     }
 
 
@@ -377,6 +377,8 @@ class Product extends Model
 
         if ($request->has('category') && ! empty($request->input('category'))) {
             $query->whereHas('categories', function ($query) use ($request) {
+                $query->where('id', $request->input('category'));
+            })->orWhereHas('subcategories', function ($query) use ($request) {
                 $query->where('id', $request->input('category'));
             });
         }
