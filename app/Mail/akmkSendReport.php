@@ -37,6 +37,7 @@ class akmkSendReport extends Mailable
     public function build()
     {
         return $this->subject('Izvještaj Plava-Krava' )
-            ->view('emails.amk-send-report');
+            ->view('emails.akmk-send-report')
+            ->attach(storage_path('akmk_report.xlsx'));
     }
 }

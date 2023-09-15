@@ -73,7 +73,8 @@ class Csv
 
 
 
-    public function createExcelFile($filename, $rows, $keys = [], $formats = []) {
+    public function createExcelFile($filename, $rows, $keys = [], $formats = [])
+    {
         // instantiate the class
         $doc = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $sheet = $doc->getActiveSheet();
@@ -127,6 +128,7 @@ class Csv
 
         // write and save the file
         $writer = new Xlsx($doc);
-        $writer->save(public_path($filename));
+
+        return $writer->save(storage_path($filename));
     }
 }

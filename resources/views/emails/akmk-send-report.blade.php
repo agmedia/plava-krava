@@ -3,57 +3,25 @@
 @section('content')
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
-            <td class="ag-mail-tableset">{!! __('Pozdrav ' . $order->payment_fname. ', hvala vam na vašoj narudžbi.') !!}</td>
+            <td class="ag-mail-tableset">{!! __('Pozdrav Akademska Knjiga,') !!}</td>
         </tr>
-        <tr>
-            <td class="ag-mail-tableset"> <h3 style="line-height:0px">Narudžba broj: {{ $order->id }} </h3></td>
-        </tr>
+
         <tr>
             <td class="ag-mail-tableset">
-                @include('emails.layouts.partials.order-details', ['order' => $order])
-            </td>
-        </tr>
-        <tr>
-            <td class="ag-mail-tableset">
-                @include('emails.layouts.partials.order-price-table', ['order' => $order])
-            </td>
-        </tr>
-        <tr>
-            <td class="ag-mail-tableset">
-                <b> {{ __('Način plaćanja') }}:</b>
-                @if ($order->payment_code == 'bank')
-                    <b>{{ __('Općom uplatnicom / Virmanom / Internet bankarstvom') }}</b>
+                <h3>{{ 'Izvještaj za datum ' . now()->subDay()->format('m.d.Y.') }}</h3>
 
-                    <p style="font-size:12px">Uredno smo zaprimili Vašu narudžbu broj {{ $order->id }} i zahvaljujemo Vam.</p><p style="font-size:12px">Molimo vas da izvršite uplatu po sljedećim uputama za plaćanje.</p>
-
-                    <p style="font-size:12px"> Rok za uplatu je maksimalno 48h tijekom koga robu koju ste naručili držimo rezerviranu za vas.</p>
-
-                    <p style="font-size:12px"> Ukoliko u tom roku ne zaprimimo uplatu, nažalost moramo poništiti ovu narudžbu.</p>
-
-                    <p style="font-size:12px">MOLIMO IZVRŠITE UPLATU U IZNOSU OD € {{number_format($order->total, 2)}}</p>
-
-
-                    <p style="font-size:12px"> IBAN RAČUN: HR98 2402 0061 1011 2296 1<br>
-                        MODEL: 00 POZIV NA BROJ: {{ $order->id }}-{{date('ym')}}</p>
-
-
-                    <p style="font-size:12px">ILI JEDNOSTAVNO POSKENIRAJTE 2D BARKOD</p>
-
-                    <p><img src="{{ asset('media/img/qr/'.$order->id) }}.jpg" style="max-width:80%; border:1px solid #ccc; height:auto"></p>
-
-                @elseif ($order->payment_code == 'cod')
-                    <b>{{ __('Gotovinom prilikom pouzeća') }}</b>
-                    <p style="font-size:12px">Uredno smo zaprimili Vašu narudžbu broj {{ $order->id }} i zahvaljujemo Vam.</p>
-                @elseif ($order->payment_code == 'corvus')
-                    <b>{{ __('CorvusPay') }}</b>
-                    <p style="font-size:12px">Uredno smo zaprimili Vašu narudžbu broj {{ $order->id }} i zahvaljujemo Vam.</p>
-                @else
-                    <b>{{ __('Plaćanje prilikom preuzimanja') }}</b>
-                    <p style="font-size:12px">Uredno smo zaprimili Vašu narudžbu broj {{ $order->id }} i zahvaljujemo Vam.</p>
-                @endif
+                <p style="font-size:12px"> Imate dodatak u privitku ili gumb kojim možete učitati excel datoteku.</p>
                 <br><br>
 
                 Lijep pozdrav,<br>Plava Krava
+            </td>
+        </tr>
+
+        <tr>
+            <td style="padding: 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; text-align: center;">
+                <a href="{{ url('akmk_report.xlsx') }}" style="display: block; display: inline-block; width: 200px; min-height: 20px; padding: 10px; background-color: #a50000; border-radius: 3px; color: #ffffff; font-size: 15px; line-height: 25px; text-align: center; text-decoration: none; -webkit-text-size-adjust: none;">
+                    Idi na stranicu
+                </a>
             </td>
         </tr>
 

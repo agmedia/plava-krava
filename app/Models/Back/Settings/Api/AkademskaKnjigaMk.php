@@ -242,13 +242,15 @@ class AkademskaKnjigaMk
     }
 
 
+    /**
+     * @return string
+     */
     public function sendExcelReport()
     {
-        $orders = Order::query()->whereDate('created_at', today()->subDays(44))->with('products')->get();
+        $orders = Order::query()->whereDate('created_at', today()->subDay())->with('products')->get();
+        $products = collect();
 
         if ($orders->count()) {
-            $products = collect();
-
             foreach ($orders as $order) {
                 foreach ($order->products as $product) {
                     $products->push($product);
@@ -278,7 +280,9 @@ class AkademskaKnjigaMk
         $csv = new Csv();
         $csv->createExcelFile('akmk_report.xlsx', $to_send, $this->excel_keys);
 
-        Mail::to(config('mail.admin'))->send(new akmkSendReport());
+        dispatch(function () {
+            Mail::to(config('mail.admin'))->send(new akmkSendReport());
+        });
 
         return ApiHelper::response(1, 'Excel je poslan.');
     }
