@@ -3,12 +3,15 @@
 namespace App\Models\Back\Settings\Api;
 
 use App\Helpers\ApiHelper;
+use App\Helpers\Csv;
 use App\Helpers\Helper;
 use App\Helpers\Import;
 use App\Helpers\ProductHelper;
 use App\Helpers\Query;
+use App\Mail\akmkSendReport;
 use App\Models\Back\Catalog\Product\Product;
 use App\Models\Back\Catalog\Product\ProductCategory;
+use App\Models\Back\Orders\Order;
 use App\Models\Back\Settings\Settings;
 use App\Models\Back\TempTable;
 use Carbon\Carbon;
@@ -16,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class AkademskaKnjigaMk
 {
@@ -24,6 +28,11 @@ class AkademskaKnjigaMk
      * @var array|null
      */
     protected $request;
+
+    /**
+     * @var string[]
+     */
+    protected $excel_keys = ['sku', 'isbn', 'Naslov', 'Količina'];
 
 
     /**
@@ -43,6 +52,8 @@ class AkademskaKnjigaMk
                     return $this->importNewProducts();
                 case 'update-prices-quantities':
                     return $this->updatePriceAndQuantity();
+                case 'send-report':
+                    return $this->sendExcelReport();
             }
         }
 
@@ -228,6 +239,48 @@ class AkademskaKnjigaMk
         $count = TempTable::query()->get()->count();
 
         return ApiHelper::response(1, 'Obnovljene su cijene i količine na ' . $count . ' artikala.');
+    }
+
+
+    public function sendExcelReport()
+    {
+        $orders = Order::query()->whereDate('created_at', today()->subDays(44))->with('products')->get();
+
+        if ($orders->count()) {
+            $products = collect();
+
+            foreach ($orders as $order) {
+                foreach ($order->products as $product) {
+                    $products->push($product);
+                }
+            }
+
+            $products->groupBy('product_id')->all();
+        }
+
+        $to_send = [];
+
+        foreach ($products->groupBy('product_id')->all() as $group) {
+            $qty = 0;
+
+            foreach ($group as $product) {
+                $qty += $product->quantity;
+            }
+
+            $to_send[] = [
+                'sku' => $product->product->sku,
+                'isbn' => $product->product->isbn,
+                'title' => $product->product->name,
+                'quantity' => $qty,
+            ];
+        }
+
+        $csv = new Csv();
+        $csv->createExcelFile('akmk_report.xlsx', $to_send, $this->excel_keys);
+
+        Mail::to(config('mail.admin'))->send(new akmkSendReport());
+
+        return ApiHelper::response(1, 'Excel je poslan.');
     }
 
 }

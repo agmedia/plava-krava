@@ -5,21 +5,21 @@ namespace App\Console\Commands;
 use App\Models\Back\Settings\Api\AkademskaKnjigaMk;
 use Illuminate\Console\Command;
 
-class UpdateApi_akmk extends Command
+class SendReportApi_akmk extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'update:api_products_akmk';
+    protected $signature = 'report:api_products_akmk';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update prices and quantities from akademska-knjiga.mk.';
+    protected $description = 'Send report about sold products to akademska-knjiga.mk.';
 
     /**
      * Create a new command instance.
@@ -38,6 +38,6 @@ class UpdateApi_akmk extends Command
      */
     public function handle()
     {
-        return (new AkademskaKnjigaMk())->process(['method' => 'update-prices-quantities']);
+        return (new AkademskaKnjigaMk())->process(['method' => 'send-report']);
     }
 }

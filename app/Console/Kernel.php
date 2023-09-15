@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('check:api_products_akmk')->dailyAt('00:10');
         $schedule->command('import:api_products_akmk')->dailyAt('00:12');
         $schedule->command('update:api_products_akmk')->dailyAt('00:20');
+        $schedule->command('report:api_products_akmk')->dailyAt('00:30');
     }
 
     /**
