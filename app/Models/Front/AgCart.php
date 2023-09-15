@@ -125,7 +125,7 @@ class AgCart extends Model
      */
     public function check($request)
     {
-        $message = Helper::resolveCache('cart')->remember($this->cart_id, config('cache.cart_life'), function () use ($request) {
+        //$message = Helper::resolveCache('cart')->remember($this->cart_id, config('cache.cart_life'), function () use ($request) {
             $products = Product::whereIn('id', $request['ids'])->pluck('quantity', 'id');
             $message = null;
 
@@ -140,7 +140,7 @@ class AgCart extends Model
             }
 
             return $message;
-        });
+        //});
 
         return [
             'cart' => $this->get(),
