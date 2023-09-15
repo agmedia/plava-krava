@@ -8,7 +8,7 @@
     <meta name="author" content="Plava Krava">
     @stack('meta_tags')
     <!-- Viewport-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" media="screen" href="{{ asset('vendor/simplebar/dist/simplebar.min.css') }}"/>
