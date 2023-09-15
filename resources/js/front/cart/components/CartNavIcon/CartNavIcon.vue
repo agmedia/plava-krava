@@ -92,7 +92,7 @@
              */
             removeFromCart(item) {
                 this.$store.dispatch('removeFromCart', item);
-                window.location.reload();
+                setTimeout(window.location.reload(), 500);
             }
         }
     };
