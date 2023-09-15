@@ -37,6 +37,8 @@
 
       {{--@include('front.layouts.partials.hometemp') --}}
 
+      <h1 style="visibility: hidden;height:1px "> Knjige na engleskom jeziku </h1>
+
         {!! $page->description !!}
 
 
