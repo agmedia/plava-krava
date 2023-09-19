@@ -281,7 +281,7 @@ class AkademskaKnjigaMk
         $csv->createExcelFile('akmk_report.xlsx', $to_send, $this->excel_keys);
 
         dispatch(function () {
-            Mail::to(config('mail.admin'))->send(new akmkSendReport());
+            Mail::to('aleksandar@aleksandarpavlovski.com')->send(new akmkSendReport());
         });
 
         return ApiHelper::response(1, 'Excel je poslan.');
