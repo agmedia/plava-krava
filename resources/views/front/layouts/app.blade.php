@@ -84,8 +84,7 @@
 
     </style>
     @if (config('app.env') == 'production')
-
-
+        @yield('google_data_layer')
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -103,8 +102,10 @@
             gtag('config', 'G-B0BP9R6HH4');
         </script>
 
-        @yield('google_data_layer')
+
     @endif
+
+
 </head>
 
 <!-- Body-->
