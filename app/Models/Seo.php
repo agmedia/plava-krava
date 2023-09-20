@@ -24,7 +24,7 @@ class Seo
     {
         return [
             'title'       => rtrim($product->name) . ' - ' . (isset($product->author->title) ? $product->author->title : ''),
-            'description' => 'Knjiga ' . rtrim($product->name) . ' izdavača ' . (isset($product->author->title) ? $product->author->title : '') . ' u Plava Krava web shopu. Kliknite na naš web i saznajte više!'
+            'description' => 'Knjiga ' . rtrim($product->name) . ' pisca ' . (isset($product->author->title) ? $product->author->title : '') . ' u Plava Krava web shopu. Kliknite na naš web i saznajte više!'
         ];
     }
 
