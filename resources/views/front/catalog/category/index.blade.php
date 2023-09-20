@@ -8,8 +8,8 @@
         @section ( 'title',  $cat->title . ' - Plava Krava' )
         @section ( 'description', $cat->meta_description )
     @elseif ($cat && $subcat)
-        @section ( 'title', $subcat->title . ' - Plava Krava' )
-        @section ( 'description', 'Najveći izbor knjiga iz kategorije'. $subcat->meta_description )
+        @section ( 'title', $subcat->meta_title . ' - Plava Krava' )
+        @section ( 'description',  $subcat->meta_description )
     @endif
 @endif
 
@@ -150,13 +150,17 @@
         </div>
     @endif
 
-    <div class="container pb-4 mb-2 mb-md-4" >
-        @if ($cat && ! $subcat)
+    <div class="container pb-4 mb-2 mt-5 mb-md-4" >
+        @if ($cat && !$subcat)
             {!! $cat->description !!}
-        @elseif ($subcat && ! $subcat)
-            {!! $cat->description !!}
+        @elseif ($subcat)
+            {!! $subcat->description !!}
         @endif
     </div>
+
+
+
+
 
 @endsection
 
