@@ -100,6 +100,7 @@
             gtag('js', new Date());
 
             gtag('config', 'G-B0BP9R6HH4');
+            gtag('config', 'AW-11343209567');
         </script>
 
 
