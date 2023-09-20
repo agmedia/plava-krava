@@ -47,7 +47,7 @@
                                 <li  class="widget-list-item"> <span class="widget-list-link">IBAN: HR98 2402 0061 1011 2296 1</span></li>
                             </ul>
                         </div>
-                        <div><a class="btn-social bs-dark bs-facebook me-2 mb-2" aria-label="FAacebook" href="https://www.facebook.com/plavakravahr"><i class="ci-facebook"></i></a><a class="btn-social bs-dark bs-instagram me-2 mb-2" aria-label="Instagram" href="https://www.instagram.com/plavakravaofficial/"><i class="ci-instagram"></i></a></div>
+                       <!-- <div><a class="btn-social bs-dark bs-facebook me-2 mb-2" aria-label="FAacebook" href="https://www.facebook.com/plavakravahr"><i class="ci-facebook"></i></a><a class="btn-social bs-dark bs-instagram me-2 mb-2" aria-label="Instagram" href="https://www.instagram.com/plavakravaofficial/"><i class="ci-instagram"></i></a></div>-->
                     </div>
                     <div class="col-lg-7 offset-lg-1">
                         <div class="d-flex flex-sm-row flex-column justify-content-sm-between mt-n4 mx-lg-n3">
