@@ -7,7 +7,7 @@
             window.dataLayer.push({ ecommerce: null });
             window.dataLayer.push({
                 'event': 'view_cart',
-                'ecommerce': {'items': <?php echo json_encode($gdl); ?>}
+                'ecommerce': {'items': <?php echo json_encode($gdl, JSON_NUMERIC_CHECK); ?>}
             });
         </script>
     @endsection
