@@ -4,6 +4,15 @@
 @section('content')
 
     @if (isset($data['google_tag_manager']))
+
+        <!-- Event snippet for Purchase conversion page -->
+        <script>
+            gtag('event', 'conversion', {
+                'send_to': 'AW-11343209567/RcwNCISSyOMYEN_I7qAq',
+                'transaction_id': ''
+            });
+        </script>
+
         @section('google_data_layer')
             <!-- Event snippet for Purchase conversion page --> <script> gtag('event', 'conversion', { 'send_to': 'AW-11343209567/RcwNCISSyOMYEN_I7qAq', 'transaction_id': '' }); </script>
             <script>
