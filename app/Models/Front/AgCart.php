@@ -290,7 +290,7 @@ class AgCart extends Model
 
         if ($payment_method) {
             $str = str_replace('+', '', $payment_method->getValue());
-            if (number_format($str, 2) > 0) {
+            if (number_format(floatval($str), 2) > 0) {
                 $this->cart->condition($payment_method);
             }
         }
