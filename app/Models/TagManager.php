@@ -85,6 +85,7 @@ class TagManager
     }
 
 
+
     /**
      * @param CartCollection $cart_collection
      *
