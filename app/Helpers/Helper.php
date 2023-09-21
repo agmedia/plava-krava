@@ -240,7 +240,7 @@ class Helper
             //$description = static::resolveDescription($wgs, $description, $id);
         }
 
-        return substr($description, 3, -4);
+        return $description;
     }
 
 
