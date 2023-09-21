@@ -45,7 +45,7 @@ class TagManager
             'ecommerce' => [
                 'transaction_id' => (string) $order->id,
                 'affiliation'    => 'Plava Krava webshop',
-                'value'          => (float) $order->total,
+                'value'          => (float) number_format($order->total,2),
                 'tax'            => (float) number_format($tax, 2),
                 'shipping'       => (float) number_format($shipping, 2),
                 'currency'       => 'EUR',
