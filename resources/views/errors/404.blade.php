@@ -1,8 +1,6 @@
 @extends('front.layouts.app')
 
-<script type="text/javascript">
-    window.location.replace("https://www.plavakrava.hr/kategorija-proizvoda/knjige/knjige-za-djecu-i-mlade/");
-</script>
+
 
 @section ( 'title', '404 Error')
 
