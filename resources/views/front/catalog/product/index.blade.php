@@ -193,6 +193,8 @@
                                         @else
                                             <li><strong>Dostupnost:</strong> Rasprodano</li>
                                         @endif
+
+                                        <li><strong>Stanje:</strong> Nova knjiga</li>
                                 </ul>
 
                             </div>
