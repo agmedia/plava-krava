@@ -45,9 +45,9 @@ class TagManager
             'ecommerce' => [
                 'transaction_id' => (string) $order->id,
                 'affiliation'    => 'Plava Krava webshop',
-                'value'          => (float) number_format($order->total,2),
-                'tax'            => (float) number_format($tax, 2),
-                'shipping'       => (float) number_format($shipping, 2),
+                'value'          =>  number_format($order->total,2),
+                'tax'            =>  number_format($tax, 2),
+                'shipping'       => number_format($shipping, 2),
                 'currency'       => 'EUR',
                 'items'          => $products
             ],
@@ -73,9 +73,9 @@ class TagManager
         $item = [
             'item_id'        => $product->sku,
             'item_name'      => $product->name,
-            'price'          =>  (float)number_format(str_replace(',', '.', $product->main_price), 2),
+            'price'          =>  number_format(str_replace(',', '.', $product->main_price), 2),
             'currency'       => 'EUR',
-            'discount'       =>  (float) number_format($discount, 2),
+            'discount'       =>  number_format($discount, 2),
             'item_category'  => $product->category() ? $product->category()->title : '',
             'item_category2' => $product->subcategory() ? $product->subcategory()->title : '',
             'quantity'       => 1,
