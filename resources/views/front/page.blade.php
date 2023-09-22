@@ -37,6 +37,14 @@
 
       {{--@include('front.layouts.partials.hometemp') --}}
 
+      <!-- Secondary alert -->
+      <div class="alert alert-secondary d-flex" role="alert">
+          <div class="alert-icon">
+              <i class="ci-gift"></i>
+          </div>
+          <small>Besplatna dostava za narudžbe iznad 50€</small>
+      </div>
+
       <h1 style="visibility: hidden;height:1px "> Knjige na engleskom jeziku - Online knjižara </h1>
 
         {!! $page->description !!}
