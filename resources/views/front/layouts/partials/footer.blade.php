@@ -69,8 +69,10 @@
                             <div class="widget widget-links widget-dark mt-4 px-lg-3 px-sm-n2">
                                 <h3 class="widget-title text-dark">Načini plaćanja</h3>
                                 <ul class="widget-list">
-                                    <li class="widget-list-item"><a href="#" class="widget-list-link"> kreditnom karticom jednokratno ili na rate</a></li>
-                                    <li class="widget-list-item"><a href="#" class="widget-list-link"> virmanom / općom uplatnicom / internet bankarstvom</a></li> <li class="widget-list-item"><a href="#" class="widget-list-link">gotovinom prilikom pouzeća</a></li>
+                                    <li class="widget-list-item"><a href="#" class="widget-list-link"> Kreditnom karticom jednokratno ili na rate</a></li>
+                                    <li class="widget-list-item"><a href="#" class="widget-list-link"> Virmanom / općom uplatnicom / internet bankarstvom</a></li> <li class="widget-list-item"><a href="#" class="widget-list-link">Gotovinom prilikom pouzeća</a></li>
+
+                                    <li class="widget-list-item"><a href="#" class="widget-list-link">Fiksni tečaj konverzije: 1 € = 7,53450 kn.</a></li>
                                 </ul>
                                 <div class="mt-3">
                                     <img src="{{ asset('img/logici/CorvusPAY.svg') }}" loading="lazy" alt="CorvusPay" class="d-inline-block" style="height: 40px; margin-right: 3px;" height="40" width="163px">
