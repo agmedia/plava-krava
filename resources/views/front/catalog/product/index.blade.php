@@ -160,11 +160,7 @@
                     </div>
 
                 @endif
-                @if ($prod->shipping_time)
-                <div class="mb-3 mt-1 text-start">
-                    <span class=" fs-sm text-muted me-1"> <i class="ci-delivery text-muted lead align-middle mt-n1 me-1"></i> Rok dostave: {{ $prod->shipping_time }}</span>
-                </div>
-                @endif
+
                 <add-to-cart-btn id="{{ $prod->id }}" available="{{ $prod->quantity }}"></add-to-cart-btn>
 
                 <!-- Product panels-->
@@ -210,6 +206,11 @@
                                         <div>
                                             <div class="fw-semibold text-dark">{{ $shipping_method->title }}</div>
                                             <div class="fs-sm text-muted"> Besplatna dostava za narudžbe iznad {{ config('settings.free_shipping') }}€</div>
+                                            @if ($prod->shipping_time)
+
+                                                    <span class=" fs-sm text-muted me-1"> Rok dostave: {{ $prod->shipping_time }}</span>
+
+                                            @endif
                                         </div>
                                         <div>{{ $shipping_method->data->price }}€ <small> {{ number_format(config('settings.hrk_divide_amount') * $shipping_method->data->price), 2 }}kn</small></div>
                                     </div>
