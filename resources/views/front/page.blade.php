@@ -38,7 +38,7 @@
       {{--@include('front.layouts.partials.hometemp') --}}
 
       <!-- Secondary alert -->
-      <div class="alert alert-secondary d-flex" role="alert">
+      <div class="alert alert-info d-flex" role="alert">
           <div class="alert-icon">
               <i class="ci-gift"></i>
           </div>
