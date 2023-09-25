@@ -157,7 +157,7 @@
 <script src="{{ asset('js/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
 <script src="{{ asset('js/shufflejs/dist/shuffle.min.js') }}"></script>
 <!-- Main theme script-->
-<script src="{{ asset('js/cart.js?v=2.0.12') }}"></script>
+<script src="{{ asset('js/cart.js?v=2.0.13') }}"></script>
 <script src="{{ asset('js/theme.min.js') }}"></script>
 
 
