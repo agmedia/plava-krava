@@ -61,7 +61,7 @@ class Seo
     public static function getPublisherData(Publisher $publisher, Category $cat = null, Category $subcat = null): array
     {
         $title = $publisher->title . ' knjige - Plava Krava';
-        $description = 'Ponuda knjiga nakladnika ' . $publisher->title . '. Knjige iz antikvarijata, naklade ' . $publisher->title . ' mogu biti u vašem domu uz brzu dostavu.';
+        $description = 'Ponuda knjiga nakladnika ' . $publisher->title . ' u Plava Krava Online shopu. Naručite knjige na engleskom jeziku iz naklade ' . $publisher->title . '.';
 
         // Check if there is meta title or description and set vars.
         if ($cat) {
