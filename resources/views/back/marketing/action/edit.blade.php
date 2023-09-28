@@ -67,7 +67,7 @@
                                             <label for="type-select">Vrsta popusta <span class="text-danger">*</span></label>
                                             <select class="form-control" id="type-select" name="type">
                                                 @foreach ($types as $type)
-                                                    <option value="{{ $type->id }}" {{ (isset($action) and $type->id == 'P') ? 'selected="selected"' : '' }}>{{ $type->title }}</option>
+                                                    <option value="{{ $type->id }}" {{ (isset($action) and $type->id == $action->type) ? 'selected="selected"' : '' }}>{{ $type->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

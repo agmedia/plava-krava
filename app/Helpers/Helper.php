@@ -27,8 +27,12 @@ class Helper
      *
      * @return float|int
      */
-    public static function calculateDiscountPrice(float $price, int $discount)
+    public static function calculateDiscountPrice(float $price, int $discount, string $type)
     {
+        if ($type == 'F') {
+            return $price - $discount;
+        }
+
         return $price - ($price * ($discount / 100));
     }
 
