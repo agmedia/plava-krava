@@ -26,7 +26,8 @@
                                 {{ Object.keys(item.conditions).length ? item.associatedModel.main_special_text : item.associatedModel.main_price_text }}</span><span class="text-muted">x {{ item.quantity }}</span>
                                 <span class="text-primary fs-md fw-light" style="margin-left: 20px;"
                                       v-if="Object.keys(item.conditions).length && item.associatedModel.action && item.associatedModel.action.coupon == $store.state.cart.coupon">
-                                    Kupon kod: {{ item.associatedModel.action.title }} ({{ Math.round(item.associatedModel.action.discount).toFixed(0) }}%)
+                                    Kupon kod: {{ item.associatedModel.action.title }} ({{ Math.round(item.associatedModel.action.discount).toFixed(0) }}
+                                    {{ item.associatedModel.action.type == 'F' ? 'kn' : '%' }})
                                 </span>
                             </div>
                             <div class="widget-product-meta"><span class="text-muted me-2" v-if="item.associatedModel.secondary_price_text">{{ Object.keys(item.conditions).length ? item.associatedModel.secondary_special_text : item.associatedModel.secondary_price_text }}</span><span class="text-muted">x {{ item.quantity }}</span></div>

@@ -43,7 +43,7 @@ class Helper
      *
      * @return float|int
      */
-    public static function calculateDiscount($list_price, $seling_price)
+    public static function calculateDiscount($list_price, $seling_price, string $type = 'P')
     {
         if (is_string($list_price)) {
             $list_price = str_replace('.', '', $list_price);
@@ -52,6 +52,10 @@ class Helper
         if (is_string($seling_price)) {
             $seling_price = str_replace('.', '', $seling_price);
             $seling_price = str_replace(',', '.', $seling_price);
+        }
+
+        if ($type == 'F') {
+            return $list_price - $seling_price;
         }
 
         return (($list_price - $seling_price) / $list_price) * 100;
