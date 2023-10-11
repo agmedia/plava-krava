@@ -87,7 +87,7 @@
             </div>
         </div>
     </div>
-    <div class="offcanvas-footer d-none d-sm-block px-grid-gutter pt-4 pb-3 mb-2">
+    <div class="offcanvas-footer d-block px-grid-gutter pt-4 pb-3 mb-2">
         <div class="d-flex mb-3"><i class="ci-support h4 mb-0 fw-normal text-primary mt-1 me-1"></i>
             <div class="ps-2">
                 <div class="text-muted fs-sm">Podrška</div><a class="nav-link-style fs-md" href="tel:+385 1 213 2487">+385 1 213 2487</a>
