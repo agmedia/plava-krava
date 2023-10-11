@@ -19130,7 +19130,6 @@ html:not([dir=rtl]) .range-slider-ui.noUi-horizontal .noUi-handle {
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n+1)) {
     box-shadow: -10px 0 0 #18326d;
 }
-
 .flatpickr-time {
     margin-bottom: 0.5rem;
 }
