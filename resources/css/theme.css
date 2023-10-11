@@ -76,7 +76,6 @@
 *::after {
     box-sizing: border-box;
 }
-
 body {
     margin: 0;
     font-family: var(--cz-body-font-family);
@@ -93,8 +92,6 @@ body {
 #agapp[aria-hidden=true] {
     display:none;
 }
-
-
 
 
 hr {
