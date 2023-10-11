@@ -1,5 +1,5 @@
 <template>
-    <button class="btn btn-outline-primary btn-shadow btn-sm d-sm-block d-none" :disabled="disabled" @click="add()" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
+    <button class="btn btn-primary btn-shadow btn-sm d-sm-block d-none" :disabled="disabled" @click="add()" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
 
 </template>
 

@@ -3,7 +3,7 @@
     <div class="navbar navbar-expand-lg navbar-light py-0">
         <div class="container-fluid">
             <a class="navbar-brand d-none d-md-block me-1 flex-shrink-0 py-0" href="{{ route('index') }}">
-                <div class="logo-bg" style="background-color:#f6f9fc;margin-left:-30px; padding: 0 0px 0 30px; ">
+                <div class="logo-bg" style="background-color:#f0f7ff;margin-left:-30px; padding: 0 0px 0 30px; ">
                     <img src="{{ asset('img/logo-blue.svg') }}" width="90" height="81" alt="Plava Krava" >
                     <span class="arrow"></span>
                 </div>

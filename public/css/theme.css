@@ -148,13 +148,13 @@ h1, .h1 {
   background-color:#fff;   /* change background color acc to bg color */
   border-left-width: 0.2em;
   border-left-style: solid;
-  border-left-color: #f6f9fc;
+  border-left-color: #f0f7ff;
   left:0.05em;
 }
 
 .wave-container {
   height: 20px;
-  background-color: #F6F9FC;
+  background-color: #F0F7FF;
   position: relative;
 }
 
@@ -176,7 +176,6 @@ h1, .h1 {
     height: 9px
   }
 }
-
 
 .wave-container-header {
   height: 10px;
@@ -241,14 +240,14 @@ h1, .h1 {
 
 
 h3.px-grid-gutter.accordion-header:hover{
-background-color: rgb(246, 249, 252);
+background-color: #f0f7ff;
 }
 
 .grecaptcha-badge {
     visibility: hidden;
 }
 h3.bg-default{
-    background-color: rgb(246, 249, 252);
+    background-color: #f0f7ff;
 }
 
 h3.bg-default a.nav-link-style, h3.bg-default span {
@@ -3310,8 +3309,8 @@ textarea.form-control-lg {
 
 .btn-primary {
   --cz-btn-color: #000;
-  --cz-btn-bg: #18326d;
-  --cz-btn-border-color: #18326d;
+  --cz-btn-bg: #ff8e00;
+  --cz-btn-border-color: #ff8e00;
   --cz-btn-hover-color: #000;
   --cz-btn-hover-bg: #f08c4b;
   --cz-btn-hover-border-color: #f08c4b;
@@ -5206,7 +5205,7 @@ textarea.form-control-lg {
 
 .alert-info {
   --cz-alert-color: #18326d;
-  --cz-alert-bg: #f0f7ff;
+  --cz-alert-bg: #fff;
   --cz-alert-border-color: #cbe4ff;
 }
 .alert-info .alert-link {
@@ -9152,7 +9151,7 @@ textarea.form-control-lg {
 
 .bg-secondary {
   --cz-bg-opacity: 1;
-  background-color: #f6f9fc !important;
+  background-color: #f0f7ff !important;
 }
 
 .bg-success {
@@ -14847,10 +14846,10 @@ input[type=search]::-webkit-search-results-decoration {
   --cz-btn-color: #fff;
   --cz-btn-hover-color: #fff;
   --cz-btn-active-color: #fff;
-  --cz-btn-hover-bg: #373f50;
-  --cz-btn-active-bg: #373f50;
-  --cz-btn-hover-border-color: #373f50;
-  --cz-btn-active-border-color: #373f50;
+  --cz-btn-hover-bg: #18326d;
+  --cz-btn-active-bg: #18326d;
+  --cz-btn-hover-border-color: #18326d;
+  --cz-btn-active-border-color: #18326d;
   --cz-btn-disabled-color: #fff;
 }
 
@@ -16903,7 +16902,7 @@ a.nav-link:hover .media-tab-media {
   color: #4b566b;
 }
 .navbar-light .navbar-tool-icon-box.bg-secondary {
-  background-color: #f3f5f9 !important;
+  background-color: #f0f7ff !important;
 }
 .navbar-light .navbar-tool:hover .navbar-tool-icon-box {
   color: #2b3445;

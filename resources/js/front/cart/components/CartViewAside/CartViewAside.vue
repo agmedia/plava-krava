@@ -97,7 +97,7 @@
               <div class="input-group">
               <input type="text" class="form-control" v-model="coupon" placeholder="Upišite kod ovdje...">
               <div class="input-group-append">
-                <button type="button" v-on:click="setCoupon" class="btn btn-primary btn-shadow">Dodaj</button>
+                <button type="button" v-on:click="setCoupon" class="btn btn-outline-primary btn-shadow">Dodaj</button>
               </div>
             </div>
           </div>

@@ -53,7 +53,7 @@
 
                     </div>
                     <div class="product-floating-btn  d-sm-block d-none">
-                        <button class="btn btn-outline-primary btn-shadow btn-sm" :disabled="product.disabled" v-on:click="add(product.id, product.quantity)" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
+                        <button class="btn btn-primary btn-shadow btn-sm" :disabled="product.disabled" v-on:click="add(product.id, product.quantity)" type="button">+<i class="ci-cart fs-base ms-1"></i></button>
                     </div>
                 </div>
             </div>
