@@ -122,13 +122,6 @@
                     @endif
                     @if ($cat && ! $subcat)
                             <h1 class="h2 mb-2 mb-md-0 me-3">{{ $cat->title }}</h1>
-                        @if ($cat->subcategories()->count())
-                                <ul>
-                                    @foreach ($cat->subcategories as $item)
-                                        <li>{{ $item->title }}</li>
-                                    @endforeach
-                                </ul>
-                        @endif
                     @elseif ($cat && $subcat)
                             <h1 class="h2 mb-2 mb-md-0 me-3">{{ $subcat->title }}</h1>
                     @endif
@@ -136,7 +129,27 @@
 
                 </section>
 
+                @if ($cat && ! $subcat)
 
+                    @if ($cat->subcategories()->count())
+                        <section class="py-2 mb-1">
+                            <div class="row  ">
+                                <div class="col-lg-12   py-2 ">
+                                    <div class="scrolling-wrapper">
+                                        @foreach ($cat->subcategories as $item)
+                                            <a href="{{ route('catalog.route', ['group' => $group, 'cat' => $cat, 'subcat' => $item]) }}"
+                                               class="btn btn-outline-primary btn-sm mb-2">
+                                                <p class=" py-0 mb-0 px-1">{{ $item->title }}</p></a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+
+                    @endif
+
+                @endif
 
             @endif
 
@@ -180,4 +193,17 @@
     <script type="application/ld+json">
         {!! collect($crumbs)->toJson() !!}
     </script>
+@endpush
+
+@push('js_after')
+    <style>
+        @media only screen and (max-width: 1040px) {
+            .scrolling-wrapper {
+                overflow-x: scroll;
+                overflow-y: hidden;
+                white-space: nowrap;
+                padding-bottom: 15px;
+            }
+        }
+    </style>
 @endpush
