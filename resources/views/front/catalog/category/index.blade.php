@@ -114,9 +114,21 @@
 
                     @if ($group && ! $cat && ! $subcat)
                         <h1 class="h2 mb-2 mb-md-0 me-3">{{ \Illuminate\Support\Str::ucfirst($group) }}</h1>
+                        <ul>
+                            @foreach ($list as $item)
+                                <li>{{ $item->title }}</li>
+                            @endforeach
+                        </ul>
                     @endif
                     @if ($cat && ! $subcat)
                             <h1 class="h2 mb-2 mb-md-0 me-3">{{ $cat->title }}</h1>
+                        @if ($cat->subcategories()->count())
+                                <ul>
+                                    @foreach ($cat->subcategories as $item)
+                                        <li>{{ $item->title }}</li>
+                                    @endforeach
+                                </ul>
+                        @endif
                     @elseif ($cat && $subcat)
                             <h1 class="h2 mb-2 mb-md-0 me-3">{{ $subcat->title }}</h1>
                     @endif

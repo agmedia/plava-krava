@@ -72,11 +72,14 @@ class CatalogRouteController extends Controller
             return view('front.catalog.product.index', compact('prod', 'group', 'cat', 'subcat', 'related', 'seo', 'shipping_methods' , 'payment_methods', 'crumbs', 'bookscheme', 'gdl', 'reviews'));
         }
 
+        $list = [];
         // If only group and has any category... continue...
         if ($group && ! $cat && ! $subcat) {
             if ( ! Category::where('group', $group)->first('id')) {
                 abort(404);
             }
+
+            $list = Category::where('group', $group)->get();
         }
 
         if ($cat) {
@@ -94,7 +97,7 @@ class CatalogRouteController extends Controller
 
         $crumbs = (new Breadcrumb())->category($group, $cat, $subcat)->resolve();
 
-        return view('front.catalog.category.index', compact('group', 'cat', 'subcat', 'prod', 'crumbs', 'meta_tags'));
+        return view('front.catalog.category.index', compact('group', 'list', 'cat', 'subcat', 'prod', 'crumbs', 'meta_tags'));
     }
 
 
