@@ -81,6 +81,7 @@ return [
             //'wspay'  => \App\Models\Front\Checkout\Payment\Wspay::class,
             //'payway' => \App\Models\Front\Checkout\Payment\Payway::class,
             'corvus' => \App\Models\Front\Checkout\Payment\Corvus::class,
+            'keks'   => \App\Models\Front\Checkout\Payment\Keks::class,
             'cod'    => \App\Models\Front\Checkout\Payment\Cod::class,
             'bank'   => \App\Models\Front\Checkout\Payment\Bank::class,
             'pickup' => \App\Models\Front\Checkout\Payment\Pickup::class

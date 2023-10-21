@@ -7,8 +7,6 @@
 
 @section('content')
 
-
-
     <!-- Page title + breadcrumb-->
     <nav class="mb-4" aria-label="breadcrumb">
         <ol class="breadcrumb flex-lg-nowrap">
@@ -22,11 +20,6 @@
         <h1 class="h2 mb-3 mb-md-0 me-3">Potvrdite narudžbu</h1>
 
     </section>
-
-
-
-
-
             <div class="row">
 
                 <section class="col-lg-12">
@@ -55,8 +48,6 @@
                 </section>
 
             </div>
-
-
 
     <div class="pb-5 mb-2 mt-5 mb-md-4">
         <div class="row">
@@ -103,7 +94,7 @@
                             <ul class="list-unstyled fs-sm">
                                 <li>
                                     <span class="text-muted">{{ $data['payment']->title }} </span><br>
-                                    {{ $data['payment']->data->description ?: $data['payment']->data->short_description }}
+                                    {{ (isset($data['payment']->data->description) && $data['payment']->data->description) ?: $data['payment']->data->short_description }}
                                 </li>
                             </ul>
                         </div>
@@ -149,5 +140,37 @@
         </div>
     </div>
 
-
 @endsection
+
+@push('js_after')
+    @if ($data['payment']->code == 'keks')
+        <script type="text/javascript">
+            let refreshTime = 3000;
+
+            function checkKeksResponse() {
+                $.ajax({
+                    method: 'post',
+                    url: '{{ route('keks.provjera') }}',
+                    data: {
+                        order_id: '{{ $data['id'] }}',
+                        _token: "{{ csrf_token() }}"
+                    },
+                    dataType: 'json',
+                    success: function(json) {
+                        if (json.status) {
+                            document.location = json.redirect;
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    },
+                    complete: function (data) {
+                        setTimeout(checkKeksResponse, refreshTime);
+                    }
+                });
+            }
+
+            setTimeout(checkKeksResponse, refreshTime);
+        </script>
+    @endif
+@endpush
