@@ -130,6 +130,8 @@ class CheckoutController extends Controller
      */
     public function success(Request $request)
     {
+        Log::info($request->toArray());
+        
         $data['order'] = CheckoutSession::getOrder();
 
         if ( ! $data['order']) {
