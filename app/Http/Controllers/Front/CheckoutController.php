@@ -130,6 +130,11 @@ class CheckoutController extends Controller
      */
     public function success(Request $request)
     {
+        $json_response = json_decode(file_get_contents('php://input'), true);
+        $headers = apache_request_headers();
+
+        Log::info($json_response);
+        Log::info($headers);
         Log::info($request->toArray());
         
         $data['order'] = CheckoutSession::getOrder();
