@@ -233,9 +233,10 @@
                                     <div class="d-flex justify-content-between border-bottom py-2">
                                         <div>
                                             <div class="fw-semibold text-dark">{{ $payment_method->title }}</div>
-                                            <div class="fs-sm text-muted">{{ $payment_method->data->description }}</div>
+                                            @if (isset($payment_method->data->description))
+                                                <div class="fs-sm text-muted">{{ $payment_method->data->description }}</div>
+                                            @endif
                                         </div>
-
                                     </div>
                                     @endif
                                 @endforeach
