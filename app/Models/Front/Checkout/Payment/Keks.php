@@ -110,6 +110,8 @@ class Keks
 
         $data['qr_img'] = $qr_code->render(json_encode($qr_data));
 
+        Log::info($data);
+
         return view('front.checkout.payment.keks', compact('data'));
     }
 
