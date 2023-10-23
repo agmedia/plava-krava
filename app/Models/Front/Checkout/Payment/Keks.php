@@ -34,12 +34,12 @@ class Keks
      */
     private $url = [
         'test' => [
-            'action' => 'https://ewa.erstebank.hr/eretailer',
-            'deep_link' => 'https://kekspay.hr/pay'
-        ],
-        'live' => [
             'action' => 'https://kekspayuat.erstebank.hr/eretailer',
             'deep_link' => 'https://kekspay.hr/galebpay'
+        ],
+        'live' => [
+            'action' => 'https://ewa.erstebank.hr/eretailer',
+            'deep_link' => 'https://kekspay.hr/pay'
         ]
     ];
 
