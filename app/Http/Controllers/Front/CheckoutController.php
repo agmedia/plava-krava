@@ -136,7 +136,7 @@ class CheckoutController extends Controller
         Log::info($json_response);
         Log::info($headers);
         Log::info($request->toArray());
-        
+
         $data['order'] = CheckoutSession::getOrder();
 
         if ( ! $data['order']) {
@@ -164,7 +164,69 @@ class CheckoutController extends Controller
                     }
                 }
             }
-            
+
+            // Sent labels to gls
+            $gls = new Gls($order);
+            $label = $gls->resolve();
+
+            CheckoutSession::forgetOrder();
+            CheckoutSession::forgetStep();
+            CheckoutSession::forgetPayment();
+            CheckoutSession::forgetShipping();
+
+            $cart = $this->shoppingCart();
+            $cart->flush()->resolveDB();
+
+            $data['google_tag_manager'] = TagManager::getGoogleSuccessDataLayer($order);
+
+            return view('front.checkout.success', compact('data'));
+        }
+
+        return redirect()->route('front.checkout.checkout', ['step' => '']);
+    }
+
+
+    public function successKeks(Request $request)
+    {
+        $json_response = json_decode(file_get_contents('php://input'), true);
+        $headers = apache_request_headers();
+
+        Log::info($json_response);
+        Log::info($headers);
+        Log::info($request->toArray());
+
+        $data['order'] = CheckoutSession::getOrder();
+
+        if ( ! $data['order'] && ! $request->has('bill_id')) {
+            return redirect()->route('index');
+        }
+
+        if ( ! isset($data['order']['id']) && $request->has('bill_id')) {
+            $data['order']['id'] = substr(strstr($request->input('bill_id'), '-'), 1);
+        }
+
+        $order = \App\Models\Back\Orders\Order::where('id', $data['order']['id'])->first();
+
+        if ($order) {
+            dispatch(function () use ($order) {
+                Mail::to(config('mail.admin'))->send(new OrderReceived($order));
+                Mail::to($order->payment_email)->send(new OrderSent($order));
+            });
+
+            foreach ($order->products as $product) {
+                $real = $product->real;
+
+                if ($real->decrease) {
+                    $real->decrement('quantity', $product->quantity);
+
+                    if ( ! $real->quantity) {
+                        $real->update([
+                            'status' => 0
+                        ]);
+                    }
+                }
+            }
+
             // Sent labels to gls
             $gls = new Gls($order);
             $label = $gls->resolve();
