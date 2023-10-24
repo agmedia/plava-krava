@@ -89,6 +89,10 @@ class CheckoutController extends Controller
             CheckoutSession::setOrder($order->getData());
         }
 
+        if ( ! isset($data['id'])) {
+            $data['id'] = CheckoutSession::getOrder()['id'];
+        }
+
         $uvjeti = DB::table('pages')
             ->select('description')
             ->whereIn('id', [6])
@@ -130,13 +134,6 @@ class CheckoutController extends Controller
      */
     public function success(Request $request)
     {
-        $json_response = json_decode(file_get_contents('php://input'), true);
-        $headers = apache_request_headers();
-
-        Log::info($json_response);
-        Log::info($headers);
-        Log::info($request->toArray());
-
         $data['order'] = CheckoutSession::getOrder();
 
         if ( ! $data['order']) {
@@ -186,65 +183,27 @@ class CheckoutController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function successKeks(Request $request)
     {
-        $json_response = json_decode(file_get_contents('php://input'), true);
-        $headers = apache_request_headers();
+        if ($this->validateKeksResponse($request)) {
+            $id = substr($request->input('bill_id'), 16);
+            $order = Order::query()->where('id', $id)->first();
 
-        Log::info($json_response);
-        Log::info($headers);
-        Log::info($request->toArray());
+            $order->setData($id)->finish($request);
 
-        $data['order'] = CheckoutSession::getOrder();
+            $order->update([
+                'order_status_id' => config('settings.order.new_status')
+            ]);
 
-        if ( ! $data['order'] && ! $request->has('bill_id')) {
-            return redirect()->route('index');
+            return response()->json(['status'  => 0, 'message' => 'Accepted']);
         }
 
-        if ( ! isset($data['order']['id']) && $request->has('bill_id')) {
-            $data['order']['id'] = substr(strstr($request->input('bill_id'), '-'), 1);
-        }
-
-        $order = \App\Models\Back\Orders\Order::where('id', $data['order']['id'])->first();
-
-        if ($order) {
-            dispatch(function () use ($order) {
-                Mail::to(config('mail.admin'))->send(new OrderReceived($order));
-                Mail::to($order->payment_email)->send(new OrderSent($order));
-            });
-
-            foreach ($order->products as $product) {
-                $real = $product->real;
-
-                if ($real->decrease) {
-                    $real->decrement('quantity', $product->quantity);
-
-                    if ( ! $real->quantity) {
-                        $real->update([
-                            'status' => 0
-                        ]);
-                    }
-                }
-            }
-
-            // Sent labels to gls
-            $gls = new Gls($order);
-            $label = $gls->resolve();
-
-            CheckoutSession::forgetOrder();
-            CheckoutSession::forgetStep();
-            CheckoutSession::forgetPayment();
-            CheckoutSession::forgetShipping();
-
-            $cart = $this->shoppingCart();
-            $cart->flush()->resolveDB();
-
-            $data['google_tag_manager'] = TagManager::getGoogleSuccessDataLayer($order);
-
-            return view('front.checkout.success', compact('data'));
-        }
-
-        return redirect()->route('front.checkout.checkout', ['step' => '']);
+        return response()->json(['status'  => 1, 'message' => 'Failed']);
     }
 
 
@@ -298,6 +257,33 @@ class CheckoutController extends Controller
         $response['order_status_id'] = $order_status_id;
 
         return $response;
+    }
+
+
+    /**
+     * @param Request $request
+     *
+     * @return bool
+     */
+    private function validateKeksResponse(Request $request): bool
+    {
+        if ($request->has('status') && ! $request->input('status')) {
+            $headers = $request->header('Authorization');
+
+            if ($headers) {
+                $auth       = filter_var(stripslashes($headers), FILTER_SANITIZE_STRING);
+                $token      = str_replace('Token ', '', $auth);
+                $keks_token = Settings::get('payment', 'list.keks')->first();
+
+                if (isset($keks_token['data']['token'])) {
+                    $request->validate(['bill_id' => 'required']);
+
+                    return hash_equals($keks_token['data']['token'], $token);
+                }
+            }
+        }
+
+        return false;
     }
 
 

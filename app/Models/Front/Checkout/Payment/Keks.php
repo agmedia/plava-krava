@@ -11,11 +11,9 @@ use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Route;
 
 /**
- * Class Corvus
+ * Class Keks
  * @package App\Models\Front\Checkout\Payment
  */
 class Keks
@@ -26,6 +24,9 @@ class Keks
      */
     private $order;
 
+    /**
+     * @var string
+     */
     private $env;
 
 
@@ -67,9 +68,6 @@ class Keks
             return '';
         }
 
-        Log::info($payment_method);
-        Log::info($options);
-
         $payment_method = $payment_method->first();
 
         $order_id   = isset($options['order_number']) ? $options['order_number'] : $this->order->id;
@@ -110,12 +108,15 @@ class Keks
 
         $data['qr_img'] = $qr_code->render(json_encode($qr_data));
 
-        Log::info($data);
-
         return view('front.checkout.payment.keks', compact('data'));
     }
 
 
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function check(Request $request)
     {
         $request->validate([
@@ -137,70 +138,41 @@ class Keks
             }
         }
 
-        Log::info($this->order);
-        Log::info($json);
-
         return response()->json($json);
     }
 
 
     /**
-     * @param Order $order
-     * @param null  $request
+     * @param Order   $order
+     * @param Request $request
      *
      * @return bool
      */
     public function finishOrder(Order $order, Request $request): bool
     {
-
-        $status = ($request->has('approval_code') && $request->input('approval_code')!= null) ? config('settings.order.status.paid') : config('settings.order.status.declined');
-
-
         $order->update([
-            'order_status_id' => $status
+            'order_status_id' => config('settings.order.new_status')
         ]);
 
-        if ($request->has('approval_code')) {
-            Transaction::insert([
-                'order_id'        => $request->input('order_number'),
-                'success'         => 1,
-              /*  'amount'          => $request->input('Amount'),
-                'signature'       => $request->input('Signature'),
-                'payment_type'    => $request->input('PaymentType'),
-                'payment_plan'    => $request->input('PaymentPlan'),
-                'payment_partner' => $request->input('Partner'),
-                'datetime'        => $request->input('DateTime'),
-                'approval_code'   => $request->input('ApprovalCode'),
-                'pg_order_id'     => $request->input('CorvusOrderId'),
-                'lang'            => $request->input('Lang'),
-                'stan'            => $request->input('STAN'),
-                'error'           => $request->input('ErrorMessage'),*/
-                'created_at'      => Carbon::now(),
-                'updated_at'      => Carbon::now()
-            ]);
-
-            return true;
-        }
-
         Transaction::insert([
-            'order_id'        => $request->input('order_number'),
-            'success'         => 0,
-          /*  'amount'          => $request->input('Amount'),
-            'signature'       => $request->input('Signature'),
-            'payment_type'    => $request->input('PaymentType'),
+            'order_id'        => $order->id,
+            'success'         => 1,
+            'amount'          => $request->input('amount'),
+            'signature'       => $request->header('Authorization'),
+            /*'payment_type'    => $request->input('PaymentType'),
             'payment_plan'    => $request->input('PaymentPlan'),
-            'payment_partner' => null,
-            'datetime'        => $request->input('DateTime'),
-            'approval_code'   => $request->input('ApprovalCode'),
-            'pg_order_id'     => null,
-            'lang'            => $request->input('Lang'),
-            'stan'            => null,
+            'payment_partner' => $request->input('Partner'),*/
+            'datetime'        => $order->created_at,
+            'approval_code'   => $request->input('bill_id'),
+            'pg_order_id'     => $request->input('keks_id'),
+            'lang'            => 'hr',
+            /*'stan'            => $request->input('STAN'),
             'error'           => $request->input('ErrorMessage'),*/
             'created_at'      => Carbon::now(),
             'updated_at'      => Carbon::now()
         ]);
 
-        return false;
+        return true;
     }
 
 }
