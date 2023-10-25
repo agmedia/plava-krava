@@ -17,7 +17,7 @@ class Order extends Model
 {
 
     /**
-     * @var string[] 
+     * @var string[]
      */
     protected $fillable = ['order_status_id'];
 
