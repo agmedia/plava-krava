@@ -94,13 +94,13 @@ class CheckoutController extends Controller
         }
 
         $uvjeti = DB::table('pages')
-            ->select('description')
-            ->whereIn('id', [6])
-            ->get();
+                    ->select('description')
+                    ->whereIn('id', [6])
+                    ->get();
 
         $data['payment_form'] = $order->resolvePaymentForm();
 
-        return view('front.checkout.view', compact('data','uvjeti'));
+        return view('front.checkout.view', compact('data', 'uvjeti'));
     }
 
 
@@ -163,7 +163,7 @@ class CheckoutController extends Controller
             }
 
             // Sent labels to gls
-            $gls = new Gls($order);
+            $gls   = new Gls($order);
             $label = $gls->resolve();
 
             CheckoutSession::forgetOrder();
@@ -191,7 +191,7 @@ class CheckoutController extends Controller
     public function successKeks(Request $request)
     {
         if ($this->validateKeksResponse($request)) {
-            $id = substr($request->input('bill_id'), 16);
+            $id    = substr($request->input('bill_id'), 16);
             $order = Order::query()->where('id', $id)->first();
 
             $order->setData($id)->finish($request);
@@ -200,10 +200,10 @@ class CheckoutController extends Controller
                 'order_status_id' => config('settings.order.new_status')
             ]);
 
-            return response()->json(['status'  => 0, 'message' => 'Accepted']);
+            return response()->json(['status' => 0, 'message' => 'Accepted']);
         }
 
-        return response()->json(['status'  => 1, 'message' => 'Failed']);
+        return response()->json(['status' => 1, 'message' => 'Failed']);
     }
 
 
@@ -268,17 +268,15 @@ class CheckoutController extends Controller
     private function validateKeksResponse(Request $request): bool
     {
         if ($request->has('status') && ! $request->input('status')) {
-            $headers = $request->header('Authorization');
+            $token = $request->header('Php-Auth-Pw');
 
-            if ($headers) {
-                $auth       = filter_var(stripslashes($headers), FILTER_SANITIZE_STRING);
-                $token      = str_replace('Token ', '', $auth);
+            if ($token) {
                 $keks_token = Settings::get('payment', 'list.keks')->first();
 
-                if (isset($keks_token['data']['token'])) {
+                if (isset($keks_token->data->token)) {
                     $request->validate(['bill_id' => 'required']);
 
-                    return hash_equals($keks_token['data']['token'], $token);
+                    return hash_equals($keks_token->data->token, $token);
                 }
             }
         }
