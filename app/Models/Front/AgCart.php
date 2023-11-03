@@ -287,6 +287,7 @@ class AgCart extends Model
 
         $shipping_method = ShippingMethod::condition($this->cart);
         $payment_method = PaymentMethod::condition($this->cart);
+        $special_condition = Helper::hasSpecialCartCondition($this->cart);
 
         if ($payment_method) {
             $str = str_replace('+', '', $payment_method->getValue());
@@ -297,6 +298,10 @@ class AgCart extends Model
 
         if ($shipping_method) {
             $this->cart->condition($shipping_method);
+        }
+
+        if ($special_condition) {
+            $this->cart->condition($special_condition);
         }
 
         // Style response array

@@ -11,12 +11,15 @@ use App\Models\Front\Catalog\Author;
 use App\Models\Back\Marketing\Review;
 use App\Models\Front\Catalog\Product;
 use App\Models\Front\Catalog\Publisher;
+use Darryldecode\Cart\CartCondition;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use phpDocumentor\Reflection\Types\False_;
 
 class Helper
 {
@@ -582,6 +585,66 @@ class Helper
         }
 
         return $slug;
+    }
+
+
+    /**
+     * @param $cart
+     *
+     * @return CartCondition|false
+     * @throws \Darryldecode\Cart\Exceptions\InvalidConditionException
+     */
+    public static function hasSpecialCartCondition($cart = null)
+    {
+        $condition = false;
+        $has_condition = false;
+
+        if ($cart->getTotal() > 50) {
+            $has_condition = 10;
+        }
+        if ($cart->getTotal() > 100) {
+            $has_condition = 15;
+        }
+        if ($cart->getTotal() > 200) {
+            $has_condition = 20;
+        }
+
+        if ($has_condition && self::isDateBetween()) {
+            $value = self::calculateDiscountPrice($cart->getTotal(), $has_condition, 'P');
+            $discount = $cart->getTotal() - $value;
+
+            $condition = new CartCondition(array(
+                'name' => config('settings.spacial_action.title'),
+                'type' => 'special',
+                'target' => 'total', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+                'value' => '-' . $discount,
+                'attributes' => [
+                    'description' => '',
+                    'geo_zone' => ''
+                ]
+            ));
+        }
+
+        return $condition;
+    }
+
+
+    /**
+     * @param $date
+     *
+     * @return bool
+     */
+    public static function isDateBetween($date = null): bool
+    {
+        $now = $date ?: Carbon::now();
+        $start = Carbon::createFromFormat('d/m/Y H:i:s',  config('settings.spacial_action.start'));
+        $end = Carbon::createFromFormat('d/m/Y H:i:s',  config('settings.spacial_action.end'));
+
+        if ($now->isBetween($start, $end)) {
+            return true;
+        }
+
+        return false;
     }
 
 }
