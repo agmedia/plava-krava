@@ -614,7 +614,7 @@ class Helper
             $discount = $cart->getTotal() - $value;
 
             $condition = new CartCondition(array(
-                'name' => config('settings.spacial_action.title'),
+                'name' => config('settings.special_action.title'),
                 'type' => 'special',
                 'target' => 'total', // this condition will be applied to cart's subtotal when getSubTotal() is called.
                 'value' => '-' . $discount,
@@ -637,8 +637,8 @@ class Helper
     public static function isDateBetween($date = null): bool
     {
         $now = $date ?: Carbon::now();
-        $start = Carbon::createFromFormat('d/m/Y H:i:s',  config('settings.spacial_action.start'));
-        $end = Carbon::createFromFormat('d/m/Y H:i:s',  config('settings.spacial_action.end'));
+        $start = Carbon::createFromFormat('d/m/Y H:i:s',  config('settings.special_action.start'));
+        $end = Carbon::createFromFormat('d/m/Y H:i:s',  config('settings.special_action.end'));
 
         if ($now->isBetween($start, $end)) {
             return true;

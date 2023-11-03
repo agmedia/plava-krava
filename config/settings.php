@@ -96,7 +96,7 @@ return [
         4 => 'publishers'
     ],
 
-    'spacial_action' => [
+    'special_action' => [
         'title' => 'Količinski popust',
         'start' => '07/11/2023 00:00:01',
         'end' => '12/11/2023 00:00:00'
