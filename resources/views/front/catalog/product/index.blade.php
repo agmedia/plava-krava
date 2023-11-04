@@ -108,6 +108,10 @@
         <div class="col-xl-6 px-2 mb-3">
             <div class="h-100 bg-light rounded-3 py-5 px-4 px-sm-5">
 
+                @if ($prod->main_price > $prod->main_special)
+                    <span class="badge bg-primary ">-{{ number_format(floatval(\App\Helpers\Helper::calculateDiscount($prod->price, $prod->special())), 0) }}%</span>
+                @endif
+
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <a href="#reviews" id="openReview" data-scroll>
                         <div class="star-rating">
@@ -132,6 +136,7 @@
                 </div>
 
                 <h1 class="h3">{{ $prod->name }}</h1>
+
                     <div class="mb-1">
                         @if ($prod->main_price > $prod->main_special)
                             <span class="h3 fw-normal text-accent me-1">{{ $prod->main_special_text }}</span>
