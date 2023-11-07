@@ -43,7 +43,8 @@
 @endif
 
 @section('content')
-    <div role="alert" class="alert alert-info d-flex"><div class="alert-icon"><i class="ci-gift"></i></div> <small>Količinski popusti: 10% iznad 50 EUR - 15% iznad 100 EUR  - 20% iznad 200 EUR</small></div>
+    <div role="alert" class="alert alert-info d-flex"><div class="alert-icon"><i class="ci-discount"></i></div> <small>Dodatni količinski popusti: 10% iznad 50 EUR - 15% iznad 100 EUR  - 20% iznad 200 EUR</small></div>
+
     <!-- Page title + breadcrumb-->
     <nav class="mb-4" aria-label="breadcrumb">
         <ol class="breadcrumb flex-lg-nowrap">
