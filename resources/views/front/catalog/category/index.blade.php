@@ -39,7 +39,7 @@
             <div class="col-md-6">
                 <div role="alert" class="alert alert-info d-flex mb-1">
                     <div class="alert-icon"><i class="ci-discount"></i></div>
-                    <small>Dodatni količinski popusti: 10% iznad 50 EUR - 15% iznad 100 EUR  - 20% iznad 200 EUR</small>
+                    <small>Dodatni količinski popusti: 10% > 50€ | 15% > 100€ | 20% > 200€</small>
                 </div>
             </div>
             <div class="col-md-6">
