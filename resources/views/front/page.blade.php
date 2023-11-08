@@ -36,21 +36,31 @@
     @if (request()->routeIs(['index']))
 
       {{--@include('front.layouts.partials.hometemp') --}}
-
-      <!-- Secondary alert -->
-      <div class="alert alert-info d-flex" role="alert">
-          <div class="alert-icon">
-              <i class="ci-gift"></i>
+      <section >
+          <div class="d-flex row justify-content-between">
+              <div class="col-md-6">
+                  <div role="alert" class="alert alert-info d-flex mb-0">
+                      <div class="alert-icon"><i class="ci-discount"></i></div>
+                      <small>Dodatni količinski popusti: 10% iznad 50 EUR - 15% iznad 100 EUR  - 20% iznad 200 EUR</small>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="alert alert-info d-flex  mb-0 " role="alert">
+                      <div class="alert-icon">
+                          <i class="ci-gift"></i>
+                      </div>
+                      <small>Besplatna dostava za narudžbe iznad 50€</small>
+                  </div>
+              </div>
           </div>
-          <small>Besplatna dostava za narudžbe iznad 50€</small>
-      </div>
-
+      </section>
       <h1 style="visibility: hidden;height:1px "> Knjige na engleskom jeziku - Online knjižara </h1>
 
         {!! $page->description !!}
 
 
     @else
+
 
 
         <nav class="mb-4" aria-label="breadcrumb">

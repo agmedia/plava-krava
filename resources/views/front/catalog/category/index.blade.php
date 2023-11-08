@@ -34,6 +34,25 @@
 
 @section('content')
 
+    <section class="mb-3">
+        <div class="d-flex row justify-content-between">
+            <div class="col-md-6">
+                <div role="alert" class="alert alert-info d-flex mb-0">
+                    <div class="alert-icon"><i class="ci-discount"></i></div>
+                    <small>Dodatni količinski popusti: 10% iznad 50 EUR - 15% iznad 100 EUR  - 20% iznad 200 EUR</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="alert alert-info d-flex  mb-0 " role="alert">
+                    <div class="alert-icon">
+                        <i class="ci-gift"></i>
+                    </div>
+                    <small>Besplatna dostava za narudžbe iznad 50€</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
     @if (Route::currentRouteName() == 'pretrazi')
         <section class="d-md-flex justify-content-between align-items-center mb-2 pb-2">
             <h1 class="h2 mb-2 mb-md-0 me-3"><span class="small fw-light me-2">Rezultati za:</span> {{ request()->input('pojam') }}</h1>
