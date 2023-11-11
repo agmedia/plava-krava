@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
 
 @section('content')
-    <script>window.location.href = "https://www.plavakrava.hr";</script>
+
     <div class="container py-5 mb-lg-3">
         <div class="row justify-content-center pt-lg-4 text-center">
             <div class="col-lg-5 col-md-7 col-sm-9">
