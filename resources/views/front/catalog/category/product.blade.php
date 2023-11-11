@@ -2,13 +2,7 @@
 
     <div class="card product-card d-flex align-items-stretch  pb-1">
         @if ($product->main_price > $product->main_special)
-
-            @if ($product->quantity < 1 )
-                <span class="badge bg-warning ">Rasprodano</span>
-            @endif
             <span class="badge bg-primary badge-shadow">-{{ number_format(floatval(\App\Helpers\Helper::calculateDiscount($product->price, $product->special())), 0) }}%</span>
-
-
         @endif
         <a class="card-img-top d-block overflow-hidden" href="{{ url($product->url) }}">
             <img load="lazy" src="{{ str_replace('.webp','-thumb.webp', $product->image) }}" width="400" height="400" alt="{{ $product->name }}">
