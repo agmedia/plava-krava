@@ -127,7 +127,7 @@
             <div class="h-100 bg-light rounded-3 py-5 px-4 px-sm-5">
 
         @if ( $prod->quantity < 1)
-                    <span class="badge bg-warning ">RASPRODANO</span>
+                    <span class="badge bg-warning ">Rasprodano</span>
        @endif
 
    @if ($prod->main_price > $prod->main_special)
