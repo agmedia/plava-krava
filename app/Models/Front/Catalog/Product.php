@@ -212,7 +212,7 @@ class Product extends Model
         return $this->hasOne(ProductAction::class, 'id', 'action_id')->where('status', 1);
     }
 
-    
+
     /**
      * @param $ocjena
      * @param $total
@@ -223,7 +223,7 @@ class Product extends Model
         if ($total) {
             return round(($ocjena / $total) * 100, 2);
         }
-        
+
         return 0;
     }
 
