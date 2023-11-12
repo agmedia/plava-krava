@@ -34,6 +34,11 @@ class AgCart extends Model
      */
     private $session_key;
 
+    /**
+     * @var string
+     */
+    private $coupon;
+
 
     /**
      * AgCart constructor.
@@ -44,7 +49,8 @@ class AgCart extends Model
     {
         $this->cart_id     = $id;
         $this->cart        = Cart::session($id);
-        $this->session_key = config('session.cart');
+        $this->session_key = config('session.cart') ?: 'agm';
+        $this->coupon      = session()->has($this->session_key . '_coupon') ? session($this->session_key . '_coupon') : '';
     }
 
 
@@ -53,28 +59,20 @@ class AgCart extends Model
      */
     public function get()
     {
-        $detail_conditions = $this->setCartConditions();
         $eur = $this->getEur();
-        $coupon = session()->has($this->session_key . '_coupon') ? session($this->session_key . '_coupon') : '';
 
         $response = [
             'id'         => $this->cart_id,
-            'coupon'     => $coupon,
+            'coupon'     => $this->coupon,
             'items'      => $this->cart->getContent(),
             'count'      => $this->cart->getTotalQuantity(),
             'subtotal'   => $this->cart->getSubTotal(),
             'conditions' => $this->cart->getConditions(),
-            'detail_con' => $detail_conditions,
+            'detail_con' => $this->setCartConditions(),
             'total'      => $this->cart->getTotal(),
             'eur'        => $eur,
             'secondary_price' => $eur
         ];
-        //$response['tax'] = $this->getTax($response);
-        //$response['total'] = $this->cart->getTotal() + $response['tax'][0]['value'];
-
-        //$response['totals'] = $this->getTotals();
-
-        //Log::info($response);
 
         return $response;
     }
@@ -108,12 +106,6 @@ class AgCart extends Model
     public function getEur()
     {
         return Currency::secondary()->value;
-
-        if (isset($eur->status) && $eur->status) {
-            return $eur->value;
-        }
-
-        return null;
     }
 
 
@@ -203,9 +195,9 @@ class AgCart extends Model
     /**
      * @param $coupon
      *
-     * @return array
+     * @return int
      */
-    public function coupon($coupon)
+    public function coupon($coupon): int
     {
         $items = $this->cart->getContent();
 
@@ -288,6 +280,7 @@ class AgCart extends Model
         $shipping_method = ShippingMethod::condition($this->cart);
         $payment_method = PaymentMethod::condition($this->cart);
         $special_condition = Helper::hasSpecialCartCondition($this->cart);
+        $coupon_conditions = Helper::hasCouponCartConditions($this->cart, $this->coupon);
 
         if ($payment_method) {
             $str = str_replace('+', '', $payment_method->getValue());
@@ -302,6 +295,10 @@ class AgCart extends Model
 
         if ($special_condition) {
             $this->cart->condition($special_condition);
+        }
+
+        if ($coupon_conditions) {
+            $this->cart->condition($coupon_conditions);
         }
 
         // Style response array

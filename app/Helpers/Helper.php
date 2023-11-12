@@ -1,9 +1,9 @@
 <?php
 
-
 namespace App\Helpers;
 
 use App\Models\Back\Catalog\Category;
+use App\Models\Back\Marketing\Action;
 use App\Models\Back\Settings\Settings;
 use App\Models\Back\Widget\WidgetGroup;
 use App\Models\Front\Blog;
@@ -111,10 +111,10 @@ class Helper
             $response = collect();
 
             $products = Product::active()->where('name', 'like', '%' . $target . '%')
-                ->orWhere('meta_description', 'like', '%' . $target . '%')
-                ->orWhere('sku', 'like', '%' . $target . '%')
-                ->orWhere('isbn', 'like', '%' . $target . '%')
-                ->pluck('id');
+                               ->orWhere('meta_description', 'like', '%' . $target . '%')
+                               ->orWhere('sku', 'like', '%' . $target . '%')
+                               ->orWhere('isbn', 'like', '%' . $target . '%')
+                               ->pluck('id');
 
             if ( ! $products->count()) {
                 $products = collect();
@@ -226,12 +226,12 @@ class Helper
 
         $ids = Cache::remember('wg_ids', config('cache.life'), function () use ($description) {
             $iterator = substr_count($description, '++');
-            $offset = 0;
-            $ids = [];
+            $offset   = 0;
+            $ids      = [];
 
             for ($i = 0; $i < $iterator / 2; $i++) {
-                $from = strpos($description, '++', $offset) + 2;
-                $to = strpos($description, '++', $from + 2);
+                $from  = strpos($description, '++', $offset) + 2;
+                $to    = strpos($description, '++', $from + 2);
                 $ids[] = substr($description, $from, $to - $from);
 
                 $offset = $to + 2;
@@ -266,7 +266,6 @@ class Helper
     {
         $wg = $wgs->where('id', $id)->first();
 
-
         if ( ! $wg) {
             $wg = $wgs->where('slug', $id)->first();
         }
@@ -275,44 +274,42 @@ class Helper
 
         if ($wg->template == 'product_carousel' || $wg->template == 'page_carousel') {
             $widget = $wg->widgets()->first();
-            $data = unserialize($widget->data);
+            $data   = unserialize($widget->data);
 
             if (static::isDescriptionTarget($data, 'product')) {
-                $items = static::products($data)->get();
+                $items     = static::products($data)->get();
                 $tablename = 'product';
             }
 
             if (static::isDescriptionTarget($data, 'blog')) {
-                $items = static::blogs($data)->get();
+                $items     = static::blogs($data)->get();
                 $tablename = 'blog';
             }
 
             if (static::isDescriptionTarget($data, 'category')) {
-                $items = static::category($data)->get();
+                $items     = static::category($data)->get();
                 $tablename = 'category';
             }
 
             if (static::isDescriptionTarget($data, 'publisher')) {
-                $items = static::publisher($data)->get();
+                $items     = static::publisher($data)->get();
                 $tablename = 'publisher';
             }
 
             if (static::isDescriptionTarget($data, 'reviews')) {
-                $items = static::reviews($data)->get();
+                $items     = static::reviews($data)->get();
                 $tablename = 'reviews';
             }
 
-
-
             $widgets = [
-                'title' => $widget->title,
-                'subtitle' => $widget->subtitle,
-                'url' => $widget->url,
-                'tablename' => $tablename,
-                'css' => $data['css'],
-                'container' => (isset($data['container']) && $data['container'] == 'on') ? 1 : null,
+                'title'      => $widget->title,
+                'subtitle'   => $widget->subtitle,
+                'url'        => $widget->url,
+                'tablename'  => $tablename,
+                'css'        => $data['css'],
+                'container'  => (isset($data['container']) && $data['container'] == 'on') ? 1 : null,
                 'background' => (isset($data['background']) && $data['background'] == 'on') ? 1 : null,
-                'items' => $items
+                'items'      => $items
             ];
 
         } else {
@@ -320,13 +317,13 @@ class Helper
                 $data = unserialize($widget->data);
 
                 $widgets[] = [
-                    'title' => $widget->title,
+                    'title'    => $widget->title,
                     'subtitle' => $widget->subtitle,
-                    'color' => $widget->badge,
-                    'url' => $widget->url,
-                    'image' => str_replace('.jpg', '.webp', $widget->image),
-                    'width' => $widget->width,
-                    'right' => (isset($data['right']) && $data['right'] == 'on') ? 1 : null,
+                    'color'    => $widget->badge,
+                    'url'      => $widget->url,
+                    'image'    => str_replace('.jpg', '.webp', $widget->image),
+                    'width'    => $widget->width,
+                    'right'    => (isset($data['right']) && $data['right'] == 'on') ? 1 : null,
                 ];
             }
         }
@@ -347,8 +344,12 @@ class Helper
      */
     public static function isDescriptionTarget(array $data, string $target): bool
     {
-        if (isset($data['target']) && $data['target'] == $target) { return true; }
-        if (isset($data['group']) && $data['group'] == $target) { return true; }
+        if (isset($data['target']) && $data['target'] == $target) {
+            return true;
+        }
+        if (isset($data['group']) && $data['group'] == $target) {
+            return true;
+        }
 
         return false;
     }
@@ -490,8 +491,6 @@ class Helper
 
         $reviews->where('featured', '1')->limit(10)->get();
 
-
-
         return $reviews;
     }
 
@@ -596,7 +595,7 @@ class Helper
      */
     public static function hasSpecialCartCondition($cart = null)
     {
-        $condition = false;
+        $condition     = false;
         $has_condition = false;
 
         if ($cart->getTotal() > 50) {
@@ -610,19 +609,55 @@ class Helper
         }
 
         if ($has_condition && self::isDateBetween()) {
-            $value = self::calculateDiscountPrice($cart->getTotal(), $has_condition, 'P');
+            $value    = self::calculateDiscountPrice($cart->getTotal(), $has_condition, 'P');
             $discount = $cart->getTotal() - $value;
 
             $condition = new CartCondition(array(
-                'name' => config('settings.special_action.title'),
-                'type' => 'special',
-                'target' => 'total', // this condition will be applied to cart's subtotal when getSubTotal() is called.
-                'value' => '-' . $discount,
+                'name'       => config('settings.special_action.title'),
+                'type'       => 'special',
+                'target'     => 'total', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+                'value'      => '-' . $discount,
                 'attributes' => [
                     'description' => '',
-                    'geo_zone' => ''
+                    'geo_zone'    => ''
                 ]
             ));
+        }
+
+        return $condition;
+    }
+
+
+    /**
+     * @param        $cart
+     * @param string $coupon
+     *
+     * @return CartCondition|false
+     * @throws \Darryldecode\Cart\Exceptions\InvalidConditionException
+     */
+    public static function hasCouponCartConditions($cart, string $coupon = '')
+    {
+        $condition = false;
+        $actions   = Action::query()->where('group', 'total')->get();
+
+        if ($actions->count()) {
+            foreach ($actions as $action) {
+                if ($action->isValid($coupon)) {
+                    $value    = self::calculateDiscountPrice($cart->getTotal(), $action->discount, $action->type);
+                    $discount = $cart->getTotal() - $value;
+
+                    $condition = new CartCondition(array(
+                        'name'       => $action->title,
+                        'type'       => 'special',
+                        'target'     => 'total', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+                        'value'      => '-' . $discount,
+                        'attributes' => [
+                            'description' => '',
+                            'geo_zone'    => ''
+                        ]
+                    ));
+                }
+            }
         }
 
         return $condition;
@@ -636,9 +671,9 @@ class Helper
      */
     public static function isDateBetween($date = null): bool
     {
-        $now = $date ?: Carbon::now();
-        $start = Carbon::createFromFormat('d/m/Y H:i:s',  config('settings.special_action.start'));
-        $end = Carbon::createFromFormat('d/m/Y H:i:s',  config('settings.special_action.end'));
+        $now   = $date ?: Carbon::now();
+        $start = Carbon::createFromFormat('d/m/Y H:i:s', config('settings.special_action.start'));
+        $end   = Carbon::createFromFormat('d/m/Y H:i:s', config('settings.special_action.end'));
 
         if ($now->isBetween($start, $end)) {
             return true;

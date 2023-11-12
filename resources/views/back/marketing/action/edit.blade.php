@@ -58,7 +58,7 @@
                                                 @foreach ($groups as $group)
                                                     <option value="{{ $group->id }}" {{ (isset($action) and $group->id == $action->group) ? 'selected="selected"' : '' }}>{{ $group->title }}</option>
                                                 @endforeach
-                                                <option value="all" {{ (isset($action) and 'all' == $action->group) ? 'selected="selected"' : '' }}>Svi Artikli</option>
+{{--                                                <option value="all" {{ (isset($action) and 'all' == $action->group) ? 'selected="selected"' : '' }}>Svi Artikli</option>--}}
                                             </select>
                                         </div>
                                     </div>
@@ -129,7 +129,6 @@
                     </div>
                 </div>
 
-
                 <div class="col-md-5" id="action-list-view">
                     @if (isset($action))
                         @livewire('back.marketing.action-group-list', ['group' => $action->group, 'list' => json_decode($action->links)])
@@ -189,8 +188,8 @@
                 }
             });
 
-            @if (isset($action))
-            $('#group-select').attr("disabled", true);
+            @if (isset($action) && ! in_array($action->group, ['all', 'total']))
+                $('#group-select').attr("disabled", true);
             @endif
 
         })
