@@ -9,7 +9,7 @@
     <div class="bg-body-light">
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2">Application Settings</h1>
+                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2">Postavke Aplikacije</h1>
                 <!--                <button class="btn btn-hero-success my-2" onclick="event.preventDefault(); openModal();">
                     <i class="far fa-fw fa-plus-square"></i><span class="d-none d-sm-inline ml-1"> {{ __('back/app.statuses.new') }}</span>
                 </button>-->
@@ -29,11 +29,11 @@
                     <div class="block-content pb-3">
                         <div class="row">
                             <div class="col-md-12 mb-3">
-                                <label for="title-input">Title @include('back.layouts.partials.required-star')</label>
+                                <label for="title-input">Naslov Trgovine @include('back.layouts.partials.required-star')</label>
                                 <input type="text" class="form-control" id="title-input" name="title" placeholder="" value="{{ isset($data['basic']->title) ? $data['basic']->title : '' }}">
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="address-input">Address @include('back.layouts.partials.required-star')</label>
+                                <label for="address-input">Adresa @include('back.layouts.partials.required-star')</label>
                                 <input type="text" class="form-control" id="address-input" name="address" placeholder="" value="{{ isset($data['basic']->address) ? $data['basic']->address : '' }}">
                             </div>
                             <div class="col-md-4 mb-3">
@@ -41,15 +41,15 @@
                                 <input type="text" class="form-control" id="zip-input" name="zip" placeholder="" value="{{ isset($data['basic']->zip) ? $data['basic']->zip : '' }}">
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="city-input">City @include('back.layouts.partials.required-star')</label>
+                                <label for="city-input">Grad @include('back.layouts.partials.required-star')</label>
                                 <input type="text" class="form-control" id="city-input" name="city" placeholder="" value="{{ isset($data['basic']->city) ? $data['basic']->city : '' }}">
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="state-input">State @include('back.layouts.partials.required-star')</label>
+                                <label for="state-input">Država @include('back.layouts.partials.required-star')</label>
                                 <input type="text" class="form-control" id="state-input" name="state" placeholder="" value="{{ isset($data['basic']->state) ? $data['basic']->state : '' }}">
                             </div>
                             <div class="col-md-5 mb-3">
-                                <label for="phone-input">Phone @include('back.layouts.partials.required-star')</label>
+                                <label for="phone-input">Tel./Mob. @include('back.layouts.partials.required-star')</label>
                                 <input type="text" class="form-control" id="phone-input" name="phone" placeholder="" value="{{ isset($data['basic']->phone) ? $data['basic']->phone : '' }}">
                             </div>
                             <div class="col-md-7 mb-3">
@@ -60,7 +60,7 @@
                     </div>
                     <div class="block-content block-content-full text-right bg-light">
                         <button type="button" class="btn btn-sm btn-success" onclick="event.preventDefault(); storeBasicInfo();">
-                            {{ __('back/layout.btn.save') }} <i class="fa fa-save ml-2"></i>
+                            Snimi <i class="fa fa-save ml-2"></i>
                         </button>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
             <div class="col-md-5">
                 <div class="block">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">{{ __('back/app.currency.select_main') }}</h3>
+                        <h3 class="block-title">Odaberi Glavnu Valutu</h3>
                     </div>
                     <div class="block-content">
                         <div class="row justify-content-center mb-3">
@@ -88,7 +88,7 @@
                     </div>
                     <div class="block-content block-content-full text-right bg-light">
                         <button type="button" class="btn btn-sm btn-success" onclick="event.preventDefault(); storeMainCurrency();">
-                            {{ __('back/layout.btn.save') }} <i class="fa fa-save ml-2"></i>
+                            Snimi <i class="fa fa-save ml-2"></i>
                         </button>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                     </div>
                     <div class="block-content block-content-full text-right bg-light">
                         <button type="button" class="btn btn-sm btn-success" onclick="event.preventDefault(); storeGoogleMapsApiKey();">
-                            {{ __('back/layout.btn.save') }} <i class="fa fa-save ml-2"></i>
+                            Snimi <i class="fa fa-save ml-2"></i>
                         </button>
                     </div>
                 </div>

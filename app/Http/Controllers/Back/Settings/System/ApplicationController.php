@@ -53,7 +53,7 @@ class ApplicationController extends Controller
         $set = Settings::reset('app', 'basic', $request->toArray());
 
         if ($set) {
-            return response()->json(['success' => 'Application basic info is saved.']);
+            return response()->json(['success' => 'Osnovni info aplikacije je snimljen...']);
         }
 
         return response()->json(['error' => 'Whoops.!! Pokušajte ponovo ili kontaktirajte administratora!']);
