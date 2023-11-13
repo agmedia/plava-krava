@@ -60,7 +60,6 @@
                 </div>
             </div>
         </div>
-
         <pagination :data="products" align="center" :show-disabled="true" :limit="4" @pagination-change-page="getProductsPage"></pagination>
 
         <div class="row" v-if="!products_loaded">
