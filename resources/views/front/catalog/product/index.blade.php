@@ -45,13 +45,8 @@
 @section('content')
     <section class="mb-3">
         <div class="d-flex row justify-content-between">
-            <div class="col-md-6">
-                <div role="alert" class="alert alert-info d-flex mb-1">
-                    <div class="alert-icon"><i class="ci-discount"></i></div>
-                    <small>Dodatni količinski popusti: 10% > 50€ | 15% > 100€ | 20% > 200€</small>
-                </div>
-            </div>
-            <div class="col-md-6">
+
+            <div class="col-md-12">
                 <div class="alert alert-info d-flex  mb-1 " role="alert">
                     <div class="alert-icon">
                         <i class="ci-gift"></i>
@@ -187,9 +182,9 @@
        </div>
 
    @endif
-
+            @if ( $prod->quantity > 0)
    <add-to-cart-btn id="{{ $prod->id }}" available="{{ $prod->quantity }}"></add-to-cart-btn>
-
+            @endif
    <!-- Product panels-->
    <div class="accordion mb-4" id="productPanels">
        <div class="accordion-item">

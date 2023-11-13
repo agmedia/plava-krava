@@ -36,13 +36,8 @@
 
     <section class="mb-3">
         <div class="d-flex row justify-content-between">
-            <div class="col-md-6">
-                <div role="alert" class="alert alert-info d-flex mb-1">
-                    <div class="alert-icon"><i class="ci-discount"></i></div>
-                    <small>Dodatni količinski popusti: 10% > 50€ | 15% > 100€ | 20% > 200€</small>
-                </div>
-            </div>
-            <div class="col-md-6">
+
+            <div class="col-md-12">
                 <div class="alert alert-info d-flex  mb-1 " role="alert">
                     <div class="alert-icon">
                         <i class="ci-gift"></i>
