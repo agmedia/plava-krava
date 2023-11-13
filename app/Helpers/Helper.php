@@ -110,7 +110,7 @@ class Helper
         if ($target != '') {
             $response = collect();
 
-            $products = Product::active()->where('name', 'like', '%' . $target . '%')
+            $products = Product::query()->where('name', 'like', '%' . $target . '%')
                                ->orWhere('meta_description', 'like', '%' . $target . '%')
                                ->orWhere('sku', 'like', '%' . $target . '%')
                                ->orWhere('isbn', 'like', '%' . $target . '%')
