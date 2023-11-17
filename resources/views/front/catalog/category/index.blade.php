@@ -15,15 +15,9 @@
         @section ( 'title', $subcat->meta_title . ' - Plava Krava' )
         @section ( 'description',  $subcat->meta_description )
 
-
         @push('meta_tags')
-            <link rel="canonical" href="{{ env('APP_URL')}}kategorija-proizvoda/{{ $subcat['slug'] }}" />
-
+         <link rel="canonical" href="{{ env('APP_URL')}}kategorija-proizvoda/{{ $subcat['slug'] }}" />
         @endpush
-
-
-
-
 
     @endif
 @endif
@@ -31,11 +25,20 @@
 @if (isset($author) && $author)
     @section ('title',  $seo['title'])
     @section ('description', $seo['description'])
+
+
+    @push('meta_tags')
+        <link rel="canonical" href="{{ env('APP_URL')}}{{ $author['url'] }}" />
+    @endpush
+
 @endif
 
 @if (isset($publisher) && $publisher)
     @section ('title',  $seo['title'])
     @section ('description', $seo['description'])
+    @push('meta_tags')
+        <link rel="canonical" href="{{ env('APP_URL')}}{{ $publisher['url'] }}" />
+    @endpush
 @endif
 
 @if (isset($meta_tags))
