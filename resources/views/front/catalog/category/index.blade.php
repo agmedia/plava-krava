@@ -1,5 +1,7 @@
 @extends('front.layouts.app')
 
+
+
 @if (isset($group) && $group)
     @if ($group && ! $cat && ! $subcat)
         @section ( 'title',  \Illuminate\Support\Str::ucfirst($group). ' - Plava Krava' )
@@ -7,9 +9,22 @@
     @if ($cat && ! $subcat)
         @section ( 'title',  $cat->title . ' - Plava Krava' )
         @section ( 'description', $cat->meta_description )
+
+
     @elseif ($cat && $subcat)
         @section ( 'title', $subcat->meta_title . ' - Plava Krava' )
         @section ( 'description',  $subcat->meta_description )
+
+
+        @push('meta_tags')
+            <link rel="canonical" href="{{ env('APP_URL')}}kategorija-proizvoda/{{ $subcat['slug'] }}" />
+
+        @endpush
+
+
+
+
+
     @endif
 @endif
 
@@ -25,6 +40,7 @@
 
 @if (isset($meta_tags))
     @push('meta_tags')
+
         @foreach ($meta_tags as $tag)
             <meta name={{ $tag['name'] }} content={{ $tag['content'] }}>
         @endforeach
