@@ -266,6 +266,27 @@ class Product extends Model
 
 
     /**
+     * @return string
+     */
+    public function coupon(): string
+    {
+        $action = $this->action;
+        $coupon_session_key = config('session.cart') . '_coupon';
+        $coupon_ok = '';
+
+        if ( ! $action || ($action && ! $action->coupon)) {
+            $coupon_ok = '';
+        }
+
+        if ((isset($action->coupon) && $action->coupon) && session()->has($coupon_session_key) && session($coupon_session_key) == $action->coupon) {
+            $coupon_ok = $action->coupon;
+        }
+
+        return $coupon_ok;
+    }
+
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function author()
