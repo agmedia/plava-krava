@@ -108,29 +108,31 @@ class Action extends Model
     {
         $is_valid = false;
 
-        $from = now()->subDay();
-        $to   = now()->addDay();
+        if ($this->status) {
+            $from = now()->subDay();
+            $to   = now()->addDay();
 
-        if ($this->date_start && $this->date_start != '0000-00-00 00:00:00') {
-            $from = Carbon::make($this->date_start);
-        }
-        if ($this->date_end && $this->date_end != '0000-00-00 00:00:00') {
-            $to = Carbon::make($this->date_end);
-        }
+            if ($this->date_start && $this->date_start != '0000-00-00 00:00:00') {
+                $from = Carbon::make($this->date_start);
+            }
+            if ($this->date_end && $this->date_end != '0000-00-00 00:00:00') {
+                $to = Carbon::make($this->date_end);
+            }
 
-        if ($from <= now() && now() <= $to) {
-            $is_valid = true;
-        }
-
-        if ($is_valid) {
-            $is_valid = false;
-
-            if ($this->coupon && $coupon != '' && $coupon == $this->coupon) {
+            if ($from <= now() && now() <= $to) {
                 $is_valid = true;
             }
 
-            if ( ! $this->coupon) {
-                $is_valid = true;
+            if ($is_valid) {
+                $is_valid = false;
+
+                if ($this->coupon && $coupon != '' && $coupon == $this->coupon) {
+                    $is_valid = true;
+                }
+
+                if ( ! $this->coupon) {
+                    $is_valid = true;
+                }
             }
         }
 

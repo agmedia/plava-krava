@@ -233,15 +233,18 @@ class Product extends Model
      */
     public function special()
     {
+        $action = $this->action;
         $coupon_session_key = config('session.cart') . '_coupon';
         $coupon_ok = false;
 
-        if ( ! $this->action || ($this->action && ! $this->action->coupon)) {
+        if ( ! $action || ($action && ! $action->coupon)) {
             $coupon_ok = true;
         }
 
-        if ((isset($this->action->coupon) && $this->action->coupon) && session()->has($coupon_session_key) && session($coupon_session_key) == $this->action->coupon) {
-            $coupon_ok = true;
+        if ($action->status) {
+            if ((isset($action->coupon) && $action->coupon) && session()->has($coupon_session_key) && session($coupon_session_key) == $action->coupon) {
+                $coupon_ok = true;
+            }
         }
 
         // If special is set, return special.
@@ -278,8 +281,10 @@ class Product extends Model
             $coupon_ok = '';
         }
 
-        if ((isset($action->coupon) && $action->coupon) && session()->has($coupon_session_key) && session($coupon_session_key) == $action->coupon) {
-            $coupon_ok = $action->coupon;
+        if ($action->status) {
+            if ((isset($action->coupon) && $action->coupon) && session()->has($coupon_session_key) && session($coupon_session_key) == $action->coupon) {
+                $coupon_ok = true;
+            }
         }
 
         return $coupon_ok;
