@@ -232,11 +232,19 @@ class AkademskaKnjigaMk
      */
     private function updatePriceAndQuantity()
     {
+        $start = microtime(true);
+
         $this->checkProductsForImport(false);
 
-        Query::run("UPDATE products p INNER JOIN temp_table tt ON p.sku = tt.sku SET p.quantity = tt.quantity, p.price = tt.price;");
+        $updated = Query::run("UPDATE products p INNER JOIN temp_table tt ON p.sku = tt.sku SET p.quantity = tt.quantity, p.price = tt.price;");
 
         $count = TempTable::query()->get()->count();
+
+        $end = microtime(true);
+        $time = number_format(($end - $start), 2, ',', '.');
+
+        Log::info('Update time ::: ' . $time . ' sec.');
+        Log::info($updated ? 'Izvršeno' : 'Greška');
 
         return ApiHelper::response(1, 'Obnovljene su cijene i količine na ' . $count . ' artikala.');
     }
