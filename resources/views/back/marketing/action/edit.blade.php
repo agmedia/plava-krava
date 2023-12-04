@@ -199,6 +199,12 @@
 
             @if (isset($action) && ! in_array($action->group, ['all', 'total']))
                 $('#group-select').attr("disabled", true);
+
+                @if ($action->type == 'F')
+                    $('#discount-append-badge').text('EUR');
+                @else
+                    $('#discount-append-badge').text('%');
+                @endif
             @endif
 
         })
