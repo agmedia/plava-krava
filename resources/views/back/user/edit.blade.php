@@ -149,7 +149,7 @@
                         </div>
                         <div class="col-lg-8 col-xl-5">
                             <div class="form-group row">
-                                <label for="price-input">Porez</label>
+                                <label for="price-input">Korisnička uloga</label>
                                 <select class="js-select2 form-control" id="role-select" name="role" style="width: 100%;" data-placeholder="Odaberite ulogu za korisnika...">
                                     <option></option>
                                     @foreach ($roles as $role)
