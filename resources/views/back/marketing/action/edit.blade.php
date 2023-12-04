@@ -191,7 +191,7 @@
             });
             $('#type-select').on('change', function (e) {
                 if (e.currentTarget.value == 'F') {
-                    $('#discount-append-badge').text('kn');
+                    $('#discount-append-badge').text('EUR');
                 } else {
                     $('#discount-append-badge').text('%');
                 }
