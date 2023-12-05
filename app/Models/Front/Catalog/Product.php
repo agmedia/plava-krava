@@ -281,7 +281,7 @@ class Product extends Model
             $coupon_ok = '';
         }
 
-        if ($action->status) {
+        if ($action && $action->status) {
             if ((isset($action->coupon) && $action->coupon) && session()->has($coupon_session_key) && session($coupon_session_key) == $action->coupon) {
                 $coupon_ok = true;
             }
