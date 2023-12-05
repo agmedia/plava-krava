@@ -123,7 +123,9 @@ class AkademskaKnjigaMk
 
         $count = TempTable::query()->count();
 
-        $job->finish(1, $count, ApiHelper::response(1, 'Ima ' . $count . ' novih artikala za import.'));
+        if ($diff) {
+            $job->finish(1, $count, ApiHelper::response(1, 'Ima ' . $count . ' novih artikala za import.'));
+        }
 
         return 1;
     }
