@@ -180,6 +180,7 @@ Route::middleware(['auth:sanctum', 'verified', 'no.customers'])->prefix('admin')
 
         // API
         Route::get('api', [ApiController::class, 'index'])->name('api.index');
+        Route::get('api/cron-reports', [ApiController::class, 'cronReports'])->name('api.cron.reports');
 
         //Route::get('application', [SettingsController::class, 'index'])->name('settings');
 

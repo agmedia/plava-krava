@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Back\Settings;
 
 use App\Helpers\Csv;
 use App\Http\Controllers\Controller;
+use App\Models\Back\Jobs;
 use App\Models\Back\Settings\Api\AkademskaKnjigaMk;
 use App\Models\Back\Settings\Api\PlavaKrava;
 use App\Models\Back\Settings\Page;
@@ -23,6 +24,19 @@ class ApiController extends Controller
     public function index(Request $request)
     {
         return view('back.settings.api.index');
+    }
+
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function cronReports(Request $request)
+    {
+        $crons = Jobs::filter($request, 'cron')->paginate(20);
+
+        return view('back.settings.api.cron-report', compact('crons'));
     }
 
 

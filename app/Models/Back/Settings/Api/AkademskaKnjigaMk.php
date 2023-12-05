@@ -11,6 +11,7 @@ use App\Helpers\Query;
 use App\Mail\akmkSendReport;
 use App\Models\Back\Catalog\Product\Product;
 use App\Models\Back\Catalog\Product\ProductCategory;
+use App\Models\Back\Jobs;
 use App\Models\Back\Orders\Order;
 use App\Models\Back\Settings\Settings;
 use App\Models\Back\TempTable;
@@ -38,7 +39,7 @@ class AkademskaKnjigaMk
     /**
      * @param array $request
      *
-     * @return false|\Illuminate\Http\JsonResponse|int|string
+     * @return int|string
      */
     public function process(array $request)
     {
@@ -57,51 +58,74 @@ class AkademskaKnjigaMk
             }
         }
 
-        return false;
+        return 0;
     }
 
 
     /**
-     * Cca: 25 - 30 sec.
+     * @param bool $diff
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return int
      */
-    private function checkProductsForImport(bool $diff = true)
+    private function checkProductsForImport(bool $diff = true): int
     {
+        if ($diff) {
+            $job = new Jobs();
+            $job->start('cron', 'Provjeri nove', '', ApiHelper::response(0, 'Nije završen'));
+        }
+
         TempTable::query()->truncate();
 
         $limit = '60000';
         $data  = Http::get('http://akademskakniga.mk/api/ASyn/' . $limit);
 
-        if ($diff) {
-            $existing = Product::query()->pluck('sku');
-            $list     = collect($data->json())->pluck('bookId')
-                                              ->diff($existing)
-                                              ->flatten();
+        if ($data->ok()) {
+            if ($diff) {
+                $existing = Product::query()->pluck('sku');
+                $list     = collect($data->json())->pluck('bookId')
+                                                  ->diff($existing)
+                                                  ->flatten();
 
-            $for_import = collect($data->json())->whereIn('bookId', $list)->chunk(10000);
+                $for_import = collect($data->json())->whereIn('bookId', $list)->chunk(10000);
 
-        } else {
-            $for_import = collect($data->json())->chunk(10000);
-        }
-
-        foreach ($for_import->all() as $item_list) {
-            $query = [];
-            foreach ($item_list as $item) {
-                $query[] = [
-                    'sku'      => (string) $item['bookId'],
-                    'quantity' => $item['inStock'],
-                    'price'    => $this->getPrice($item['price']),
-                    'special'  => $item['priceWithDiscount'],
-                ];
+            } else {
+                $for_import = collect($data->json())->chunk(10000);
             }
 
-            TempTable::query()->insert($query);
+            foreach ($for_import->all() as $item_list) {
+                $query = [];
+                foreach ($item_list as $item) {
+                    $query[] = [
+                        'sku'      => (string) $item['bookId'],
+                        'quantity' => $item['inStock'],
+                        'price'    => $this->getPrice($item['price']),
+                        'special'  => $item['priceWithDiscount'],
+                    ];
+                }
+
+                try {
+                    TempTable::query()->insert($query);
+                } catch (\Exception $exception) {
+                    $job->finish(0, 0, $exception->getMessage());
+
+                    return 0;
+                }
+            }
+        } else {
+            Jobs::error('cron', 'update');
+
+            if ($diff) {
+                $job->finish(0, 0, ApiHelper::response(0, 'Došlo je do greške kod Importa. Molimo kontaktirajte administratora.'));
+            }
+
+            return 0;
         }
 
         $count = TempTable::query()->count();
 
-        return ApiHelper::response(1, 'Ima ' . $count . ' novih artikala za import.');
+        $job->finish(1, $count, ApiHelper::response(1, 'Ima ' . $count . ' novih artikala za import.'));
+
+        return 1;
     }
 
 
@@ -131,6 +155,9 @@ class AkademskaKnjigaMk
      */
     private function importNewProducts()
     {
+        $job = new Jobs();
+        $job->start('cron', 'Import novih', '', ApiHelper::response(0, 'Nije završen'));
+
         $count      = 0;
         $for_import = TempTable::query()->take(1000)->get();
 
@@ -223,16 +250,19 @@ class AkademskaKnjigaMk
             }
         }
 
-        return ApiHelper::response(1, 'Importano je ' . $count . ' novih artikala u bazu.');
+        $job->finish(1, $count, ApiHelper::response(1, 'Importano je ' . $count . ' novih artikala u bazu.'));
+
+        return 1;
     }
 
 
     /**
      * @return string
      */
-    private function updatePriceAndQuantity()
+    private function updatePriceAndQuantity(): int
     {
-        $start = microtime(true);
+        $job = new Jobs();
+        $job->start('cron', 'Update p&q', '', ApiHelper::response(0, 'Nije završen'));
 
         $this->checkProductsForImport(false);
 
@@ -240,13 +270,15 @@ class AkademskaKnjigaMk
 
         $count = TempTable::query()->get()->count();
 
-        $end = microtime(true);
-        $time = number_format(($end - $start), 2, ',', '.');
+        if ($updated) {
+            $job->finish(1, $count, ApiHelper::response(1, 'Obnovljene su cijene i količine na ' . $count . ' artikala.'));
 
-        Log::info('Update time ::: ' . $time . ' sec.');
-        Log::info($updated ? 'Izvršeno' : 'Greška');
+            return 1;
+        }
 
-        return ApiHelper::response(1, 'Obnovljene su cijene i količine na ' . $count . ' artikala.');
+        $job->finish(0, $count, ApiHelper::response(0, 'Došlo je do greške kod Obnove cijena i količina. Molimo kontaktirajte administratora.'));
+
+        return 0;
     }
 
 
@@ -255,6 +287,9 @@ class AkademskaKnjigaMk
      */
     public function sendExcelReport()
     {
+        $job = new Jobs();
+        $job->start('cron', 'Pošalji excel report', '', ApiHelper::response(0, 'Nije završen'));
+
         $orders = Order::query()->whereDate('created_at', today()->subDay())->with('products')->get();
         $products = collect();
 
@@ -285,14 +320,23 @@ class AkademskaKnjigaMk
             ];
         }
 
-        $csv = new Csv();
-        $csv->createExcelFile('akmk_report.xlsx', $to_send, $this->excel_keys);
+        try {
+            $csv = new Csv();
+            $csv->createExcelFile('akmk_report.xlsx', $to_send, $this->excel_keys);
 
-        dispatch(function () {
-            Mail::to('aleksandar@aleksandarpavlovski.com')->send(new akmkSendReport());
-        });
+            dispatch(function () {
+                Mail::to('aleksandar@aleksandarpavlovski.com')->send(new akmkSendReport());
+            });
 
-        return ApiHelper::response(1, 'Excel je poslan.');
+        } catch (\Exception $exception) {
+            $job->finish(0, 0, ApiHelper::response(0, $exception->getMessage()));
+
+            return 0;
+        }
+
+        $job->finish(1, 1, ApiHelper::response(1, 'Excel je poslan.'));
+
+        return 1;
     }
 
 }

@@ -10,6 +10,10 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2">API Postavke</h1>
+
+                <a class="btn btn-hero-success my-2" href="{{ route('api.cron.reports') }}">
+                    <i class="far fa-fw fa-plus-square"></i><span class="d-none d-sm-inline ml-1"> CRON Reports</span>
+                </a>
             </div>
         </div>
     </div>
@@ -126,6 +130,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="tab-pane" id="btabs-static-settings" role="tabpanel">
                             <h4 class="font-w400">Settings Content</h4>
                             <p>...</p>
