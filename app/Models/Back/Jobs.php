@@ -84,7 +84,7 @@ class Jobs extends Model
      */
     public static function filter(Request $request, string $type): Builder
     {
-        $query = (new Jobs())->newQuery()->where('type', $type);
+        $query = (new Jobs())->newQuery()->where('type', $type)->orderBy('created_at', 'desc');
 
         return $query;
     }
