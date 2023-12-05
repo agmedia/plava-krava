@@ -57,8 +57,13 @@ class HomeController extends Controller
     {
         return view('front.contact');
     }
-    
-    
+
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function sendProductComment(Request $request)
     {
         $review = new Review();
