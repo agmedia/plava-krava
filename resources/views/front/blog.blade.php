@@ -11,7 +11,7 @@
 
 
 
-        <link rel="canonical" href="{{ $blog->url }}" />
+        <link rel="canonical" href="{{ route('catalog.route.blog', ['blog' => $blog]) }}" />
         <meta property="og:locale" content="hr_HR" />
         <meta property="og:type" content="product" />
         <meta property="og:title" content="{{ $blog->title }}" />
