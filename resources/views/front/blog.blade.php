@@ -6,6 +6,32 @@
     @section ( 'title', $blog->title. ' - Plava Krava' )
 @section ( 'description', $blog->meta_description )
 
+    @push('meta_tags')
+
+
+
+
+        <link rel="canonical" href="{{ $blog->url }}" />
+        <meta property="og:locale" content="hr_HR" />
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content="{{ $blog->title }}" />
+        <meta property="og:description" content="{{ $blog->meta_description  }}" />
+        <meta property="og:url" content="{{ route('catalog.route.blog', ['blog' => $blog]) }}"  />
+        <meta property="og:site_name" content="Plava Krava" />
+        <meta property="og:updated_time" content="{{ $blog->updated_at  }}" />
+        <meta property="og:image" content="{{ asset($blog->image) }}" />
+        <meta property="og:image:secure_url" content="{{ asset($blog->image) }}" />
+        <meta property="og:image:width" content="640" />
+        <meta property="og:image:height" content="480" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:alt" content="{{ asset($blog->image) }}" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="{{ $blog->title }}" />
+        <meta name="twitter:description" content="{{ $blog->meta_description }}" />
+        <meta name="twitter:image" content="{{ asset($blog->image) }}" />
+
+    @endpush
+
 @endif
 
 @section('content')
