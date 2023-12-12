@@ -73,13 +73,30 @@
                     </a>
                 </h3>
             </div>
+            <div class="accordion-item border-bottom">
+                <h3 class="accordion-header px-grid-gutter">
+                    <a class="nav-link-style d-block fs-md fw-normal py-3" :href="origin + 'blog'">
+                        <span class="d-flex align-items-center"><i class="ci-list  fs-lg mt-n1 me-2"></i>Blog</span>
+                    </a>
+                </h3>
+            </div>
+
+
+
 
         </div>
-    </div>
 
+
+
+    </div>
 </template>
 
+
+
+
 <script>
+
+
 export default {
     props: {
         ids: String,
@@ -89,6 +106,8 @@ export default {
         author: String,
         publisher: String,
     },
+
+
     //
     data() {
         return {
@@ -115,7 +134,7 @@ export default {
     },
     //
     watch: {
-        /*start(currentValue) {
+        start(currentValue) {
             this.setQueryParam('start', currentValue);
         },
         end(currentValue) {
@@ -138,7 +157,7 @@ export default {
             if (value.length > 2 || value == '') {
                 return this.getPublishers();
             }
-        },*/
+        },
         $route(params) {
             this.checkQuery(params);
         }
@@ -153,7 +172,7 @@ export default {
 
 
 
-        /*if (this.author == '') {
+        if (this.author == '') {
             this.show_authors = true;
             this.getAuthors();
         }
@@ -161,7 +180,7 @@ export default {
         if (this.publisher == '') {
             this.show_publishers = true;
             this.getPublishers();
-        }*/
+        }
 
         this.preselect();
     },
