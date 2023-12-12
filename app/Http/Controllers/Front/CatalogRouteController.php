@@ -317,6 +317,8 @@ class CatalogRouteController extends Controller
             return view('front.blog', compact('blogs'));
         }
 
+        $blog->description = Helper::setDescription($blog->description);
+
         return view('front.blog', compact('blog'));
     }
 
