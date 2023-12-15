@@ -76,7 +76,7 @@ class AkademskaKnjigaMk
 
         TempTable::query()->truncate();
 
-        $limit = '60000';
+        $limit = '100000';
         $data  = Http::get('http://akademskakniga.mk/api/ASyn/' . $limit);
 
         if ($data->ok()) {
@@ -270,9 +270,15 @@ class AkademskaKnjigaMk
 
         $updated = Query::run("UPDATE products p INNER JOIN temp_table tt ON p.sku = tt.sku SET p.quantity = tt.quantity, p.price = tt.price;");
 
-        $count = TempTable::query()->get()->count();
+        $ps = Product::query()->pluck('sku');
+        $ts = TempTable::query()->pluck('sku');
+        $count = $ts->count();
 
         if ($updated) {
+            $diff = $ps->diff($ts);
+
+            Product::query()->whereIn('sku', $diff)->where('shipping_time', '10-15 dana')->update(['status', 0]);
+
             $job->finish(1, $count, ApiHelper::response(1, 'Obnovljene su cijene i količine na ' . $count . ' artikala.'));
 
             return 1;
