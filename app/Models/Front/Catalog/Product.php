@@ -507,7 +507,7 @@ class Product extends Model
     {
         $query = $this->newQuery();
 
-       // $query->active()->hasStock();
+        $query->active();
 
         if ($ids && $ids->count() && ! \request()->has('pojam')) {
             $query->whereIn('id', $ids->unique());
