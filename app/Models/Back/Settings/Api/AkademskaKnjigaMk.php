@@ -277,7 +277,7 @@ class AkademskaKnjigaMk
         if ($updated) {
             $diff = $ps->diff($ts);
 
-            Product::query()->whereIn('sku', $diff)->where('shipping_time', '10-15 dana')->update(['status' => 0]);
+            Product::query()->whereIn('sku', $diff)->where('shipping_time', '10-15 dana')->update(['quantity' => 0]);
 
             $job->finish(1, $count, ApiHelper::response(1, 'Obnovljene su cijene i količine na ' . $count . ' artikala.'));
 
