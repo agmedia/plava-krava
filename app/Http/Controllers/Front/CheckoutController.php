@@ -155,9 +155,9 @@ class CheckoutController extends Controller
                     $real->decrement('quantity', $product->quantity);
 
                     if ( ! $real->quantity) {
-                        $real->update([
+                        /*$real->update([
                             'status' => 0
-                        ]);
+                        ]);*/
                     }
                 }
             }
