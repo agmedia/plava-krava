@@ -42,7 +42,7 @@ class Gls
             //Test username:
             $username = "marko@plavakrava.hr"; //!!!NOT FOR CUSTOMER TESTING, USE YOUR OWN, USE YOUR OWN!!!
             //Test password:
-            $pwd      = "Pringles99@"; //!!!NOT FOR CUSTOMER TESTING, USE YOUR OWN, USE YOUR OWN!!!
+            $pwd      = "Testnalozinka123"; //!!!NOT FOR CUSTOMER TESTING, USE YOUR OWN, USE YOUR OWN!!!
             $password = hash('sha512', $pwd, true);
 
             $brojracuna = $this->order['id'];
