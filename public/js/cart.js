@@ -7824,7 +7824,10 @@ var render = function() {
                       product.quantity <= 0
                         ? _c(
                             "span",
-                            { staticClass: "badge bg-warning mt-1 ms-1" },
+                            {
+                              staticClass:
+                                "badge bg-warning mt-1 ms-1 badge-end"
+                            },
                             [_vm._v("Rasprodano")]
                           )
                         : _vm._e(),
