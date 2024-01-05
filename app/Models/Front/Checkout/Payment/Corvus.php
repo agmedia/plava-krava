@@ -114,7 +114,7 @@ class Corvus
 
         if ($request->has('approval_code')) {
             Transaction::insert([
-                'order_id'        => $request->input('order_number'),
+                'order_id'        => $order->id,
                 'success'         => 1,
               /*  'amount'          => $request->input('Amount'),
                 'signature'       => $request->input('Signature'),
@@ -135,7 +135,7 @@ class Corvus
         }
 
         Transaction::insert([
-            'order_id'        => $request->input('order_number'),
+            'order_id'        => $order->id,
             'success'         => 0,
           /*  'amount'          => $request->input('Amount'),
             'signature'       => $request->input('Signature'),

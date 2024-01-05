@@ -268,15 +268,13 @@ class CheckoutController extends Controller
     private function validateKeksResponse(Request $request): bool
     {
         if ($request->has('status') && ! $request->input('status')) {
-            $token = $request->header('Php-Auth-Pw');
+            $token = $request->header('Authorization');
 
             if ($token) {
                 $keks_token = Settings::get('payment', 'list.keks')->first();
 
                 if (isset($keks_token->data->token)) {
-                    $request->validate(['bill_id' => 'required']);
-
-                    return hash_equals($keks_token->data->token, $token);
+                    return hash_equals($keks_token->data->token, str_replace('Token ', '', $token));
                 }
             }
         }
