@@ -36,7 +36,7 @@
                     </ul>
                     <div class="block-content tab-content">
                         <div class="tab-pane active" id="btabs-static-home" role="tabpanel">
-                            <div class="row">
+                           {{--  <div class="row">
                                 <div class="col-md-8 mb-4">
                                     <div id="accordion2" role="tablist" aria-multiselectable="true">
                                         <div class="block block-rounded mb-1">
@@ -128,7 +128,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--}}
                         </div>
 
                         <div class="tab-pane" id="btabs-static-settings" role="tabpanel">
