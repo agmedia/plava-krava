@@ -113,6 +113,9 @@ class CheckoutController extends Controller
     {
         $order = new Order();
 
+        Log::info('Response Corvus::::::::::::::::::::::::::::::::::::::');
+        Log::info($request->toArray());
+
         if ($request->has('provjera')) {
             $order->setData($request->input('provjera'));
         }
