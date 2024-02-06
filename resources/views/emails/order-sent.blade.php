@@ -47,6 +47,10 @@
                 @elseif ($order->payment_code == 'corvus')
                     <b>{{ __('CorvusPay') }}</b>
                     <p style="font-size:12px">Uredno smo zaprimili Vašu narudžbu broj {{ $order->id }} i zahvaljujemo Vam.</p>
+
+                @elseif ($order->payment_code == 'keks')
+                    <b>{{ __('KeksPay') }}</b>
+                    <p style="font-size:12px">Uredno smo zaprimili Vašu narudžbu broj {{ $order->id }} i zahvaljujemo Vam.</p>
                 @else
                     <b>{{ __('Plaćanje prilikom preuzimanja') }}</b>
                     <p style="font-size:12px">Uredno smo zaprimili Vašu narudžbu broj {{ $order->id }} i zahvaljujemo Vam.</p>
