@@ -83,7 +83,7 @@ class Keks
         $data['qr_code']     = 1;
         $data['cid']         = $payment_method->data->cid;
         $data['tid']         = $payment_method->data->tid;
-        $data['bill_id']     = $payment_method->data->cid . time() .  '-' . $order_id;
+        $data['bill_id']     = $payment_method->data->cid . $order_id;
         $data['amount']      = $total;
         $data['store']       = $store_name;
         $data['order_id']    = $order_id;
@@ -99,7 +99,7 @@ class Keks
             "qr_type" => 1,
             "cid"     => $payment_method->data->cid,
             "tid"     => $payment_method->data->tid,
-            "bill_id" => $payment_method->data->cid . time() . $order_id,
+            "bill_id" => $payment_method->data->cid .  $order_id,
             "amount"  => $total,
             "store"   => $store_name,
         ];

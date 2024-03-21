@@ -194,7 +194,7 @@ class CheckoutController extends Controller
     public function successKeks(Request $request)
     {
         if ($this->validateKeksResponse($request)) {
-            $id    = substr($request->input('bill_id'), 18);
+            $id    = substr($request->input('bill_id'), 8);
             $order = Order::query()->where('id', $id)->first();
 
             $order->setData($id)->finish($request);
